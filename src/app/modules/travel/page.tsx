@@ -18,6 +18,7 @@ export default function TravelPage() {
       priceNote="one-time unlock, price TBD"
       ctaLabel="Notify me"
       ctaHref="/#pricing"
+      waitlistModule="travel"
       features={[
         {
           title: "Fare tracking that respects a budget",

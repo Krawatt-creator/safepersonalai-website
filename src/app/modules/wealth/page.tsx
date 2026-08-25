@@ -18,6 +18,7 @@ export default function WealthPage() {
       priceNote="one-time unlock, price TBD"
       ctaLabel="Notify me"
       ctaHref="/#pricing"
+      waitlistModule="wealth"
       features={[
         {
           title: "Statements filed themselves",

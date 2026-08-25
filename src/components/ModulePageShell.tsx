@@ -2,6 +2,7 @@ import Link from "next/link";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import Reveal from "./Reveal";
+import WaitlistForm from "./WaitlistForm";
 
 type Feature = { title: string; body: string };
 
@@ -15,6 +16,7 @@ export default function ModulePageShell({
   priceNote,
   ctaLabel,
   ctaHref,
+  waitlistModule,
   children,
 }: {
   accent: "green" | "violet";
@@ -26,6 +28,7 @@ export default function ModulePageShell({
   priceNote: string;
   ctaLabel: string;
   ctaHref: string;
+  waitlistModule?: string;
   children?: React.ReactNode;
 }) {
   const dot = accent === "green" ? "bg-green" : "bg-violet";
@@ -58,15 +61,21 @@ export default function ModulePageShell({
               {intro}
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a
-                href={ctaHref}
-                className={`rounded-full px-6 py-3 text-sm font-semibold transition hover:scale-[1.02] active:scale-[0.98] ${ctaClass}`}
-              >
-                {ctaLabel}
-              </a>
-              <span className="text-xs text-text-tertiary">
-                {priceLabel} · {priceNote}
-              </span>
+              {waitlistModule ? (
+                <WaitlistForm module={waitlistModule} accent={accent} />
+              ) : (
+                <>
+                  <a
+                    href={ctaHref}
+                    className={`rounded-full px-6 py-3 text-sm font-semibold transition hover:scale-[1.02] active:scale-[0.98] ${ctaClass}`}
+                  >
+                    {ctaLabel}
+                  </a>
+                  <span className="text-xs text-text-tertiary">
+                    {priceLabel} · {priceNote}
+                  </span>
+                </>
+              )}
             </div>
           </div>
         </section>
@@ -95,12 +104,18 @@ export default function ModulePageShell({
             <h2 className="text-2xl font-semibold text-text">
               Ready for {name}?
             </h2>
-            <a
-              href={ctaHref}
-              className={`mt-6 inline-block rounded-full px-6 py-3 text-sm font-semibold transition hover:scale-[1.02] active:scale-[0.98] ${ctaClass}`}
-            >
-              {ctaLabel}
-            </a>
+            {waitlistModule ? (
+              <div className="mt-6 flex justify-center">
+                <WaitlistForm module={waitlistModule} accent={accent} />
+              </div>
+            ) : (
+              <a
+                href={ctaHref}
+                className={`mt-6 inline-block rounded-full px-6 py-3 text-sm font-semibold transition hover:scale-[1.02] active:scale-[0.98] ${ctaClass}`}
+              >
+                {ctaLabel}
+              </a>
+            )}
           </div>
         </section>
       </main>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
+import WaitlistForm from "./WaitlistForm";
 
 type Module = {
   key: string;
@@ -11,12 +12,15 @@ type Module = {
   accent: "green" | "violet";
   cta: string;
   featured?: boolean;
+  waitlist?: boolean;
 };
 
 // PRICE PLACEHOLDER: figures below are not real — Cengiz hasn't set price
 // points yet, and the Lemon Squeezy store/products don't exist. Swap
-// `price`/`priceNote` once both are decided, and swap each `href="#"` for
-// the real Lemon Squeezy checkout/overlay link for that product.
+// `price`/`priceNote` once both are decided, and swap the Operational
+// `href="#"` for the real Lemon Squeezy checkout/overlay link once that
+// exists. Travel/Wealth (`waitlist: true`) use WaitlistForm → POST
+// /api/waitlist instead of a link — see functions/api/waitlist.ts.
 const modules: Module[] = [
   {
     key: "operational",
@@ -48,6 +52,7 @@ const modules: Module[] = [
     ],
     accent: "violet",
     cta: "Notify me",
+    waitlist: true,
   },
   {
     key: "wealth",
@@ -64,6 +69,7 @@ const modules: Module[] = [
     accent: "green",
     cta: "Notify me",
     featured: true,
+    waitlist: true,
   },
 ];
 
@@ -137,16 +143,22 @@ function ModuleCard({ module: m }: { module: Module }) {
         Learn more →
       </Link>
 
-      <a
-        href="#"
-        className={`mt-8 rounded-full px-5 py-2.5 text-center text-sm font-medium transition hover:scale-[1.02] active:scale-[0.98] ${
-          m.accent === "green"
-            ? "bg-green text-[#06110c] hover:brightness-110"
-            : "border border-border-strong text-text hover:border-text-tertiary"
-        }`}
-      >
-        {m.cta}
-      </a>
+      {m.waitlist ? (
+        <div className="mt-8">
+          <WaitlistForm module={m.key} accent={m.accent} />
+        </div>
+      ) : (
+        <a
+          href="/#pricing"
+          className={`mt-8 rounded-full px-5 py-2.5 text-center text-sm font-medium transition hover:scale-[1.02] active:scale-[0.98] ${
+            m.accent === "green"
+              ? "bg-green text-[#06110c] hover:brightness-110"
+              : "border border-border-strong text-text hover:border-text-tertiary"
+          }`}
+        >
+          {m.cta}
+        </a>
+      )}
     </div>
   );
 }
