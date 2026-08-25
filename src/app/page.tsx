@@ -1,5 +1,6 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import LaptopRevealSection from "@/components/LaptopRevealSection";
 import OwnershipSection from "@/components/OwnershipSection";
 import BoundarySection from "@/components/BoundarySection";
 import UseCasesSection from "@/components/UseCasesSection";
@@ -14,6 +15,7 @@ export default function Home() {
       <Nav />
       <main className="flex-1">
         <Hero />
+        <LaptopRevealSection />
         <OwnershipSection />
         <BoundarySection />
         <UseCasesSection />
