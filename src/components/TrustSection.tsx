@@ -7,8 +7,8 @@ const points = [
     body: "Emails, calendar, finances — read and stored locally. Nothing is uploaded to us, because there's no server of ours to upload it to.",
   },
   {
-    title: "Bring your own AI key",
-    body: "Connect Anthropic, OpenAI, Gemini, or a local Ollama model. You pay your provider directly, at their price — we never see or bill your usage.",
+    title: "Bring your own AI key — or none at all",
+    body: "Run a free local Ollama model, or connect Anthropic, OpenAI, or Gemini. Whichever you choose, that conversation goes straight to them — we never see it or bill for it.",
   },
   {
     title: "Nothing sent without you",

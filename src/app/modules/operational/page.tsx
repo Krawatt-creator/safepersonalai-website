@@ -55,8 +55,8 @@ export default function OperationalPage() {
           body: "A typed message, a voice memo, a photo of a bill — all handled the same way: understood, then staged, never acted on without you.",
         },
         {
-          title: "Runs on your own AI key",
-          body: "Connect Anthropic, OpenAI, Gemini, or a free local Ollama model. You pay your provider directly, at their price — never us.",
+          title: "Runs on your own AI key — or none at all",
+          body: "A local Ollama model costs nothing, ever. Prefer Anthropic, OpenAI, or Gemini? Connect your own key and pay them directly — we're never in the middle.",
         },
       ]}
     >

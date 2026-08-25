@@ -5,7 +5,7 @@ import { useState } from "react";
 const faqs: { q: string; a: string }[] = [
   {
     q: "Do I need my own Claude, OpenAI, or Gemini account?",
-    a: "Yes — SafePersonalAI understands your messages by sending them to an AI provider you connect yourself, and you pay that provider directly at their normal price. If you'd rather not use a paid API, it also works with a local Ollama model at no cost per message, entirely on your own Mac.",
+    a: "Not necessarily. Run a local Ollama model and there's no account, no API key, and no cost at all — it never leaves your Mac. Prefer Gemini, Anthropic, or OpenAI's models instead? Connect your own account for those, and you pay that provider directly at their normal rate — Gemini has a genuine free tier too; Anthropic and OpenAI don't, so we won't pretend otherwise.",
   },
   {
     q: "Isn't this just ChatGPT or Claude with extra steps?",

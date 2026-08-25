@@ -35,9 +35,9 @@ export default function Hero() {
             </a>
           </div>
           <p className="mt-6 text-xs text-text-tertiary">
-            No account required to start. Bring your own Anthropic, OpenAI,
-            Gemini, or local Ollama key — you pay your provider directly,
-            never us.
+            Works out of the box with a free local Ollama model — no
+            account, no API key, no cost. Prefer Gemini, Anthropic, or
+            OpenAI instead? Connect your own key any time.
           </p>
         </div>
 

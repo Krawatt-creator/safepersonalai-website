@@ -7,16 +7,12 @@ const points = [
     body: "No new hardware, no rented server, no third-party company hosting your life. It runs quietly on your own Mac, using the machine you already have.",
   },
   {
+    title: "€0/month is a genuinely real option",
+    body: "Run a local Ollama model and there's no account, no key, and no per-message cost — ever. Prefer Gemini instead? Its free tier covers everyday use too. Want Anthropic or OpenAI's models specifically? Connect your own key and pay them directly, at their normal per-use rate — the one combination with no free option, so we don't pretend there is one.",
+  },
+  {
     title: "Yours the moment you install it",
     body: "Every module is a one-time unlock, not a recurring charge. Buy it once, and it keeps working for as long as you keep your Mac running — no renewal, no lapsed-payment lockout.",
-  },
-  {
-    title: "You're the only one who pays your AI provider",
-    body: "Connect your own Anthropic, OpenAI, or Gemini key — or run a local Ollama model for free — and pay that provider directly, at their price. We never sit between you and the bill.",
-  },
-  {
-    title: "€0/month is a genuinely real option",
-    body: "Run a local Ollama model on your Mac and there's no per-message cost at all, ever. Prefer Gemini's free API tier for everyday use and stay within Google's own limits, and it costs nothing too. Only Anthropic and OpenAI are pay-per-use from the first message — there's no free API tier for those, so we don't claim one.",
   },
 ];
 
