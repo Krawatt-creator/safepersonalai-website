@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Reveal from "./Reveal";
 
 type Module = {
@@ -128,6 +129,13 @@ function ModuleCard({ module: m }: { module: Module }) {
           </li>
         ))}
       </ul>
+
+      <Link
+        href={`/modules/${m.key}`}
+        className="mt-6 self-start text-sm font-medium text-text-secondary underline-offset-4 transition hover:text-text hover:underline"
+      >
+        Learn more →
+      </Link>
 
       <a
         href="#"
