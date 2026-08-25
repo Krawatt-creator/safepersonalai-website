@@ -39,6 +39,7 @@ yarn-error.log*
 # raw video drops — large binaries, not meant for git history
 /media-inbox/*
 !/media-inbox/README.md
+!/media-inbox/prompts.md
 /public/videos/
 
 # typescript
