@@ -36,6 +36,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# raw video drops — large binaries, not meant for git history
+/media-inbox/*
+!/media-inbox/README.md
+/public/videos/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
