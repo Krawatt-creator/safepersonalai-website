@@ -8,6 +8,10 @@ const faqs: { q: string; a: string }[] = [
     a: "Yes — SafePersonalAI understands your messages by sending them to an AI provider you connect yourself, and you pay that provider directly at their normal price. If you'd rather not use a paid API, it also works with a local Ollama model at no cost per message, entirely on your own Mac.",
   },
   {
+    q: "Isn't this just ChatGPT or Claude with extra steps?",
+    a: "No — and it isn't trying to be. We're not competing with Anthropic, OpenAI, or Google; SafePersonalAI runs on top of whichever one you choose. What none of them do on their own is safely read your actual inbox, calendar, iMessages, and finances and act on them within a boundary you control. That's the specific gap we fill — not a better chatbot, a safe way to let one actually do something for you.",
+  },
+  {
     q: "What if it misreads something or drafts the wrong thing?",
     a: "That's exactly what the approval step is for. Nothing is sent, filed, scheduled, or paid until you click Approve on that specific action — you can also reject it, snooze it, or correct it in your own words before anything happens.",
   },
