@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import ModulePageShell from "@/components/ModulePageShell";
+import WealthPreviewPanel from "@/components/WealthPreviewPanel";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Wealth",
@@ -37,6 +39,25 @@ export default function WealthPage() {
           body: "A full reconciliation view — nothing mystery, nothing double-counted, nothing quietly missing.",
         },
       ]}
-    />
+    >
+      <section className="border-t border-border py-20">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1fr_1.05fr] lg:items-center">
+          <Reveal>
+            <p className="text-sm font-medium text-green">What it watches</p>
+            <h2 className="mt-3 max-w-md text-2xl font-semibold tracking-tight text-balance text-text sm:text-3xl">
+              A forecast that warns you before the month goes wrong.
+            </h2>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-text-secondary">
+              It projects your balance forward, not just backward — so a
+              guardrail breach shows up as a warning in February, not a
+              surprise when February actually arrives.
+            </p>
+          </Reveal>
+          <Reveal delay={100} className="lg:justify-self-end">
+            <WealthPreviewPanel />
+          </Reveal>
+        </div>
+      </section>
+    </ModulePageShell>
   );
 }

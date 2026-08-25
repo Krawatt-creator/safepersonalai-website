@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import ModulePageShell from "@/components/ModulePageShell";
+import TravelPreviewPanel from "@/components/TravelPreviewPanel";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Travel",
@@ -37,6 +39,25 @@ export default function TravelPage() {
           body: "Cross-checks fare windows against your free weekends, so a great price on days you're not actually free never gets your hopes up for nothing.",
         },
       ]}
-    />
+    >
+      <section className="border-t border-border py-20">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1fr_1.05fr] lg:items-center">
+          <Reveal>
+            <p className="text-sm font-medium text-violet">What it watches</p>
+            <h2 className="mt-3 max-w-md text-2xl font-semibold tracking-tight text-balance text-text sm:text-3xl">
+              Every route, checked daily, against your own threshold.
+            </h2>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-text-secondary">
+              You decide what counts as a deal. It only interrupts you when a
+              tracked route actually clears that number — everything else
+              stays quiet in the background.
+            </p>
+          </Reveal>
+          <Reveal delay={100} className="lg:justify-self-end">
+            <TravelPreviewPanel />
+          </Reveal>
+        </div>
+      </section>
+    </ModulePageShell>
   );
 }

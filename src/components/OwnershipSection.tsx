@@ -14,6 +14,10 @@ const points = [
     title: "You're the only one who pays your AI provider",
     body: "Connect your own Anthropic, OpenAI, or Gemini key — or run a local Ollama model for free — and pay that provider directly, at their price. We never sit between you and the bill.",
   },
+  {
+    title: "€0/month is a genuinely real option",
+    body: "Run a local Ollama model on your Mac and there's no per-message cost at all, ever. Prefer Gemini's free API tier for everyday use and stay within Google's own limits, and it costs nothing too. Only Anthropic and OpenAI are pay-per-use from the first message — there's no free API tier for those, so we don't claim one.",
+  },
 ];
 
 export default function OwnershipSection() {
