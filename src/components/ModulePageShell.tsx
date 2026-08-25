@@ -3,14 +3,17 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import Reveal from "./Reveal";
 import WaitlistForm from "./WaitlistForm";
+import ModuleHowItWorks from "./ModuleHowItWorks";
 
 type Feature = { title: string; body: string };
+type Step = { title: string; body: string };
 
 export default function ModulePageShell({
   accent,
   name,
   tagline,
   intro,
+  steps,
   features,
   priceLabel,
   priceNote,
@@ -23,6 +26,7 @@ export default function ModulePageShell({
   name: string;
   tagline: string;
   intro: string;
+  steps: [Step, Step, Step];
   features: Feature[];
   priceLabel: string;
   priceNote: string;
@@ -79,6 +83,8 @@ export default function ModulePageShell({
             </div>
           </div>
         </section>
+
+        <ModuleHowItWorks accent={accent} steps={steps} />
 
         <section className="py-20">
           <div className="mx-auto max-w-4xl px-6">

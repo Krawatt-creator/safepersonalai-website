@@ -19,6 +19,20 @@ export default function OperationalPage() {
       priceNote="no card required"
       ctaLabel="Get SafePersonalAI"
       ctaHref="/#pricing"
+      steps={[
+        {
+          title: "It reads",
+          body: "Email, iMessage, a photographed invoice, a voice memo — understood in whatever language and format it arrived in.",
+        },
+        {
+          title: "You approve",
+          body: "Every draft lands in one Pending Actions queue. Approve, snooze, reject, or correct it in your own words.",
+        },
+        {
+          title: "It acts",
+          body: "Only then does anything happen — a reply gets sent, an event lands on your calendar, a document gets filed.",
+        },
+      ]}
       features={[
         {
           title: "Inbox triage, drafted for you",

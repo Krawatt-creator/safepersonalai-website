@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ModulePageShell from "@/components/ModulePageShell";
 import TravelPreviewPanel from "@/components/TravelPreviewPanel";
+import DealAlertPanel from "@/components/DealAlertPanel";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
@@ -21,6 +22,20 @@ export default function TravelPage() {
       ctaLabel="Notify me"
       ctaHref="/#pricing"
       waitlistModule="travel"
+      steps={[
+        {
+          title: "Tell it what matters",
+          body: "A route, a price threshold, maybe a flexible date range or an open-jaw itinerary.",
+        },
+        {
+          title: "It checks quietly",
+          body: "Daily, inside a fixed quota — no runaway costs, no constant refreshing on your end.",
+        },
+        {
+          title: "You hear about a real deal",
+          body: "Only when a tracked route actually clears your own threshold — nothing else interrupts you.",
+        },
+      ]}
       features={[
         {
           title: "Fare tracking that respects a budget",
@@ -55,6 +70,25 @@ export default function TravelPage() {
           </Reveal>
           <Reveal delay={100} className="lg:justify-self-end">
             <TravelPreviewPanel />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="border-t border-border py-20">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1.05fr_1fr] lg:items-center">
+          <Reveal>
+            <p className="text-sm font-medium text-violet">What you actually see</p>
+            <h2 className="mt-3 max-w-md text-2xl font-semibold tracking-tight text-balance text-text sm:text-3xl">
+              One notification, only when it's worth your attention.
+            </h2>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-text-secondary">
+              Not a dashboard you have to check — a single message when a
+              price actually clears your threshold, cross-checked against
+              whether you're even free that weekend.
+            </p>
+          </Reveal>
+          <Reveal delay={100}>
+            <DealAlertPanel />
           </Reveal>
         </div>
       </section>
