@@ -40,6 +40,7 @@ yarn-error.log*
 /media-inbox/*
 !/media-inbox/README.md
 !/media-inbox/prompts.md
+!/media-inbox/logo-prompts.md
 /public/videos/
 
 # typescript
