@@ -2,19 +2,19 @@ const steps = [
   {
     n: "01",
     title: "AI understands",
-    body: "It reads what actually arrived — an email, an iMessage, a photographed invoice, a bank notification — and works out what it means, in whatever language it came in.",
+    body: "It reads the email that arrived as untrusted data and extracts a proposed task, calendar event, renewal reminder, or supported module action.",
     accent: "green" as const,
   },
   {
     n: "02",
     title: "You approve",
-    body: "Every proposed action lands in one place before anything happens. Reply, or don't. File it, snooze it, correct it in your own words. Nothing is assumed.",
+    body: "Every proposed action lands in one review queue. You can approve, reject, delay, or provide missing information. Ambiguity never becomes permission.",
     accent: "violet" as const,
   },
   {
     n: "03",
     title: "Software acts",
-    body: "Only after your say-so does anything actually happen — a draft becomes a sent reply, an event lands on your calendar, a document lands in the right folder.",
+    body: "Only the approved fields are dispatched. Calendar actions cannot invite attendees; finance features record and forecast but cannot move money.",
     accent: "green" as const,
   },
 ];

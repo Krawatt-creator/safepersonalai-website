@@ -1,63 +1,12 @@
+import Link from "next/link";
 import Reveal from "./Reveal";
+import { topics } from "@/lib/usecases-data";
 
-type Capability = {
-  icon: string;
-  title: string;
-  friction: string;
-};
-
-const capabilities: Capability[] = [
-  {
-    icon: "✉️",
-    title: "Inbox replies",
-    friction: "No more re-reading a thread to remember what you already said.",
-  },
-  {
-    icon: "📅",
-    title: "Calendar events",
-    friction: "No more opening the calendar app just to type in a date.",
-  },
-  {
-    icon: "✅",
-    title: "To-dos & reminders",
-    friction: "No more a deadline you swore you'd remember, quietly missed.",
-  },
-  {
-    icon: "🧾",
-    title: "Bill & invoice tracking",
-    friction: "No more digging through your inbox the night before it's due.",
-  },
-  {
-    icon: "🎤",
-    title: "Voice memo → action",
-    friction: "No more typing out a reminder you already said out loud.",
-  },
-  {
-    icon: "✈️",
-    title: "Flight deal tracking",
-    friction: "No more refreshing a fare-tracking tab out of habit.",
-  },
-  {
-    icon: "📊",
-    title: "Cash-flow forecast",
-    friction: "No more finding out you're low on funds after it's already happened.",
-  },
-  {
-    icon: "🗂️",
-    title: "Document filing",
-    friction: "No more \"which folder does this invoice go in\" guesswork.",
-  },
-  {
-    icon: "📈",
-    title: "Portfolio import",
-    friction: "No more checking a broker app separately from everything else.",
-  },
-  {
-    icon: "🔍",
-    title: "Full reconciliation",
-    friction: "No more wondering if a transaction just quietly went untracked.",
-  },
-];
+// The card content (icon/title/friction) lives in usecases-data.ts now, one
+// source of truth shared with the /usecases library pages each card links
+// to — added 2026-08-27, so a topic never drifts out of sync between the
+// teaser shown here and its own detail page.
+const capabilities = topics.slice(0, 6);
 
 export default function CapabilitiesSection() {
   return (
@@ -77,10 +26,13 @@ export default function CapabilitiesSection() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((c, i) => (
-            <Reveal key={c.title} delay={(i % 5) * 70}>
-              <div className="flex h-full flex-col rounded-2xl border border-border bg-bg-raised p-5 transition duration-300 hover:-translate-y-1 hover:border-border-strong">
+            <Reveal key={c.slug} delay={(i % 5) * 70}>
+              <Link
+                href={`/usecases/${c.slug}`}
+                className="flex h-full flex-col rounded-2xl border border-border bg-bg-raised p-5 transition duration-300 hover:-translate-y-1 hover:border-border-strong"
+              >
                 <span className="text-xl leading-none">{c.icon}</span>
                 <h3 className="mt-3 text-sm font-semibold text-text">
                   {c.title}
@@ -88,15 +40,27 @@ export default function CapabilitiesSection() {
                 <p className="mt-2 text-xs leading-relaxed text-text-tertiary">
                   {c.friction}
                 </p>
-              </div>
+                <span className="mt-3 text-xs font-medium text-green">
+                  See examples →
+                </span>
+              </Link>
             </Reveal>
           ))}
         </div>
 
+        <Reveal delay={100}>
+          <Link
+            href="/usecases"
+            className="mt-8 inline-flex rounded-full border border-border-strong px-5 py-2.5 text-sm font-medium text-text-secondary transition hover:border-text-tertiary hover:text-text"
+          >
+            Explore all 15 use cases →
+          </Link>
+        </Reveal>
+
         <Reveal delay={120}>
           <p className="mt-10 max-w-2xl text-xs text-text-tertiary">
-            No invented "hours saved per week" claim here — there's no real
-            usage data yet to back one up, and a made-up number isn't worth
+            No invented &ldquo;hours saved per week&rdquo; claim here — there&apos;s no real
+            usage data yet to back one up, and a made-up number isn&apos;t worth
             the trust it costs. Judge it against your own inbox instead.
           </p>
         </Reveal>

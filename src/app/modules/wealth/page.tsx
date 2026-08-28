@@ -82,7 +82,7 @@ export default function WealthPage() {
               Your real holdings, in the same place as everything else.
             </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-text-secondary">
-              Pulled straight from your broker's own export — no separate
+              Pulled straight from your broker&apos;s own export — no separate
               app to check, no manually re-typing what you already own.
             </p>
           </Reveal>

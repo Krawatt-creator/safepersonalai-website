@@ -7,25 +7,24 @@ export default function Hero() {
         <div>
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border-strong bg-bg-raised px-3 py-1 text-xs text-text-secondary">
             <span className="h-1.5 w-1.5 rounded-full bg-green" />
-            Runs on your Mac · your own AI key · nothing leaves without you
+            Private Mac assistant · early access in preparation
           </div>
           <h1 className="text-4xl leading-[1.1] font-semibold tracking-tight text-balance text-text sm:text-5xl lg:text-6xl">
-            It reads your inbox.
+            It turns your inbox into actions.
             <br />
-            It never sends without you.
+            It waits for your approval.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-text-secondary text-pretty">
-            SafePersonalAI watches your email, calendar, and iMessages, works
-            out what needs doing, and drafts it — a reply, an event, a filed
-            document, a tracked payment. You approve every single action.
-            It never acts on its own.
+            SafePersonalAI reads new email, prepares the task or calendar
+            action it found, and shows you exactly what will happen before
+            anything changes. It runs on your Mac with your own AI provider.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
-              href="#pricing"
+              href="#use-cases"
               className="rounded-full bg-green px-6 py-3 text-sm font-semibold text-[#06110c] transition hover:brightness-110"
             >
-              Get started free
+              Explore real use cases
             </a>
             <a
               href="#boundary"
@@ -35,9 +34,9 @@ export default function Hero() {
             </a>
           </div>
           <p className="mt-6 text-xs text-text-tertiary">
-            Works out of the box with a free local Ollama model — no
-            account, no API key, no cost. Prefer Gemini, Anthropic, or
-            OpenAI instead? Connect your own key any time.
+            Paid early access is not open yet. Cloud-provider support is being
+            validated first; a local-model option follows only after it meets
+            the same reliability and safety standard.
           </p>
         </div>
 

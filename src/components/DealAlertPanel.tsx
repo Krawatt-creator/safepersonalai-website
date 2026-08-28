@@ -28,7 +28,7 @@ export default function DealAlertPanel() {
             <div className="min-w-0">
               <p className="text-sm font-semibold text-text">Calendar</p>
               <p className="mt-1 text-sm leading-snug text-text-tertiary">
-                You're free that whole weekend, too.
+                You&apos;re free that whole weekend, too.
               </p>
             </div>
           </div>

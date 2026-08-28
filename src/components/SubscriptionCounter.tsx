@@ -6,16 +6,15 @@ const MONTHLY_COST = 24;
 const MAX_MONTHS = 36;
 
 export default function SubscriptionCounter() {
-  const [months, setMonths] = useState(1);
+  const [months, setMonths] = useState(() =>
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? 24
+      : 1
+  );
 
   useEffect(() => {
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) {
-      setMonths(24);
-      return;
-    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = window.setInterval(() => {
       setMonths((m) => (m >= MAX_MONTHS ? 1 : m + 1));
     }, 450);

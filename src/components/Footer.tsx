@@ -12,6 +12,9 @@ export default function Footer() {
           Understands, proposes, waits for you. Every time.
         </p>
         <div className="flex items-center gap-4">
+          <Link href="/account" className="transition hover:text-text-secondary">
+            Account
+          </Link>
           <Link href="/privacy" className="transition hover:text-text-secondary">
             Privacy Policy
           </Link>

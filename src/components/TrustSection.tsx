@@ -4,15 +4,15 @@ import TrustCenterPanel from "./TrustCenterPanel";
 const points = [
   {
     title: "Your data stays on your Mac",
-    body: "Emails, calendar, finances — read and stored locally. Nothing is uploaded to us, because there's no server of ours to upload it to.",
+    body: "The local action store, tasks, settings, and module data remain on your Mac. Content sent to a cloud AI provider goes directly under the provider account you chose; SafePersonalAI does not receive it.",
   },
   {
-    title: "Bring your own AI key — or none at all",
-    body: "Run a free local Ollama model, or connect Anthropic, OpenAI, or Gemini. Whichever you choose, that conversation goes straight to them — we never see it or bill for it.",
+    title: "Bring your own AI key",
+    body: "Supported cloud providers use your own account and key. A local-model option is planned, but it will not be marketed as equivalent until it passes the product's real classification tests.",
   },
   {
-    title: "Nothing sent without you",
-    body: "Every reply, invite, or payment is a proposal until you click Approve. No exceptions, no “trusted sender” bypass, no silent auto-send mode.",
+    title: "Dangerous capabilities are absent",
+    body: "The commercial runtime cannot send email, invite attendees, click links, cancel services, or move money. Approval does not unlock a hidden path to those actions.",
   },
   {
     title: "Check the Trust Center, any time",

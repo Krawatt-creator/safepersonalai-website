@@ -7,12 +7,12 @@ const points = [
     body: "No new hardware, no rented server, no third-party company hosting your life. It runs quietly on your own Mac, using the machine you already have.",
   },
   {
-    title: "€0/month is a genuinely real option",
-    body: "Run a local Ollama model and there's no account, no key, and no per-message cost — ever. Prefer Gemini instead? Its free tier covers everyday use too. Want Anthropic or OpenAI's models specifically? Connect your own key and pay them directly, at their normal per-use rate — the one combination with no free option, so we don't pretend there is one.",
+    title: "Your AI provider, your account",
+    body: "Connect a supported AI provider with your own key and pay that provider directly for any usage. SafePersonalAI never hides inference cost inside a second subscription or silently falls back to a company-paid model.",
   },
   {
-    title: "Yours the moment you install it",
-    body: "Every module is a one-time unlock, not a recurring charge. Buy it once, and it keeps working for as long as you keep your Mac running — no renewal, no lapsed-payment lockout.",
+    title: "Designed as software you own",
+    body: "The planned offer is a one-time, version-bound license rather than a permanent monthly rental. Final early-access pricing and included modules will be shown before anyone is asked to pay.",
   },
 ];
 
@@ -26,10 +26,10 @@ export default function OwnershipSection() {
             Your own private agent. Not another subscription.
           </h2>
           <p className="mt-4 max-w-2xl text-text-secondary text-pretty">
-            Most AI tools today are a monthly bill that never stops. SafePersonalAI
-            turns the Mac already sitting on your desk into a private automation
-            layer for your inbox, calendar, and finances — paid for once, not
-            leased forever.
+            SafePersonalAI turns the Mac already sitting on your desk into a
+            private automation layer. Your working data stays local, your AI
+            provider relationship stays yours, and the commercial terms stay
+            visible before purchase.
           </p>
         </Reveal>
 

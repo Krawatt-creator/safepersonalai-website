@@ -26,17 +26,18 @@ const modules: Module[] = [
     key: "operational",
     name: "Operational",
     tagline: "Inbox, calendar, iMessage, to-dos — included with every install.",
-    price: "Included",
-    priceNote: "no card required",
+    price: "Early access",
+    priceNote: "price announced before purchase",
     features: [
-      "Inbox triage & drafted replies, in your language",
-      "Calendar events from email or text, never auto-invited",
+      "Inbox understanding with approval-ready tasks",
+      "Calendar events from email, with no attendee invitations",
       "To-dos with deadline reminders",
       "One Pending Actions queue — approve, snooze, or correct anything",
-      "Runs locally, with your own AI provider key",
+      "Runs on your Mac, with your own AI provider key",
     ],
     accent: "green",
-    cta: "Get SafePersonalAI",
+    cta: "Join early access",
+    waitlist: true,
   },
   {
     key: "travel",
@@ -148,7 +149,7 @@ function ModuleCard({ module: m }: { module: Module }) {
           <WaitlistForm module={m.key} accent={m.accent} />
         </div>
       ) : (
-        <a
+        <Link
           href="/#pricing"
           className={`mt-8 rounded-full px-5 py-2.5 text-center text-sm font-medium transition hover:scale-[1.02] active:scale-[0.98] ${
             m.accent === "green"
@@ -157,7 +158,7 @@ function ModuleCard({ module: m }: { module: Module }) {
           }`}
         >
           {m.cta}
-        </a>
+        </Link>
       )}
     </div>
   );

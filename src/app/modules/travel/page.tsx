@@ -79,12 +79,12 @@ export default function TravelPage() {
           <Reveal>
             <p className="text-sm font-medium text-violet">What you actually see</p>
             <h2 className="mt-3 max-w-md text-2xl font-semibold tracking-tight text-balance text-text sm:text-3xl">
-              One notification, only when it's worth your attention.
+              One notification, only when it&apos;s worth your attention.
             </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-text-secondary">
               Not a dashboard you have to check — a single message when a
               price actually clears your threshold, cross-checked against
-              whether you're even free that weekend.
+              whether you&apos;re even free that weekend.
             </p>
           </Reveal>
           <Reveal delay={100}>

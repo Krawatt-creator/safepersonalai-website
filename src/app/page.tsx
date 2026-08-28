@@ -3,8 +3,7 @@ import Hero from "@/components/Hero";
 import LaptopRevealSection from "@/components/LaptopRevealSection";
 import OwnershipSection from "@/components/OwnershipSection";
 import BoundarySection from "@/components/BoundarySection";
-import CapabilitiesSection from "@/components/CapabilitiesSection";
-import UseCasesSection from "@/components/UseCasesSection";
+import ProductUseCasesSection from "@/components/ProductUseCasesSection";
 import ModulesPricing from "@/components/ModulesPricing";
 import TrustSection from "@/components/TrustSection";
 import FAQSection from "@/components/FAQSection";
@@ -19,8 +18,7 @@ export default function Home() {
         <LaptopRevealSection />
         <OwnershipSection />
         <BoundarySection />
-        <CapabilitiesSection />
-        <UseCasesSection />
+        <ProductUseCasesSection />
         <ModulesPricing />
         <TrustSection />
         <FAQSection />

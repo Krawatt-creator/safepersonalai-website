@@ -14,7 +14,16 @@
 // Deliberately untyped (`context: any`) rather than pulling in
 // `@cloudflare/workers-types` as a new dependency for one small function.
 
-export const onRequestPost = async (context: any) => {
+type WaitlistContext = {
+  request: Request;
+  env: {
+    WAITLIST?: {
+      put(key: string, value: string): Promise<void>;
+    };
+  };
+};
+
+export const onRequestPost = async (context: WaitlistContext) => {
   try {
     const body = await context.request.json();
     const email = String(body?.email || "")

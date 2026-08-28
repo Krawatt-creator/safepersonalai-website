@@ -60,7 +60,7 @@ export default function PrivacyPage() {
           <li>
             <span className="text-text">iMessage</span> (read locally on your
             Mac) — to understand messages you send yourself as reminders, or
-            from senders you've explicitly trusted.
+            from senders you&apos;ve explicitly trusted.
           </li>
         </ul>
         <p>

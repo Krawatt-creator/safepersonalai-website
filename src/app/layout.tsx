@@ -15,11 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://safepersonalai.com"),
   title: {
-    default: "SafePersonalAI — Your life, automated, never without your say-so",
+    default: "SafePersonalAI — Private actions from your inbox, approved by you",
     template: "%s — SafePersonalAI",
   },
   description:
-    "SafePersonalAI reads your inbox, calendar, and finances, drafts the actions — and waits for you to approve every one. Runs on your Mac, with your own AI key. Free to start.",
+    "SafePersonalAI runs on your Mac, turns email into approval-ready tasks and calendar actions, and uses your own AI provider account.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -5,19 +5,19 @@ import { useState } from "react";
 const faqs: { q: string; a: string }[] = [
   {
     q: "Do I need my own Claude, OpenAI, or Gemini account?",
-    a: "Not necessarily. Run a local Ollama model and there's no account, no API key, and no cost at all — it never leaves your Mac. Prefer Gemini, Anthropic, or OpenAI's models instead? Connect your own account for those, and you pay that provider directly at their normal rate — Gemini has a genuine free tier too; Anthropic and OpenAI don't, so we won't pretend otherwise.",
+    a: "For the first validated early-access path, yes: you connect a supported cloud AI provider with your own API key and pay that provider directly for usage. A local-model option is planned, but it will only ship after a specific model passes the same real extraction and classification tests.",
   },
   {
     q: "Isn't this just ChatGPT or Claude with extra steps?",
-    a: "No — and it isn't trying to be. We're not competing with Anthropic, OpenAI, or Google; SafePersonalAI runs on top of whichever one you choose. What none of them do on their own is safely read your actual inbox, calendar, iMessages, and finances and act on them within a boundary you control. That's the specific gap we fill — not a better chatbot, a safe way to let one actually do something for you.",
+    a: "No — and it isn't trying to be. SafePersonalAI uses a supported model for understanding, then adds a local action store, deterministic validation, explicit approval, and tightly restricted tools. The initial commercial wedge is email to task or calendar action; broader modules are packaged and released separately.",
   },
   {
     q: "What if it misreads something or drafts the wrong thing?",
-    a: "That's exactly what the approval step is for. Nothing is sent, filed, scheduled, or paid until you click Approve on that specific action — you can also reject it, snooze it, or correct it in your own words before anything happens.",
+    a: "That's exactly what the approval step is for. You see the proposed structured result and its source before dispatch. Ambiguous dates fail closed, calendar changes require an exact reference match, and the commercial tools cannot send email, invite attendees, click links, or move money.",
   },
   {
     q: "Does my data train anyone's AI model?",
-    a: "We don't train anything — there's no SafePersonalAI model. Whether a message you send to your chosen AI provider is used for their own training depends on that provider's own policy (most API-tier usage, unlike consumer chat apps, is excluded by default) — check the provider you connect for specifics.",
+    a: "SafePersonalAI does not train a model or receive your inbox content. When you choose a cloud AI provider, the relevant content goes directly from your Mac to that provider under its API terms. Review the provider's current data-use and retention policy before connecting it.",
   },
   {
     q: "Does it run in the cloud, or on my machine?",
@@ -25,7 +25,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: "Can it send a message, invite someone, or move money without me?",
-    a: "No. It can't email or notify anyone but you, can't add attendees to a calendar event, and can't execute a financial transaction — those aren't policies we ask you to trust, they're capabilities the software's tools simply don't have.",
+    a: "No. The commercial runtime has no email-send, attendee, payment, cancellation, or link-clicking capability. Calendar writes explicitly use no attendee notifications, and financial features only record approved information or calculate projections.",
   },
   {
     q: "What happens to my data if I stop using it?",

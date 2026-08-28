@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const links = [
+  { href: "#use-cases", label: "Use cases" },
   { href: "#modules", label: "Modules" },
   { href: "#boundary", label: "How it works" },
   { href: "#pricing", label: "Pricing" },
@@ -28,11 +29,17 @@ export default function Nav() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
+          <Link
+            href="/account"
+            className="hidden text-sm text-text-secondary transition hover:text-text lg:inline-block"
+          >
+            Account
+          </Link>
           <a
             href="#pricing"
             className="hidden rounded-full bg-text px-4 py-2 text-sm font-medium text-bg transition hover:bg-green sm:inline-block"
           >
-            Get started free
+            Join early access
           </a>
           <button
             type="button"
@@ -79,7 +86,7 @@ export default function Nav() {
                 onClick={() => setOpen(false)}
                 className="block rounded-full bg-text px-4 py-2.5 text-center text-sm font-medium text-bg transition hover:bg-green"
               >
-                Get started free
+                Join early access
               </a>
             </li>
           </ul>
