@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 const links = [
@@ -18,7 +19,14 @@ export default function Nav() {
     <header className="sticky top-0 z-50 border-b border-border bg-bg/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link href="/" className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-green shadow-[0_0_10px_rgba(0,229,153,0.7)]" />
+          <Image
+            src="/logo.png"
+            alt=""
+            width={28}
+            height={28}
+            priority
+            className="rounded-[8px]"
+          />
           <span className="font-semibold tracking-tight text-text">SafePersonalAI</span>
         </Link>
         <nav className="hidden items-center gap-8 text-sm text-text-secondary md:flex">

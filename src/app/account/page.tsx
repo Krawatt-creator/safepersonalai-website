@@ -45,8 +45,8 @@ export default function AccountPage() {
                 Your license lives here. Your life does not.
               </h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-text-secondary text-pretty">
-                The customer portal will manage downloads, licenses, devices,
-                and account details. Your emails, calendar, tasks, documents,
+                Lemon Squeezy&apos;s hosted order area manages your downloads,
+                receipts, and license access. Your emails, calendar, tasks, documents,
                 and financial records remain on your Mac and never appear here.
               </p>
             </div>
@@ -81,13 +81,22 @@ export default function AccountPage() {
               </button>
 
               <div className="mt-5 rounded-2xl border border-border bg-bg-raised p-4">
-                <p className="text-xs font-medium text-text">Account access is not open yet</p>
+                <p className="text-xs font-medium text-text">Already purchased?</p>
                 <p className="mt-1.5 text-xs leading-relaxed text-text-tertiary">
-                  It will open with paid early access, after the identity and
-                  licensing backend has completed security review. No password
-                  database will be created for this preview.
+                  Use the same email address you used at checkout. Lemon
+                  Squeezy sends a secure magic link—no SafePersonalAI password
+                  database is needed.
                 </p>
               </div>
+
+              <a
+                href="https://app.lemonsqueezy.com/my-orders"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 block rounded-2xl bg-text px-4 py-3 text-center text-sm font-semibold text-bg transition hover:opacity-90"
+              >
+                Open orders &amp; license access ↗
+              </a>
 
               <Link
                 href="/#pricing"

@@ -15,19 +15,16 @@ type Module = {
   waitlist?: boolean;
 };
 
-// PRICE PLACEHOLDER: figures below are not real — Cengiz hasn't set price
-// points yet, and the Lemon Squeezy store/products don't exist. Swap
-// `price`/`priceNote` once both are decided, and swap the Operational
-// `href="#"` for the real Lemon Squeezy checkout/overlay link once that
-// exists. Travel/Wealth (`waitlist: true`) use WaitlistForm → POST
-// /api/waitlist instead of a link — see functions/api/waitlist.ts.
+// Launch pricing is one-time (not a subscription). Checkout links are added
+// when the Lemon Squeezy variants are published; until then these cards keep
+// the waitlist CTA rather than pretending a purchase link is live.
 const modules: Module[] = [
   {
     key: "operational",
     name: "Operational",
-    tagline: "Inbox, calendar, iMessage, to-dos — included with every install.",
-    price: "Early access",
-    priceNote: "price announced before purchase",
+    tagline: "Inbox, calendar, iMessage, to-dos — the foundation everything else builds on.",
+    price: "€49",
+    priceNote: "one-time Base purchase",
     features: [
       "Inbox understanding with approval-ready tasks",
       "Calendar events from email, with no attendee invitations",
@@ -43,8 +40,8 @@ const modules: Module[] = [
     key: "travel",
     name: "Travel",
     tagline: "Flight price tracking that never overspends its own budget.",
-    price: "Add-on",
-    priceNote: "one-time unlock, price TBD",
+    price: "€29",
+    priceNote: "one-time add-on",
     features: [
       "Daily quota-guarded fare tracking, per route",
       "Deal alerts only when a price actually clears your threshold",
@@ -59,8 +56,8 @@ const modules: Module[] = [
     key: "wealth",
     name: "Wealth",
     tagline: "A finance dashboard that forecasts, not just tallies.",
-    price: "Add-on",
-    priceNote: "one-time unlock, price TBD",
+    price: "€29",
+    priceNote: "one-time add-on",
     features: [
       "Automatic statement filing & categorization",
       "Cash-flow forecast with guardrail breach warnings",
@@ -85,10 +82,9 @@ export default function ModulesPricing() {
               One install. Modules you actually need.
             </h2>
             <p className="mt-4 text-text-secondary text-pretty">
-              Operational comes included with every install — the same
-              inbox, calendar, and to-do automation described on this page,
-              working from day one. Travel and Wealth are one-time module
-              unlocks on top of the same install whenever you want more:
+              Base is the Operational module: the same inbox, calendar, and
+              to-do automation described on this page. Travel and Wealth are
+              one-time module unlocks on top of the same install whenever you want more:
               your data, settings, and history never move or reset when you
               add one.
             </p>

@@ -32,9 +32,12 @@ export default function TermsPage() {
       <Section title="What SafePersonalAI is">
         <p>
           SafePersonalAI is local software, not a hosted service. It connects
-          to accounts and data sources you authorize (Gmail, Google Calendar,
-          Google Drive, iMessage on your own Mac) and to an AI provider you
-          choose and pay for directly. It proposes actions — replies, calendar
+          to accounts and data sources you authorize (Gmail, Outlook, Apple
+          Mail, Google Calendar, Google Drive, iCloud Drive, local folders,
+          and iMessage on your own Mac) and to an AI provider you choose and
+          pay for directly. An optional, explicit one-to-three-month
+          historical-mail scan recognizes recurring financial senders; it
+          does not silently import historical transactions. It proposes actions — replies, calendar
           events, filed documents, tracked payments — and takes them only
           after you approve each one.
         </p>
@@ -62,11 +65,33 @@ export default function TermsPage() {
       <Section title="Free and paid modules">
         <p>
           The Operational module (inbox, calendar, iMessage, to-dos, and the
-          Pending Actions queue) is free. Additional modules (currently
-          Travel and Wealth) may be offered as paid, one-time unlocks on top
-          of the same install, processed through a third-party Merchant of
-          Record. Pricing and availability for paid modules are set at
-          purchase time and may change for future purchases.
+          Pending Actions queue) is the base product. Modules are sold as
+          one-time purchases, not recurring subscriptions. Current planned
+          prices are Base €49, Travel €29, Finance €29, or €100 for the
+          current full package (Base + Travel + Finance). Future modules may
+          have their own one-time prices. The final price, taxes, refund
+          terms, and availability shown at checkout control that purchase.
+          Payments are processed by our Merchant of Record; we do not store
+          your full payment-card details.
+        </p>
+      </Section>
+
+      <Section title="License scope and trial">
+        <p>
+          New installs include a seven-day trial. After the trial, continued
+          use requires the applicable one-time license. A purchased module is
+          licensed to you for use on your own Mac(s), up to the activation
+          limit shown at checkout. It is not permission to redistribute the
+          application or share a license key. You agree not to circumvent,
+          disable, or bypass license or trial checks. A license activates
+          against a specific Mac; moving to another Mac may require
+          deactivation and reactivation under the purchase&apos;s activation
+          limit.
+        </p>
+        <p>
+          If a trial ends or a module becomes unentitled, its existing local
+          data is preserved and is not deleted. Access can be restored by
+          activating the applicable license.
         </p>
       </Section>
 
@@ -90,6 +115,23 @@ export default function TermsPage() {
         </p>
       </Section>
 
+      <Section title="Eligibility">
+        <p>
+          You must be at least 18 years old, or the age of majority where
+          you live, to purchase or use SafePersonalAI.
+        </p>
+      </Section>
+
+      <Section title="Governing law">
+        <p>
+          These terms are governed by the laws of Germany, without regard
+          to its conflict-of-laws rules. If you are a consumer resident in
+          the European Union, this does not deprive you of any protection
+          you are entitled to under the mandatory consumer-protection laws
+          of your own country of residence.
+        </p>
+      </Section>
+
       <Section title="Changes">
         <p>
           We may update these terms as the product changes — a new module,
@@ -101,8 +143,7 @@ export default function TermsPage() {
       <Section title="Contact">
         <p>
           Questions about these terms can be sent to the support address
-          listed on your purchase receipt, or on the SafePersonalAI GitHub
-          repository.
+          listed on our website or your purchase receipt.
         </p>
       </Section>
     </LegalLayout>

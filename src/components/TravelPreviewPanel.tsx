@@ -31,6 +31,9 @@ export default function TravelPreviewPanel() {
         <span className="ml-3 text-xs font-medium text-text-tertiary">
           Tracked Routes
         </span>
+        <span className="ml-auto rounded-full border border-border px-2 py-0.5 text-[10px] text-text-tertiary">
+          Illustrative preview
+        </span>
       </div>
 
       <div className="space-y-2.5 p-5">

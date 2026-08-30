@@ -20,11 +20,9 @@ export default function PrivacyPage() {
   return (
     <LegalLayout title="Privacy Policy" updated="25 August 2026">
       <p>
-        SafePersonalAI is software that runs on your own Mac. This policy
-        describes what it does with the data it reads — email, calendar,
-        iMessages, financial documents, and anything else you connect it to
-        — because that is the honest answer, not because we collect any of
-        it ourselves.
+        SafePersonalAI has two parts: local software that runs on your Mac,
+        and a public website. This policy explains what each part processes,
+        why, and the choices you have.
       </p>
 
       <Section title="We do not operate a server that stores your data">
@@ -35,6 +33,17 @@ export default function PrivacyPage() {
           written back to files on your own machine (and, if you choose, your
           own Google Drive). We — the people who make SafePersonalAI — never
           receive a copy.
+        </p>
+      </Section>
+
+      <Section title="Information submitted on our website">
+        <p>
+          If you join a product waitlist or contact us through the website,
+          we receive the information you choose to submit (such as your
+          email address and message). We use it only to operate the waitlist,
+          respond to you, and send product updates where permitted. We do not
+          sell it or use it for targeted advertising. You may ask us to remove
+          it at any time using the contact address below.
         </p>
       </Section>
 
@@ -88,7 +97,9 @@ export default function PrivacyPage() {
           SafePersonalAI proposes is staged as a pending action. Nothing is
           sent, filed, or scheduled until you click Approve. This isn&apos;t
           a policy we ask you to trust blindly — it&apos;s a hard boundary
-          in the code itself, and the source is open for anyone to check.
+          in the local application. As with any software, you should still
+          review each proposal and keep your device and connected accounts
+          secure.
         </p>
       </Section>
 
@@ -114,8 +125,7 @@ export default function PrivacyPage() {
       <Section title="Contact">
         <p>
           Questions about this policy or your data can be sent to the
-          support address listed on your purchase receipt, or on the
-          SafePersonalAI GitHub repository.
+          support address listed on our website or your purchase receipt.
         </p>
       </Section>
     </LegalLayout>
