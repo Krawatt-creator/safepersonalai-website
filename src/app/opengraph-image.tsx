@@ -1,8 +1,18 @@
+import { readFileSync } from "fs";
+import { join } from "path";
 import { ImageResponse } from "next/og";
 
 export const dynamic = "force-static";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+// The real logo, not the old pre-brand green-dot placeholder this file
+// used to draw -- read once at module load and inlined as a data URI,
+// since next/og's Satori renderer needs an actual <img> source rather
+// than a local file path.
+const logoDataUri = `data:image/png;base64,${readFileSync(
+  join(process.cwd(), "public", "logo.png")
+).toString("base64")}`;
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -20,14 +30,7 @@ export default function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          <div
-            style={{
-              width: 16,
-              height: 16,
-              borderRadius: "50%",
-              background: "#00e599",
-            }}
-          />
+          <img src={logoDataUri} width={40} height={40} style={{ borderRadius: 10 }} alt="" />
           <div style={{ fontSize: 30, fontWeight: 600, color: "#f2f3f5" }}>
             SafePersonalAI
           </div>
