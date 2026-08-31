@@ -95,22 +95,80 @@ export default function TermsPage() {
         </p>
       </Section>
 
-      <Section title="No warranty">
+      <Section title="No warranty — AI can be wrong, incomplete, or miss things entirely">
         <p>
-          SafePersonalAI is provided &quot;as is,&quot; without warranty of
-          any kind. AI-drafted content can be wrong, incomplete, or
-          miscategorized — that is exactly why every action requires your
-          explicit approval before anything happens. We are not liable for
-          decisions you make by approving a proposed action, or for the
-          accuracy of any third-party AI provider&apos;s output.
+          SafePersonalAI is provided &quot;as is&quot; and &quot;as
+          available,&quot; without warranty of any kind, express or implied.
+          It relies on AI models and automated pattern-matching to read,
+          summarize, translate, classify, and respond to your messages,
+          email, and documents. By its nature, this kind of software:
+        </p>
+        <ul className="ml-4 list-disc space-y-1.5 marker:text-text-tertiary">
+          <li>
+            Can misread, misunderstand, mistranslate, or misclassify content
+            — including official letters, contracts, invoices, and
+            appointment confirmations.
+          </li>
+          <li>
+            Can fail to notice, flag, or act on something important —
+            including a deadline, a cancellation window, an urgent notice, a
+            scheduled payment, or a document requirement — even when that
+            information was present in the underlying message.
+          </li>
+          <li>
+            Can produce a summary, explanation, or translation that is
+            inaccurate, incomplete, or missing key details, even when it
+            reads as confident and complete.
+          </li>
+          <li>
+            Can fail silently — a check that does not run, a message that is
+            never read, a reminder that is never sent — with no notification
+            that anything was missed.
+          </li>
+          <li>
+            Uses keyword- and pattern-based detection (for example, deciding
+            whether mail looks &quot;urgent&quot; or renewal-related) that is
+            a best-effort heuristic, not a guarantee. The absence of a flag,
+            alert, or reminder is never confirmation that nothing needs your
+            attention.
+          </li>
+          <li>
+            Depends in part on a third-party AI provider you chose and
+            connected yourself; that provider&apos;s own errors, outages,
+            or changes in behavior are outside our control.
+          </li>
+        </ul>
+        <p>
+          SafePersonalAI is not a substitute for legal, tax, financial,
+          medical, or immigration advice, and nothing it outputs should be
+          treated as such. For anything with a real deadline or real
+          consequence — a payment, a contract cancellation, a tax filing, an
+          official appointment, a legal notice — you are responsible for
+          independently verifying the original document or message yourself
+          before relying on the software&apos;s summary of it. This is
+          exactly why every action requires your explicit approval before
+          anything happens, and why the software is designed to show you
+          what it found rather than act on your behalf without review.
         </p>
       </Section>
 
       <Section title="Limitation of liability">
         <p>
           To the maximum extent permitted by law, SafePersonalAI and its
-          maker are not liable for indirect, incidental, or consequential
-          damages arising from use of the software. Nothing here limits
+          maker are not liable for any direct, indirect, incidental,
+          special, consequential, or punitive damages — including lost
+          money, missed deadlines, late fees, penalties, unwanted contract
+          renewals, tax consequences, lost data, or lost opportunities —
+          arising from or related to: your use of the software; any action
+          you approved, rejected, or ignored; any mistake, omission, delay,
+          or failure of the software or of any AI provider it connects to;
+          or your reliance on any summary, translation, explanation, or
+          notice (or lack of one) that the software produced. This applies
+          whether the underlying cause was a defect in the software, a
+          limitation of the AI or detection method used, or a third-party
+          provider&apos;s own error or outage. You remain solely responsible
+          for reviewing what the software shows you and for verifying
+          anything that matters before acting on it. Nothing here limits
           liability where the law does not allow it to be limited.
         </p>
       </Section>
