@@ -23,8 +23,8 @@ const modules: Module[] = [
     key: "operational",
     name: "Operational",
     tagline: "Inbox, calendar, iMessage, to-dos — the foundation everything else builds on.",
-    price: "€49",
-    priceNote: "one-time Base purchase",
+    price: "€0",
+    priceNote: "free during the friends beta",
     features: [
       "Inbox understanding with approval-ready tasks",
       "Calendar events from email, with no attendee invitations",
