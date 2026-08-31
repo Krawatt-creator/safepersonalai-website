@@ -71,8 +71,16 @@ export default function TermsPage() {
           current full package (Base + Travel + Finance). Future modules may
           have their own one-time prices. The final price, taxes, refund
           terms, and availability shown at checkout control that purchase.
-          Payments are processed by our Merchant of Record; we do not store
-          your full payment-card details.
+        </p>
+        <p>
+          Purchases are processed by Lemon Squeezy, acting as our Merchant
+          of Record — Lemon Squeezy is the seller of the transaction itself,
+          responsible for payment processing, tax collection and remittance,
+          and refund handling under its own terms, which you accept
+          separately at checkout. We do not store your full payment-card
+          details. These terms govern your use of the SafePersonalAI
+          software; they do not cover, and do not limit, Lemon Squeezy&apos;s
+          own terms for the purchase transaction.
         </p>
       </Section>
 
