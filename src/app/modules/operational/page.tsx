@@ -5,7 +5,7 @@ import OperationalPreviewPanel from "@/components/OperationalPreviewPanel";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Operational",
+  title: "Base — Operational",
   description:
     "Inbox, calendar, iMessage, and to-dos — handled and drafted for you, included with every SafePersonalAI install.",
 };
@@ -14,7 +14,7 @@ export default function OperationalPage() {
   return (
     <ModulePageShell
       accent="green"
-      name="Operational"
+      name="Base"
       tagline="Your inbox, calendar, and to-dos — handled, never surprised."
       intro="The part of SafePersonalAI every install starts with. It reads what actually arrives — email, iMessage, a photographed invoice, a voice memo — works out what needs doing, and drafts it. You decide what happens next."
       priceLabel="Included"
