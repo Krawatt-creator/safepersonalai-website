@@ -88,6 +88,7 @@ export default function ModulePageShell({
 
         <section className="py-20">
           <div className="mx-auto max-w-4xl px-6">
+            <p className="mb-8 text-sm font-medium text-text-tertiary">What you get</p>
             <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
               {features.map((f, i) => (
                 <Reveal key={f.title} delay={i * 60}>
