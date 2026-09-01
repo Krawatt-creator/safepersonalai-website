@@ -21,8 +21,8 @@ type Module = {
 const modules: Module[] = [
   {
     key: "operational",
-    name: "Operational",
-    tagline: "Inbox, calendar, iMessage, to-dos — the foundation everything else builds on.",
+    name: "Base",
+    tagline: "Operational foundation: inbox, calendar, iMessage, and to-dos.",
     price: "€0",
     priceNote: "free during the friends beta",
     features: [
