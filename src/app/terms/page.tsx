@@ -64,8 +64,8 @@ export default function TermsPage() {
 
       <Section title="Free and paid modules">
         <p>
-          The Operational module (inbox, calendar, iMessage, to-dos, and the
-          Pending Actions queue) is the base product. Modules are sold as
+          The Base module (Operational: inbox, calendar, iMessage, to-dos, and
+          the Pending Actions queue) is the foundation product. Modules are sold as
           one-time purchases, not recurring subscriptions. Current planned
           prices are Base €49, Travel €29, Finance €29, or €100 for the
           current full package (Base + Travel + Finance). Future modules may

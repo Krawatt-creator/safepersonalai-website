@@ -12,7 +12,7 @@ export type Topic = {
 
 export const moduleMeta = {
   operational: {
-    name: "Operational",
+    name: "Base",
     label: "Base module",
     description: "Everyday inbox, calendar, task, voice, and rule-based workflows.",
     accent: "green",

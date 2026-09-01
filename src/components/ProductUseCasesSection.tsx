@@ -25,7 +25,7 @@ export default function ProductUseCasesSection() {
                 Start with everyday work. Add only what you need.
               </h2>
               <p className="mt-4 text-text-secondary text-pretty">
-                Operational is the base product. Travel and Wealth extend the
+                Base is the Operational foundation. Travel and Wealth extend the
                 same private assistant without moving your history or creating
                 another account.
               </p>
