@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import ModulePageShell from "@/components/ModulePageShell";
 import UseCasesSection from "@/components/UseCasesSection";
+import OperationalPreviewPanel from "@/components/OperationalPreviewPanel";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Operational",
@@ -60,6 +62,22 @@ export default function OperationalPage() {
         },
       ]}
     >
+      <section className="border-t border-border py-20">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1fr_1.05fr] lg:items-center">
+          <Reveal>
+            <p className="text-sm font-medium text-green">What you actually see</p>
+            <h2 className="mt-3 max-w-md text-2xl font-semibold tracking-tight text-balance text-text sm:text-3xl">
+              One calm queue for every decision.
+            </h2>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-text-secondary">
+              SafePersonalAI reads what arrives, prepares a clear suggestion, and keeps the final decision in your hands.
+            </p>
+          </Reveal>
+          <Reveal delay={100} className="lg:justify-self-end">
+            <OperationalPreviewPanel />
+          </Reveal>
+        </div>
+      </section>
       <UseCasesSection />
     </ModulePageShell>
   );
