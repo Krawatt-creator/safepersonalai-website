@@ -63,7 +63,7 @@ body {
 }
 .site-cta-primary {
   background: var(--green);
-  color: #06110c;
+  color: #ffffff;
 }
 .site-cta-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
 .site-cta-primary:active { transform: translateY(0); }
@@ -140,5 +140,5 @@ body {
 
 ::selection {
   background: var(--green);
-  color: #06110c;
+  color: #ffffff;
 }
