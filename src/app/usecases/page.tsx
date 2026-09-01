@@ -34,6 +34,13 @@ export default function UseCasesIndexPage() {
               proven in the personal system; commercial availability is
               confirmed separately at launch.
             </p>
+            <div className="mt-7 flex flex-wrap items-center gap-2 text-xs text-text-tertiary" aria-label="How to read a use case">
+              <span className="rounded-full border border-border px-3 py-1.5">You say or receive something</span>
+              <span aria-hidden="true">→</span>
+              <span className="rounded-full border border-border px-3 py-1.5">SafePersonalAI prepares it</span>
+              <span aria-hidden="true">→</span>
+              <span className="rounded-full border border-green/35 bg-green/10 px-3 py-1.5 text-green">You approve</span>
+            </div>
           </div>
         </section>
 
