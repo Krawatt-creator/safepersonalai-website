@@ -27,7 +27,7 @@ const cases: Case[] = [
   {
     key: "email",
     inputIcon: "✉️",
-    inputLabel: "New email from Georg",
+    inputLabel: "New email from Taylor",
     inputSub: "“Can we move Saturday to Sunday instead?”",
     outputIcon: "📝",
     outputTitle: "Draft a reply, in German, in your usual tone",
@@ -46,7 +46,7 @@ export default function UseCasesSection() {
             The kind of thing it handles every day.
           </h2>
           <p className="mt-4 max-w-2xl text-text-secondary text-pretty">
-            Real flows the software actually runs — not concept art. Click one
+            Representative flows the software actually runs — not concept art. Click one
             to see what SafePersonalAI does with it.
           </p>
         </Reveal>
