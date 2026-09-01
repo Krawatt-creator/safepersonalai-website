@@ -1,7 +1,9 @@
+import Image from "next/image";
+
 export default function PreviewChrome({ title }: { title: string }) {
   return (
     <div className="flex flex-wrap items-center gap-2 border-b border-border px-5 py-3.5">
-      <span className="grid h-6 w-6 place-items-center rounded-md bg-green text-xs font-bold text-white">✓</span>
+      <Image src="/logo.png" alt="" width={24} height={24} className="rounded-md" />
       <span className="text-xs font-medium text-text-tertiary">SafePersonalAI</span>
       <span className="text-text-tertiary">·</span>
       <span className="text-xs font-medium text-text">{title}</span>
