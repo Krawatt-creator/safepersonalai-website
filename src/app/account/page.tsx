@@ -58,7 +58,7 @@ export default function AccountPage() {
                   <p className="mt-1 text-xs text-text-tertiary">Password-free account access</p>
                 </div>
                 <span className="rounded-full border border-border px-3 py-1 text-[11px] text-text-tertiary">
-                  Paid pilot
+                  Friends beta
                 </span>
               </div>
 
