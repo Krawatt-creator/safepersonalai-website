@@ -9,7 +9,7 @@ const holdings = [
 
 export default function PortfolioPreviewPanel() {
   return (
-    <div className="grain relative mx-auto w-[24rem] max-w-full overflow-hidden rounded-2xl border border-border-strong bg-bg-card shadow-[0_40px_120px_-30px_rgba(0,0,0,0.7)]">
+    <div className="grain relative mx-auto min-h-[360px] w-[24rem] max-w-full overflow-hidden rounded-2xl border border-border-strong bg-bg-card shadow-[0_40px_120px_-30px_rgba(0,0,0,0.7)]">
       <div className="flex items-center gap-2 border-b border-border px-5 py-3.5">
         <span className="h-2.5 w-2.5 rounded-full bg-red/70" />
         <span className="h-2.5 w-2.5 rounded-full bg-amber/70" />
