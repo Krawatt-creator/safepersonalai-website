@@ -84,8 +84,8 @@ export default function PrivacyPage() {
         <p>
           Understanding your messages requires sending their content to an
           AI provider — Anthropic, OpenAI, Google, or a model you run
-          locally via Ollama. You supply your own API key, and that content
-          goes directly from your Mac to the provider you chose, under their
+          locally via Ollama. Ollama needs no account or API key; cloud options
+          use your own key, and that content goes directly from your Mac to the provider you chose, under their
           own privacy policy and data-handling terms. We do not proxy,
           inspect, or retain a copy of anything sent that way.
         </p>

@@ -152,7 +152,7 @@ function ModuleCard({ module: m }: { module: Module }) {
           href="/#pricing"
           className={`mt-8 rounded-full px-5 py-2.5 text-center text-sm font-medium transition hover:scale-[1.02] active:scale-[0.98] ${
             m.accent === "green"
-              ? "bg-green text-[#06110c] hover:brightness-110"
+              ? "bg-green text-white hover:brightness-110"
               : "border border-border-strong text-text hover:border-text-tertiary"
           }`}
         >

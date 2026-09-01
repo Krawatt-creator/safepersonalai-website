@@ -104,7 +104,7 @@ export default function ProductPanel() {
         )}
       </div>
 
-      <div className="border-t border-border px-5 py-4">
+      <div className="border-t border-border px-5 py-4" aria-live="polite">
         <div className="flex items-center justify-between text-xs text-text-tertiary">
           <span>Nothing sent, filed, or scheduled until you say go.</span>
           <span className="font-mono text-text-secondary">
@@ -160,14 +160,18 @@ function PendingRow({
             {status === "pending" && (
               <>
                 <button
+                  type="button"
                   onClick={onReject}
-                  className="rounded-full border border-border-strong px-3 py-1.5 text-xs text-text-secondary transition hover:scale-105 hover:border-red/50 hover:text-red active:scale-95"
+                  aria-label={`Reject ${row.title}`}
+                  className="rounded-full border border-border-strong px-3 py-1.5 text-xs text-text-secondary transition hover:scale-105 hover:border-red/50 hover:text-red active:scale-95 focus-visible:outline-2 focus-visible:outline-red focus-visible:outline-offset-2"
                 >
                   Reject
                 </button>
                 <button
+                  type="button"
                   onClick={onApprove}
-                  className="rounded-full bg-green px-3 py-1.5 text-xs font-medium text-[#06110c] transition hover:scale-105 hover:brightness-110 active:scale-95"
+                  aria-label={`Approve ${row.title}`}
+                  className="rounded-full bg-green px-3 py-1.5 text-xs font-medium text-white transition hover:scale-105 hover:brightness-110 active:scale-95 focus-visible:outline-2 focus-visible:outline-green focus-visible:outline-offset-2"
                 >
                   Approve
                 </button>
