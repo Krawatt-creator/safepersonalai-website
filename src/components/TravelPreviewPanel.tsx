@@ -26,6 +26,8 @@ export default function TravelPreviewPanel() {
     <div className="grain relative min-h-[360px] overflow-hidden rounded-2xl border border-border-strong bg-bg-card shadow-[0_40px_120px_-30px_rgba(0,0,0,0.7)]">
       <PreviewChrome title="Tracked routes" />
 
+      <div className="mx-5 mt-4 flex items-center justify-between rounded-xl border border-violet/25 bg-violet/10 px-3.5 py-2.5 text-[11px]"><span className="text-text-secondary">Calendar cross-check</span><span className="font-medium text-violet">Google · Apple enabled</span></div>
+
       <div className="space-y-2.5 p-5">
         {routes.map((r) => (
           <div

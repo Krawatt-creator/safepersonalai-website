@@ -20,7 +20,7 @@ export default function WealthPreviewPanel() {
         <div className="rounded-xl border border-border bg-bg-raised p-4">
           <div className="flex items-baseline justify-between">
             <p className="text-xs text-text-tertiary">Projected balance, next 6 months</p>
-            <p className="font-mono text-xs text-text-tertiary">EUR</p>
+            <span className="rounded-full border border-border px-2 py-0.5 font-mono text-[10px] text-text-tertiary">EUR display</span>
           </div>
           <div className="mt-4 flex h-24 items-end gap-2.5">
             {months.map((m) => (

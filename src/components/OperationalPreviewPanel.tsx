@@ -5,6 +5,7 @@ const actions = [
   { icon: "✉️", title: "Draft reply", detail: "School office · German", tone: "bg-green/15 text-green" },
   { icon: "📅", title: "Calendar change", detail: "Dentist · review before saving", tone: "bg-amber/15 text-amber" },
   { icon: "✓", title: "Task prepared", detail: "Call the landlord · tomorrow", tone: "bg-violet/15 text-violet" },
+  { icon: "📝", title: "To-Do reminder", detail: "Passport renewal · due Friday", tone: "bg-blue-500/15 text-blue-300" },
 ];
 
 export default function OperationalPreviewPanel() {
@@ -14,7 +15,7 @@ export default function OperationalPreviewPanel() {
       <div className="p-5">
         <div className="flex items-center justify-between">
           <div><p className="text-xs text-text-tertiary">Today</p><p className="mt-1 text-lg font-semibold text-text">Your review queue</p></div>
-          <span className="rounded-full bg-green/10 px-2.5 py-1 text-[11px] font-medium text-green">3 ready</span>
+          <span className="rounded-full bg-green/10 px-2.5 py-1 text-[11px] font-medium text-green">4 ready</span>
         </div>
         <div className="mt-4 space-y-2">
           {actions.map((action) => (
