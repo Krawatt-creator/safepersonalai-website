@@ -27,7 +27,7 @@ const cases: Case[] = [
   {
     key: "email",
     inputIcon: "✉️",
-    inputLabel: "New email from Serap",
+    inputLabel: "New email from Georg",
     inputSub: "“Can we move Saturday to Sunday instead?”",
     outputIcon: "📝",
     outputTitle: "Draft a reply, in German, in your usual tone",

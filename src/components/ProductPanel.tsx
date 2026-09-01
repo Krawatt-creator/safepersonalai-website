@@ -21,7 +21,7 @@ const initialRows: Row[] = [
   {
     id: "draft",
     icon: "✉️",
-    title: "Draft reply to Serap — rescheduling Saturday",
+    title: "Draft reply to Georg — rescheduling Saturday",
     detail: "Understood from your inbox, in German, matching your usual tone",
     accent: "green",
   },
