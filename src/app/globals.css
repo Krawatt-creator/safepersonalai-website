@@ -41,6 +41,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow-x: hidden;
 }
 
 /* Shared marketing primitives keep the homepage, module pages, and use-case
@@ -117,6 +118,12 @@ body {
   background:
     radial-gradient(60% 50% at 50% 0%, rgba(8, 114, 237, 0.10) 0%, rgba(8, 114, 237, 0) 60%),
     radial-gradient(40% 40% at 85% 15%, rgba(142, 85, 234, 0.10) 0%, rgba(142, 85, 234, 0) 60%);
+}
+
+@media (max-width: 520px) {
+  .site-cta-primary,
+  .site-cta-secondary,
+  .site-cta-quiet { min-height: 2.625rem; padding-inline: 1.1rem; }
 }
 
 .grain {

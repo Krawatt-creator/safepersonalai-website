@@ -88,6 +88,15 @@ export default function Nav() {
                 </a>
               </li>
             ))}
+            <li>
+              <Link
+                href="/account"
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-2 py-2.5 transition hover:bg-bg-raised hover:text-text"
+              >
+                Account
+              </Link>
+            </li>
             <li className="pt-2 sm:hidden">
               <a
                 href="#pricing"
