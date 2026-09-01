@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ModulePageShell from "@/components/ModulePageShell";
 import UseCasesSection from "@/components/UseCasesSection";
 import OperationalPreviewPanel from "@/components/OperationalPreviewPanel";
+import SettingsPreviewPanel from "@/components/SettingsPreviewPanel";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
@@ -74,7 +75,10 @@ export default function OperationalPage() {
             </p>
           </Reveal>
           <Reveal delay={100} className="lg:justify-self-end">
-            <OperationalPreviewPanel />
+            <div className="space-y-4">
+              <OperationalPreviewPanel />
+              <SettingsPreviewPanel />
+            </div>
           </Reveal>
         </div>
       </section>
