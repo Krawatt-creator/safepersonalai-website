@@ -23,8 +23,8 @@ const modules: Module[] = [
     key: "operational",
     name: "Base",
     tagline: "Operational foundation: inbox, calendar, iMessage, and to-dos.",
-    price: "€0",
-    priceNote: "free during the friends beta",
+    price: "€49",
+    priceNote: "one-time purchase",
     features: [
       "Inbox understanding with approval-ready tasks",
       "Calendar events from email, with no attendee invitations",
@@ -98,6 +98,9 @@ export default function ModulesPricing() {
             </Reveal>
           ))}
         </div>
+        <p className="mt-8 max-w-3xl text-sm text-text-secondary">
+          Want the complete launch set? The Full Function bundle is <span className="font-semibold text-text">€100 one time</span> and includes Base, Wealth, and Travel. No subscription and no reset when a module is added later.
+        </p>
       </div>
     </section>
   );
