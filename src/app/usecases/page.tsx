@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import { moduleMeta, topics } from "@/lib/usecases-data";
+import ActivityOverview from "@/components/ActivityOverview";
 
 export const metadata: Metadata = {
   title: "Use Cases",
@@ -43,6 +44,8 @@ export default function UseCasesIndexPage() {
             </div>
           </div>
         </section>
+
+        <ActivityOverview />
 
         <section className="py-20">
           <div className="mx-auto max-w-6xl space-y-16 px-6">
