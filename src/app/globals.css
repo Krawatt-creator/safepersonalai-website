@@ -9,8 +9,11 @@
   --text: #f2f3f5;
   --text-secondary: #a7abb5;
   --text-tertiary: #6b7080;
-  --green: #00e599;
-  --green-dim: rgba(0, 229, 153, 0.14);
+  /* Brand accent follows the SafePersonalAI app/logo blue. The existing
+     green utility name remains as a compatibility alias for components. */
+  --brand-blue: #0872ed;
+  --green: var(--brand-blue);
+  --green-dim: rgba(8, 114, 237, 0.14);
   --violet: #8e55ea;
   --violet-dim: rgba(142, 85, 234, 0.14);
   --amber: #f5c518;
@@ -112,7 +115,7 @@ body {
 
 .bg-radial-glow {
   background:
-    radial-gradient(60% 50% at 50% 0%, rgba(0, 229, 153, 0.10) 0%, rgba(0, 229, 153, 0) 60%),
+    radial-gradient(60% 50% at 50% 0%, rgba(8, 114, 237, 0.10) 0%, rgba(8, 114, 237, 0) 60%),
     radial-gradient(40% 40% at 85% 15%, rgba(142, 85, 234, 0.10) 0%, rgba(142, 85, 234, 0) 60%);
 }
 
