@@ -83,6 +83,16 @@ body {
   .site-cta-primary:active { transform: none; }
 }
 
+.message-flow .message-bubble { opacity: 0; transform: translateY(6px); animation: message-rise 9s ease-in-out infinite; }
+.message-flow .message-bubble:nth-child(2) { animation-delay: 2.2s; }
+.message-flow .message-bubble:nth-child(3) { animation-delay: 4.4s; }
+.message-bubble { max-width: 86%; border-radius: 14px; padding: 10px 12px; border: 1px solid var(--border); }
+.message-in { background: var(--bg-raised); color: var(--text-secondary); }
+.message-out { margin-left: auto; background: color-mix(in srgb, var(--green) 14%, transparent); color: var(--text-secondary); }
+.message-card { margin-left: auto; background: var(--bg-raised); }
+@keyframes message-rise { 0%, 8% { opacity: 0; transform: translateY(6px); } 14%, 78% { opacity: 1; transform: translateY(0); } 90%, 100% { opacity: 0; transform: translateY(-4px); } }
+@media (prefers-reduced-motion: reduce) { .message-flow .message-bubble { animation: none; opacity: 1; transform: none; } }
+
 /* Keep keyboard focus visible across every page, including controls rendered
    inside the module previews. Component-level focus styles can refine this,
    but should never remove the baseline affordance. */

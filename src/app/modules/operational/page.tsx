@@ -4,6 +4,7 @@ import UseCasesSection from "@/components/UseCasesSection";
 import OperationalPreviewPanel from "@/components/OperationalPreviewPanel";
 import SettingsPreviewPanel from "@/components/SettingsPreviewPanel";
 import Reveal from "@/components/Reveal";
+import MessageFlowPreview from "@/components/MessageFlowPreview";
 
 export const metadata: Metadata = {
   title: "Base — Operational",
@@ -78,6 +79,7 @@ export default function OperationalPage() {
             <div className="space-y-4">
               <OperationalPreviewPanel />
               <SettingsPreviewPanel />
+              <MessageFlowPreview />
             </div>
           </Reveal>
         </div>
