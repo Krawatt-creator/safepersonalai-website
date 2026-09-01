@@ -72,7 +72,7 @@ export default function ModulePageShell({
                   >
                     {ctaLabel}
                   </a>
-                  <span className="text-xs text-text-tertiary">
+                  <span className="rounded-full border border-border px-3 py-1.5 text-xs text-text-tertiary">
                     {priceLabel} · {priceNote}
                   </span>
                 </>

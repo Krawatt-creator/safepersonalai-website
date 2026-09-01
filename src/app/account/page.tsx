@@ -58,7 +58,7 @@ export default function AccountPage() {
                   <p className="mt-1 text-xs text-text-tertiary">Password-free account access</p>
                 </div>
                 <span className="rounded-full border border-border px-3 py-1 text-[11px] text-text-tertiary">
-                  Friends beta
+                  Early access
                 </span>
               </div>
 
@@ -69,16 +69,19 @@ export default function AccountPage() {
                 id="account-email"
                 type="email"
                 disabled
+                aria-disabled="true"
                 placeholder="you@example.com"
                 className="mt-2 w-full rounded-2xl border border-border bg-bg-raised px-4 py-3 text-sm text-text placeholder:text-text-tertiary disabled:cursor-not-allowed disabled:opacity-60"
               />
               <button
                 type="button"
                 disabled
+                aria-disabled="true"
                 className="mt-3 w-full rounded-2xl bg-text px-4 py-3 text-sm font-semibold text-bg disabled:cursor-not-allowed disabled:opacity-45"
               >
                 Email me a secure sign-in link
               </button>
+              <p className="mt-2 text-center text-[11px] text-text-tertiary">Account sign-in opens when paid downloads are available.</p>
 
               <div className="mt-5 rounded-2xl border border-border bg-bg-raised p-4">
                 <p className="text-xs font-medium text-text">Already purchased?</p>
@@ -104,6 +107,7 @@ export default function AccountPage() {
               >
                 Join early access instead →
               </Link>
+              <p className="mt-4 text-center text-[10px] text-text-tertiary"><Link href="/privacy" className="underline-offset-2 hover:underline">Privacy</Link> · <Link href="/terms" className="underline-offset-2 hover:underline">Terms</Link></p>
             </div>
           </div>
         </section>

@@ -46,6 +46,7 @@ export default function WaitlistForm({
       <input
         type="email"
         required
+        aria-label="Email address"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="you@example.com"
@@ -59,7 +60,7 @@ export default function WaitlistForm({
         {status === "loading" ? "Joining…" : "Notify me"}
       </button>
       {status === "error" && (
-        <p className="w-full text-xs text-red">
+      <p className="w-full text-xs text-red" role="alert" aria-live="polite">
           Something went wrong — try again in a moment.
         </p>
       )}
