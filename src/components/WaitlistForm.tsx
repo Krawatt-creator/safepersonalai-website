@@ -39,10 +39,7 @@ export default function WaitlistForm({
     );
   }
 
-  const btnClass =
-    accent === "green"
-      ? "bg-green text-[#06110c] hover:brightness-110"
-      : "border border-border-strong text-text hover:border-text-tertiary";
+  const btnClass = accent === "green" ? "site-cta-primary" : "site-cta-secondary";
 
   return (
     <form onSubmit={submit} className="flex flex-wrap items-center gap-3">
@@ -57,7 +54,7 @@ export default function WaitlistForm({
       <button
         type="submit"
         disabled={status === "loading"}
-        className={`rounded-full px-5 py-2.5 text-sm font-medium transition hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 ${btnClass}`}
+        className={`min-h-10 px-5 text-sm disabled:opacity-60 ${btnClass}`}
       >
         {status === "loading" ? "Joining…" : "Notify me"}
       </button>

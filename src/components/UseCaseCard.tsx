@@ -68,7 +68,7 @@ export default function UseCaseCard({ c }: { c: Case }) {
       <button
         type="button"
         onClick={() => setRevealed((v) => !v)}
-        className="mt-6 self-start rounded-full border border-border-strong px-4 py-2 text-xs font-medium text-text-secondary transition hover:border-text-tertiary hover:text-text"
+        className="site-cta-quiet mt-6 self-start text-xs"
       >
         {revealed ? "↺ Show the original message" : "▶ See what SafePersonalAI does"}
       </button>

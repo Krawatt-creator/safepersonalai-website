@@ -51,7 +51,7 @@ export default function CapabilitiesSection() {
         <Reveal delay={100}>
           <Link
             href="/usecases"
-            className="mt-8 inline-flex rounded-full border border-border-strong px-5 py-2.5 text-sm font-medium text-text-secondary transition hover:border-text-tertiary hover:text-text"
+            className="site-cta-quiet mt-8"
           >
             Explore all 15 use cases →
           </Link>

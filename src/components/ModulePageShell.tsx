@@ -37,10 +37,7 @@ export default function ModulePageShell({
 }) {
   const dot = accent === "green" ? "bg-green" : "bg-violet";
   const accentText = accent === "green" ? "text-green" : "text-violet";
-  const ctaClass =
-    accent === "green"
-      ? "bg-green text-[#06110c] hover:brightness-110"
-      : "border border-border-strong text-text hover:border-text-tertiary";
+  const ctaClass = accent === "green" ? "site-cta-primary" : "site-cta-secondary";
 
   return (
     <>
@@ -71,7 +68,7 @@ export default function ModulePageShell({
                 <>
                   <a
                     href={ctaHref}
-                    className={`rounded-full px-6 py-3 text-sm font-semibold transition hover:scale-[1.02] active:scale-[0.98] ${ctaClass}`}
+                    className={ctaClass}
                   >
                     {ctaLabel}
                   </a>
@@ -118,7 +115,7 @@ export default function ModulePageShell({
             ) : (
               <a
                 href={ctaHref}
-                className={`mt-6 inline-block rounded-full px-6 py-3 text-sm font-semibold transition hover:scale-[1.02] active:scale-[0.98] ${ctaClass}`}
+                className={`mt-6 ${ctaClass}`}
               >
                 {ctaLabel}
               </a>

@@ -95,7 +95,7 @@ export default async function UseCaseTopicPage({
             </h2>
             <Link
               href="/#pricing"
-              className="mt-6 inline-block rounded-full bg-green px-6 py-3 text-sm font-semibold text-[#06110c] transition hover:scale-[1.02] hover:brightness-110 active:scale-[0.98]"
+              className="site-cta-primary mt-6"
             >
               Get SafePersonalAI
             </Link>

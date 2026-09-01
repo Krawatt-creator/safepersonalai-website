@@ -22,13 +22,13 @@ export default function Hero() {
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#use-cases"
-              className="rounded-full bg-green px-6 py-3 text-sm font-semibold text-[#06110c] transition hover:brightness-110"
+              className="site-cta-primary"
             >
               Explore real use cases
             </a>
             <a
               href="#boundary"
-              className="rounded-full border border-border-strong px-6 py-3 text-sm font-medium text-text transition hover:border-text-tertiary"
+              className="site-cta-secondary"
             >
               See how the boundary works
             </a>

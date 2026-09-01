@@ -45,7 +45,7 @@ export default function Nav() {
           </Link>
           <a
             href="#pricing"
-            className="hidden rounded-full bg-text px-4 py-2 text-sm font-medium text-bg transition hover:bg-green sm:inline-block"
+            className="site-cta-secondary hidden min-h-10 px-4 text-sm sm:inline-flex"
           >
             Join early access
           </a>
@@ -92,7 +92,7 @@ export default function Nav() {
               <a
                 href="#pricing"
                 onClick={() => setOpen(false)}
-                className="block rounded-full bg-text px-4 py-2.5 text-center text-sm font-medium text-bg transition hover:bg-green"
+                className="site-cta-secondary block min-h-10 px-4 text-center text-sm"
               >
                 Join early access
               </a>
