@@ -14,17 +14,7 @@ export default function WealthPreviewPanel() {
 
   return (
     <div className="grain relative min-h-[360px] overflow-hidden rounded-2xl border border-border-strong bg-bg-card shadow-[0_40px_120px_-30px_rgba(0,0,0,0.7)]">
-      <div className="flex items-center gap-2 border-b border-border px-5 py-3.5">
-        <span className="h-2.5 w-2.5 rounded-full bg-red/70" />
-        <span className="h-2.5 w-2.5 rounded-full bg-amber/70" />
-        <span className="h-2.5 w-2.5 rounded-full bg-green/70" />
-        <span className="ml-3 text-xs font-medium text-text-tertiary">
-          Cash-Flow Forecast
-        </span>
-        <span className="ml-auto rounded-full border border-border px-2 py-0.5 text-[10px] text-text-tertiary">
-          Illustrative preview
-        </span>
-      </div>
+      <PreviewChrome title="Cash-flow forecast" />
 
       <div className="p-5">
         <div className="rounded-xl border border-border bg-bg-raised p-4">
@@ -64,3 +54,4 @@ export default function WealthPreviewPanel() {
     </div>
   );
 }
+import PreviewChrome from "./PreviewChrome";
