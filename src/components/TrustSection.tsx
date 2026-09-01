@@ -7,8 +7,8 @@ const points = [
     body: "The local action store, tasks, settings, and module data remain on your Mac. Content sent to a cloud AI provider goes directly under the provider account you chose; SafePersonalAI does not receive it.",
   },
   {
-    title: "Bring your own AI key",
-    body: "Supported cloud providers use your own account and key. A local-model option is planned, but it will not be marketed as equivalent until it passes the product's real classification tests.",
+    title: "Choose local or bring your own key",
+    body: "Ollama can run entirely on your Mac with no account or API key. Cloud options use your own provider account and key; SafePersonalAI stores that credential locally and sends requests directly to the provider you chose, never through a SafePersonalAI server.",
   },
   {
     title: "Dangerous capabilities are absent",

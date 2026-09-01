@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s — SafePersonalAI",
   },
   description:
-    "SafePersonalAI runs on your Mac, turns email into approval-ready tasks and calendar actions, and uses your own AI provider account.",
+    "SafePersonalAI runs on your Mac, turns email into approval-ready tasks and calendar actions, and supports local Ollama or your own AI provider account.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

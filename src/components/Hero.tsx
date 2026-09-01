@@ -17,7 +17,8 @@ export default function Hero() {
           <p className="mt-6 max-w-xl text-lg text-text-secondary text-pretty">
             SafePersonalAI reads new email, prepares the task or calendar
             action it found, and shows you exactly what will happen before
-            anything changes. It runs on your Mac with your own AI provider.
+            anything changes. It runs on your Mac with Ollama locally or your
+            own cloud-provider account.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
@@ -34,9 +35,9 @@ export default function Hero() {
             </a>
           </div>
           <p className="mt-6 text-xs text-text-tertiary">
-            Paid early access is not open yet. Cloud-provider support is being
-            validated first; a local-model option follows only after it meets
-            the same reliability and safety standard.
+            Paid early access is not open yet. Choose a local Ollama model with
+            no cloud account, or connect your own Anthropic, OpenAI, or Gemini
+            key when you want cloud inference.
           </p>
         </div>
 

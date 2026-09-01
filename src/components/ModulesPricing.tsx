@@ -30,7 +30,7 @@ const modules: Module[] = [
       "Calendar events from email, with no attendee invitations",
       "To-dos with deadline reminders",
       "One Pending Actions queue — approve, snooze, or correct anything",
-      "Runs on your Mac, with your own AI provider key",
+      "Runs on your Mac with local Ollama or your own cloud-provider key",
     ],
     accent: "green",
     cta: "Join early access",

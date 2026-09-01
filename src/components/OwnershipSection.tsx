@@ -7,8 +7,8 @@ const points = [
     body: "No new hardware, no rented server, no third-party company hosting your life. It runs quietly on your own Mac, using the machine you already have.",
   },
   {
-    title: "Your AI provider, your account",
-    body: "Connect a supported AI provider with your own key and pay that provider directly for any usage. SafePersonalAI never hides inference cost inside a second subscription or silently falls back to a company-paid model.",
+    title: "Your AI provider, your boundary",
+    body: "Use Ollama locally with no account, or connect a supported cloud provider with your own key and pay them directly. Credentials stay on your Mac; SafePersonalAI never hides inference cost in a second subscription or silently falls back to a company-paid model.",
   },
   {
     title: "Designed as software you own",

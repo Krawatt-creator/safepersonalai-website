@@ -5,7 +5,7 @@ import { useState } from "react";
 const faqs: { q: string; a: string }[] = [
   {
     q: "Do I need my own Claude, OpenAI, or Gemini account?",
-    a: "For the first validated early-access path, yes: you connect a supported cloud AI provider with your own API key and pay that provider directly for usage. A local-model option is planned, but it will only ship after a specific model passes the same real extraction and classification tests.",
+    a: "No. You can use Ollama locally on your Mac with no cloud account or API key. If you choose Anthropic, OpenAI, or Gemini, you bring your own account and key and pay that provider directly. SafePersonalAI stores provider credentials locally, sends requests directly to the provider you selected, and never receives or brokers your key. Local and cloud paths are held to the same approval boundary; the local option is clearly labeled if its model needs a second look at an ambiguous result.",
   },
   {
     q: "Isn't this just ChatGPT or Claude with extra steps?",
