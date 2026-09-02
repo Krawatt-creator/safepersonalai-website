@@ -45,6 +45,7 @@ export default function CommercialAppPreview({ variant }: { variant: Variant }) 
         {variant !== "operational" && <div className="mt-3 grid grid-cols-2 gap-2"><div className="rounded-xl border border-border bg-bg-raised px-3 py-2"><p className="text-[9px] text-text-tertiary">Connected sources</p><p className="mt-1 text-[10px] font-semibold text-text">Mail.app · iMessage</p></div><div className="rounded-xl border border-border bg-bg-raised px-3 py-2"><p className="text-[9px] text-text-tertiary">Output</p><p className="mt-1 text-[10px] font-semibold text-text">English · EUR</p></div></div>}
         <div className="mt-3 flex items-center justify-between text-[9px] text-text-tertiary"><span>Last synced just now</span><span>Refresh ↻</span></div>
         {variant !== "operational" && <div className="mt-3 flex items-start gap-2 rounded-xl border border-green/25 bg-green/10 px-3 py-2 text-[9px] text-text-secondary"><span aria-hidden="true" className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-green" /><span><strong className="font-semibold text-text">Add-on preview.</strong> This module unlocks with its one-time license. Nothing is sent, purchased, or changed without your approval.</span></div>}
+        <div className="mt-3 flex items-center justify-between rounded-xl border border-border bg-bg-raised px-3 py-2 text-[9px] text-text-secondary"><span><span aria-hidden="true">🛡️</span> Trust Center</span><span className="text-green">Access checked on this Mac</span></div>
       </main></div>
   </div>;
 }
