@@ -15,16 +15,15 @@ type Module = {
   waitlist?: boolean;
 };
 
-// Launch pricing is one-time (not a subscription). Checkout links are added
-// when the Lemon Squeezy variants are published; until then these cards keep
-// the waitlist CTA rather than pretending a purchase link is live.
+// Beta pricing is intentionally free for Base. Add-on pricing remains one-time
+// and is shown for planning until the corresponding checkout variants exist.
 const modules: Module[] = [
   {
     key: "operational",
     name: "Base",
     tagline: "Operational foundation: inbox, calendar, iMessage, and to-dos.",
-    price: "€49",
-    priceNote: "one-time purchase",
+    price: "€0",
+    priceNote: "beta access",
     features: [
       "Inbox understanding with approval-ready tasks",
       "Calendar events from email, with no attendee invitations",
@@ -33,8 +32,8 @@ const modules: Module[] = [
       "Runs on your Mac with local Ollama or your own cloud-provider key",
     ],
     accent: "green",
-    cta: "Join early access",
-    waitlist: true,
+    cta: "Download beta",
+    waitlist: false,
   },
   {
     key: "travel",
@@ -143,7 +142,18 @@ function ModuleCard({ module: m }: { module: Module }) {
         Learn more →
       </Link>
 
-      {m.waitlist ? (
+      {m.key === "operational" ? (
+        <div className="mt-8">
+          <Link
+            href="/downloads/SafePersonalAI-beta.zip"
+            download
+            className="site-cta-primary w-full"
+          >
+            {m.cta}
+          </Link>
+          <p className="mt-2 text-center text-[11px] text-text-tertiary">Free while beta access is open · notarized Mac build</p>
+        </div>
+      ) : m.waitlist ? (
         <div className="mt-8">
           <WaitlistForm module={m.key} accent={m.accent} />
         </div>

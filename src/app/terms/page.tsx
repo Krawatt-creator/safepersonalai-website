@@ -67,8 +67,9 @@ export default function TermsPage() {
           The Base module (Operational: inbox, calendar, iMessage, to-dos, and
           the Pending Actions queue) is the foundation product. Modules are sold as
           one-time purchases, not recurring subscriptions. Current planned
-          prices are Base €49, Travel €29, Finance €29, or €100 for the
-          current full package (Base + Travel + Finance). Future modules may
+          Base is currently available at €0 during the beta. After beta, the
+          planned one-time prices are Base €49, Travel €29, Finance €29, or
+          €100 for the current full package (Base + Travel + Finance). Future modules may
           have their own one-time prices. The final price, taxes, refund
           terms, and availability shown at checkout control that purchase.
         </p>

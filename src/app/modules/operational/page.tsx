@@ -19,10 +19,10 @@ export default function OperationalPage() {
       name="Base"
       tagline="Your inbox, calendar, and to-dos — handled, never surprised."
       intro="The part of SafePersonalAI every install starts with. It reads what actually arrives — email, iMessage, a photographed invoice, a voice memo — works out what needs doing, and drafts it. You decide what happens next."
-      priceLabel="€49"
-      priceNote="one-time purchase"
-      ctaLabel="Get SafePersonalAI"
-      ctaHref="/#pricing"
+      priceLabel="€0"
+      priceNote="free beta access"
+      ctaLabel="Download beta"
+      ctaHref="/downloads/SafePersonalAI-beta.zip"
       steps={[
         {
           title: "It reads",
