@@ -52,10 +52,11 @@ export default function Nav() {
             Account
           </Link>
           <a
-            href="#pricing"
+            href="/downloads/SafePersonalAI-beta.zip"
+            download
             className="site-cta-secondary hidden min-h-10 px-4 text-sm sm:inline-flex"
           >
-            Join early access
+            Download beta
           </a>
           <button
             type="button"
@@ -107,11 +108,12 @@ export default function Nav() {
             </li>
             <li className="pt-2 sm:hidden">
               <a
-                href="#pricing"
+                href="/downloads/SafePersonalAI-beta.zip"
+                download
                 onClick={() => setOpen(false)}
                 className="site-cta-secondary block min-h-10 px-4 text-center text-sm"
               >
-                Join early access
+                Download beta
               </a>
             </li>
           </ul>

@@ -102,10 +102,11 @@ export default function AccountPage() {
               </a>
 
               <Link
-                href="/#pricing"
+                href="/downloads/SafePersonalAI-beta.zip"
+                download
                 className="mt-5 block text-center text-xs font-medium text-green transition hover:brightness-125"
               >
-                Join early access instead →
+                Download the free beta instead →
               </Link>
               <p className="mt-4 text-center text-[10px] text-text-tertiary"><Link href="/privacy" className="underline-offset-2 hover:underline">Privacy</Link> · <Link href="/terms" className="underline-offset-2 hover:underline">Terms</Link></p>
             </div>
