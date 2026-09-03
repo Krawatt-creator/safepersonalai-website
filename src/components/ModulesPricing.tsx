@@ -151,7 +151,7 @@ function ModuleCard({ module: m }: { module: Module }) {
           >
             {m.cta}
           </Link>
-          <p className="mt-2 text-center text-[11px] text-text-tertiary">Free while beta access is open · notarized Mac build</p>
+          <p className="mt-2 text-center text-[11px] text-text-tertiary">Free while beta access is open · notarized Mac build · Apple Silicon (M1+)</p>
         </div>
       ) : m.waitlist ? (
         <div className="mt-8">

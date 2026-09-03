@@ -75,6 +75,9 @@ export default function ModulePageShell({
                   <span className="rounded-full border border-border px-3 py-1.5 text-xs text-text-tertiary">
                     {priceLabel} · {priceNote}
                   </span>
+                  {ctaLabel === "Download beta" && (
+                    <span className="text-[11px] text-text-tertiary">Apple Silicon (M1+) required</span>
+                  )}
                 </>
               )}
             </div>
@@ -113,12 +116,17 @@ export default function ModulePageShell({
                 <WaitlistForm module={waitlistModule} accent={accent} />
               </div>
             ) : (
-              <a
-                href={ctaHref}
-                className={`mt-6 ${ctaClass}`}
-              >
-                {ctaLabel}
-              </a>
+              <>
+                <a
+                  href={ctaHref}
+                  className={`mt-6 ${ctaClass}`}
+                >
+                  {ctaLabel}
+                </a>
+                {ctaLabel === "Download beta" && (
+                  <p className="mt-2 text-xs text-text-tertiary">Apple Silicon (M1+) required</p>
+                )}
+              </>
             )}
           </div>
         </section>

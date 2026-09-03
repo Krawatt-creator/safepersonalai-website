@@ -108,6 +108,7 @@ export default function AccountPage() {
               >
                 Download the free beta instead →
               </Link>
+              <p className="mt-2 text-center text-[10px] text-text-tertiary">Apple Silicon (M1+) required</p>
               <p className="mt-4 text-center text-[10px] text-text-tertiary"><Link href="/privacy" className="underline-offset-2 hover:underline">Privacy</Link> · <Link href="/terms" className="underline-offset-2 hover:underline">Terms</Link></p>
             </div>
           </div>

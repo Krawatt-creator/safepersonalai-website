@@ -24,6 +24,10 @@ const faqs: { q: string; a: string }[] = [
     a: "On your machine. SafePersonalAI is Mac software today, not a hosted web app — it needs your Mac to be on to check for new messages and act on your approvals. There's no SafePersonalAI server holding your data in the meantime.",
   },
   {
+    q: "What Mac do I need to run SafePersonalAI?",
+    a: "The current beta requires a Mac with Apple silicon (M1 or later — including M1/M2/M3/M4 MacBook Air, MacBook Pro, Mac mini, iMac, and Mac Studio). Intel-based Macs are not supported by this build. macOS permission prompts are handled by macOS during setup; no separate SafePersonalAI account is required.",
+  },
+  {
     q: "Can it send a message, invite someone, or move money without me?",
     a: "No. The commercial runtime has no email-send, attendee, payment, cancellation, or link-clicking capability. Calendar writes explicitly use no attendee notifications, and financial features only record approved information or calculate projections.",
   },

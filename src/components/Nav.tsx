@@ -51,13 +51,16 @@ export default function Nav() {
           >
             Account
           </Link>
-          <a
-            href="/downloads/SafePersonalAI-beta.zip"
-            download
-            className="site-cta-secondary hidden min-h-10 px-4 text-sm sm:inline-flex"
-          >
-            Download beta
-          </a>
+          <div className="hidden items-center gap-2 sm:flex">
+            <a
+              href="/downloads/SafePersonalAI-beta.zip"
+              download
+              className="site-cta-secondary min-h-10 px-4 text-sm"
+            >
+              Download beta
+            </a>
+            <span className="text-[10px] text-text-tertiary">Apple Silicon (M1+)</span>
+          </div>
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -115,6 +118,7 @@ export default function Nav() {
               >
                 Download beta
               </a>
+              <p className="mt-2 text-center text-[10px] text-text-tertiary">Apple Silicon (M1+) required</p>
             </li>
           </ul>
         </nav>
