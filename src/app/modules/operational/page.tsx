@@ -22,7 +22,7 @@ export default function OperationalPage() {
       priceLabel="€0"
       priceNote="free beta access"
       ctaLabel="Download beta"
-      ctaHref="/downloads/SafePersonalAI-beta.zip"
+      ctaHref="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.1.3-beta/SafePersonalAI-beta.zip"
       steps={[
         {
           title: "It reads",

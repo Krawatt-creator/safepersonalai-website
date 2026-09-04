@@ -102,7 +102,7 @@ export default function AccountPage() {
               </a>
 
               <Link
-                href="/downloads/SafePersonalAI-beta.zip"
+                href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.1.3-beta/SafePersonalAI-beta.zip"
                 download
                 className="mt-5 block text-center text-xs font-medium text-green transition hover:brightness-125"
               >

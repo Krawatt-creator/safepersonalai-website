@@ -145,7 +145,7 @@ function ModuleCard({ module: m }: { module: Module }) {
       {m.key === "operational" ? (
         <div className="mt-8">
           <Link
-            href="/downloads/SafePersonalAI-beta.zip"
+            href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.1.3-beta/SafePersonalAI-beta.zip"
             download
             className="site-cta-primary w-full"
           >

@@ -53,7 +53,7 @@ export default function Nav() {
           </Link>
           <div className="hidden items-center gap-2 sm:flex">
             <a
-              href="/downloads/SafePersonalAI-beta.zip"
+              href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.1.3-beta/SafePersonalAI-beta.zip"
               download
               className="site-cta-secondary min-h-10 px-4 text-sm"
             >
@@ -111,7 +111,7 @@ export default function Nav() {
             </li>
             <li className="pt-2 sm:hidden">
               <a
-                href="/downloads/SafePersonalAI-beta.zip"
+                href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.1.3-beta/SafePersonalAI-beta.zip"
                 download
                 onClick={() => setOpen(false)}
                 className="site-cta-secondary block min-h-10 px-4 text-center text-sm"
