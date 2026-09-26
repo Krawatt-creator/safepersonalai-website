@@ -25,11 +25,11 @@ export default function TravelPage() {
       steps={[
         {
           title: "Tell it what matters",
-          body: "A route, a price threshold, maybe a flexible date range or an open-jaw itinerary.",
+          body: "A route, an outbound date, and the price that would actually make you book.",
         },
         {
           title: "It checks quietly",
-          body: "Daily, inside a fixed quota — no runaway costs, no constant refreshing on your end.",
+          body: "Once a day, inside your own quota — no runaway costs, no constant refreshing on your end.",
         },
         {
           title: "You hear about a real deal",
@@ -39,19 +39,19 @@ export default function TravelPage() {
       features={[
         {
           title: "Fare tracking that respects a budget",
-          body: "Every tracked route checks prices inside a daily quota you set — no runaway API costs, no surprise bill for a feature that's supposed to save you money.",
+          body: "Every tracked route checks prices inside a daily quota — no runaway API costs, no surprise bill for a feature that's supposed to save you money.",
         },
         {
           title: "Alerts only when it's actually a deal",
           body: "You set the threshold. It only nudges you when a real price genuinely clears it — not every ordinary fluctuation dressed up as urgent.",
         },
         {
-          title: "Flexible dates, open-jaw routes",
-          body: "Searches across a date range and asymmetric itineraries — fly into one city, home from another — instead of forcing one fixed round-trip.",
+          title: "Your own key, your own quota",
+          body: "Bring your own free SerpApi key so the search budget is entirely yours — never shared, throttled, or slowed down by anyone else's usage.",
         },
         {
-          title: "Aware of your actual calendar",
-          body: "Cross-checks fare windows against your free weekends, so a great price on days you're not actually free never gets your hopes up for nothing.",
+          title: "Bookings, once they're confirmed",
+          body: "A confirmation email for a flight or hotel already gets picked up and shown alongside your tracked routes — one place, not a separate itinerary app.",
         },
       ]}
     >
@@ -83,8 +83,8 @@ export default function TravelPage() {
             </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-text-secondary">
               Not a dashboard you have to check — a single message when a
-              price actually clears your threshold, cross-checked against
-              whether you&apos;re even free that weekend.
+              price actually clears your threshold, and nothing at all
+              when it doesn&apos;t.
             </p>
           </Reveal>
           <Reveal delay={100}>

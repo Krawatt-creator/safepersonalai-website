@@ -1,6 +1,7 @@
-// Stylized mockup of the moment a tracked fare actually clears its
-// threshold — an iMessage-style self-notification, distinct from
-// TravelPreviewPanel's list view of everything being watched.
+// Stylized mockup of the real macOS notification a tracked fare firing
+// actually looks like — an actual rumps.notification() call, checked once
+// a day in the background, distinct from TravelPreviewPanel's list view
+// of everything being watched.
 export default function DealAlertPanel() {
   return (
     <div className="mx-auto w-full max-w-sm">
@@ -13,22 +14,10 @@ export default function DealAlertPanel() {
             <div className="min-w-0">
               <p className="text-sm font-semibold text-text">SafePersonalAI</p>
               <p className="mt-1 text-sm leading-snug text-text-secondary">
-                Berlin → Lisbon just dropped to{" "}
-                <span className="font-semibold text-green">€128</span> — below
-                your €140 threshold.
+                Berlin → Lisbon: 128 EUR (under your 140 EUR alert).
               </p>
               <p className="mt-1.5 text-xs text-text-tertiary">
                 Nothing booked. Just letting you know.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-2.5 flex items-start gap-3 rounded-2xl border border-border bg-bg px-4 py-3.5 opacity-50">
-            <span className="mt-0.5 text-xl leading-none">📅</span>
-            <div className="min-w-0">
-              <p className="text-sm font-semibold text-text">Calendar</p>
-              <p className="mt-1 text-sm leading-snug text-text-tertiary">
-                You&apos;re free that whole weekend, too.
               </p>
             </div>
           </div>

@@ -7,7 +7,7 @@ import Reveal from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Wealth",
   description:
-    "A finance dashboard that forecasts your cash flow instead of just tallying it, with statements filed and reconciled automatically.",
+    "Loans solved automatically, investments priced for you, and every account combined into one balance — no bank login required.",
 };
 
 export default function WealthPage() {
@@ -15,8 +15,8 @@ export default function WealthPage() {
     <ModulePageShell
       accent="green"
       name="Wealth"
-      tagline="A finance dashboard that forecasts, not just tallies."
-      intro="Most finance apps tell you what already happened. This one also tells you what's about to — a cash-flow forecast, guardrail warnings before a threshold breaks, and every euro reconciled, not just categorized."
+      tagline="Your accounts, loans, and holdings — actually worked out, not just listed."
+      intro="Enter what you have and it does real work with it: solve for whatever loan number you're missing, get a best-effort live price on your gold or shares, and see one true balance across every account you've added — no bank connection, no broker integration, just what you tell it."
       priceLabel="€29"
       priceNote="one-time add-on"
       ctaLabel="Notify me"
@@ -24,48 +24,48 @@ export default function WealthPage() {
       waitlistModule="wealth"
       steps={[
         {
-          title: "It reads your statements",
-          body: "Bank and invoice PDFs, read and filed into the right Drive folder automatically — no attachment-hunting required.",
+          title: "Add what you have",
+          body: "Bank accounts, loans, and investment holdings — entered once, tracked from then on.",
         },
         {
-          title: "It forecasts forward",
-          body: "Your cash flow, projected months ahead — not just a running total of what already happened.",
+          title: "It does the math",
+          body: "Give a loan any three of principal, rate, term, or payment — it solves the fourth. Gold and shares get a best-effort live price.",
         },
         {
-          title: "You get warned early",
-          body: "A guardrail alert before a threshold actually breaks, giving you time to act instead of just reacting.",
+          title: "Import a statement when you want",
+          body: "Drop in a CSV, map the columns once, and link it to an account — nothing pulled from your bank without you choosing to.",
         },
       ]}
       features={[
         {
-          title: "Statements filed themselves",
-          body: "Bank and invoice PDFs are read, categorized, and filed into the right Drive folder automatically — no more scanning your inbox for attachments.",
+          title: "A real loan solver",
+          body: "Missing the interest rate, the term, or the payment? Give it any three and it works out the fourth — not a number you type in once and forget.",
         },
         {
-          title: "A forecast, not just a balance",
-          body: "Projects your cash flow forward and flags a guardrail breach before it happens, not after you've already noticed the account running low.",
+          title: "Investments, priced for you",
+          body: "Add what you actually hold — gold, shares, anything — and get a best-effort live price alongside what you paid, refreshed whenever you ask.",
         },
         {
-          title: "Your actual portfolio, imported",
-          body: "Pulls in your broker's export so your real holdings and transaction history show up alongside everything else — one place, not three tabs.",
+          title: "Statements, on your terms",
+          body: "Import a CSV from any bank, map the columns once, and link it to the right account. No credentials shared, no automatic bank connection.",
         },
         {
-          title: "Every euro reconciled",
-          body: "A full reconciliation view — nothing mystery, nothing double-counted, nothing quietly missing.",
+          title: "One balance for everything",
+          body: "Every account you've added, combined into a single wealth balance — no separate app, no manual adding-up.",
         },
       ]}
     >
       <section className="border-t border-border py-20">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1fr_1.05fr] lg:items-center">
           <Reveal>
-            <p className="text-sm font-medium text-green">What it watches</p>
+            <p className="text-sm font-medium text-green">What it does</p>
             <h2 className="mt-3 max-w-md text-2xl font-semibold tracking-tight text-balance text-text sm:text-3xl">
-              A forecast that warns you before the month goes wrong.
+              A loan calculator that actually solves, not just displays.
             </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-text-secondary">
-              It projects your balance forward, not just backward — so a
-              guardrail breach shows up as a warning in February, not a
-              surprise when February actually arrives.
+              Give it any three of principal, rate, term, or monthly payment
+              and it works out the fourth — real annuity math, not a number
+              you had to already know.
             </p>
           </Reveal>
           <Reveal delay={100} className="lg:justify-self-end">
@@ -79,11 +79,12 @@ export default function WealthPage() {
           <Reveal>
             <p className="text-sm font-medium text-green">What it imports</p>
             <h2 className="mt-3 max-w-md text-2xl font-semibold tracking-tight text-balance text-text sm:text-3xl">
-              Your real holdings, in the same place as everything else.
+              What you actually hold, priced automatically.
             </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-text-secondary">
-              Pulled straight from your broker&apos;s own export — no separate
-              app to check, no manually re-typing what you already own.
+              Enter your gold, shares, or anything else you hold — or
+              import a CSV from any bank or broker — and get a best-effort
+              live price alongside what you paid.
             </p>
           </Reveal>
           <Reveal delay={100} className="lg:justify-self-end">
