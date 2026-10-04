@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/modules/operational`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/modules/travel`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/modules/wealth`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/iphone`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/usecases`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     ...topics.map((t) => ({
       url: `${base}/usecases/${t.slug}`,
