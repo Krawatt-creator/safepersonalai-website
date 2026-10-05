@@ -48,7 +48,7 @@ export default function IPhonePage() {
         },
         {
           title: "Your day and your week",
-          body: "Events from Apple and Google Calendar, coming birthdays, payments due this week, and a search for concerts and sport near a city you choose.",
+          body: "Events from Apple and Google Calendar, coming birthdays, and payments due this week.",
         },
         {
           title: "Your money, with the charts",
