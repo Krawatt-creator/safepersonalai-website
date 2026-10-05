@@ -37,7 +37,13 @@ export const moduleMeta = {
 // actual pipeline this product runs (see the main agent's own CLAUDE.md
 // for the underlying mechanics), rewritten as a concrete before/after a
 // visitor can picture themselves in.
-export const topics: Topic[] = [
+// Taken off the site 2026-10-05: these describe things the Mac app does not
+// do yet (they come from the private system it grew out of). The text is kept
+// here; remove a slug from this list when its feature is in the app and in
+// product_features/FEATURES.md.
+const NOT_IN_THE_APP_YET = ["inbox-replies", "voice-memo-action", "document-filing", "full-reconciliation"];
+
+const allTopics: Topic[] = [
   {
     slug: "inbox-replies",
     icon: "✉️",
@@ -435,6 +441,8 @@ export const topics: Topic[] = [
     ],
   },
 ];
+
+export const topics: Topic[] = allTopics.filter((t) => !NOT_IN_THE_APP_YET.includes(t.slug));
 
 export function getTopic(slug: string): Topic | undefined {
   return topics.find((t) => t.slug === slug);

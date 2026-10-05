@@ -34,7 +34,7 @@ export default function ProductUseCasesSection() {
               href="/usecases"
               className="shrink-0 text-sm font-medium text-text-secondary underline-offset-4 transition hover:text-text hover:underline"
             >
-              Explore all 15 use cases →
+              Explore all use cases →
             </Link>
           </div>
         </Reveal>

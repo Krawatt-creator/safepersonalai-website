@@ -53,7 +53,7 @@ export default function CapabilitiesSection() {
             href="/usecases"
             className="site-cta-quiet mt-8"
           >
-            Explore all 15 use cases →
+            Explore all use cases →
           </Link>
         </Reveal>
 
