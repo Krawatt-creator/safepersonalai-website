@@ -145,13 +145,13 @@ function ModuleCard({ module: m }: { module: Module }) {
       {m.key === "operational" ? (
         <div className="mt-8">
           <Link
-            href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.1.3-beta/SafePersonalAI-beta.zip"
+            href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.0-beta/SafePersonalAI-beta.zip"
             download
             className="site-cta-primary w-full"
           >
             {m.cta}
           </Link>
-          <p className="mt-2 text-center text-[11px] text-text-tertiary">Free while beta access is open · 90-day trial of every module · Apple Silicon (M1+)</p>
+          <p className="mt-2 text-center text-[11px] text-text-tertiary">Free while beta access is open · 90-day trial of every module · notarized by Apple · Apple Silicon (M1+)</p>
         </div>
       ) : m.waitlist ? (
         <div className="mt-8">
