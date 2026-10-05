@@ -9,9 +9,9 @@ import { useState } from "react";
 type Status = "connected" | "local" | "not-connected";
 
 const connections: { icon: string; label: string; detail: string; status: Status }[] = [
-  { icon: "✉️", label: "Gmail", detail: "Read + draft replies", status: "connected" },
+  { icon: "✉️", label: "Gmail", detail: "Read only — cannot send", status: "connected" },
   { icon: "📅", label: "Google Calendar", detail: "Read + create events", status: "connected" },
-  { icon: "🗂️", label: "Google Drive", detail: "File statements & documents", status: "connected" },
+  { icon: "🗂️", label: "Google Drive", detail: "Copies of statements you import", status: "connected" },
   { icon: "💬", label: "iMessage", detail: "Read locally on your Mac only", status: "local" },
   { icon: "🧠", label: "AI provider", detail: "Your own key — never shared with us", status: "connected" },
 ];

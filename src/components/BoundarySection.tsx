@@ -30,8 +30,9 @@ export default function BoundarySection() {
           </h2>
           <p className="mt-4 text-text-secondary text-pretty">
             Most AI tools blur understanding and action into one step. We
-            don&apos;t. Everything SafePersonalAI works out is a proposal —
-            never an action — until you cross the line yourself.
+            don&apos;t. What SafePersonalAI works out from your mail is a proposal
+            until you approve it. Only what your own bank reports, and a few
+            reminders, are added directly — marked, and undone with one click.
           </p>
         </div>
 

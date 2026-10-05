@@ -54,8 +54,8 @@ export default function PrivacyPage() {
         </p>
         <ul className="ml-4 list-disc space-y-1.5 marker:text-text-tertiary">
           <li>
-            <span className="text-text">Gmail</span> — to read messages and
-            draft replies. It never sends a reply without you approving it.
+            <span className="text-text">Gmail</span> — to read messages. It
+            cannot send, delete, or change mail.
           </li>
           <li>
             <span className="text-text">Google Calendar</span> — to read and
@@ -93,9 +93,15 @@ export default function PrivacyPage() {
 
       <Section title="Nothing acts without your approval">
         <p>
-          Every reply, calendar event, filed document, or payment record
-          SafePersonalAI proposes is staged as a pending action. Nothing is
-          sent, filed, or scheduled until you click Approve. This isn&apos;t
+          Calendar events and tasks that SafePersonalAI works out from your
+          mail are staged as pending actions and wait until you click
+          Approve. Three things are added directly, are clearly marked, and
+          can be undone: transactions and balances from your own bank&apos;s
+          alert emails, Apple Pay taps you set up yourself, and a few
+          reminders (a letter&apos;s deadline, a card&apos;s payment date). You can
+          also choose which kinds of action run without asking; that is off
+          until you switch it on. SafePersonalAI never sends an email, pays,
+          or moves money. This isn&apos;t
           a policy we ask you to trust blindly — it&apos;s a hard boundary
           in the local application. As with any software, you should still
           review each proposal and keep your device and connected accounts

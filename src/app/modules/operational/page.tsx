@@ -9,7 +9,7 @@ import MessageFlowPreview from "@/components/MessageFlowPreview";
 export const metadata: Metadata = {
   title: "Base — Operational",
   description:
-    "Inbox, calendar, iMessage, and to-dos — handled and drafted for you, included with every SafePersonalAI install.",
+    "Inbox, calendar, iMessage, and to-dos — prepared for you and approved by you, included with every SafePersonalAI install.",
 };
 
 export default function OperationalPage() {
@@ -34,13 +34,13 @@ export default function OperationalPage() {
         },
         {
           title: "It acts",
-          body: "Only then does anything happen — a reply gets sent, an event lands on your calendar, a document gets filed.",
+          body: "Only then does it happen — an event lands on your calendar, a to-do is added, a bill is tracked. It never sends an email for you.",
         },
       ]}
       features={[
         {
-          title: "Inbox triage, drafted for you",
-          body: "Reads new mail, works out what needs a reply, and drafts it in your language and your usual tone — you send it, or you don't.",
+          title: "Inbox triage, prepared for you",
+          body: "Reads new mail and works out what it asks of you — a task with its deadline, an appointment, a bill, a renewal — and prepares it for your OK.",
         },
         {
           title: "Calendar events without the awkwardness",
@@ -52,7 +52,7 @@ export default function OperationalPage() {
         },
         {
           title: "One queue for every decision",
-          body: "Every proposed action — a reply, an event, a filed document, a tracked payment — lands in the same Pending Actions queue. Approve, snooze, reject, or correct it in your own words.",
+          body: "Every proposed action — an event, a to-do, a tracked payment — lands in the same Pending Actions queue. Approve, snooze, reject, or correct it in your own words.",
         },
         {
           title: "Understands however it arrives",

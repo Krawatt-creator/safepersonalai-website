@@ -21,8 +21,8 @@ const initialRows: Row[] = [
   {
     id: "draft",
     icon: "✉️",
-    title: "Draft reply to Taylor — rescheduling Saturday",
-    detail: "Understood from your inbox, in German, matching your usual tone",
+    title: "To-do: send the signed form by Friday",
+    detail: "Found in an email from the school office, with its deadline",
     accent: "green",
   },
   {
@@ -35,8 +35,8 @@ const initialRows: Row[] = [
   {
     id: "file",
     icon: "🧾",
-    title: "File Stadtwerke invoice → House Yearly Invoices / 2026",
-    detail: "High-confidence match against your Drive folder rules",
+    title: "Track the electricity bill — €84.00, due 28 Oct",
+    detail: "Read from the invoice email; a reminder comes before it is due",
     accent: "green",
   },
 ];
@@ -106,7 +106,7 @@ export default function ProductPanel() {
 
       <div className="border-t border-border px-5 py-4" aria-live="polite">
         <div className="flex items-center justify-between text-xs text-text-tertiary">
-          <span>Nothing sent, filed, or scheduled until you say go.</span>
+          <span>These wait for your OK. It never sends email or pays.</span>
           <span className="font-mono text-text-secondary">
             {waiting} waiting
           </span>

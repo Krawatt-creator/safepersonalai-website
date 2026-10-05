@@ -60,7 +60,7 @@ export default function UseCaseCard({ c }: { c: Case }) {
             </div>
           </div>
           <p className="mt-3 text-xs text-text-tertiary">
-            Nothing happens until you approve it.
+            It waits for your OK.
           </p>
         </div>
       </div>

@@ -37,9 +37,10 @@ export default function TermsPage() {
           and iMessage on your own Mac) and to an AI provider you choose and
           pay for directly. An optional, explicit one-to-three-month
           historical-mail scan recognizes recurring financial senders; it
-          does not silently import historical transactions. It proposes actions — replies, calendar
-          events, filed documents, tracked payments — and takes them only
-          after you approve each one.
+          does not silently import historical transactions. It proposes actions — calendar
+          events, tasks, tracked payments — for your approval, and adds
+          information from your own bank alerts directly, where you can undo
+          it.
         </p>
       </Section>
 
@@ -87,7 +88,7 @@ export default function TermsPage() {
 
       <Section title="License scope and trial">
         <p>
-          New installs include a seven-day trial. After the trial, continued
+          New installs include a 90-day trial that unlocks every module. After the trial, continued
           use requires the applicable one-time license. A purchased module is
           licensed to you for use on your own Mac(s), up to the activation
           limit shown at checkout. It is not permission to redistribute the

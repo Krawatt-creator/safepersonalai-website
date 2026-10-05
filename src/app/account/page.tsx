@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const futureAccountAreas = [
   {
     title: "Your download",
-    body: "Download the latest notarized Mac app and see the version included with your license.",
+    body: "Download the latest Mac app and see the version included with your license.",
     icon: "↓",
   },
   {

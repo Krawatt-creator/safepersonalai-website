@@ -9,7 +9,7 @@ export default function Footer() {
           <span>SafePersonalAI</span>
         </div>
         <p className="order-last text-center sm:order-none">
-          Understands, proposes, waits for you. Every time.
+          Understands, proposes, waits for your OK. Never sends email, never pays.
         </p>
         <div className="flex items-center gap-4">
           <Link href="/account" className="transition hover:text-text-secondary">

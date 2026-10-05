@@ -30,8 +30,8 @@ const cases: Case[] = [
     inputLabel: "New email from Taylor",
     inputSub: "“Can we move Saturday to Sunday instead?”",
     outputIcon: "📝",
-    outputTitle: "Draft a reply, in German, in your usual tone",
-    outputSub: "Ready in your drafts folder — sends only if you hit send",
+    outputTitle: "Calendar change prepared: Saturday → Sunday",
+    outputSub: "Waits in Pending Actions — nothing moves until you approve",
     accent: "green",
   },
 ];
