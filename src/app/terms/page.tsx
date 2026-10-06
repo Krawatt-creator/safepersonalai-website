@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LegalLayout from "@/components/LegalLayout";
+import { PRICES, TRIAL_DAYS } from "@/lib/offer";
 
 // DRAFT — reasonable placeholder terms written from the product's actual
 // behavior (BYO-key, local-first, approval-gated actions). Not reviewed by
@@ -68,11 +69,13 @@ export default function TermsPage() {
         <p>
           The Base module (Operational: inbox, calendar, iMessage, to-dos, and
           the Pending Actions queue) is the foundation product. Modules are sold as
-          one-time purchases, not recurring subscriptions. Current planned
-          Base is currently available at €0 during the beta. After beta, the
-          planned one-time prices are Base €49, Travel €29, Finance €29, or
-          €100 for the current full package (Base + Travel + Finance). Future modules may
-          have their own one-time prices. The final price, taxes, refund
+          one-time purchases, not recurring subscriptions. During the beta
+          the download is free and every module is open for {TRIAL_DAYS} days.
+          The planned one-time prices are Base €{PRICES.base}, Travel €
+          {PRICES.travel} and Wealth €{PRICES.wealth}, or all three together
+          (Base + Travel + Wealth) for €{PRICES.bundleBeta} while the beta
+          runs and €{PRICES.bundle} afterwards. Buying is not open yet.
+          Future modules may have their own one-time prices. The final price, taxes, refund
           terms, and availability shown at checkout control that purchase.
         </p>
         <p>
@@ -89,7 +92,7 @@ export default function TermsPage() {
 
       <Section title="License scope and trial">
         <p>
-          New installs include a 90-day trial that unlocks every module. After the trial, continued
+          New installs include a {TRIAL_DAYS}-day trial that unlocks every module. After the trial, continued
           use requires the applicable one-time license. A purchased module is
           licensed to you for use on your own Mac(s), up to the activation
           limit shown at checkout. It is not permission to redistribute the

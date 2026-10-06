@@ -1,29 +1,32 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
-import WaitlistForm from "./WaitlistForm";
+import {
+  DOWNLOAD_NOTE,
+  DOWNLOAD_URL,
+  PRICE_NOTE,
+  PRICES,
+  TRIAL_DAYS,
+} from "@/lib/offer";
 
 type Module = {
   key: string;
   name: string;
   tagline: string;
   price: string;
-  priceNote: string;
   features: string[];
   accent: "green" | "violet";
-  cta: string;
   featured?: boolean;
-  waitlist?: boolean;
 };
 
-// Beta pricing is intentionally free for Base. Add-on pricing remains one-time
-// and is shown for planning until the corresponding checkout variants exist.
+// One offer for every module: the download is free in the beta and opens all
+// three for the trial; the price shown is the one-time price afterwards.
+// The numbers come from src/lib/offer.ts. Buying is not open yet.
 const modules: Module[] = [
   {
     key: "operational",
     name: "Base",
     tagline: "Operational foundation: inbox, calendar, iMessage, and to-dos.",
-    price: "€0",
-    priceNote: "beta access",
+    price: `€${PRICES.base}`,
     features: [
       "Inbox understanding with approval-ready tasks",
       "Calendar events from email, with no attendee invitations",
@@ -32,15 +35,12 @@ const modules: Module[] = [
       "Runs on your Mac with local Ollama or your own cloud-provider key",
     ],
     accent: "green",
-    cta: "Download beta",
-    waitlist: false,
   },
   {
     key: "travel",
     name: "Travel",
     tagline: "Flight price tracking that never overspends its own budget.",
-    price: "€29",
-    priceNote: "one-time add-on",
+    price: `€${PRICES.travel}`,
     features: [
       "Daily quota-guarded fare tracking, per route",
       "Deal alerts only when a price actually clears your threshold",
@@ -48,15 +48,12 @@ const modules: Module[] = [
       "Calendar-aware — cross-checked against your free weekends",
     ],
     accent: "violet",
-    cta: "Notify me",
-    waitlist: true,
   },
   {
     key: "wealth",
     name: "Wealth",
     tagline: "Your money, read from any bank's statement. No bank login.",
-    price: "€29",
-    priceNote: "one-time add-on",
+    price: `€${PRICES.wealth}`,
     features: [
       "Any bank's statement: CSV, Excel, PDF, MT940, CAMT, OFX, QIF",
       "Spending by category, for any period",
@@ -65,9 +62,7 @@ const modules: Module[] = [
       "Investments and loans, with a Trade Republic import",
     ],
     accent: "green",
-    cta: "Notify me",
     featured: true,
-    waitlist: true,
   },
 ];
 
@@ -79,14 +74,14 @@ export default function ModulesPricing() {
           <div id="pricing" className="max-w-2xl scroll-mt-24">
             <p className="text-sm font-medium text-green">SafePersonalAI v1</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-balance text-text sm:text-4xl">
-              One install. Modules you actually need.
+              One install. Free for {TRIAL_DAYS} days. Then pay once.
             </h2>
             <p className="mt-4 text-text-secondary text-pretty">
-              Base is the Operational module: the same inbox, calendar, and
-              to-do automation described on this page. Travel and Wealth are
-              one-time module unlocks on top of the same install whenever you want more:
-              your data, settings, and history never move or reset when you
-              add one.
+              Download the beta and every module is open for {TRIAL_DAYS} days,
+              free. After that each module is a one-time purchase — the Mac
+              app has no subscription. A module you do not buy closes; its
+              data stays on your Mac and comes back when you add it. Buying
+              opens soon, and nothing is charged today.
             </p>
           </div>
         </Reveal>
@@ -99,8 +94,14 @@ export default function ModulesPricing() {
           ))}
         </div>
         <p className="mt-8 max-w-3xl text-sm text-text-secondary">
-          Want the complete launch set? The Full Function bundle is <span className="font-semibold text-text">€100 one time</span> and includes Base, Wealth, and Travel. No subscription and no reset when a module is added later.
+          All three together:{" "}
+          <span className="font-semibold text-text">
+            €{PRICES.bundleBeta} one time while the beta runs
+          </span>
+          , instead of €{PRICES.bundle} afterwards. Buying opens soon — until
+          then there is nothing to pay.
         </p>
+        <p className="mt-3 max-w-3xl text-xs text-text-tertiary">{DOWNLOAD_NOTE}</p>
       </div>
     </section>
   );
@@ -124,7 +125,7 @@ function ModuleCard({ module: m }: { module: Module }) {
 
       <div className="mt-6 flex items-baseline gap-2">
         <span className="text-3xl font-semibold text-text">{m.price}</span>
-        <span className="text-xs text-text-tertiary">{m.priceNote}</span>
+        <span className="text-xs text-text-tertiary">{PRICE_NOTE}</span>
       </div>
 
       <ul className="mt-6 flex-1 space-y-3">
@@ -143,33 +144,18 @@ function ModuleCard({ module: m }: { module: Module }) {
         Learn more →
       </Link>
 
-      {m.key === "operational" ? (
-        <div className="mt-8">
-          <Link
-            href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.0-beta/SafePersonalAI-beta.zip"
-            download
-            className="site-cta-primary w-full"
-          >
-            {m.cta}
-          </Link>
-          <p className="mt-2 text-center text-[11px] text-text-tertiary">Free while beta access is open · 90-day trial of every module · notarized by Apple · Apple Silicon (M1+)</p>
-        </div>
-      ) : m.waitlist ? (
-        <div className="mt-8">
-          <WaitlistForm module={m.key} accent={m.accent} />
-        </div>
-      ) : (
-        <Link
-          href="/#pricing"
-          className={`mt-8 rounded-full px-5 py-2.5 text-center text-sm font-medium transition hover:scale-[1.02] active:scale-[0.98] ${
-            m.accent === "green"
-              ? "bg-green text-white hover:brightness-110"
-              : "border border-border-strong text-text hover:border-text-tertiary"
-          }`}
+      <div className="mt-8">
+        <a
+          href={DOWNLOAD_URL}
+          download
+          className={`w-full ${m.key === "operational" ? "site-cta-primary" : "site-cta-secondary"}`}
         >
-          {m.cta}
-        </Link>
-      )}
+          Download beta
+        </a>
+        <p className="mt-2 text-center text-[11px] text-text-tertiary">
+          Included in the {TRIAL_DAYS}-day trial
+        </p>
+      </div>
     </div>
   );
 }

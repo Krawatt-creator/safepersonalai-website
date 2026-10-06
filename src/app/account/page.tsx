@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { DOWNLOAD_URL } from "@/lib/offer";
 
 export const metadata: Metadata = {
   title: "Customer account",
@@ -103,7 +104,7 @@ export default function AccountPage() {
               </a>
 
               <Link
-                href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.0-beta/SafePersonalAI-beta.zip"
+                href={DOWNLOAD_URL}
                 download
                 className="mt-5 block text-center text-xs font-medium text-green transition hover:brightness-125"
               >

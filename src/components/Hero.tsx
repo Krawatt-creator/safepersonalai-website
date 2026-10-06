@@ -1,4 +1,5 @@
 import ProductPanel from "./ProductPanel";
+import { DOWNLOAD_URL, PRICE_LINE, TRIAL_LINE } from "@/lib/offer";
 
 export default function Hero() {
   return (
@@ -7,7 +8,7 @@ export default function Hero() {
         <div>
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border-strong bg-bg-raised px-3 py-1 text-xs text-text-secondary">
             <span className="h-1.5 w-1.5 rounded-full bg-green" />
-            Private Mac assistant · early access in preparation
+            Private Mac assistant · free beta
           </div>
           <h1 className="text-4xl leading-[1.1] font-semibold tracking-tight text-balance text-text sm:text-5xl lg:text-6xl">
             It turns your inbox into actions.
@@ -21,23 +22,20 @@ export default function Hero() {
             own cloud-provider account.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
+            <a href={DOWNLOAD_URL} download className="site-cta-primary">
+              Download the free beta
+            </a>
             <a
               href="#use-cases"
-              className="site-cta-primary"
+              className="site-cta-secondary"
             >
               Explore real use cases
             </a>
-            <a
-              href="#boundary"
-              className="site-cta-secondary"
-            >
-              See how the boundary works
-            </a>
           </div>
-          <p className="mt-6 text-xs text-text-tertiary">
-            Paid early access is not open yet. Choose a local Ollama model with
-            no cloud account, or connect your own Anthropic, OpenAI, or Gemini
-            key when you want cloud inference.
+          <p className="mt-6 max-w-xl text-xs leading-relaxed text-text-tertiary">
+            {TRIAL_LINE} {PRICE_LINE} For Macs with Apple silicon (M1 or
+            later). Use a local Ollama model with no cloud account, or your
+            own Anthropic, OpenAI, or Gemini key.
           </p>
         </div>
 

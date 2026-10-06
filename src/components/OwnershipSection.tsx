@@ -1,5 +1,6 @@
 import Reveal from "./Reveal";
 import SubscriptionCounter from "./SubscriptionCounter";
+import { PRICE_LINE, TRIAL_LINE } from "@/lib/offer";
 
 const points = [
   {
@@ -12,7 +13,7 @@ const points = [
   },
   {
     title: "Designed as software you own",
-    body: "The planned offer is a one-time, version-bound license rather than a permanent monthly rental. Final early-access pricing and included modules will be shown before anyone is asked to pay.",
+    body: `Each module is a one-time, version-bound license rather than a permanent monthly rental. ${TRIAL_LINE} ${PRICE_LINE}`,
   },
 ];
 

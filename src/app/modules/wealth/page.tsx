@@ -3,6 +3,7 @@ import ModulePageShell from "@/components/ModulePageShell";
 import WealthPreviewPanel from "@/components/WealthPreviewPanel";
 import PortfolioPreviewPanel from "@/components/PortfolioPreviewPanel";
 import Reveal from "@/components/Reveal";
+import { DOWNLOAD_URL, PRICE_NOTE, PRICES } from "@/lib/offer";
 
 export const metadata: Metadata = {
   title: "Wealth — any bank's statement on your Mac, no bank login",
@@ -21,11 +22,10 @@ export default function WealthPage() {
       name="Wealth"
       tagline="Your money, read from any bank's statement. No bank login."
       intro="Wealth reads the statement your bank already gives you — CSV, Excel, PDF, MT940, CAMT, OFX or QIF — works out the columns itself, and shows you what it read before anything is added. From there you get spending by category, a forecast of the coming months, budgets and your investments, all kept on your Mac."
-      priceLabel="€29"
-      priceNote="one-time add-on"
-      ctaLabel="Notify me"
-      ctaHref="/#pricing"
-      waitlistModule="wealth"
+      priceLabel={`€${PRICES.wealth}`}
+      priceNote={PRICE_NOTE}
+      ctaLabel="Download beta"
+      ctaHref={DOWNLOAD_URL}
       steps={[
         {
           title: "Give it a statement",

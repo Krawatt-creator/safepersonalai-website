@@ -5,6 +5,7 @@ import OperationalPreviewPanel from "@/components/OperationalPreviewPanel";
 import SettingsPreviewPanel from "@/components/SettingsPreviewPanel";
 import Reveal from "@/components/Reveal";
 import MessageFlowPreview from "@/components/MessageFlowPreview";
+import { DOWNLOAD_URL, PRICE_NOTE, PRICES } from "@/lib/offer";
 
 export const metadata: Metadata = {
   title: "Base — Operational",
@@ -20,10 +21,10 @@ export default function OperationalPage() {
       name="Base"
       tagline="Your inbox, calendar, and to-dos — handled, never surprised."
       intro="The part of SafePersonalAI every install starts with. It reads what actually arrives — email, iMessage, a photographed invoice, a voice memo — works out what needs doing, and drafts it. You decide what happens next."
-      priceLabel="€0"
-      priceNote="free beta access"
+      priceLabel={`€${PRICES.base}`}
+      priceNote={PRICE_NOTE}
       ctaLabel="Download beta"
-      ctaHref="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.0-beta/SafePersonalAI-beta.zip"
+      ctaHref={DOWNLOAD_URL}
       steps={[
         {
           title: "It reads",

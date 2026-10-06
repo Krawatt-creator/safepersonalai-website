@@ -3,6 +3,7 @@ import ModulePageShell from "@/components/ModulePageShell";
 import TravelPreviewPanel from "@/components/TravelPreviewPanel";
 import DealAlertPanel from "@/components/DealAlertPanel";
 import Reveal from "@/components/Reveal";
+import { DOWNLOAD_URL, PRICE_NOTE, PRICES } from "@/lib/offer";
 
 export const metadata: Metadata = {
   title: "Travel",
@@ -18,11 +19,10 @@ export default function TravelPage() {
       name="Travel"
       tagline="Flight deals watched for you, never watching your wallet drain."
       intro="Tell it which routes matter and what a good price actually looks like. It checks quietly in the background and only interrupts you when there's a real deal — never as a way to justify its own existence."
-      priceLabel="€29"
-      priceNote="one-time add-on"
-      ctaLabel="Notify me"
-      ctaHref="/#pricing"
-      waitlistModule="travel"
+      priceLabel={`€${PRICES.travel}`}
+      priceNote={PRICE_NOTE}
+      ctaLabel="Download beta"
+      ctaHref={DOWNLOAD_URL}
       steps={[
         {
           title: "Tell it what matters",

@@ -1,6 +1,12 @@
 // The home page FAQ. Kept as data so the visible answers and the FAQ
 // structured data on the home page are always the same text.
+import { PRICES, TRIAL_DAYS } from "@/lib/offer";
+
 export const faqs: { q: string; a: string }[] = [
+  {
+    q: "What does it cost, and is there a free trial?",
+    a: `The beta is free to download, and every module — Base, Travel and Wealth — is open for ${TRIAL_DAYS} days. After that each module is a one-time purchase, not a subscription: Base €${PRICES.base}, Travel €${PRICES.travel}, Wealth €${PRICES.wealth}, or all three for €${PRICES.bundleBeta} while the beta runs (€${PRICES.bundle} afterwards). Buying is not open yet, so nothing is charged today. When the ${TRIAL_DAYS} days end, a module without a license closes and its data stays on your Mac. If you use a cloud AI provider you pay that provider directly; a local Ollama model has no AI bill.`,
+  },
   {
     q: "Do I need my own Claude, OpenAI, or Gemini account?",
     a: "No. You can use Ollama locally on your Mac with no cloud account or API key. If you choose Anthropic, OpenAI, or Gemini, you bring your own account and key and pay that provider directly. SafePersonalAI stores provider credentials locally, sends requests directly to the provider you selected, and never receives or brokers your key. Local and cloud paths are held to the same approval boundary; the local option is clearly labeled if its model needs a second look at an ambiguous result.",

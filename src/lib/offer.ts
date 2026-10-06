@@ -19,3 +19,14 @@ export const PRICES = {
   bundleBeta: 59, // while the beta runs
   bundle: 100, // afterwards
 } as const;
+
+// The same sentences wherever the offer is explained.
+export const TRIAL_LINE = `Free during the beta: every module is open for ${TRIAL_DAYS} days.`;
+
+export const PRICE_LINE = `After that, a one-time purchase: Base €${PRICES.base}, Travel €${PRICES.travel}, Wealth €${PRICES.wealth} — or all three for €${PRICES.bundleBeta} while the beta runs (€${PRICES.bundle} afterwards). Buying opens soon.`;
+
+// Under a module's price.
+export const PRICE_NOTE = `one time · free for ${TRIAL_DAYS} days in the beta`;
+
+// Under a download button.
+export const DOWNLOAD_NOTE = `Free for ${TRIAL_DAYS} days, every module included · notarized by Apple · Apple silicon (M1 or later)`;
