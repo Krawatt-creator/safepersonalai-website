@@ -3,6 +3,7 @@ import LegalLayout from "@/components/LegalLayout";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
+  alternates: { canonical: "/privacy" },
   description:
     "How SafePersonalAI handles your email, calendar, and financial data — and what it never does with it.",
 };

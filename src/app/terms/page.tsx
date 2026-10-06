@@ -8,6 +8,7 @@ import LegalLayout from "@/components/LegalLayout";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
+  alternates: { canonical: "/terms" },
   description: "The terms for using SafePersonalAI.",
 };
 

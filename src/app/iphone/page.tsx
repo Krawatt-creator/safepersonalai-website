@@ -4,6 +4,7 @@ import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "iPhone",
+  alternates: { canonical: "/iphone" },
   description:
     "See and steer SafePersonalAI from your iPhone. Your Mac keeps doing the work and keeps your data; the phone is a locked window onto it, through your own iCloud.",
 };

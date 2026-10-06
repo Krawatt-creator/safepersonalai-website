@@ -6,6 +6,7 @@ import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Wealth",
+  alternates: { canonical: "/modules/wealth" },
   description:
     "Loans solved automatically, investments priced for you, and every account combined into one balance — no bank login required.",
 };

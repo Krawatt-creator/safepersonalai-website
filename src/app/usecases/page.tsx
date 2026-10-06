@@ -8,6 +8,7 @@ import ActivityOverview from "@/components/ActivityOverview";
 
 export const metadata: Metadata = {
   title: "Use Cases",
+  alternates: { canonical: "/usecases" },
   description:
     "Concrete, real examples of what SafePersonalAI actually does — not concept art, the flows it really runs.",
 };

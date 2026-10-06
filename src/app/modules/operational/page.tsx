@@ -8,6 +8,7 @@ import MessageFlowPreview from "@/components/MessageFlowPreview";
 
 export const metadata: Metadata = {
   title: "Base — Operational",
+  alternates: { canonical: "/modules/operational" },
   description:
     "Inbox, calendar, iMessage, and to-dos — prepared for you and approved by you, included with every SafePersonalAI install.",
 };

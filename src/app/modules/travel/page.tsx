@@ -6,6 +6,7 @@ import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Travel",
+  alternates: { canonical: "/modules/travel" },
   description:
     "Flight price tracking that never overspends its own budget, and only tells you about a deal that's actually a deal.",
 };

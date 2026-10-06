@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import LaptopRevealSection from "@/components/LaptopRevealSection";
@@ -8,10 +9,17 @@ import ModulesPricing from "@/components/ModulesPricing";
 import TrustSection from "@/components/TrustSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
+import { homeStructuredData } from "@/lib/structured-data";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={homeStructuredData} />
       <Nav />
       <main className="flex-1">
         <Hero />

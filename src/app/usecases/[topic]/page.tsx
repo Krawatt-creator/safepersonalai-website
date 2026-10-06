@@ -32,6 +32,7 @@ export async function generateMetadata({
   return {
     title: `${topic.title} — Use Cases`,
     description: topic.intro,
+    alternates: { canonical: `/usecases/${topic.slug}` },
   };
 }
 

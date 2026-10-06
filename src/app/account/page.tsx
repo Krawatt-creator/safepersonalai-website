@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Customer account",
+  alternates: { canonical: "/account" },
   description: "SafePersonalAI customer account and license access.",
   robots: { index: false, follow: false },
 };
