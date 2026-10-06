@@ -26,7 +26,7 @@ export const moduleMeta = {
   wealth: {
     name: "Wealth",
     label: "Add-on module",
-    description: "Bills, cash-flow visibility, recurring costs, and portfolio records.",
+    description: "Statements from any bank, spending, a forecast, budgets, and investments.",
     accent: "green",
   },
 } as const;
