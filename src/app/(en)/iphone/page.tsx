@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ModulePageShell from "@/components/ModulePageShell";
 import Reveal from "@/components/Reveal";
+import PhoneFrame from "@/components/PhoneFrame";
 
 export const metadata: Metadata = {
   title: "iPhone",
@@ -12,6 +13,27 @@ export const metadata: Metadata = {
 // Every claim here matches product_features/FEATURES.md ("iPhone app"). The app is
 // built and runs on a test phone but is NOT in the App Store yet: this page says
 // "coming" and collects interest. Change the call to action when it is released.
+const phoneScreens = [
+  {
+    src: "/iphone/today.webp",
+    alt: "The Today screen: a calendar event waiting for approval with Approve and Reject buttons, today's events, a birthday and the balance.",
+    title: "Today",
+    body: "What is waiting for your OK, with Approve and Reject, then your day: events, birthdays and your balance.",
+  },
+  {
+    src: "/iphone/wealth.webp",
+    alt: "The Wealth screen: total of accounts and investments, the payments of the next 30 days and a curve of the next 90 days.",
+    title: "Wealth",
+    body: "Your total, the payments of the next 30 days and where the money stands after them. Needs the Wealth module.",
+  },
+  {
+    src: "/iphone/forecast.webp",
+    alt: "The Forecast screen: a curve of the expected balance over the next 90 days, its lowest point, and totals for 30, 60 and 90 days.",
+    title: "Forecast",
+    body: "The next 90 days as a curve. Touch it to see a day and what moves on it, including what you planned yourself.",
+  },
+];
+
 export default function IPhonePage() {
   return (
     <ModulePageShell
@@ -35,7 +57,7 @@ export default function IPhonePage() {
         },
         {
           title: "Say yes from anywhere",
-          body: "Approve, reject, add, search. Your Mac carries it out as soon as it is awake and online, and tells the phone it is done.",
+          body: "Approve, reject, add a to-do. Your Mac carries it out as soon as it is awake and online, and tells the phone it is done.",
         },
       ]}
       features={[
@@ -66,6 +88,32 @@ export default function IPhonePage() {
       ]}
     >
       <section className="border-t border-border py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="max-w-2xl">
+            <p className="text-sm font-medium text-green">What it looks like</p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-balance text-text sm:text-3xl">
+              Three screens you will use every day.
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-text-secondary">
+              Real screens of the app, filled with its built-in sample data — the same
+              &quot;Look around with sample data&quot; you can open before pairing a Mac.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-12 sm:grid-cols-3 sm:gap-8">
+            {phoneScreens.map((s) => (
+              <figure key={s.src} className="text-center">
+                <PhoneFrame src={s.src} alt={s.alt} />
+                <figcaption className="mx-auto mt-6 max-w-[260px]">
+                  <p className="text-base font-semibold text-text">{s.title}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-text-secondary">{s.body}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border py-20">
         <div className="mx-auto max-w-4xl px-6">
           <Reveal>
             <h2 className="text-2xl font-semibold tracking-tight text-text">Good to know before you subscribe</h2>
@@ -93,6 +141,11 @@ export default function IPhonePage() {
                 tested. Leave your address above and we tell you the day it is there.
               </li>
             </ul>
+            <p className="mt-10 text-xs text-text-tertiary">
+              iPhone, iCloud, Face ID, Touch ID, Mac and App Store are trademarks of Apple Inc., registered
+              in the U.S. and other countries and regions. SafePersonalAI is not affiliated with or endorsed
+              by Apple.
+            </p>
           </Reveal>
         </div>
       </section>

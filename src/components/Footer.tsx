@@ -20,6 +20,9 @@ export default function Footer({
         </div>
         <p className="order-last text-center sm:order-none">{t.tagline}</p>
         <div className="flex flex-wrap items-center justify-center gap-4">
+          <Link href="/iphone" className="transition hover:text-text-secondary">
+            iPhone
+          </Link>
           <Link href="/account" className="transition hover:text-text-secondary">
             {t.account}
           </Link>
