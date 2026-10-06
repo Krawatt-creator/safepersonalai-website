@@ -21,6 +21,9 @@ export default function Footer() {
           <Link href="/terms" className="transition hover:text-text-secondary">
             Terms
           </Link>
+          <a href="mailto:support@safepersonalai.com" className="transition hover:text-text-secondary">
+            support@safepersonalai.com
+          </a>
         </div>
       </div>
     </footer>

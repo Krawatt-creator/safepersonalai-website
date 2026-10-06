@@ -130,8 +130,12 @@ export default function PrivacyPage() {
 
       <Section title="Contact">
         <p>
-          Questions about this policy or your data can be sent to the
-          support address listed on our website or your purchase receipt.
+          Questions about this policy or your data, and requests to remove
+          what you submitted on this website, can be sent to{" "}
+          <a href="mailto:support@safepersonalai.com" className="text-text underline underline-offset-4">
+            support@safepersonalai.com
+          </a>
+          .
         </p>
       </Section>
     </LegalLayout>

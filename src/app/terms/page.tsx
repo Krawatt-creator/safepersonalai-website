@@ -210,8 +210,11 @@ export default function TermsPage() {
 
       <Section title="Contact">
         <p>
-          Questions about these terms can be sent to the support address
-          listed on our website or your purchase receipt.
+          Questions about these terms can be sent to{" "}
+          <a href="mailto:support@safepersonalai.com" className="text-text underline underline-offset-4">
+            support@safepersonalai.com
+          </a>
+          .
         </p>
       </Section>
     </LegalLayout>
