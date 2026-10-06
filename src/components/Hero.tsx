@@ -1,46 +1,51 @@
 import ProductPanel from "./ProductPanel";
-import { DOWNLOAD_URL, PRICE_LINE, TRIAL_LINE } from "@/lib/offer";
+import { DOWNLOAD_URL, OFFER_VARS } from "@/lib/offer";
+import { fill, localePath, type Locale } from "@/i18n/config";
+import { en, type Dictionary } from "@/i18n/dictionaries/en";
 
-export default function Hero() {
+export default function Hero({
+  lang = "en",
+  dict = en,
+}: {
+  lang?: Locale;
+  dict?: Dictionary;
+}) {
+  const t = dict.hero;
   return (
     <section className="bg-radial-glow relative overflow-hidden">
       <div className="mx-auto grid max-w-6xl gap-16 px-6 pt-20 pb-24 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:pt-28 lg:pb-32">
         <div>
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border-strong bg-bg-raised px-3 py-1 text-xs text-text-secondary">
             <span className="h-1.5 w-1.5 rounded-full bg-green" />
-            Private Mac assistant · free beta
+            {t.badge}
           </div>
           <h1 className="text-4xl leading-[1.1] font-semibold tracking-tight text-balance text-text sm:text-5xl lg:text-6xl">
-            It turns your inbox into actions.
+            {t.titleLine1}
             <br />
-            It waits for your approval.
+            {t.titleLine2}
           </h1>
           <p className="mt-6 max-w-xl text-lg text-text-secondary text-pretty">
-            SafePersonalAI reads new email, prepares the task or calendar
-            action it found, and shows you exactly what will happen before
-            anything changes. It runs on your Mac with Ollama locally or your
-            own cloud-provider account.
+            {t.body}
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a href={DOWNLOAD_URL} download className="site-cta-primary">
-              Download the free beta
+              {t.ctaDownload}
             </a>
             <a
-              href="#use-cases"
+              href={`${localePath(lang, "/")}#use-cases`}
               className="site-cta-secondary"
             >
-              Explore real use cases
+              {t.ctaUseCases}
             </a>
           </div>
           <p className="mt-6 max-w-xl text-xs leading-relaxed text-text-tertiary">
-            {TRIAL_LINE} {PRICE_LINE} For Macs with Apple silicon (M1 or
-            later). Use a local Ollama model with no cloud account, or your
-            own Anthropic, OpenAI, or Gemini key.
+            {fill(dict.offer.trialLine, OFFER_VARS)}{" "}
+            {fill(dict.offer.priceLine, OFFER_VARS)} {t.finePrint}
           </p>
         </div>
 
         <div className="relative lg:justify-self-end">
-          <ProductPanel />
+          <ProductPanel t={dict.panel} />
         </div>
       </div>
     </section>

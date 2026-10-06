@@ -7,7 +7,7 @@ export default function ModuleHowItWorks({
   steps,
 }: {
   accent: "green" | "violet";
-  steps: [Step, Step, Step];
+  steps: Step[];
 }) {
   const accentText = accent === "green" ? "text-green" : "text-violet";
 

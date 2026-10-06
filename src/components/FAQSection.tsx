@@ -1,21 +1,27 @@
-import { faqs } from "@/lib/faq-data";
+import { OFFER_VARS } from "@/lib/offer";
+import { fill } from "@/i18n/config";
+import { en, type Dictionary } from "@/i18n/dictionaries/en";
 
 // Every answer is written into the page, folded with the browser's own
 // <details> element — no script needed to read or open one, so search
 // engines and AI assistants see all of them, not only the open one.
-export default function FAQSection() {
+export default function FAQSection({
+  t = en.faq,
+}: {
+  t?: Dictionary["faq"];
+}) {
   return (
     <section id="faq" className="border-t border-border py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
-          <p className="text-sm font-medium text-green">FAQ</p>
+          <p className="text-sm font-medium text-green">{t.eyebrow}</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-balance text-text sm:text-4xl">
-            Questions people actually ask.
+            {t.title}
           </h2>
         </div>
 
         <div className="mt-12 divide-y divide-border border-t border-b border-border">
-          {faqs.map((f, i) => (
+          {t.items.map((f, i) => (
             <details key={f.q} name="faq" open={i === 0} className="group">
               <summary className="flex w-full cursor-pointer list-none items-center justify-between gap-6 py-5 text-left [&::-webkit-details-marker]:hidden">
                 <h3 className="text-base font-medium text-text">{f.q}</h3>
@@ -32,7 +38,7 @@ export default function FAQSection() {
                 </svg>
               </summary>
               <p className="max-w-3xl pb-6 text-sm leading-relaxed text-text-secondary">
-                {f.a}
+                {fill(f.a, OFFER_VARS)}
               </p>
             </details>
           ))}

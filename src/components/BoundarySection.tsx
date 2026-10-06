@@ -1,50 +1,32 @@
-const steps = [
-  {
-    n: "01",
-    title: "AI understands",
-    body: "It reads the email that arrived as untrusted data and extracts a proposed task, calendar event, renewal reminder, or supported module action.",
-    accent: "green" as const,
-  },
-  {
-    n: "02",
-    title: "You approve",
-    body: "Every proposed action lands in one review queue. You can approve, reject, delay, or provide missing information. Ambiguity never becomes permission.",
-    accent: "violet" as const,
-  },
-  {
-    n: "03",
-    title: "Software acts",
-    body: "Only the approved fields are dispatched. Calendar actions cannot invite attendees; finance features record and forecast but cannot move money.",
-    accent: "green" as const,
-  },
-];
+import { en, type Dictionary } from "@/i18n/dictionaries/en";
 
-export default function BoundarySection() {
+const accents = ["green", "violet", "green"] as const;
+
+export default function BoundarySection({
+  t = en.boundary,
+}: {
+  t?: Dictionary["boundary"];
+}) {
   return (
     <section id="boundary" className="border-t border-border py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
-          <p className="text-sm font-medium text-green">The boundary</p>
+          <p className="text-sm font-medium text-green">{t.eyebrow}</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-balance text-text sm:text-4xl">
-            A hard line between thinking and doing.
+            {t.title}
           </h2>
-          <p className="mt-4 text-text-secondary text-pretty">
-            Most AI tools blur understanding and action into one step. We
-            don&apos;t. What SafePersonalAI works out from your mail is a proposal
-            until you approve it. Only what your own bank reports, and a few
-            reminders, are added directly — marked, and undone with one click.
-          </p>
+          <p className="mt-4 text-text-secondary text-pretty">{t.intro}</p>
         </div>
 
         <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-3">
-          {steps.map((s) => (
-            <div key={s.n} className="bg-bg p-8">
+          {t.steps.map((s, i) => (
+            <div key={s.title} className="bg-bg p-8">
               <span
                 className={`font-mono text-sm ${
-                  s.accent === "green" ? "text-green" : "text-violet"
+                  accents[i] === "green" ? "text-green" : "text-violet"
                 }`}
               >
-                {s.n}
+                {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-4 text-xl font-semibold text-text">{s.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-text-secondary">

@@ -6,6 +6,8 @@
 // screenshot (deliberate — see website memory notes on why this stays a
 // mockup, not a screenshot of real personal data).
 import { useState } from "react";
+import { fill } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries/en";
 
 type Status = "pending" | "approved" | "rejected";
 
@@ -17,31 +19,17 @@ type Row = {
   accent: "green" | "violet";
 };
 
-const initialRows: Row[] = [
-  {
-    id: "draft",
-    icon: "✉️",
-    title: "To-do: send the signed form by Friday",
-    detail: "Found in an email from the school office, with its deadline",
-    accent: "green",
-  },
-  {
-    id: "cal",
-    icon: "📅",
-    title: "Add “Dentist — 3 Sep, 15:00” to your calendar",
-    detail: "Parsed from an iMessage you sent yourself",
-    accent: "violet",
-  },
-  {
-    id: "file",
-    icon: "🧾",
-    title: "Track the electricity bill — €84.00, due 28 Oct",
-    detail: "Read from the invoice email; a reminder comes before it is due",
-    accent: "green",
-  },
+// The three rows' wording comes from the dictionary (t.rows, same order).
+const rowFrames: Pick<Row, "id" | "icon" | "accent">[] = [
+  { id: "todo", icon: "✉️", accent: "green" },
+  { id: "cal", icon: "📅", accent: "violet" },
+  { id: "bill", icon: "🧾", accent: "green" },
 ];
 
-export default function ProductPanel() {
+type PanelText = Dictionary["panel"];
+
+export default function ProductPanel({ t }: { t: PanelText }) {
+  const initialRows: Row[] = rowFrames.map((frame, i) => ({ ...frame, ...t.rows[i] }));
   const [statuses, setStatuses] = useState<Record<string, Status>>({});
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
 
@@ -69,10 +57,10 @@ export default function ProductPanel() {
           <span className="absolute inset-0 animate-ping rounded-full bg-green/60 motion-reduce:hidden" />
         </span>
         <span className="ml-3 text-xs font-medium text-text-tertiary">
-          Pending Actions
+          {t.title}
         </span>
         <span className="ml-auto rounded-full border border-border px-2 py-0.5 text-[10px] text-text-tertiary">
-          Illustrative preview
+          {t.preview}
         </span>
       </div>
 
@@ -81,6 +69,7 @@ export default function ProductPanel() {
           <PendingRow
             key={row.id}
             row={row}
+            t={t}
             status={statuses[row.id] ?? "pending"}
             collapsed={!!collapsed[row.id]}
             onApprove={() => resolve(row.id, "approved")}
@@ -91,14 +80,14 @@ export default function ProductPanel() {
         {allDone && (
           <div className="rounded-xl border border-dashed border-border px-4 py-6 text-center">
             <p className="text-sm text-text-secondary">
-              All caught up — nothing waiting on you.
+              {t.allDone}
             </p>
             <button
               type="button"
               onClick={reset}
               className="mt-3 text-xs font-medium text-green transition hover:brightness-125"
             >
-              ↺ Replay the demo
+              {t.replay}
             </button>
           </div>
         )}
@@ -106,9 +95,9 @@ export default function ProductPanel() {
 
       <div className="border-t border-border px-5 py-4" aria-live="polite">
         <div className="flex items-center justify-between text-xs text-text-tertiary">
-          <span>These wait for your OK. It never sends email or pays.</span>
-          <span className="font-mono text-text-secondary">
-            {waiting} waiting
+          <span>{t.footer}</span>
+          <span className="shrink-0 pl-3 font-mono text-text-secondary">
+            {fill(t.waiting, { n: waiting })}
           </span>
         </div>
       </div>
@@ -118,12 +107,14 @@ export default function ProductPanel() {
 
 function PendingRow({
   row,
+  t,
   status,
   collapsed,
   onApprove,
   onReject,
 }: {
   row: Row;
+  t: PanelText;
   status: Status;
   collapsed: boolean;
   onApprove: () => void;
@@ -162,26 +153,26 @@ function PendingRow({
                 <button
                   type="button"
                   onClick={onReject}
-                  aria-label={`Reject ${row.title}`}
+                  aria-label={`${t.reject}: ${row.title}`}
                   className="rounded-full border border-border-strong px-3 py-1.5 text-xs text-text-secondary transition hover:scale-105 hover:border-red/50 hover:text-red active:scale-95 focus-visible:outline-2 focus-visible:outline-red focus-visible:outline-offset-2"
                 >
-                  Reject
+                  {t.reject}
                 </button>
                 <button
                   type="button"
                   onClick={onApprove}
-                  aria-label={`Approve ${row.title}`}
+                  aria-label={`${t.approve}: ${row.title}`}
                   className="rounded-full bg-green px-3 py-1.5 text-xs font-medium text-white transition hover:scale-105 hover:brightness-110 active:scale-95 focus-visible:outline-2 focus-visible:outline-green focus-visible:outline-offset-2"
                 >
-                  Approve
+                  {t.approve}
                 </button>
               </>
             )}
             {status === "approved" && (
-              <span className="text-xs font-medium text-green">✓ Approved</span>
+              <span className="text-xs font-medium text-green">{t.approved}</span>
             )}
             {status === "rejected" && (
-              <span className="text-xs font-medium text-red">✕ Rejected</span>
+              <span className="text-xs font-medium text-red">{t.rejected}</span>
             )}
           </div>
         </div>

@@ -1,6 +1,8 @@
 // The one place the offer is written down: download, trial and prices.
 // Every page and the structured data read these, so they cannot disagree.
 // Prices are in euros. Buying is not open yet (the store is not live).
+import { fill } from "@/i18n/config";
+import { en } from "@/i18n/dictionaries/en";
 
 export const SITE_URL = "https://safepersonalai.com";
 
@@ -20,13 +22,15 @@ export const PRICES = {
   bundle: 100, // afterwards
 } as const;
 
-// The same sentences wherever the offer is explained.
-export const TRIAL_LINE = `Free during the beta: every module is open for ${TRIAL_DAYS} days.`;
+// The numbers every translated sentence is filled with.
+export const OFFER_VARS = { days: TRIAL_DAYS, ...PRICES };
 
-export const PRICE_LINE = `After that, a one-time purchase: Base €${PRICES.base}, Travel €${PRICES.travel}, Wealth €${PRICES.wealth} — or all three for €${PRICES.bundleBeta} while the beta runs (€${PRICES.bundle} afterwards). Buying opens soon.`;
+// The same sentences wherever the offer is explained (English pages).
+export const TRIAL_LINE = fill(en.offer.trialLine, OFFER_VARS);
+export const PRICE_LINE = fill(en.offer.priceLine, OFFER_VARS);
 
 // Under a module's price.
-export const PRICE_NOTE = `one time · free for ${TRIAL_DAYS} days in the beta`;
+export const PRICE_NOTE = fill(en.offer.priceNote, OFFER_VARS);
 
 // Under a download button.
-export const DOWNLOAD_NOTE = `Free for ${TRIAL_DAYS} days, every module included · notarized by Apple · Apple silicon (M1 or later)`;
+export const DOWNLOAD_NOTE = fill(en.offer.downloadNote, OFFER_VARS);

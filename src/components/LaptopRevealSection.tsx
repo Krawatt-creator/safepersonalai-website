@@ -1,11 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { en, type Dictionary } from "@/i18n/dictionaries/en";
 
 const CLOSED_ANGLE = 168;
 const OPEN_ANGLE = 6;
 
-export default function LaptopRevealSection() {
+export default function LaptopRevealSection({
+  t = en.laptop,
+}: {
+  t?: Dictionary["laptop"];
+}) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [reducedMotion] = useState(() =>
@@ -58,9 +63,9 @@ export default function LaptopRevealSection() {
     >
       <div className="bg-radial-glow pointer-events-none absolute inset-0" />
       <div className="relative mx-auto max-w-6xl px-6 text-center">
-        <p className="text-sm font-medium text-green">Quietly, in the background</p>
+        <p className="text-sm font-medium text-green">{t.eyebrow}</p>
         <h2 className="mx-auto mt-3 max-w-xl text-3xl font-semibold tracking-tight text-balance text-text sm:text-4xl">
-          It only wakes up when there&apos;s something for you to see.
+          {t.title}
         </h2>
 
         <div
@@ -111,8 +116,7 @@ export default function LaptopRevealSection() {
         </div>
 
         <p className="mx-auto mt-12 max-w-md text-sm text-text-secondary">
-          No spinner, no dashboard you have to babysit — just a quiet light
-          when something actually needs your say-so.
+          {t.body}
         </p>
       </div>
     </section>

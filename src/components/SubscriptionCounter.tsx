@@ -1,11 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { fill } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries/en";
 
 const MONTHLY_COST = 24;
 const MAX_MONTHS = 36;
 
-export default function SubscriptionCounter() {
+export default function SubscriptionCounter({
+  t,
+}: {
+  t: Dictionary["ownership"]["counter"];
+}) {
   const [months, setMonths] = useState(() =>
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -26,24 +32,23 @@ export default function SubscriptionCounter() {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <div className="rounded-2xl border border-border bg-bg-raised p-6">
-        <p className="text-xs font-medium text-text-tertiary">
-          A typical AI subscription
-        </p>
+        <p className="text-xs font-medium text-text-tertiary">{t.typical}</p>
         <p className="mt-3 font-mono text-3xl font-semibold tabular-nums text-text">
-          ${total.toLocaleString()}
+          ${total.toLocaleString("en-US")}
         </p>
         <p className="mt-1 text-xs text-text-tertiary">
-          ${MONTHLY_COST}/mo × {months} {months === 1 ? "month" : "months"} — and counting, forever.
+          {fill(months === 1 ? t.runningOne : t.running, {
+            cost: MONTHLY_COST,
+            n: months,
+          })}
         </p>
       </div>
       <div className="rounded-2xl border border-green/30 bg-green-dim p-6">
         <p className="text-xs font-medium text-green">SafePersonalAI</p>
         <p className="mt-3 font-mono text-3xl font-semibold text-text">
-          $0<span className="text-base font-normal text-text-tertiary">/mo</span>
+          $0<span className="text-base font-normal text-text-tertiary">{t.perMonth}</span>
         </p>
-        <p className="mt-1 text-xs text-text-tertiary">
-          One-time per module. Your Mac, your AI key — no platform fee, ever.
-        </p>
+        <p className="mt-1 text-xs text-text-tertiary">{t.ours}</p>
       </div>
     </div>
   );

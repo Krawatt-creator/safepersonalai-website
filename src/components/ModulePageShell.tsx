@@ -4,6 +4,8 @@ import Footer from "./Footer";
 import Reveal from "./Reveal";
 import WaitlistForm from "./WaitlistForm";
 import ModuleHowItWorks from "./ModuleHowItWorks";
+import { fill, localePath, type Locale } from "@/i18n/config";
+import { en, type Dictionary } from "@/i18n/dictionaries/en";
 
 type Feature = { title: string; body: string };
 type Step = { title: string; body: string };
@@ -21,12 +23,15 @@ export default function ModulePageShell({
   ctaHref,
   waitlistModule,
   children,
+  lang = "en",
+  dict = en,
+  path = "/",
 }: {
   accent: "green" | "violet";
   name: string;
   tagline: string;
   intro: string;
-  steps: [Step, Step, Step];
+  steps: Step[];
   features: Feature[];
   priceLabel: string;
   priceNote: string;
@@ -34,22 +39,29 @@ export default function ModulePageShell({
   ctaHref: string;
   waitlistModule?: string;
   children?: React.ReactNode;
+  lang?: Locale;
+  dict?: Dictionary;
+  // This page's address without a language prefix, for the language links.
+  path?: string;
 }) {
+  const t = dict.shell;
   const dot = accent === "green" ? "bg-green" : "bg-violet";
   const accentText = accent === "green" ? "text-green" : "text-violet";
   const ctaClass = accent === "green" ? "site-cta-primary" : "site-cta-secondary";
+  // The button downloads the app whenever it points at a file, not a page.
+  const isDownload = ctaHref.startsWith("http");
 
   return (
     <>
-      <Nav />
+      <Nav lang={lang} t={dict.nav} path={path} />
       <main className="flex-1">
         <section className="bg-radial-glow border-b border-border py-20">
           <div className="mx-auto max-w-4xl px-6">
             <Link
-              href="/#modules"
+              href={`${localePath(lang, "/")}#modules`}
               className="text-sm text-text-secondary transition hover:text-text"
             >
-              ← All modules
+              {t.allModules}
             </Link>
             <div className="mt-6 flex items-center gap-2">
               <span className={`h-2.5 w-2.5 rounded-full ${dot}`} />
@@ -75,8 +87,8 @@ export default function ModulePageShell({
                   <span className="rounded-full border border-border px-3 py-1.5 text-xs text-text-tertiary">
                     {priceLabel} · {priceNote}
                   </span>
-                  {ctaLabel === "Download beta" && (
-                    <span className="text-[11px] text-text-tertiary">Apple Silicon (M1+) required</span>
+                  {isDownload && (
+                    <span className="text-[11px] text-text-tertiary">{t.required}</span>
                   )}
                 </>
               )}
@@ -88,7 +100,7 @@ export default function ModulePageShell({
 
         <section className="py-20">
           <div className="mx-auto max-w-4xl px-6">
-            <p className="mb-8 text-sm font-medium text-text-tertiary">What you get</p>
+            <p className="mb-8 text-sm font-medium text-text-tertiary">{t.whatYouGet}</p>
             <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
               {features.map((f, i) => (
                 <Reveal key={f.title} delay={i * 60}>
@@ -109,7 +121,7 @@ export default function ModulePageShell({
         <section className="border-t border-border py-16 text-center">
           <div className="mx-auto max-w-2xl px-6">
             <h2 className="text-2xl font-semibold text-text">
-              Ready for {name}?
+              {fill(t.ready, { name })}
             </h2>
             {waitlistModule ? (
               <div className="mt-6 flex justify-center">
@@ -123,15 +135,15 @@ export default function ModulePageShell({
                 >
                   {ctaLabel}
                 </a>
-                {ctaLabel === "Download beta" && (
-                  <p className="mt-2 text-xs text-text-tertiary">Apple Silicon (M1+) required</p>
+                {isDownload && (
+                  <p className="mt-2 text-xs text-text-tertiary">{t.required}</p>
                 )}
               </>
             )}
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer lang={lang} t={dict.footer} path={path} />
     </>
   );
 }

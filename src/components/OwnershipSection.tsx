@@ -1,53 +1,40 @@
 import Reveal from "./Reveal";
 import SubscriptionCounter from "./SubscriptionCounter";
-import { PRICE_LINE, TRIAL_LINE } from "@/lib/offer";
+import { OFFER_VARS } from "@/lib/offer";
+import { fill } from "@/i18n/config";
+import { en, type Dictionary } from "@/i18n/dictionaries/en";
 
-const points = [
-  {
-    title: "Built for the Apple ecosystem you already own",
-    body: "No new hardware, no rented server, no third-party company hosting your life. It runs quietly on your own Mac, using the machine you already have.",
-  },
-  {
-    title: "Your AI provider, your boundary",
-    body: "Use Ollama locally with no account, or connect a supported cloud provider with your own key and pay them directly. Credentials stay on your Mac; SafePersonalAI never hides inference cost in a second subscription or silently falls back to a company-paid model.",
-  },
-  {
-    title: "Designed as software you own",
-    body: `Each module is a one-time, version-bound license rather than a permanent monthly rental. ${TRIAL_LINE} ${PRICE_LINE}`,
-  },
-];
-
-export default function OwnershipSection() {
+export default function OwnershipSection({ dict = en }: { dict?: Dictionary }) {
+  const t = dict.ownership;
+  // The last point ends with the offer, in the same words as everywhere else.
+  const offer = `${fill(dict.offer.trialLine, OFFER_VARS)} ${fill(dict.offer.priceLine, OFFER_VARS)}`;
   return (
     <section id="ownership" className="border-t border-border py-24">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal>
-          <p className="text-sm font-medium text-green">Own it, don&apos;t rent it</p>
+          <p className="text-sm font-medium text-green">{t.eyebrow}</p>
           <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-balance text-text sm:text-4xl">
-            Your own private agent. Not another subscription.
+            {t.title}
           </h2>
           <p className="mt-4 max-w-2xl text-text-secondary text-pretty">
-            SafePersonalAI turns the Mac already sitting on your desk into a
-            private automation layer. Your working data stays local, your AI
-            provider relationship stays yours, and the commercial terms stay
-            visible before purchase.
+            {t.intro}
           </p>
         </Reveal>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start">
           <Reveal delay={80} className="space-y-8">
-            {points.map((p) => (
+            {t.points.map((p, i) => (
               <div key={p.title}>
                 <h3 className="text-base font-semibold text-text">{p.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-text-secondary">
-                  {p.body}
+                  {i === t.points.length - 1 ? `${p.body} ${offer}` : p.body}
                 </p>
               </div>
             ))}
           </Reveal>
 
           <Reveal delay={160}>
-            <SubscriptionCounter />
+            <SubscriptionCounter t={t.counter} />
           </Reveal>
         </div>
       </div>
