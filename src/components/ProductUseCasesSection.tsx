@@ -11,8 +11,6 @@ const moduleOrder: ModuleKey[] = ["operational", "travel", "wealth"];
 
 export default function ProductUseCasesSection() {
   const [selected, setSelected] = useState<ModuleKey>("operational");
-  const meta = moduleMeta[selected];
-  const visibleTopics = topics.filter((topic) => topic.module === selected);
 
   return (
     <section id="use-cases" className="border-t border-border py-24">
@@ -54,8 +52,9 @@ export default function ProductUseCasesSection() {
                     key={key}
                     type="button"
                     role="tab"
+                    id={`module-tab-${key}`}
                     aria-selected={active}
-                    aria-controls="module-use-cases"
+                    aria-controls={`module-use-cases-${key}`}
                     onClick={() => setSelected(key)}
                     className={`min-w-44 rounded-2xl border px-4 py-4 text-left transition lg:min-w-0 ${
                       active
@@ -87,51 +86,68 @@ export default function ProductUseCasesSection() {
               </div>
             </div>
 
-            <div id="module-use-cases" role="tabpanel" className="p-5 sm:p-7 lg:p-8">
-              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={`h-2 w-2 rounded-full ${
-                        selected === "travel" ? "bg-violet" : "bg-green"
-                      }`}
-                    />
-                    <p className="text-xs font-medium text-text-tertiary">{meta.label}</p>
-                  </div>
-                  <h3 className="mt-3 text-2xl font-semibold tracking-tight text-text">
-                    {meta.name}
-                  </h3>
-                  <p className="mt-2 max-w-xl text-sm leading-relaxed text-text-secondary">
-                    {meta.description}
-                  </p>
-                </div>
-                <span className="w-fit rounded-full border border-border px-3 py-1.5 text-xs text-text-tertiary">
-                  {visibleTopics.length} practical uses
-                </span>
-              </div>
-
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                {visibleTopics.map((topic) => (
-                  <Link
-                    key={topic.slug}
-                    href={`/usecases/${topic.slug}`}
-                    className="group flex min-h-32 flex-col rounded-2xl border border-border bg-bg p-5 transition hover:-translate-y-0.5 hover:border-border-strong"
+            <div className="p-5 sm:p-7 lg:p-8">
+              {/* All three groups are written into the page. The two that are
+                  not selected are only hidden, so every use case and its link
+                  is there for a reader that does not click. */}
+              {moduleOrder.map((key) => {
+                const meta = moduleMeta[key];
+                const moduleTopics = topics.filter((topic) => topic.module === key);
+                return (
+                  <div
+                    key={key}
+                    id={`module-use-cases-${key}`}
+                    role="tabpanel"
+                    aria-labelledby={`module-tab-${key}`}
+                    className={selected === key ? "" : "hidden"}
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <span className="text-lg leading-none" aria-hidden="true">
-                        {topic.icon}
-                      </span>
-                      <span className="text-xs text-text-tertiary transition group-hover:translate-x-0.5 group-hover:text-text">
-                        →
+                    <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span
+                            className={`h-2 w-2 rounded-full ${
+                              key === "travel" ? "bg-violet" : "bg-green"
+                            }`}
+                          />
+                          <p className="text-xs font-medium text-text-tertiary">{meta.label}</p>
+                        </div>
+                        <h3 className="mt-3 text-2xl font-semibold tracking-tight text-text">
+                          {meta.name}
+                        </h3>
+                        <p className="mt-2 max-w-xl text-sm leading-relaxed text-text-secondary">
+                          {meta.description}
+                        </p>
+                      </div>
+                      <span className="w-fit rounded-full border border-border px-3 py-1.5 text-xs text-text-tertiary">
+                        {moduleTopics.length} practical uses
                       </span>
                     </div>
-                    <h4 className="mt-4 text-sm font-semibold text-text">{topic.title}</h4>
-                    <p className="mt-1.5 text-xs leading-relaxed text-text-tertiary">
-                      {topic.friction}
-                    </p>
-                  </Link>
-                ))}
-              </div>
+
+                    <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                      {moduleTopics.map((topic) => (
+                        <Link
+                          key={topic.slug}
+                          href={`/usecases/${topic.slug}`}
+                          className="group flex min-h-32 flex-col rounded-2xl border border-border bg-bg p-5 transition hover:-translate-y-0.5 hover:border-border-strong"
+                        >
+                          <div className="flex items-start justify-between gap-4">
+                            <span className="text-lg leading-none" aria-hidden="true">
+                              {topic.icon}
+                            </span>
+                            <span className="text-xs text-text-tertiary transition group-hover:translate-x-0.5 group-hover:text-text">
+                              →
+                            </span>
+                          </div>
+                          <h4 className="mt-4 text-sm font-semibold text-text">{topic.title}</h4>
+                          <p className="mt-1.5 text-xs leading-relaxed text-text-tertiary">
+                            {topic.friction}
+                          </p>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
 
               <p className="mt-6 text-xs leading-relaxed text-text-tertiary">
                 These scenarios are grounded in working personal-system
