@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import ModulePageShell from "@/components/ModulePageShell";
-import WealthPreviewPanel from "@/components/WealthPreviewPanel";
-import PortfolioPreviewPanel from "@/components/PortfolioPreviewPanel";
+import AppVideo from "@/components/AppVideo";
 import Reveal from "@/components/Reveal";
 import { DOWNLOAD_URL, OFFER_VARS, PRICES } from "@/lib/offer";
 import { fill, languageAlternates, localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/en";
+import { showcase } from "@/i18n/showcase";
 
 const PATH = "/modules/wealth";
 
@@ -23,7 +23,7 @@ export function wealthMetadata(lang: Locale, dict: Dictionary): Metadata {
 // Every claim here follows product_features/FEATURES.md, section 4 (Wealth).
 // Features the catalog marks as not yet proven on a real mailbox (statements
 // and bank alerts from email, Apple Pay) are named once, as such, further down.
-// The two previews are illustrations of the app's own screens and stay English.
+// The two films show the app's own screens on the demo household (marketing/app_demo).
 export default function WealthView({ lang, dict }: { lang: Locale; dict: Dictionary }) {
   const t = dict.wealth;
   return (
@@ -53,8 +53,8 @@ export default function WealthView({ lang, dict }: { lang: Locale; dict: Diction
               {t.readsBody}
             </p>
           </Reveal>
-          <Reveal delay={100} className="lg:justify-self-end">
-            <WealthPreviewPanel />
+          <Reveal delay={100} className="lg:justify-self-center">
+            <AppVideo name="wealth" lang={lang} label={t.readsTitle} note={showcase[lang].note} />
           </Reveal>
         </div>
       </section>
@@ -70,8 +70,8 @@ export default function WealthView({ lang, dict }: { lang: Locale; dict: Diction
               {t.investBody}
             </p>
           </Reveal>
-          <Reveal delay={100} className="lg:justify-self-end">
-            <PortfolioPreviewPanel />
+          <Reveal delay={100} className="lg:justify-self-center">
+            <AppVideo name="investments" lang={lang} label={t.investTitle} note={showcase[lang].note} />
           </Reveal>
         </div>
       </section>
