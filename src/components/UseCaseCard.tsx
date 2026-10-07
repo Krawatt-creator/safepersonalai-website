@@ -13,11 +13,19 @@ export type Case = {
   accent: "green" | "violet";
 };
 
+type CardText = { waits: string; show: string; back: string };
+
+const englishText: CardText = {
+  waits: "It waits for your OK.",
+  show: "▶ See what SafePersonalAI does",
+  back: "↺ Show the original message",
+};
+
 // Extracted from UseCasesSection.tsx (2026-08-25) so the /usecases library
 // pages can reuse the exact same click-to-reveal card, not a re-implemented
 // copy — the homepage's three teaser cards and every topic's full set on
 // its own page are now the same component with different data.
-export default function UseCaseCard({ c }: { c: Case }) {
+export default function UseCaseCard({ c, t = englishText }: { c: Case; t?: CardText }) {
   const [revealed, setRevealed] = useState(false);
   const dot = c.accent === "green" ? "bg-green" : "bg-violet";
 
@@ -59,9 +67,7 @@ export default function UseCaseCard({ c }: { c: Case }) {
               </div>
             </div>
           </div>
-          <p className="mt-3 text-xs text-text-tertiary">
-            It waits for your OK.
-          </p>
+          <p className="mt-3 text-xs text-text-tertiary">{t.waits}</p>
         </div>
       </div>
 
@@ -70,7 +76,7 @@ export default function UseCaseCard({ c }: { c: Case }) {
         onClick={() => setRevealed((v) => !v)}
         className="site-cta-quiet mt-6 self-start text-xs"
       >
-        {revealed ? "↺ Show the original message" : "▶ See what SafePersonalAI does"}
+        {revealed ? t.back : t.show}
       </button>
     </div>
   );

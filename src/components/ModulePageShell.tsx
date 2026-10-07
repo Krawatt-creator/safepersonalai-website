@@ -22,6 +22,7 @@ export default function ModulePageShell({
   ctaLabel,
   ctaHref,
   waitlistModule,
+  waitlistText,
   children,
   lang = "en",
   dict = en,
@@ -38,6 +39,7 @@ export default function ModulePageShell({
   ctaLabel: string;
   ctaHref: string;
   waitlistModule?: string;
+  waitlistText?: React.ComponentProps<typeof WaitlistForm>["t"];
   children?: React.ReactNode;
   lang?: Locale;
   dict?: Dictionary;
@@ -75,7 +77,7 @@ export default function ModulePageShell({
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               {waitlistModule ? (
-                <WaitlistForm module={waitlistModule} accent={accent} />
+                <WaitlistForm module={waitlistModule} accent={accent} t={waitlistText} />
               ) : (
                 <>
                   <a
@@ -125,7 +127,7 @@ export default function ModulePageShell({
             </h2>
             {waitlistModule ? (
               <div className="mt-6 flex justify-center">
-                <WaitlistForm module={waitlistModule} accent={accent} />
+                <WaitlistForm module={waitlistModule} accent={accent} t={waitlistText} />
               </div>
             ) : (
               <>

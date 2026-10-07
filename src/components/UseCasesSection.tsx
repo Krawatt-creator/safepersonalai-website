@@ -2,59 +2,39 @@
 
 import Reveal from "./Reveal";
 import UseCaseCard, { type Case } from "./UseCaseCard";
+import type { PagesDictionary } from "@/i18n/pages/en";
 
-const cases: Case[] = [
-  {
-    key: "voice",
-    inputIcon: "🎤",
-    inputLabel: "Voice message · 0:14",
-    inputSub: "“Reminder to myself — doctor Thursday, three o'clock…”",
-    outputIcon: "📅",
-    outputTitle: "Add “Dr. Kaya — Thu, 15:00” to your calendar",
-    outputSub: "Transcribed locally, understood, staged for your approval",
-    accent: "violet",
-  },
-  {
-    key: "invoice",
-    inputIcon: "📷",
-    inputLabel: "Photo attachment",
-    inputSub: "A photographed Stadtwerke bill, sent with no caption",
-    outputIcon: "💳",
-    outputTitle: "Track “Stadtwerke — 48.20 EUR”, due 12 Sep",
-    outputSub: "Amount and deadline read from the photo — reminder included",
-    accent: "green",
-  },
-  {
-    key: "email",
-    inputIcon: "✉️",
-    inputLabel: "New email from Taylor",
-    inputSub: "“Can we move Saturday to Sunday instead?”",
-    outputIcon: "📝",
-    outputTitle: "Calendar change prepared: Saturday → Sunday",
-    outputSub: "Waits in Pending Actions — nothing moves until you approve",
-    accent: "green",
-  },
+// Three examples from email, each one something the Mac app does and each
+// one waiting for approval (product_features/FEATURES.md, section 3).
+// The wording comes from the page dictionary (base.cases, same order).
+const frames: Pick<Case, "key" | "inputIcon" | "outputIcon" | "accent">[] = [
+  { key: "appointment", inputIcon: "✉️", outputIcon: "📅", accent: "violet" },
+  { key: "task", inputIcon: "✉️", outputIcon: "✅", accent: "green" },
+  { key: "moved", inputIcon: "✉️", outputIcon: "📝", accent: "green" },
 ];
 
-export default function UseCasesSection() {
+export default function UseCasesSection({
+  t,
+  card,
+}: {
+  t: PagesDictionary["base"];
+  card: PagesDictionary["card"];
+}) {
   return (
     <section className="border-t border-border py-24">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal>
-          <p className="text-sm font-medium text-violet">See it in action</p>
+          <p className="text-sm font-medium text-violet">{t.casesEyebrow}</p>
           <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-balance text-text sm:text-4xl">
-            The kind of thing it handles every day.
+            {t.casesTitle}
           </h2>
-          <p className="mt-4 max-w-2xl text-text-secondary text-pretty">
-            Representative flows the software actually runs — not concept art. Click one
-            to see what SafePersonalAI does with it.
-          </p>
+          <p className="mt-4 max-w-2xl text-text-secondary text-pretty">{t.casesBody}</p>
         </Reveal>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {cases.map((c, i) => (
-            <Reveal key={c.key} delay={i * 90}>
-              <UseCaseCard c={c} />
+          {frames.map((frame, i) => (
+            <Reveal key={frame.key} delay={i * 90}>
+              <UseCaseCard c={{ ...frame, ...t.cases[i] }} t={card} />
             </Reveal>
           ))}
         </div>

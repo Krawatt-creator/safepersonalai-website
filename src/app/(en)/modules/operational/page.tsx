@@ -1,92 +1,9 @@
-import type { Metadata } from "next";
-import ModulePageShell from "@/components/ModulePageShell";
-import UseCasesSection from "@/components/UseCasesSection";
-import OperationalPreviewPanel from "@/components/OperationalPreviewPanel";
-import SettingsPreviewPanel from "@/components/SettingsPreviewPanel";
-import Reveal from "@/components/Reveal";
-import MessageFlowPreview from "@/components/MessageFlowPreview";
-import { DOWNLOAD_URL, PRICE_NOTE, PRICES } from "@/lib/offer";
+import BaseView, { baseMetadata } from "@/views/BaseView";
+import { en } from "@/i18n/dictionaries/en";
+import { enPages } from "@/i18n/pages/en";
 
-export const metadata: Metadata = {
-  title: "Base — Operational",
-  alternates: { canonical: "/modules/operational" },
-  description:
-    "Inbox, calendar, iMessage, and to-dos — prepared for you and approved by you, included with every SafePersonalAI install.",
-};
+export const metadata = baseMetadata("en", enPages);
 
 export default function OperationalPage() {
-  return (
-    <ModulePageShell
-      accent="green"
-      name="Base"
-      tagline="Your inbox, calendar, and to-dos — handled, never surprised."
-      intro="The part of SafePersonalAI every install starts with. It reads what actually arrives — email, iMessage, a photographed invoice, a voice memo — works out what needs doing, and drafts it. You decide what happens next."
-      priceLabel={`€${PRICES.base}`}
-      priceNote={PRICE_NOTE}
-      ctaLabel="Download beta"
-      ctaHref={DOWNLOAD_URL}
-      steps={[
-        {
-          title: "It reads",
-          body: "Email, iMessage, a photographed invoice, a voice memo — understood in whatever language and format it arrived in.",
-        },
-        {
-          title: "You approve",
-          body: "Every draft lands in one Pending Actions queue. Approve, snooze, reject, or correct it in your own words.",
-        },
-        {
-          title: "It acts",
-          body: "Only then does it happen — an event lands on your calendar, a to-do is added, a bill is tracked. It never sends an email for you.",
-        },
-      ]}
-      features={[
-        {
-          title: "Inbox triage, prepared for you",
-          body: "Reads new mail and works out what it asks of you — a task with its deadline, an appointment, a bill, a renewal — and prepares it for your OK.",
-        },
-        {
-          title: "Calendar events without the awkwardness",
-          body: "Creates events from an email or a text you sent yourself. It can't invite anyone else to it — that capability simply isn't in the software.",
-        },
-        {
-          title: "To-dos that actually remind you",
-          body: "Deadlines get color-coded and nudged before they're overdue — synced to Apple Reminders too, if you want them there.",
-        },
-        {
-          title: "One queue for every decision",
-          body: "Every proposed action — an event, a to-do, a tracked payment — lands in the same Pending Actions queue. Approve, snooze, reject, or correct it in your own words.",
-        },
-        {
-          title: "Understands however it arrives",
-          body: "A typed message, a voice memo, a photo of a bill — all handled the same way: understood, then staged, never acted on without you.",
-        },
-        {
-          title: "Runs on your own AI key — or none at all",
-          body: "A local Ollama model costs nothing, ever. Prefer Anthropic, OpenAI, or Gemini? Connect your own key and pay them directly — we're never in the middle.",
-        },
-      ]}
-    >
-      <section className="border-t border-border py-20">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1fr_1.05fr] lg:items-center">
-          <Reveal>
-            <p className="text-sm font-medium text-green">What you actually see</p>
-            <h2 className="mt-3 max-w-md text-2xl font-semibold tracking-tight text-balance text-text sm:text-3xl">
-              One calm queue for every decision.
-            </h2>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-text-secondary">
-              SafePersonalAI reads what arrives, prepares a clear suggestion, and keeps the final decision in your hands.
-            </p>
-          </Reveal>
-          <Reveal delay={100} className="lg:justify-self-end">
-            <div className="space-y-4">
-              <OperationalPreviewPanel />
-              <SettingsPreviewPanel />
-              <MessageFlowPreview />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-      <UseCasesSection />
-    </ModulePageShell>
-  );
+  return <BaseView lang="en" dict={en} pages={enPages} />;
 }

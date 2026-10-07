@@ -140,7 +140,7 @@ export const en = {
       operational: {
         name: "Base",
         label: "Base module",
-        description: "Everyday inbox, calendar, task, voice, and rule-based workflows.",
+        description: "Everyday inbox, calendar, tasks, and your own rules.",
       },
       travel: {
         name: "Travel",
@@ -219,7 +219,7 @@ export const en = {
           "Inbox understanding with approval-ready tasks",
           "Calendar events from email, with no attendee invitations",
           "To-dos with deadline reminders",
-          "One Pending Actions queue — approve, snooze, or correct anything",
+          "One Pending Actions queue — approve, snooze, or reject",
           "Runs on your Mac with local Ollama or your own cloud-provider key",
         ],
       },
@@ -230,7 +230,7 @@ export const en = {
           "Daily quota-guarded fare tracking, per route",
           "Deal alerts only when a price actually clears your threshold",
           "Flexible-date and open-jaw search",
-          "Calendar-aware — cross-checked against your free weekends",
+          "Shows whether the trip dates are free in your calendar",
         ],
       },
       wealth: {

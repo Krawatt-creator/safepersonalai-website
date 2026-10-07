@@ -17,16 +17,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${base}${localePath(l, path)}`,
       lastModified: now,
       changeFrequency: (path === "/" ? "weekly" : "monthly") as "weekly" | "monthly",
-      priority: path === "/" ? (l === "en" ? 1 : 0.9) : 0.6,
+      priority:
+        path === "/" ? (l === "en" ? 1 : 0.9) : path === "/modules/operational" ? 0.8 : 0.6,
       alternates: { languages },
     }));
   });
 
   return [
     ...translated,
-    { url: `${base}/modules/operational`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${base}/modules/travel`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${base}/iphone`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/usecases`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     ...topics.map((t) => ({
       url: `${base}/usecases/${t.slug}`,

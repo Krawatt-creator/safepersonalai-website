@@ -21,7 +21,13 @@ export const isLocale = (value: string): value is Locale =>
 
 // Pages that exist in every language. Anything else is English only for now,
 // and links to it from a translated page go to the English page.
-export const translatedPaths = ["/", "/modules/wealth"] as const;
+export const translatedPaths = [
+  "/",
+  "/modules/operational",
+  "/modules/travel",
+  "/modules/wealth",
+  "/iphone",
+] as const;
 
 const isTranslated = (path: string) =>
   (translatedPaths as readonly string[]).includes(path);
