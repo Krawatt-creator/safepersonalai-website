@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ModulePageShell from "@/components/ModulePageShell";
 import AppVideo from "@/components/AppVideo";
+import AppShot from "@/components/AppShot";
 import Reveal from "@/components/Reveal";
 import { DOWNLOAD_URL, OFFER_VARS, PRICES } from "@/lib/offer";
 import { fill, languageAlternates, localePath, type Locale } from "@/i18n/config";
@@ -31,6 +32,7 @@ export default function WealthView({ lang, dict }: { lang: Locale; dict: Diction
       lang={lang}
       dict={dict}
       path={PATH}
+      heroVisual={<AppVideo name="wealth" lang={lang} label={t.readsTitle} note={showcase[lang].note} />}
       accent="green"
       name={t.name}
       tagline={t.tagline}
@@ -54,7 +56,7 @@ export default function WealthView({ lang, dict }: { lang: Locale; dict: Diction
             </p>
           </Reveal>
           <Reveal delay={100} className="lg:justify-self-center">
-            <AppVideo name="wealth" lang={lang} label={t.readsTitle} note={showcase[lang].note} />
+            <AppShot src="/app/spending.webp" alt={showcase[lang].steps[2].alt} title={showcase[lang].windowTitle} />
           </Reveal>
         </div>
       </section>

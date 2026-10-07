@@ -7,10 +7,13 @@ export default function PhoneFrame({
   src,
   alt,
   className = "",
+  eager = false,
 }: {
   src: string;
   alt: string;
   className?: string;
+  // true for a phone at the top of a page: load it at once.
+  eager?: boolean;
 }) {
   return (
     <div
@@ -27,7 +30,7 @@ export default function PhoneFrame({
           alt={alt}
           width={720}
           height={1558}
-          loading="lazy"
+          loading={eager ? "eager" : "lazy"}
           decoding="async"
           className="block h-full w-full object-cover"
         />

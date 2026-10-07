@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import ModulePageShell from "@/components/ModulePageShell";
+import AppShot from "@/components/AppShot";
+import { showcase } from "@/i18n/showcase";
 import UseCasesSection from "@/components/UseCasesSection";
 import OperationalPreviewPanel from "@/components/OperationalPreviewPanel";
 import SettingsPreviewPanel from "@/components/SettingsPreviewPanel";
@@ -40,6 +42,9 @@ export default function BaseView({
       lang={lang}
       dict={dict}
       path={PATH}
+      heroVisual={
+        <AppShot src="/app/approvals.webp" alt={showcase[lang].steps[0].alt} title={showcase[lang].windowTitle} />
+      }
       accent="green"
       name={t.name}
       tagline={t.tagline}

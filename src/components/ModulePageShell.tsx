@@ -23,6 +23,7 @@ export default function ModulePageShell({
   ctaHref,
   waitlistModule,
   waitlistText,
+  heroVisual,
   children,
   lang = "en",
   dict = en,
@@ -40,6 +41,8 @@ export default function ModulePageShell({
   ctaHref: string;
   waitlistModule?: string;
   waitlistText?: React.ComponentProps<typeof WaitlistForm>["t"];
+  // A real screen or film of the app, shown beside the headline.
+  heroVisual?: React.ReactNode;
   children?: React.ReactNode;
   lang?: Locale;
   dict?: Dictionary;
@@ -58,7 +61,14 @@ export default function ModulePageShell({
       <Nav lang={lang} t={dict.nav} path={path} />
       <main className="flex-1">
         <section className="bg-radial-glow border-b border-border py-20">
-          <div className="mx-auto max-w-4xl px-6">
+          <div
+            className={
+              heroVisual
+                ? "mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]"
+                : "mx-auto max-w-4xl px-6"
+            }
+          >
+            <div>
             <Link
               href={`${localePath(lang, "/")}#modules`}
               className="text-sm text-text-secondary transition hover:text-text"
@@ -95,6 +105,8 @@ export default function ModulePageShell({
                 </>
               )}
             </div>
+            </div>
+            {heroVisual && <div>{heroVisual}</div>}
           </div>
         </section>
 

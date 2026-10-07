@@ -38,18 +38,18 @@ export default function HomeView({ lang, dict }: { lang: Locale; dict: Dictionar
       <Nav lang={lang} t={dict.nav} path="/" />
       <main className="flex-1">
         <Hero lang={lang} dict={dict} />
-        <LaptopRevealSection t={dict.laptop} />
-        <OwnershipSection dict={dict} />
-        <BoundarySection t={dict.boundary} />
-        <ProductUseCasesSection t={dict.useCases} />
+        {/* Straight after the headline: the app itself, then the same app in motion. */}
         <AppShowcase t={showcase[lang]} />
-        {/* The same app in motion: two short films of the Wealth and Investments pages. */}
         <section className="pb-24">
           <div className="mx-auto grid max-w-3xl gap-12 px-6 sm:grid-cols-2">
             <AppVideo name="wealth" lang={lang} label={dict.wealth.readsTitle} note={dict.wealth.readsTitle} />
             <AppVideo name="investments" lang={lang} label={dict.wealth.investTitle} note={dict.wealth.investTitle} />
           </div>
         </section>
+        <LaptopRevealSection t={dict.laptop} />
+        <OwnershipSection dict={dict} />
+        <BoundarySection t={dict.boundary} />
+        <ProductUseCasesSection t={dict.useCases} />
         <ModulesPricing lang={lang} dict={dict} />
         <TrustSection t={dict.trust} />
         <FAQSection t={dict.faq} />

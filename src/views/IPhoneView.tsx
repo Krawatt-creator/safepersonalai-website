@@ -41,6 +41,7 @@ export default function IPhoneView({
       lang={lang}
       dict={dict}
       path={PATH}
+      heroVisual={<PhoneFrame src={screenFiles[0]} alt={t.screens[0].alt} eager />}
       accent="green"
       name={t.name}
       tagline={t.tagline}
