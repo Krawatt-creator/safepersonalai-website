@@ -9,6 +9,9 @@ import ModulesPricing from "@/components/ModulesPricing";
 import TrustSection from "@/components/TrustSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
+import AppShowcase from "@/components/AppShowcase";
+import ScrollBackdrop from "@/components/ScrollBackdrop";
+import { showcase } from "@/i18n/showcase";
 import JsonLd from "@/components/JsonLd";
 import { homeStructuredData } from "@/lib/structured-data";
 import { languageAlternates, localePath, type Locale } from "@/i18n/config";
@@ -30,6 +33,7 @@ export default function HomeView({ lang, dict }: { lang: Locale; dict: Dictionar
   return (
     <>
       <JsonLd data={homeStructuredData(lang, dict)} />
+      <ScrollBackdrop />
       <Nav lang={lang} t={dict.nav} path="/" />
       <main className="flex-1">
         <Hero lang={lang} dict={dict} />
@@ -37,6 +41,7 @@ export default function HomeView({ lang, dict }: { lang: Locale; dict: Dictionar
         <OwnershipSection dict={dict} />
         <BoundarySection t={dict.boundary} />
         <ProductUseCasesSection t={dict.useCases} />
+        <AppShowcase t={showcase[lang]} />
         <ModulesPricing lang={lang} dict={dict} />
         <TrustSection t={dict.trust} />
         <FAQSection t={dict.faq} />
