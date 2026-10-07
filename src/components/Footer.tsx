@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { localeNames, localePath, locales, type Locale } from "@/i18n/config";
 import { en, type Dictionary } from "@/i18n/dictionaries/en";
+import { getAbout } from "@/i18n/about";
 
 export default function Footer({
   lang = "en",
@@ -11,6 +12,7 @@ export default function Footer({
   t?: Dictionary["footer"];
   path?: string;
 }) {
+  const about = getAbout(lang);
   return (
     <footer className="border-t border-border py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-xs text-text-tertiary sm:flex-row">
@@ -20,6 +22,15 @@ export default function Footer({
         </div>
         <p className="order-last text-center sm:order-none">{t.tagline}</p>
         <div className="flex flex-wrap items-center justify-center gap-4">
+          <Link
+            href={localePath(lang, "/what-is-safepersonalai")}
+            className="transition hover:text-text-secondary"
+          >
+            {about.footerLabel}
+          </Link>
+          <Link href="/answers" className="transition hover:text-text-secondary">
+            {about.answersLabel}
+          </Link>
           <Link href={localePath(lang, "/iphone")} className="transition hover:text-text-secondary">
             iPhone
           </Link>

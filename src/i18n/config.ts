@@ -27,6 +27,7 @@ export const translatedPaths = [
   "/modules/travel",
   "/modules/wealth",
   "/iphone",
+  "/what-is-safepersonalai",
 ] as const;
 
 const isTranslated = (path: string) =>
