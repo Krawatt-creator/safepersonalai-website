@@ -6,7 +6,8 @@ import type { Locale } from "@/i18n/config";
 // The films exist in these languages (marketing/studio); the others get English.
 const FILMED = ["en", "de", "tr"];
 
-// A short silent film of the app's own screens (demo household), 9:16.
+// A short silent film from the marketing studio, 9:16: the app's own screens
+// (demo household), or a message texted from an iPhone and the app's answer.
 // It loads and plays only while it is in view, and waits for a press on
 // play when the visitor has asked for reduced motion.
 export default function AppVideo({
@@ -15,10 +16,10 @@ export default function AppVideo({
   label,
   note,
 }: {
-  name: "wealth" | "investments";
+  name: "wealth" | "investments" | "todo" | "month" | "letter" | "bring";
   lang: Locale;
   label: string;
-  note: string;
+  note?: string;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const film = FILMED.includes(lang) ? lang : "en";
@@ -58,7 +59,7 @@ export default function AppVideo({
           aria-label={label}
         />
       </div>
-      <figcaption className="mt-4 text-center text-xs text-text-tertiary">{note}</figcaption>
+      {note && <figcaption className="mt-4 text-center text-xs text-text-tertiary">{note}</figcaption>}
     </figure>
   );
 }

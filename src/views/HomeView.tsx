@@ -11,6 +11,8 @@ import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import AppShowcase from "@/components/AppShowcase";
 import AppVideo from "@/components/AppVideo";
+import TextingSection from "@/components/TextingSection";
+import { texting } from "@/i18n/texting";
 import ScrollBackdrop from "@/components/ScrollBackdrop";
 import { showcase } from "@/i18n/showcase";
 import JsonLd from "@/components/JsonLd";
@@ -46,6 +48,7 @@ export default function HomeView({ lang, dict }: { lang: Locale; dict: Dictionar
             <AppVideo name="investments" lang={lang} label={dict.wealth.investTitle} note={dict.wealth.investTitle} />
           </div>
         </section>
+        <TextingSection lang={lang} t={texting[lang]} />
         <LaptopRevealSection t={dict.laptop} />
         <OwnershipSection dict={dict} />
         <BoundarySection t={dict.boundary} />
