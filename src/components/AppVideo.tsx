@@ -35,7 +35,7 @@ export default function AppVideo({
         if (entry.isIntersecting) video.play().catch(() => {});
         else video.pause();
       },
-      { threshold: 0.35 },
+      { threshold: 0.2 },
     );
     obs.observe(video);
     return () => obs.disconnect();

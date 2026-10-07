@@ -10,6 +10,7 @@ import TrustSection from "@/components/TrustSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import AppShowcase from "@/components/AppShowcase";
+import AppVideo from "@/components/AppVideo";
 import ScrollBackdrop from "@/components/ScrollBackdrop";
 import { showcase } from "@/i18n/showcase";
 import JsonLd from "@/components/JsonLd";
@@ -42,6 +43,13 @@ export default function HomeView({ lang, dict }: { lang: Locale; dict: Dictionar
         <BoundarySection t={dict.boundary} />
         <ProductUseCasesSection t={dict.useCases} />
         <AppShowcase t={showcase[lang]} />
+        {/* The same app in motion: two short films of the Wealth and Investments pages. */}
+        <section className="pb-24">
+          <div className="mx-auto grid max-w-3xl gap-12 px-6 sm:grid-cols-2">
+            <AppVideo name="wealth" lang={lang} label={dict.wealth.readsTitle} note={dict.wealth.readsTitle} />
+            <AppVideo name="investments" lang={lang} label={dict.wealth.investTitle} note={dict.wealth.investTitle} />
+          </div>
+        </section>
         <ModulesPricing lang={lang} dict={dict} />
         <TrustSection t={dict.trust} />
         <FAQSection t={dict.faq} />
