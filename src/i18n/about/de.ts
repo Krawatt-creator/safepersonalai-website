@@ -47,7 +47,7 @@ export const deAbout: AboutDictionary = {
     { label: "Abo", value: "Keines für die Mac-App." },
     {
       label: "Aktuelle Version",
-      value: "{version}, von Apple notarisiert. Die Oberfläche der App ist auf Englisch.",
+      value: "{version}, von Apple notarisiert. Menüs, Überschriften und Schaltflächen auf Deutsch, Englisch, Türkisch, Spanisch, Chinesisch oder Französisch; längere Texte sind noch auf Englisch.",
     },
   ],
   sections: [

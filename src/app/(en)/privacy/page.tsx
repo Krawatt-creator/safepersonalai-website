@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import LegalLayout from "@/components/LegalLayout";
+import { OPERATOR } from "@/lib/legal";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -19,21 +21,27 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 export default function PrivacyPage() {
   return (
-    <LegalLayout title="Privacy Policy" updated="25 August 2026">
+    <LegalLayout title="Privacy Policy" updated="7 October 2026">
       <p>
         SafePersonalAI has two parts: local software that runs on your Mac,
         and a public website. This policy explains what each part processes,
-        why, and the choices you have.
+        why, and the choices you have. The controller responsible for the
+        website is {OPERATOR.name}, {OPERATOR.country}; the full details are
+        in the{" "}
+        <Link href="/impressum" className="text-text underline underline-offset-4">
+          Impressum
+        </Link>
+        .
       </p>
 
       <Section title="We do not operate a server that stores your data">
         <p>
           SafePersonalAI is not a hosted service. There is no SafePersonalAI
           database holding your emails, messages, or financial records. Your
-          data is read from your own Google account and your own Mac, and
-          written back to files on your own machine (and, if you choose, your
-          own Google Drive). We — the people who make SafePersonalAI — never
-          receive a copy.
+          data is read from the mail and calendar accounts you connect and
+          from your own Mac, and written to files on your own machine (and,
+          if you switch it on, copies in your own iCloud Drive or Google
+          Drive). We never receive a copy.
         </p>
       </Section>
 
@@ -50,22 +58,25 @@ export default function PrivacyPage() {
 
       <Section title="What it connects to, and why">
         <p>
-          With your explicit Google authorization, SafePersonalAI can read
-          and act on:
+          Only what you connect yourself during setup. SafePersonalAI can
+          then read and act on:
         </p>
         <ul className="ml-4 list-disc space-y-1.5 marker:text-text-tertiary">
           <li>
-            <span className="text-text">Gmail</span> — to read messages. It
-            cannot send, delete, or change mail.
+            <span className="text-text">Gmail and Apple Mail</span> — to
+            read messages. It never sends, deletes, or changes mail.
           </li>
           <li>
-            <span className="text-text">Google Calendar</span> — to read and
-            create events on your own calendar. It never adds attendees or
-            invites anyone.
+            <span className="text-text">Google Calendar and Apple Calendar</span>{" "}
+            — to read your events and add the ones you approve. It never adds
+            attendees or invites anyone.
           </li>
           <li>
-            <span className="text-text">Google Drive</span> — to file
-            documents (statements, invoices) into folders you control.
+            <span className="text-text">iCloud Drive or Google Drive</span>{" "}
+            (optional, off until you switch it on) — to save a copy of the
+            statements you import and of your tax export into its own
+            SafePersonalAI folder. With Google Drive it can only see files it
+            created itself.
           </li>
           <li>
             <span className="text-text">iMessage</span> (read locally on your
@@ -75,9 +86,8 @@ export default function PrivacyPage() {
         </ul>
         <p>
           You grant each of these individually during setup, and you can
-          revoke access at any time from your Google Account&apos;s security
-          settings — SafePersonalAI has no separate mechanism that survives
-          that revocation.
+          take access back at any time: in your Google Account&apos;s security
+          settings, or in macOS System Settings under Privacy &amp; Security.
         </p>
       </Section>
 
@@ -102,11 +112,37 @@ export default function PrivacyPage() {
           reminders (a letter&apos;s deadline, a card&apos;s payment date). You can
           also choose which kinds of action run without asking; that is off
           until you switch it on. SafePersonalAI never sends an email, pays,
-          or moves money. This isn&apos;t
-          a policy we ask you to trust blindly — it&apos;s a hard boundary
-          in the local application. As with any software, you should still
+          or moves money. As with any software, you should still
           review each proposal and keep your device and connected accounts
           secure.
+        </p>
+      </Section>
+
+      <Section title="The iPhone app">
+        <p>
+          The optional iPhone app shows what your Mac prepared. The two talk
+          through the private part of your own iCloud account, and everything
+          stored there is locked with a key that only your Mac and your
+          iPhone hold. We run no server for it and cannot read it.
+        </p>
+      </Section>
+
+      <Section title="Hosting of this website">
+        <p>
+          This website is delivered by Cloudflare. Like every web host,
+          Cloudflare processes your IP address and basic request data to
+          deliver the pages and keep them secure. The website sets no
+          advertising or tracking cookies.
+        </p>
+      </Section>
+
+      <Section title="Your rights">
+        <p>
+          Under the GDPR you can ask for access to, correction of, or deletion
+          of the personal data we hold about you (in practice: an email
+          address you submitted and messages you sent us), object to its use,
+          and complain to a data protection authority. Write to the contact
+          address below.
         </p>
       </Section>
 

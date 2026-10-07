@@ -14,7 +14,7 @@ export const moduleMeta = {
   operational: {
     name: "Base",
     label: "Base module",
-    description: "Everyday inbox, calendar, task, voice, and rule-based workflows.",
+    description: "Everyday inbox, calendar, tasks, and your own rules.",
     accent: "green",
   },
   travel: {
@@ -31,12 +31,8 @@ export const moduleMeta = {
   },
 } as const;
 
-// Grounded in real product capabilities, not invented — same discipline
-// CapabilitiesSection.tsx's own "no invented hours-saved number" note
-// already establishes for this site. Every scenario here mirrors an
-// actual pipeline this product runs (see the main agent's own CLAUDE.md
-// for the underlying mechanics), rewritten as a concrete before/after a
-// visitor can picture themselves in.
+// Every scenario says only what product_features/FEATURES.md says the Mac app
+// does (checked 2026-10-07). Change the catalog first, then this file.
 // Taken off the site 2026-10-05: these describe things the Mac app does not
 // do yet (they come from the private system it grew out of). The text is kept
 // here; remove a slug from this list when its feature is in the app and in
@@ -92,7 +88,7 @@ const allTopics: Topic[] = [
     title: "Email → task",
     friction: "No more important request disappearing underneath newer email.",
     intro:
-      "Recognizes when an email asks you to do something, extracts only the deadline that was actually stated, and places the proposed task in one review queue.",
+      "Recognizes when an email asks you to do something, takes only the deadline the email actually states, and puts the proposed to-do in your review list.",
     module: "operational",
     cases: [
       {
@@ -102,7 +98,7 @@ const allTopics: Topic[] = [
         inputSub: "“Please send the revised report by Friday afternoon.”",
         outputIcon: "✅",
         outputTitle: "Send revised report — due Friday afternoon",
-        outputSub: "Source email stays linked so you can return to the context",
+        outputSub: "Waits in your review list until you approve it",
         accent: "green",
       },
       {
@@ -123,27 +119,37 @@ const allTopics: Topic[] = [
     title: "Calendar events",
     friction: "No more opening the calendar app just to type in a date.",
     intro:
-      "Reads a date and time out of an ordinary message — in English, German, or Turkish — and stages a calendar block on your own calendar. Never invites anyone; there's no attendees field to misuse.",
+      "Reads the date and time out of an appointment email and prepares an entry for Google Calendar or Apple Calendar. Nothing is added until you approve it, and it never invites anyone.",
     module: "operational",
     cases: [
       {
         key: "doctor",
-        inputIcon: "💬",
-        inputLabel: "iMessage to yourself",
-        inputSub: "“Yarın 19:10 dişçi randevusu” (a typo'd “tomorrow” in Turkish)",
+        inputIcon: "✉️",
+        inputLabel: "Email from your dentist",
+        inputSub: "“Your appointment is on Tuesday at 10:00.”",
         outputIcon: "🗓️",
-        outputTitle: "Dentist appointment added, tomorrow at 19:10",
-        outputSub: "Understood despite the misspelling",
+        outputTitle: "Dentist, Tuesday 10:00, ready to approve",
+        outputSub: "Approve it, change the day or time first, or reject it",
+        accent: "violet",
+      },
+      {
+        key: "moved",
+        inputIcon: "✉️",
+        inputLabel: "A second email, a week later",
+        inputSub: "“Your appointment has moved to Thursday.”",
+        outputIcon: "🗓️",
+        outputTitle: "A change to the existing entry is proposed",
+        outputSub: "The entry is updated, not added a second time",
         accent: "violet",
       },
       {
         key: "recurring",
-        inputIcon: "💬",
+        inputIcon: "⚙️",
         inputLabel: "A custom rule you set once",
-        inputSub: "“When I see 'my son tennis', block Saturday 11:00”",
+        inputSub: "When a message mentions “tennis lesson”, prepare Saturday 11:00",
         outputIcon: "🗓️",
-        outputTitle: "This week's tennis block created automatically",
-        outputSub: "Defaults to Saturday of the week the message arrives — you can override it",
+        outputTitle: "The next matching message prepares the calendar block",
+        outputSub: "It waits for your approval like everything else",
         accent: "violet",
       },
     ],
@@ -154,7 +160,7 @@ const allTopics: Topic[] = [
     title: "To-dos & reminders",
     friction: "No more a deadline you swore you'd remember, quietly missed.",
     intro:
-      "Turns an offhand “remind me to...” into a tracked to-do with a real deadline, and nudges you again as that deadline gets close — never more than once per cooldown.",
+      "Text yourself “remind me to…” and it becomes a to-do with the date you gave. Colours show what is fine, due soon or overdue, and a morning briefing lists what is on today.",
     module: "operational",
     cases: [
       {
@@ -164,7 +170,17 @@ const allTopics: Topic[] = [
         inputSub: "“remind me to call the Handwerker”",
         outputIcon: "✅",
         outputTitle: "To-do created, no deadline forced on it",
-        outputSub: "Shows up on your list — nudges you only if you add a date",
+        outputSub: "Shows up on your list; add a date whenever you like",
+        accent: "green",
+      },
+      {
+        key: "repeating",
+        inputIcon: "💬",
+        inputLabel: "iMessage to yourself",
+        inputSub: "“Remind me every Tuesday to take out the trash”",
+        outputIcon: "🔁",
+        outputTitle: "A to-do that comes back every Tuesday",
+        outputSub: "Tick it off and next week's appears by itself",
         accent: "green",
       },
       {
@@ -173,8 +189,8 @@ const allTopics: Topic[] = [
         inputLabel: "iMessage, written in Turkish",
         inputSub: "“Çıktıları al 17 ağustos'dan önce”",
         outputIcon: "⏰",
-        outputTitle: "To-do due 17 August, color-coded as it nears",
-        outputSub: "Turns yellow then red automatically as the date approaches",
+        outputTitle: "To-do due 17 August",
+        outputSub: "Its colour changes when it is due soon, and again when it is overdue",
         accent: "green",
       },
     ],
@@ -185,27 +201,37 @@ const allTopics: Topic[] = [
     title: "Bill & invoice tracking",
     friction: "No more digging through your inbox the night before it's due.",
     intro:
-      "A photographed bill, an emailed invoice, or an instalment plan you mention — all become a tracked payment with a real due date, feeding your cash-flow forecast automatically.",
+      "A bill that comes by email every month is proposed as a recurring bill for you to approve. A card statement's pay-by date becomes a to-do. Payments you plan yourself on the Wealth page show up in the forecast.",
     module: "wealth",
     cases: [
       {
-        key: "parking",
-        inputIcon: "📷",
-        inputLabel: "Photo, no caption",
-        inputSub: "A parking fine, dated, “payable within one week”",
+        key: "emailed-bill",
+        inputIcon: "✉️",
+        inputLabel: "Monthly invoice by email",
+        inputSub: "Your phone provider: this month's invoice, 44.95 EUR",
         outputIcon: "💳",
-        outputTitle: "Tracked, due date computed from the payment term",
-        outputSub: "Deadline math done in code, never guessed by a model",
+        outputTitle: "Proposed as a recurring bill, 44.95 EUR a month",
+        outputSub: "You confirm the amount and the start date before it is tracked",
+        accent: "green",
+      },
+      {
+        key: "card-due",
+        inputIcon: "📄",
+        inputLabel: "A credit-card statement you import",
+        inputSub: "It states the amount due and the pay-by date",
+        outputIcon: "✅",
+        outputTitle: "A to-do: pay the card by that date",
+        outputSub: "With the amount due and the minimum payment from the statement",
         accent: "green",
       },
       {
         key: "instalment",
-        inputIcon: "💬",
-        inputLabel: "iMessage to yourself",
-        inputSub: "“amazon 5 months 20 euro each from TR starting 20.08”",
-        outputIcon: "💳",
-        outputTitle: "Five instalments scheduled, spaced a month apart",
-        outputSub: "Each one lands on the cash-flow timeline on its own date",
+        inputIcon: "➕",
+        inputLabel: "“Add payment” on the Wealth page",
+        inputSub: "20 EUR every month, five times, from your current account",
+        outputIcon: "📊",
+        outputTitle: "Five planned payments in the forecast",
+        outputSub: "Each shown with the account balance right after it",
         accent: "green",
       },
     ],
@@ -268,7 +294,7 @@ const allTopics: Topic[] = [
     title: "Booking → itinerary",
     friction: "No more copying flight and hotel details into three different places.",
     intro:
-      "Turns a genuine booking confirmation into a readable trip summary and proposed calendar entries, while treating every email body as untrusted input.",
+      "Turns a flight or hotel confirmation email into a stored trip and proposed calendar entries. Instructions inside an email are never followed.",
     module: "travel",
     cases: [
       {
@@ -277,8 +303,8 @@ const allTopics: Topic[] = [
         inputLabel: "Airline confirmation email",
         inputSub: "Flight numbers, terminals, local departure times, and booking reference",
         outputIcon: "🧳",
-        outputTitle: "A clean itinerary with proposed outbound and return events",
-        outputSub: "Original time zones and source details remain visible for review",
+        outputTitle: "A trip with proposed outbound and return calendar entries",
+        outputSub: "Approving it also adds a packing to-do and a check-in to-do",
         accent: "violet",
       },
     ],
@@ -289,7 +315,7 @@ const allTopics: Topic[] = [
     title: "Flight deal tracking",
     friction: "No more refreshing a fare-tracking tab out of habit.",
     intro:
-      "Watches routes you've told it to care about and only ever messages you when a real fare drops under the price you set — silence means nothing changed, not that it's broken.",
+      "Checks the routes you track once a day and sends one notification when a price is under the limit you set. It needs your own free flight-search key.",
     module: "travel",
     cases: [
       {
@@ -298,8 +324,8 @@ const allTopics: Topic[] = [
         inputLabel: "A route you're tracking",
         inputSub: "Hannover → Antalya, alert set under 250 EUR",
         outputIcon: "✈️",
-        outputTitle: "“187 EUR — under your alert”, sent once, not repeated",
-        outputSub: "Compared against the typical range for that route, not just a raw price",
+        outputTitle: "One notification: 187 EUR, under your limit",
+        outputSub: "Several trip lengths and a day or two either side are compared in the same daily check",
         accent: "green",
       },
     ],
@@ -310,17 +336,17 @@ const allTopics: Topic[] = [
     title: "Calendar-aware travel",
     friction: "No more finding a good fare and then discovering the dates do not work.",
     intro:
-      "Checks the travel window against your own calendar before presenting an option, without inviting anyone or changing existing events.",
+      "Each flight deal carries a green or orange mark: are those dates free in your Google Calendar? The calendar is only read; nobody is invited and no event is changed.",
     module: "travel",
     cases: [
       {
-        key: "free-weekend",
-        inputIcon: "📅",
-        inputLabel: "A flexible weekend trip",
-        inputSub: "Berlin or Hamburg, any free weekend next month",
-        outputIcon: "✈️",
-        outputTitle: "Options shown only for weekends that are actually open",
-        outputSub: "Calendar access is used for availability, not to notify other people",
+        key: "free-dates",
+        inputIcon: "✈️",
+        inputLabel: "A deal on a route you track",
+        inputSub: "Hannover → Antalya, 10 to 17 May",
+        outputIcon: "🟢",
+        outputTitle: "Green: your calendar is free on those dates",
+        outputSub: "Orange when something is already planned in that week",
         accent: "violet",
       },
     ],
@@ -331,17 +357,27 @@ const allTopics: Topic[] = [
     title: "Cash-flow forecast",
     friction: "No more finding out you're low on funds after it's already happened.",
     intro:
-      "Projects your accounts forward using only payments you've actually scheduled — never an assumed return, never a guessed number — and warns you before a real shortfall, not after.",
+      "Learns your regular payments from your own history (rent, loans, insurance, salary), adds the ones you plan yourself, and shows the next one, two or three months day by day. It warns when an account is expected to go below zero.",
     module: "wealth",
     cases: [
       {
-        key: "guardrail",
+        key: "next-months",
         inputIcon: "📉",
-        inputLabel: "A 6-month projection, recomputed automatically",
-        inputSub: "Your safety threshold, and every scheduled payment between now and then",
+        inputLabel: "The next three months",
+        inputSub: "Regular payments learned from your statements, plus the ones you added",
         outputIcon: "⚠️",
-        outputTitle: "“Guardrail breach projected in October”",
-        outputSub: "Flagged months ahead of time, not the week it happens",
+        outputTitle: "A warning when an account is expected to go below zero",
+        outputSub: "Every payment is listed with the account balance right after it",
+        accent: "green",
+      },
+      {
+        key: "ignore",
+        inputIcon: "✋",
+        inputLabel: "A payment it learned wrongly",
+        inputSub: "A contract you have already cancelled",
+        outputIcon: "↺",
+        outputTitle: "“Ignore” takes it out of the forecast",
+        outputSub: "It stays listed, greyed, with Undo to bring it back",
         accent: "green",
       },
     ],
@@ -352,17 +388,27 @@ const allTopics: Topic[] = [
     title: "Recurring cost watch",
     friction: "No more subscriptions quietly blending into the background.",
     intro:
-      "Groups repeating charges, shows what they cost over time, and highlights a meaningful change for review without cancelling or contacting a provider.",
+      "Finds charges that come back every month with the same amount and lists them as subscriptions. Charges that look unusual are put under “Worth a look”. It never cancels anything and never contacts a provider.",
     module: "wealth",
     cases: [
       {
-        key: "price-change",
+        key: "subscription",
         inputIcon: "🏦",
-        inputLabel: "A recurring monthly charge",
-        inputSub: "The same provider rises from 9.99 EUR to 14.99 EUR",
+        inputLabel: "Your imported statements",
+        inputSub: "The same merchant, the same amount, every month",
         outputIcon: "🔁",
-        outputTitle: "Price increase highlighted in your recurring-cost view",
-        outputSub: "You decide whether to keep, investigate, or cancel it yourself",
+        outputTitle: "Listed under “Subscriptions we found”",
+        outputSub: "One click tracks it as a bill; cancelling stays with you",
+        accent: "green",
+      },
+      {
+        key: "unusual",
+        inputIcon: "🏦",
+        inputLabel: "A charge that stands out",
+        inputSub: "The same charge twice on one day, or far above that merchant's usual amount",
+        outputIcon: "🔍",
+        outputTitle: "Shown under “Worth a look”",
+        outputSub: "Dismiss it once and it does not come back",
         accent: "green",
       },
     ],
@@ -404,17 +450,27 @@ const allTopics: Topic[] = [
     title: "Portfolio import",
     friction: "No more checking a broker app separately from everything else.",
     intro:
-      "Reads a transaction export you already have and folds it into one view, deduplicated against what it already knows — re-importing the same export twice changes nothing.",
+      "Reads Trade Republic's transaction export and shows your holdings with exact share counts and average cost. For any other broker, a screenshot of the portfolio screen is read on your Mac. You review what was read before it is added.",
     module: "wealth",
     cases: [
       {
         key: "export",
         inputIcon: "📄",
-        inputLabel: "A transaction export, sent to yourself",
-        inputSub: "Your broker's own CSV, emailed as an attachment",
+        inputLabel: "Trade Republic's transaction export",
+        inputSub: "The CSV file, chosen on the Wealth page or emailed to yourself",
         outputIcon: "📈",
-        outputTitle: "Holdings and transactions merged into one dashboard",
-        outputSub: "Every entry deduped by its own transaction id",
+        outputTitle: "Holdings with shares, average cost and today's value",
+        outputSub: "Buying shares counts as investing, never as spending",
+        accent: "green",
+      },
+      {
+        key: "screenshot",
+        inputIcon: "🖼️",
+        inputLabel: "A screenshot of your broker app",
+        inputSub: "The portfolio screen with each position and its value",
+        outputIcon: "📈",
+        outputTitle: "Each position waits for “Add”",
+        outputSub: "Read on your Mac with Apple's text recognition; never uploaded",
         accent: "green",
       },
     ],

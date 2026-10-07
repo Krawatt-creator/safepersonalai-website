@@ -43,6 +43,9 @@ export default function Footer({
           <Link href="/terms" className="transition hover:text-text-secondary">
             {t.terms}
           </Link>
+          <Link href="/impressum" className="transition hover:text-text-secondary">
+            Impressum
+          </Link>
           <a href="mailto:support@safepersonalai.com" className="transition hover:text-text-secondary">
             support@safepersonalai.com
           </a>

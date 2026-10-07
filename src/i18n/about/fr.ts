@@ -47,7 +47,7 @@ export const frAbout: AboutDictionary = {
     { label: "Abonnement", value: "Aucun pour l'app Mac." },
     {
       label: "Version actuelle",
-      value: "{version}, notarisée par Apple. L'interface de l'app est en anglais.",
+      value: "{version}, notarisée par Apple. Menus, titres et boutons en français, anglais, allemand, turc, espagnol ou chinois ; les textes longs sont encore en anglais.",
     },
   ],
   sections: [

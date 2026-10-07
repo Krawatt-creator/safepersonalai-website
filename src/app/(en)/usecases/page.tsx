@@ -4,13 +4,12 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import { moduleMeta, topics } from "@/lib/usecases-data";
-import ActivityOverview from "@/components/ActivityOverview";
 
 export const metadata: Metadata = {
   title: "Use Cases",
   alternates: { canonical: "/usecases" },
   description:
-    "Concrete, real examples of what SafePersonalAI actually does — not concept art, the flows it really runs.",
+    "What the SafePersonalAI Mac app does, shown as concrete examples: what arrives, what the app prepares, and what you approve.",
 };
 
 export default function UseCasesIndexPage() {
@@ -28,13 +27,12 @@ export default function UseCasesIndexPage() {
             </Link>
             <p className="mt-6 text-sm font-medium text-violet">Use cases</p>
             <h1 className="mt-3 max-w-2xl text-4xl font-semibold tracking-tight text-balance text-text sm:text-5xl">
-              What it actually does, in your own words.
+              What the app does, one example at a time.
             </h1>
             <p className="mt-5 max-w-xl text-text-secondary text-pretty">
-              Fifteen practical scenarios, grouped by the base product and
-              optional modules. Each one is grounded in a pipeline already
-              proven in the personal system; commercial availability is
-              confirmed separately at launch.
+              {topics.length} everyday situations, grouped by the Base module
+              and the two add-on modules. Each one says what arrives, what
+              the app prepares, and what you decide.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-2 text-xs text-text-tertiary" aria-label="How to read a use case">
               <span className="rounded-full border border-border px-3 py-1.5">You say or receive something</span>
@@ -45,8 +43,6 @@ export default function UseCasesIndexPage() {
             </div>
           </div>
         </section>
-
-        <ActivityOverview />
 
         <section className="py-20">
           <div className="mx-auto max-w-6xl space-y-16 px-6">

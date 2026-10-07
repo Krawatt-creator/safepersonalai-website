@@ -1,6 +1,6 @@
 import type { Locale } from "@/i18n/config";
 
-// The home page's "real app" section: four screens of the app itself, filmed
+// The home page's "real app" section: five screens of the app itself, filmed
 // on a demo household (marketing/app_demo). One caption per screen, in the
 // order of the images in AppShowcase.tsx.
 
@@ -17,10 +17,15 @@ export const showcase: Record<Locale, ShowcaseText> = {
   en: {
     eyebrow: "The real app",
     title: "This is the app itself. Not a mock-up.",
-    body: "Four screens of SafePersonalAI as it runs on a Mac, filled with sample data. The app's interface is in English.",
+    body: "Five screens of SafePersonalAI as it runs on a Mac, filled with sample data. Shown here in English; the app's menus, headings and buttons can also be set to German, Turkish, Spanish, Chinese or French.",
     windowTitle: "SafePersonalAI on your Mac",
     note: "Sample data. Your own figures stay on your Mac.",
     steps: [
+      {
+        title: "Nothing happens without your yes",
+        body: "What it found in your mail and messages waits here: an appointment, a to-do, a bill, a reply draft. You approve, change or reject each one.",
+        alt: "The Base page of the app: a list of five prepared actions, the first one opened with its date, place and the buttons Approve, Change and Reject",
+      },
       {
         title: "Every account in one balance",
         body: "Checking account, card and investments together. Right below: where this month's money went, by category.",
@@ -46,10 +51,15 @@ export const showcase: Record<Locale, ShowcaseText> = {
   de: {
     eyebrow: "Die echte App",
     title: "Das ist die App selbst. Keine Attrappe.",
-    body: "Vier Ansichten von SafePersonalAI, so wie es auf einem Mac läuft, gefüllt mit Beispieldaten. Die Oberfläche der App ist auf Englisch.",
+    body: "Fünf Ansichten von SafePersonalAI, so wie es auf einem Mac läuft, gefüllt mit Beispieldaten. Hier auf Englisch gezeigt; Menüs, Überschriften und Schaltflächen der App lassen sich auch auf Deutsch, Türkisch, Spanisch, Chinesisch oder Französisch umstellen.",
     windowTitle: "SafePersonalAI auf Ihrem Mac",
     note: "Beispieldaten. Ihre eigenen Zahlen bleiben auf Ihrem Mac.",
     steps: [
+      {
+        title: "Nichts geschieht ohne Ihr Ja",
+        body: "Was es in Ihren E-Mails und Nachrichten gefunden hat, wartet hier: ein Termin, eine Aufgabe, eine Rechnung, ein Antwortentwurf. Sie bestätigen, ändern oder lehnen jeden einzelnen ab.",
+        alt: "Die Base-Seite der App: eine Liste von fünf vorbereiteten Aktionen, die erste geöffnet mit Datum, Ort und den Schaltflächen Approve, Change und Reject",
+      },
       {
         title: "Alle Konten in einem Saldo",
         body: "Girokonto, Karte und Geldanlagen zusammen. Direkt darunter: wohin das Geld in diesem Monat ging, nach Kategorie.",
@@ -75,10 +85,15 @@ export const showcase: Record<Locale, ShowcaseText> = {
   tr: {
     eyebrow: "Gerçek uygulama",
     title: "Bu, uygulamanın kendisi. Maket değil.",
-    body: "SafePersonalAI'nin bir Mac'te çalışırken görünen dört ekranı; örnek verilerle doldurulmuştur. Uygulamanın arayüzü İngilizcedir.",
+    body: "SafePersonalAI'nin bir Mac'te çalışırken görünen beş ekranı; örnek verilerle doldurulmuştur. Burada İngilizce gösteriliyor; uygulamanın menüleri, başlıkları ve düğmeleri Türkçe, Almanca, İspanyolca, Çince veya Fransızca olarak da ayarlanabilir.",
     windowTitle: "Mac'inizde SafePersonalAI",
     note: "Örnek veriler. Kendi rakamlarınız Mac'inizde kalır.",
     steps: [
+      {
+        title: "Siz evet demeden hiçbir şey olmaz",
+        body: "E-postalarınızda ve mesajlarınızda bulduğu şeyler burada bekler: bir randevu, bir yapılacak iş, bir fatura, bir yanıt taslağı. Her birini onaylar, değiştirir ya da reddedersiniz.",
+        alt: "Uygulamanın Base sayfası: hazırlanmış beş işlemin listesi; ilki açık, tarihi, yeri ve Approve, Change, Reject düğmeleriyle",
+      },
       {
         title: "Tüm hesaplar tek bakiyede",
         body: "Vadesiz hesap, kart ve yatırımlar bir arada. Hemen altında: bu ayın parası kategorilere göre nereye gitti.",
@@ -104,10 +119,15 @@ export const showcase: Record<Locale, ShowcaseText> = {
   es: {
     eyebrow: "La app real",
     title: "Esta es la app. No una maqueta.",
-    body: "Cuatro pantallas de SafePersonalAI tal como funciona en un Mac, con datos de ejemplo. La interfaz de la app está en inglés.",
+    body: "Cinco pantallas de SafePersonalAI tal como funciona en un Mac, con datos de ejemplo. Aquí se muestran en inglés; los menús, títulos y botones de la app también se pueden poner en español, alemán, turco, chino o francés.",
     windowTitle: "SafePersonalAI en tu Mac",
     note: "Datos de ejemplo. Tus cifras se quedan en tu Mac.",
     steps: [
+      {
+        title: "Nada ocurre sin tu sí",
+        body: "Lo que encontró en tu correo y tus mensajes espera aquí: una cita, una tarea, una factura, un borrador de respuesta. Tú apruebas, cambias o rechazas cada uno.",
+        alt: "La página Base de la app: una lista de cinco acciones preparadas, la primera abierta con su fecha, lugar y los botones Approve, Change y Reject",
+      },
       {
         title: "Todas las cuentas en un saldo",
         body: "Cuenta corriente, tarjeta e inversiones juntas. Justo debajo: adónde fue el dinero de este mes, por categoría.",
@@ -133,10 +153,15 @@ export const showcase: Record<Locale, ShowcaseText> = {
   zh: {
     eyebrow: "真实的应用",
     title: "这就是应用本身，不是示意图。",
-    body: "SafePersonalAI 在 Mac 上运行时的四个画面，使用的是示例数据。应用界面为英文。",
+    body: "SafePersonalAI 在 Mac 上运行时的五个画面，使用的是示例数据。这里显示的是英文界面；应用的菜单、标题和按钮也可以切换为中文、德语、土耳其语、西班牙语或法语。",
     windowTitle: "你 Mac 上的 SafePersonalAI",
     note: "示例数据。你自己的数字留在你的 Mac 上。",
     steps: [
+      {
+        title: "没有你的同意，什么都不会发生",
+        body: "它在你的邮件和信息中找到的内容都在这里等待：一个预约、一项待办、一张账单、一份回复草稿。每一项都由你批准、修改或拒绝。",
+        alt: "应用的 Base 页面：五项已准备好的操作列表，第一项已展开，显示日期、地点以及 Approve、Change、Reject 按钮",
+      },
       {
         title: "所有账户，一个余额",
         body: "活期账户、信用卡和投资放在一起。正下方：这个月的钱按类别花到了哪里。",
@@ -162,10 +187,15 @@ export const showcase: Record<Locale, ShowcaseText> = {
   fr: {
     eyebrow: "La vraie app",
     title: "C'est l'app elle-même. Pas une maquette.",
-    body: "Quatre écrans de SafePersonalAI tel qu'il fonctionne sur un Mac, remplis de données d'exemple. L'interface de l'app est en anglais.",
+    body: "Cinq écrans de SafePersonalAI tel qu'il fonctionne sur un Mac, remplis de données d'exemple. Montrés ici en anglais ; les menus, titres et boutons de l'app peuvent aussi être affichés en français, allemand, turc, espagnol ou chinois.",
     windowTitle: "SafePersonalAI sur votre Mac",
     note: "Données d'exemple. Vos propres chiffres restent sur votre Mac.",
     steps: [
+      {
+        title: "Rien ne se fait sans votre oui",
+        body: "Ce qu'il a trouvé dans vos e-mails et vos messages attend ici : un rendez-vous, une tâche, une facture, un brouillon de réponse. Vous approuvez, modifiez ou refusez chacun.",
+        alt: "La page Base de l'app : une liste de cinq actions préparées, la première ouverte avec sa date, son lieu et les boutons Approve, Change et Reject",
+      },
       {
         title: "Tous les comptes en un seul solde",
         body: "Compte courant, carte et placements réunis. Juste en dessous : où est parti l'argent de ce mois, par catégorie.",

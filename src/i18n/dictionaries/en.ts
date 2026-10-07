@@ -135,7 +135,7 @@ export const en = {
     queueTitle: "One review queue",
     queueBody: "Every installed module uses the same visible approval boundary. No hidden automation layer.",
     practicalUses: "{n} practical uses",
-    note: "These scenarios are grounded in working personal-system pipelines. The release page confirms exactly which capabilities are included in each commercial version.",
+    note: "Every example here is something the Mac app does today. Each card opens a page with the details.",
     modules: {
       operational: {
         name: "Base",

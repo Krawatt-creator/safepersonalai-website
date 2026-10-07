@@ -47,7 +47,7 @@ export const trAbout: AboutDictionary = {
     { label: "Abonelik", value: "Mac uygulaması için yoktur." },
     {
       label: "Güncel sürüm",
-      value: "{version}, Apple tarafından onaylanmış (notarized). Uygulamanın arayüzü İngilizcedir.",
+      value: "{version}, Apple tarafından onaylanmış (notarized). Menüler, başlıklar ve düğmeler Türkçe, İngilizce, Almanca, İspanyolca, Çince veya Fransızca; uzun metinler şimdilik İngilizce.",
     },
   ],
   sections: [

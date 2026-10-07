@@ -24,7 +24,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 export default function TermsPage() {
   return (
-    <LegalLayout title="Terms of Service" updated="25 August 2026">
+    <LegalLayout title="Terms of Service" updated="7 October 2026">
       <p>
         These terms cover your use of SafePersonalAI, software that runs
         locally on your own Mac. By downloading or running it, you agree to
@@ -34,7 +34,7 @@ export default function TermsPage() {
       <Section title="What SafePersonalAI is">
         <p>
           SafePersonalAI is local software, not a hosted service. It connects
-          to accounts and data sources you authorize (Gmail, Outlook, Apple
+          to accounts and data sources you authorize (Gmail, Apple
           Mail, Google Calendar, Google Drive, iCloud Drive, local folders,
           and iMessage on your own Mac) and to an AI provider you choose and
           pay for directly. An optional, explicit one-to-three-month
@@ -160,9 +160,9 @@ export default function TermsPage() {
           official appointment, a legal notice — you are responsible for
           independently verifying the original document or message yourself
           before relying on the software&apos;s summary of it. This is
-          exactly why every action requires your explicit approval before
-          anything happens, and why the software is designed to show you
-          what it found rather than act on your behalf without review.
+          why proposed calendar entries, bills, bookings and imports wait
+          for your approval, and why the software shows you what it found
+          and lets you undo what it added directly.
         </p>
       </Section>
 

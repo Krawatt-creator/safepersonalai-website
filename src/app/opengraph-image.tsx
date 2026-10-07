@@ -59,7 +59,7 @@ export default function OpengraphImage() {
             maxWidth: 820,
           }}
         >
-          Runs on your Mac, with your own AI key. Nothing leaves without you.
+          Runs on your Mac, with your own AI key. Pay once, no subscription.
         </div>
       </div>
     ),

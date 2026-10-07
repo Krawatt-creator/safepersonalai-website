@@ -65,14 +65,11 @@ export default async function UseCaseTopicPage({
               </p>
             </div>
             <h1 className="mt-3 max-w-2xl text-4xl font-semibold tracking-tight text-balance text-text sm:text-5xl">
-              {topic.friction}
+              {topic.title}
             </h1>
-            <p className="mt-5 max-w-xl text-text-secondary text-pretty">
+            <p className="mt-4 max-w-xl text-lg text-text text-pretty">{topic.friction}</p>
+            <p className="mt-4 max-w-xl text-text-secondary text-pretty">
               {topic.intro}
-            </p>
-            <p className="mt-5 max-w-xl text-xs leading-relaxed text-text-tertiary">
-              Grounded in a working personal-system pipeline. Inclusion in a
-              commercial release is confirmed in that release&apos;s module list.
             </p>
           </div>
         </section>

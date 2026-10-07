@@ -48,7 +48,7 @@ export const enAbout = {
         "Free beta: every module is open for {days} days. After that a one-time purchase: Base €{base}, Travel €{travel}, Wealth €{wealth}, or all three for €{bundleBeta} while the beta runs (€{bundle} afterwards).",
     },
     { label: "Subscription", value: "None for the Mac app." },
-    { label: "Current version", value: "{version}, notarized by Apple. The app's interface is in English." },
+    { label: "Current version", value: "{version}, notarized by Apple. Menus, headings and buttons in English, German, Turkish, Spanish, Chinese or French; longer texts are still English." },
   ],
   sections: [
     {

@@ -47,7 +47,7 @@ export const esAbout: AboutDictionary = {
     { label: "Suscripción", value: "Ninguna para la app de Mac." },
     {
       label: "Versión actual",
-      value: "{version}, certificada (notarized) por Apple. La interfaz de la app está en inglés.",
+      value: "{version}, certificada (notarized) por Apple. Menús, títulos y botones en español, inglés, alemán, turco, chino o francés; los textos largos siguen en inglés.",
     },
   ],
   sections: [

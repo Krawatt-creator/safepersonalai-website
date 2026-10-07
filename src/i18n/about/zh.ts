@@ -42,7 +42,7 @@ export const zhAbout: AboutDictionary = {
         "免费测试版：所有模块开放 {days} 天。之后一次性购买：Base €{base}、Travel €{travel}、Wealth €{wealth}，测试期间三个模块合计 €{bundleBeta}（之后为 €{bundle}）。",
     },
     { label: "订阅", value: "Mac 应用没有订阅。" },
-    { label: "当前版本", value: "{version}，已通过 Apple 公证。应用界面为英文。" },
+    { label: "当前版本", value: "{version}，已通过 Apple 公证。菜单、标题和按钮可选中文、英文、德语、土耳其语、西班牙语或法语；较长的说明文字目前仍为英文。" },
   ],
   sections: [
     {

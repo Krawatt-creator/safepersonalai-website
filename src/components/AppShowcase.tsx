@@ -6,7 +6,7 @@ import type { ShowcaseText } from "@/i18n/showcase";
 
 // The app's own screens, filmed on a demo household (marketing/app_demo).
 // Same order as the captions in src/i18n/showcase.ts.
-const shots = ["/app/balance.webp", "/app/spending.webp", "/app/forecast.webp", "/app/investments.webp"];
+const shots = ["/app/approvals.webp", "/app/balance.webp", "/app/spending.webp", "/app/forecast.webp", "/app/investments.webp"];
 const WIDTH = 1800;
 const HEIGHT = 1169;
 
