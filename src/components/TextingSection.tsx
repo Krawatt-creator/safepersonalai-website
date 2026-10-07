@@ -3,9 +3,9 @@ import type { Locale } from "@/i18n/config";
 import type { TextingText } from "@/i18n/texting";
 
 // Same order as the captions in src/i18n/texting.ts.
-const films = ["todo", "month", "letter", "bring"] as const;
+const films = ["spending", "todo", "month", "letter", "bring"] as const;
 
-// Four short films: a message typed on an iPhone, and the app's answer.
+// Five short films: a message typed on an iPhone, and the app's answer.
 export default function TextingSection({ lang, t }: { lang: Locale; t: TextingText }) {
   return (
     <section id="text-it" className="border-t border-border py-24">
@@ -17,7 +17,7 @@ export default function TextingSection({ lang, t }: { lang: Locale; t: TextingTe
           </h2>
           <p className="mt-4 text-text-secondary text-pretty">{t.body}</p>
         </div>
-        <div className="mt-12 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-x-6 gap-y-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
           {films.map((name, i) => (
             <div key={name}>
               <AppVideo name={name} lang={lang} label={t.films[i].title} />

@@ -33,6 +33,7 @@ export default function Nav({
   const links = [
     { href: `${home}#use-cases`, label: t.useCases },
     { href: `${home}#modules`, label: t.modules },
+    { href: localePath(lang, "/iphone"), label: "iPhone" },
     { href: `${home}#boundary`, label: t.howItWorks },
     { href: `${home}#pricing`, label: t.pricing },
     { href: `${home}#faq`, label: t.faq },

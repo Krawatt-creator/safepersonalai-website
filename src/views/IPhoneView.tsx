@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import ModulePageShell from "@/components/ModulePageShell";
 import PhoneFrame from "@/components/PhoneFrame";
 import Reveal from "@/components/Reveal";
+import TextingSection from "@/components/TextingSection";
+import { texting } from "@/i18n/texting";
 import { languageAlternates, localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/en";
 import type { PagesDictionary } from "@/i18n/pages/en";
@@ -10,7 +12,14 @@ const PATH = "/iphone";
 
 // The app's own screens with its built-in sample data (the App Store
 // screenshots). Wording comes from the page dictionary (iphone.screens).
-const screenFiles = ["/iphone/today.webp", "/iphone/wealth.webp", "/iphone/forecast.webp"];
+const screenFiles = [
+  "/iphone/today.webp",
+  "/iphone/wealth.webp",
+  "/iphone/forecast.webp",
+  "/iphone/investments.webp",
+  "/iphone/todos.webp",
+  "/iphone/events.webp",
+];
 
 export function iphoneMetadata(lang: Locale, pages: PagesDictionary): Metadata {
   return {
@@ -55,7 +64,7 @@ export default function IPhoneView({
       steps={t.steps}
       features={t.features}
     >
-      <section className="border-t border-border py-20">
+      <section id="screens" className="border-t border-border py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="max-w-2xl">
             <p className="text-sm font-medium text-green">{t.screensEyebrow}</p>
@@ -64,7 +73,7 @@ export default function IPhoneView({
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-text-secondary">{t.screensBody}</p>
           </div>
-          <div className="mt-12 grid gap-12 sm:grid-cols-3 sm:gap-8">
+          <div className="mt-12 grid gap-x-8 gap-y-16 sm:grid-cols-3">
             {t.screens.map((s, i) => (
               <figure key={s.title} className="text-center">
                 <PhoneFrame src={screenFiles[i]} alt={s.alt} />
@@ -77,6 +86,9 @@ export default function IPhoneView({
           </div>
         </div>
       </section>
+
+      {/* Works today with the Mac app alone: a message to yourself, and the Mac's answer. */}
+      <TextingSection lang={lang} t={texting[lang]} />
 
       <section className="border-t border-border py-20">
         <div className="mx-auto max-w-4xl px-6">

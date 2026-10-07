@@ -198,7 +198,7 @@ export const dePages: PagesDictionary = {
       },
     ],
     screensEyebrow: "So sieht es aus",
-    screensTitle: "Drei Ansichten, die Sie jeden Tag nutzen werden.",
+    screensTitle: "Sechs Ansichten, die Sie jeden Tag nutzen werden.",
     screensBody:
       "Echte Ansichten der App, gefüllt mit ihren eingebauten Beispieldaten — dieselbe Vorschau mit Beispieldaten, die Sie öffnen können, bevor Sie einen Mac koppeln. Die App selbst ist auf Englisch.",
     screens: [
@@ -216,6 +216,21 @@ export const dePages: PagesDictionary = {
         alt: "Die Ansicht „Forecast“: eine Kurve des erwarteten Kontostands über die nächsten 90 Tage, ihr tiefster Punkt und Summen für 30, 60 und 90 Tage.",
         title: "Vorschau",
         body: "Die nächsten 90 Tage als Kurve. Tippen Sie darauf, um einen Tag zu sehen und was sich an ihm bewegt — auch das, was Sie selbst geplant haben.",
+      },
+      {
+        alt: "Die Ansicht Investments: was alles heute wert ist, der Gewinn, ein Ring nach Art und jede Position mit Gewinn oder Verlust.",
+        title: "Geldanlagen",
+        body: "Was alles heute wert ist, was Sie bezahlt haben, und jede Position mit Gewinn oder Verlust.",
+      },
+      {
+        alt: "Die Ansicht To-do: offene Aufgaben mit ihren Daten und ein Feld zum Hinzufügen.",
+        title: "Aufgaben",
+        body: "Ihre offenen Aufgaben mit Datum. Eine hinzufügen, eine abhaken oder auf morgen schieben.",
+      },
+      {
+        alt: "Die Ansicht Events: Geburtstage, die Termine von heute und morgen und die Zahlungen dieser Woche.",
+        title: "Termine",
+        body: "Die kommende Woche aus Apple- und Google-Kalender, anstehende Geburtstage und fällige Zahlungen.",
       },
     ],
     knowTitle: "Gut zu wissen, bevor Sie abonnieren",

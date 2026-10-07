@@ -195,7 +195,7 @@ export const zhPages: PagesDictionary = {
       },
     ],
     screensEyebrow: "它的样子",
-    screensTitle: "你每天都会用到的三个界面。",
+    screensTitle: "你每天都会用到的六个界面。",
     screensBody:
       "应用的真实界面，使用内置的示例数据——与你在配对 Mac 之前可以打开的“示例数据浏览”相同。应用本身为英文界面。",
     screens: [
@@ -213,6 +213,21 @@ export const zhPages: PagesDictionary = {
         alt: "“Forecast”界面：未来 90 天预计余额的曲线、最低点，以及 30、60 和 90 天的合计。",
         title: "预测",
         body: "把未来 90 天画成一条曲线。轻触即可查看某一天以及当天的资金变动，包括你自己计划的项目。",
+      },
+      {
+        alt: "Investments 界面：全部资产今天的价值、收益、按种类的环形图，以及每项持仓的盈亏。",
+        title: "投资",
+        body: "全部资产今天值多少、你投入了多少，以及每项持仓的盈亏。",
+      },
+      {
+        alt: "To-do 界面：带日期的未完成待办，以及添加待办的输入框。",
+        title: "待办",
+        body: "带日期的未完成待办。添加一项、勾掉一项，或滑动推到明天。",
+      },
+      {
+        alt: "Events 界面：生日、今天和明天的日程，以及本周即将发生的付款。",
+        title: "日程",
+        body: "来自 Apple 和 Google 日历的未来一周、即将到来的生日，以及本周到期的付款。",
       },
     ],
     knowTitle: "订阅前须知",

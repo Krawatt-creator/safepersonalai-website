@@ -10,9 +10,6 @@ import TrustSection from "@/components/TrustSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import AppShowcase from "@/components/AppShowcase";
-import AppVideo from "@/components/AppVideo";
-import TextingSection from "@/components/TextingSection";
-import { texting } from "@/i18n/texting";
 import ScrollBackdrop from "@/components/ScrollBackdrop";
 import { showcase } from "@/i18n/showcase";
 import JsonLd from "@/components/JsonLd";
@@ -40,15 +37,8 @@ export default function HomeView({ lang, dict }: { lang: Locale; dict: Dictionar
       <Nav lang={lang} t={dict.nav} path="/" />
       <main className="flex-1">
         <Hero lang={lang} dict={dict} />
-        {/* Straight after the headline: the app itself, then the same app in motion. */}
+        {/* Straight after the headline: the app itself. The films are on the iPhone and Wealth pages. */}
         <AppShowcase t={showcase[lang]} />
-        <section className="pb-24">
-          <div className="mx-auto grid max-w-3xl gap-12 px-6 sm:grid-cols-2">
-            <AppVideo name="wealth" lang={lang} label={dict.wealth.readsTitle} note={dict.wealth.readsTitle} />
-            <AppVideo name="investments" lang={lang} label={dict.wealth.investTitle} note={dict.wealth.investTitle} />
-          </div>
-        </section>
-        <TextingSection lang={lang} t={texting[lang]} />
         <LaptopRevealSection t={dict.laptop} />
         <OwnershipSection dict={dict} />
         <BoundarySection t={dict.boundary} />

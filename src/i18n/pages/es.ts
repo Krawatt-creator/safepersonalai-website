@@ -197,7 +197,7 @@ export const esPages: PagesDictionary = {
       },
     ],
     screensEyebrow: "Cómo se ve",
-    screensTitle: "Tres pantallas que usarás cada día.",
+    screensTitle: "Seis pantallas que usarás cada día.",
     screensBody:
       "Pantallas reales de la app, con sus datos de ejemplo incorporados: el mismo recorrido con datos de ejemplo que puedes abrir antes de emparejar un Mac. La app está en inglés.",
     screens: [
@@ -215,6 +215,21 @@ export const esPages: PagesDictionary = {
         alt: "La pantalla «Forecast»: una curva del saldo previsto para los próximos 90 días, su punto más bajo y los totales a 30, 60 y 90 días.",
         title: "Previsión",
         body: "Los próximos 90 días en una curva. Tócala para ver un día y lo que se mueve en él, incluido lo que has planificado tú.",
+      },
+      {
+        alt: "La pantalla Investments: lo que vale todo hoy, la ganancia, un anillo por tipo y cada posición con su ganancia o pérdida.",
+        title: "Inversiones",
+        body: "Lo que vale todo hoy, lo que pagaste y cada posición con su ganancia o pérdida.",
+      },
+      {
+        alt: "La pantalla To-do: tareas abiertas con sus fechas y un campo para añadir una.",
+        title: "Tareas",
+        body: "Tus tareas abiertas con sus fechas. Añade una, marca una como hecha o pásala a mañana.",
+      },
+      {
+        alt: "La pantalla Events: cumpleaños, los eventos de hoy y de mañana y los pagos de esta semana.",
+        title: "Eventos",
+        body: "La semana que viene desde Apple y Google Calendar, próximos cumpleaños y pagos de esta semana.",
       },
     ],
     knowTitle: "Conviene saberlo antes de suscribirte",

@@ -16,7 +16,7 @@ export default function AppVideo({
   label,
   note,
 }: {
-  name: "wealth" | "investments" | "todo" | "month" | "letter" | "bring";
+  name: "wealth" | "investments" | "spending" | "todo" | "month" | "letter" | "bring";
   lang: Locale;
   label: string;
   note?: string;

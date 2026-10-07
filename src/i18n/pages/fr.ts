@@ -197,7 +197,7 @@ export const frPages: PagesDictionary = {
       },
     ],
     screensEyebrow: "À quoi cela ressemble",
-    screensTitle: "Trois écrans que vous utiliserez chaque jour.",
+    screensTitle: "Six écrans que vous utiliserez chaque jour.",
     screensBody:
       "De vrais écrans de l’app, remplis de ses données d’exemple intégrées — la même visite avec données d’exemple que vous pouvez ouvrir avant de jumeler un Mac. L’app elle-même est en anglais.",
     screens: [
@@ -215,6 +215,21 @@ export const frPages: PagesDictionary = {
         alt: "L’écran « Forecast » : une courbe du solde prévu sur les 90 prochains jours, son point le plus bas et les totaux à 30, 60 et 90 jours.",
         title: "Prévision",
         body: "Les 90 prochains jours sous forme de courbe. Touchez-la pour voir un jour et ce qui s’y passe, y compris ce que vous avez prévu vous-même.",
+      },
+      {
+        alt: "L'écran Investments : ce que tout vaut aujourd'hui, le gain, un anneau par type et chaque position avec son gain ou sa perte.",
+        title: "Placements",
+        body: "Ce que tout vaut aujourd'hui, ce que vous avez payé, et chaque position avec son gain ou sa perte.",
+      },
+      {
+        alt: "L'écran To-do : les tâches ouvertes avec leurs dates et un champ pour en ajouter une.",
+        title: "Tâches",
+        body: "Vos tâches ouvertes avec leurs dates. Ajoutez-en une, cochez-en une ou reportez-la à demain.",
+      },
+      {
+        alt: "L'écran Events : les anniversaires, les événements d'aujourd'hui et de demain, et les paiements de la semaine.",
+        title: "Événements",
+        body: "La semaine à venir depuis Apple et Google Agenda, les anniversaires à venir et les paiements de la semaine.",
       },
     ],
     knowTitle: "Bon à savoir avant de vous abonner",

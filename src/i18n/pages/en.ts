@@ -199,7 +199,7 @@ export const enPages = {
       },
     ],
     screensEyebrow: "What it looks like",
-    screensTitle: "Three screens you will use every day.",
+    screensTitle: "Six screens you will use every day.",
     screensBody:
       "Real screens of the app, filled with its built-in sample data — the same “Look around with sample data” you can open before pairing a Mac. The app itself is in English.",
     screens: [
@@ -217,6 +217,21 @@ export const enPages = {
         alt: "The Forecast screen: a curve of the expected balance over the next 90 days, its lowest point, and totals for 30, 60 and 90 days.",
         title: "Forecast",
         body: "The next 90 days as a curve. Touch it to see a day and what moves on it, including what you planned yourself.",
+      },
+      {
+        alt: "The Investments screen: what everything is worth today, the gain, a ring by kind and each holding with its gain or loss.",
+        title: "Investments",
+        body: "What everything is worth today, what you paid, and each holding with its gain or loss.",
+      },
+      {
+        alt: "The To-do screen: open to-dos with their dates and a field to add one.",
+        title: "To-dos",
+        body: "Your open to-dos with their dates. Add one, tick one off, or swipe it to tomorrow.",
+      },
+      {
+        alt: "The Events screen: birthdays, today's and tomorrow's events, and the payments coming this week.",
+        title: "Events",
+        body: "The week ahead from Apple and Google Calendar, coming birthdays, and payments due this week.",
       },
     ],
     knowTitle: "Good to know before you subscribe",

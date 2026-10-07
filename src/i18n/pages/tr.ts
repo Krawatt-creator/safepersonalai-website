@@ -197,7 +197,7 @@ export const trPages: PagesDictionary = {
       },
     ],
     screensEyebrow: "Nasıl görünüyor",
-    screensTitle: "Her gün kullanacağınız üç ekran.",
+    screensTitle: "Her gün kullanacağınız altı ekran.",
     screensBody:
       "Uygulamanın gerçek ekranları, kendi örnek verileriyle dolu — bir Mac eşleştirmeden önce açabileceğiniz örnek verili gezintinin aynısı. Uygulamanın kendisi İngilizcedir.",
     screens: [
@@ -215,6 +215,21 @@ export const trPages: PagesDictionary = {
         alt: "“Forecast” ekranı: önümüzdeki 90 gün için beklenen bakiyenin eğrisi, en düşük noktası ve 30, 60 ve 90 günlük toplamlar.",
         title: "Tahmin",
         body: "Önümüzdeki 90 gün bir eğri olarak. Dokunun; o günü ve o gün neyin hareket ettiğini, kendi planladıklarınız dahil, görün.",
+      },
+      {
+        alt: "Investments ekranı: her şeyin bugünkü değeri, kazanç, türe göre halka ve kazanç ya da kaybıyla her varlık.",
+        title: "Yatırımlar",
+        body: "Her şeyin bugünkü değeri, ne ödediğiniz ve kazanç ya da kaybıyla her varlık.",
+      },
+      {
+        alt: "To-do ekranı: tarihleriyle açık işler ve yeni iş ekleme alanı.",
+        title: "Yapılacaklar",
+        body: "Tarihleriyle açık işleriniz. Bir tane ekleyin, birini tamamlayın ya da yarına kaydırın.",
+      },
+      {
+        alt: "Events ekranı: doğum günleri, bugünün ve yarının etkinlikleri ve bu hafta gelecek ödemeler.",
+        title: "Etkinlikler",
+        body: "Apple ve Google Takvim'den önünüzdeki hafta, yaklaşan doğum günleri ve bu haftanın ödemeleri.",
       },
     ],
     knowTitle: "Abone olmadan önce bilmeniz gerekenler",
