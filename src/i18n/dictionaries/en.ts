@@ -292,7 +292,7 @@ export const en = {
       },
       {
         q: "Do I need my own Claude, OpenAI, or Gemini account?",
-        a: "No. You can use Ollama locally on your Mac with no cloud account or API key. If you choose Anthropic, OpenAI, or Gemini, you bring your own account and key and pay that provider directly. SafePersonalAI stores the key on your Mac, sends requests directly to the provider you selected, and never receives or passes on your key. Local and cloud models work behind the same approval step.",
+        a: "No. You can use Ollama locally on your Mac with no cloud account or API key. If you choose Anthropic, OpenAI, or Gemini, you bring your own account and key and pay that provider directly. Some providers have a free allowance: at the time of writing, Google offers a free Gemini tier with daily limits, on which it may use what you send to improve its models. Prices, free allowances and data terms are the provider's own and change, so please check their official website before you choose. SafePersonalAI stores the key on your Mac, sends requests directly to the provider you selected, and never receives or passes on your key. Local and cloud models work behind the same approval step.",
       },
       {
         q: "Isn't this just ChatGPT or Claude with extra steps?",

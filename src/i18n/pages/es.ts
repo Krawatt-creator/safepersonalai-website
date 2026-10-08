@@ -60,7 +60,7 @@ export const esPages: PagesDictionary = {
       },
       {
         title: "Tu propia clave de IA, o ninguna",
-        body: "Un modelo local de Ollama en tu Mac significa que no hay factura de IA; puede ser más lento y menos preciso que un modelo en la nube. ¿Prefieres Anthropic, OpenAI o Gemini? Conecta tu propia clave y págales directamente: nunca estamos en medio.",
+        body: "Un modelo local de Ollama en tu Mac significa que no hay factura de IA; puede ser más lento y menos preciso que un modelo en la nube. ¿Prefieres Anthropic, OpenAI o Gemini? Conecta tu propia clave y págales directamente: nunca estamos en medio. Algunos tienen un nivel gratuito con límites y sus propias condiciones sobre los datos; por favor, consulta su web oficial.",
       },
     ],
     seeEyebrow: "Lo que ves de verdad",

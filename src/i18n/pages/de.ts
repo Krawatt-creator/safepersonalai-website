@@ -60,7 +60,7 @@ export const dePages: PagesDictionary = {
       },
       {
         title: "Ihr eigener KI-Schlüssel — oder gar keiner",
-        body: "Ein lokales Ollama-Modell auf Ihrem Mac bedeutet: keine KI-Rechnung; es kann langsamer und ungenauer sein als ein Cloud-Modell. Lieber Anthropic, OpenAI oder Gemini? Verbinden Sie Ihren eigenen Schlüssel und bezahlen Sie den Anbieter direkt — wir stehen nie dazwischen.",
+        body: "Ein lokales Ollama-Modell auf Ihrem Mac bedeutet: keine KI-Rechnung; es kann langsamer und ungenauer sein als ein Cloud-Modell. Lieber Anthropic, OpenAI oder Gemini? Verbinden Sie Ihren eigenen Schlüssel und bezahlen Sie den Anbieter direkt — wir stehen nie dazwischen. Manche Anbieter haben ein kostenloses Kontingent mit Limits und eigenen Datenbedingungen; bitte prüfen Sie deren offizielle Website.",
       },
     ],
     seeEyebrow: "Was Sie tatsächlich sehen",

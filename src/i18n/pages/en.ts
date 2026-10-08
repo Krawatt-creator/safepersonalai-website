@@ -61,7 +61,7 @@ export const enPages = {
       },
       {
         title: "Your own AI key — or none at all",
-        body: "A local Ollama model on your Mac means no AI bill; it can be slower and less exact than a cloud model. Prefer Anthropic, OpenAI or Gemini? Connect your own key and pay them directly — we are never in the middle.",
+        body: "A local Ollama model on your Mac means no AI bill; it can be slower and less exact than a cloud model. Prefer Anthropic, OpenAI or Gemini? Connect your own key and pay them directly — we are never in the middle. Some providers offer a free allowance with limits and their own data terms; please check their official website.",
       },
     ],
     seeEyebrow: "What you actually see",

@@ -61,7 +61,7 @@ export const zhPages: PagesDictionary = {
       },
       {
         title: "用你自己的 AI 密钥——或者完全不用",
-        body: "在 Mac 上使用本地 Ollama 模型意味着没有 AI 账单；它可能比云端模型更慢、准确度略低。更想用 Anthropic、OpenAI 或 Gemini？连接你自己的密钥并直接向它们付费——我们从不介入其中。",
+        body: "在 Mac 上使用本地 Ollama 模型意味着没有 AI 账单；它可能比云端模型更慢、准确度略低。更想用 Anthropic、OpenAI 或 Gemini？连接你自己的密钥并直接向它们付费——我们从不介入其中。部分服务商提供有限额的免费额度，并有各自的数据条款，请查看其官方网站。",
       },
     ],
     seeEyebrow: "你实际看到的",

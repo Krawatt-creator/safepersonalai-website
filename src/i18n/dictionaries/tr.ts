@@ -290,7 +290,7 @@ export const tr: Dictionary = {
       },
       {
         q: "Kendi Claude, OpenAI ya da Gemini hesabım olması gerekiyor mu?",
-        a: "Hayır. Ollama'yı Mac'inizde yerel olarak, bulut hesabı ya da anahtar olmadan kullanabilirsiniz. Anthropic, OpenAI ya da Gemini'yi seçerseniz kendi hesabınızı ve anahtarınızı getirir, ücreti doğrudan o sağlayıcıya ödersiniz. SafePersonalAI anahtarı Mac'inizde saklar, istekleri doğrudan seçtiğiniz sağlayıcıya gönderir ve anahtarınızı asla almaz ya da başkasına iletmez. Yerel ve bulut modelleri aynı onay adımının arkasında çalışır.",
+        a: "Hayır. Ollama'yı Mac'inizde yerel olarak, bulut hesabı ya da anahtar olmadan kullanabilirsiniz. Anthropic, OpenAI ya da Gemini'yi seçerseniz kendi hesabınızı ve anahtarınızı getirir, ücreti doğrudan o sağlayıcıya ödersiniz. Bazı sağlayıcıların ücretsiz bir kullanım hakkı vardır: şu an için Google, Gemini'de günlük sınırları olan ücretsiz bir katman sunuyor; bu katmanda gönderdiklerinizi modellerini geliştirmek için kullanabilir. Fiyatlar, ücretsiz haklar ve veri koşulları sağlayıcıya aittir ve değişir; lütfen seçim yapmadan önce sağlayıcının resmî sitesine bakın. SafePersonalAI anahtarı Mac'inizde saklar, istekleri doğrudan seçtiğiniz sağlayıcıya gönderir ve anahtarınızı asla almaz ya da başkasına iletmez. Yerel ve bulut modelleri aynı onay adımının arkasında çalışır.",
       },
       {
         q: "Bu, fazladan adımlarla ChatGPT ya da Claude değil mi?",

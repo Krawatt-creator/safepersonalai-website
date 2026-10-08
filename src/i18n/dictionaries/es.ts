@@ -290,7 +290,7 @@ export const es: Dictionary = {
       },
       {
         q: "¿Necesito mi propia cuenta de Claude, OpenAI o Gemini?",
-        a: "No. Puedes usar Ollama en local en tu Mac, sin cuenta en la nube ni clave. Si eliges Anthropic, OpenAI o Gemini, aportas tu propia cuenta y tu clave y pagas a ese proveedor directamente. SafePersonalAI guarda la clave en tu Mac, envía las peticiones directamente al proveedor que elegiste y nunca recibe ni transmite tu clave. Los modelos locales y los de la nube trabajan tras el mismo paso de aprobación.",
+        a: "No. Puedes usar Ollama en local en tu Mac, sin cuenta en la nube ni clave. Si eliges Anthropic, OpenAI o Gemini, aportas tu propia cuenta y tu clave y pagas a ese proveedor directamente. Algunos proveedores tienen un nivel gratuito: a día de hoy, Google ofrece para Gemini un nivel gratuito con límites diarios, en el que puede usar lo que envías para mejorar sus modelos. Los precios, los niveles gratuitos y las condiciones sobre los datos son del proveedor y cambian; por favor, consulta su web oficial antes de elegir. SafePersonalAI guarda la clave en tu Mac, envía las peticiones directamente al proveedor que elegiste y nunca recibe ni transmite tu clave. Los modelos locales y los de la nube trabajan tras el mismo paso de aprobación.",
       },
       {
         q: "¿No es simplemente ChatGPT o Claude con más pasos?",

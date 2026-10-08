@@ -46,7 +46,7 @@ export const answers: Answer[] = [
         title: "How SafePersonalAI avoids the subscription",
         bullets: [
           "The app runs on your Mac. There is no SafePersonalAI server that processes or stores your data.",
-          "The AI model is your choice: a local Ollama model on your Mac, with no account and no bill, or your own Anthropic, OpenAI or Gemini key, where you pay that provider directly for what you use.",
+          "The AI model is your choice: a local Ollama model on your Mac, with no account and no bill, or your own Anthropic, OpenAI or Gemini key, where you pay that provider directly for what you use. Google currently offers a free Gemini tier with daily limits and its own data terms; please check the provider's official website for current prices and terms.",
           "Each module is a one-time purchase: Base €{base}, Travel €{travel}, Wealth €{wealth}, or all three for €{bundleBeta} while the beta runs (€{bundle} afterwards).",
         ],
       },

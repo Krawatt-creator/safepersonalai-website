@@ -60,7 +60,7 @@ export const trPages: PagesDictionary = {
       },
       {
         title: "Kendi yapay zekâ anahtarınız — ya da hiç anahtar yok",
-        body: "Mac'inizde yerel bir Ollama modeli, yapay zekâ faturası olmaması demektir; bulut modeline göre daha yavaş ve daha az isabetli olabilir. Anthropic, OpenAI ya da Gemini'yi mi tercih edersiniz? Kendi anahtarınızı bağlayın ve ücreti doğrudan onlara ödeyin — biz asla arada değiliz.",
+        body: "Mac'inizde yerel bir Ollama modeli, yapay zekâ faturası olmaması demektir; bulut modeline göre daha yavaş ve daha az isabetli olabilir. Anthropic, OpenAI ya da Gemini'yi mi tercih edersiniz? Kendi anahtarınızı bağlayın ve ücreti doğrudan onlara ödeyin — biz asla arada değiliz. Bazılarının sınırlı ve kendi veri koşullarına bağlı ücretsiz bir kullanım hakkı vardır; lütfen resmî sitelerine bakın.",
       },
     ],
     seeEyebrow: "Gerçekte ne görürsünüz",

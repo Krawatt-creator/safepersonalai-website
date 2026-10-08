@@ -290,7 +290,7 @@ export const de: Dictionary = {
       },
       {
         q: "Brauche ich ein eigenes Konto bei Claude, OpenAI oder Gemini?",
-        a: "Nein. Sie können Ollama lokal auf Ihrem Mac nutzen, ohne Cloud-Konto und ohne Schlüssel. Wenn Sie Anthropic, OpenAI oder Gemini wählen, bringen Sie Ihr eigenes Konto und Ihren Schlüssel mit und bezahlen den Anbieter direkt. SafePersonalAI speichert den Schlüssel auf Ihrem Mac, sendet Anfragen direkt an den gewählten Anbieter und erhält Ihren Schlüssel nie und gibt ihn nie weiter. Lokale und Cloud-Modelle arbeiten hinter derselben Freigabe.",
+        a: "Nein. Sie können Ollama lokal auf Ihrem Mac nutzen, ohne Cloud-Konto und ohne Schlüssel. Wenn Sie Anthropic, OpenAI oder Gemini wählen, bringen Sie Ihr eigenes Konto und Ihren Schlüssel mit und bezahlen den Anbieter direkt. Manche Anbieter haben ein kostenloses Kontingent: Derzeit bietet Google für Gemini eine kostenlose Stufe mit Tageslimits an, bei der Google Ihre Eingaben zur Verbesserung seiner Modelle verwenden darf. Preise, Freikontingente und Datenbedingungen legt der Anbieter selbst fest, und sie ändern sich — bitte prüfen Sie vor Ihrer Wahl dessen offizielle Website. SafePersonalAI speichert den Schlüssel auf Ihrem Mac, sendet Anfragen direkt an den gewählten Anbieter und erhält Ihren Schlüssel nie und gibt ihn nie weiter. Lokale und Cloud-Modelle arbeiten hinter derselben Freigabe.",
       },
       {
         q: "Ist das nicht einfach ChatGPT oder Claude mit Umwegen?",

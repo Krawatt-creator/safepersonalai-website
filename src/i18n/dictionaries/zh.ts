@@ -289,7 +289,7 @@ export const zh: Dictionary = {
       },
       {
         q: "我需要自己的 Claude、OpenAI 或 Gemini 账号吗？",
-        a: "不需要。你可以在 Mac 上本地使用 Ollama，无需云账号或密钥。如果你选择 Anthropic、OpenAI 或 Gemini，则使用你自己的账号和密钥，并直接向该服务商付费。SafePersonalAI 把密钥保存在你的 Mac 上，把请求直接发送给你选择的服务商，从不接收或转交你的密钥。本地模型和云端模型都在同一个确认步骤之后工作。",
+        a: "不需要。你可以在 Mac 上本地使用 Ollama，无需云账号或密钥。如果你选择 Anthropic、OpenAI 或 Gemini，则使用你自己的账号和密钥，并直接向该服务商付费。部分服务商提供免费额度：目前 Google 为 Gemini 提供有每日限额的免费层级，在该层级下 Google 可能会使用你发送的内容来改进其模型。价格、免费额度和数据条款由服务商自行决定并会变动，选择之前请查看其官方网站。SafePersonalAI 把密钥保存在你的 Mac 上，把请求直接发送给你选择的服务商，从不接收或转交你的密钥。本地模型和云端模型都在同一个确认步骤之后工作。",
       },
       {
         q: "这不就是多了几个步骤的 ChatGPT 或 Claude 吗？",
