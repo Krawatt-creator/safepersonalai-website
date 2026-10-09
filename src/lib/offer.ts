@@ -15,8 +15,8 @@ export const TRIAL_DAYS = 90;
 
 export const PRICES = {
   base: 19,
-  travel: 29,
-  wealth: 29,
+  travel: 15,
+  wealth: 15,
   // All three modules together.
   bundle: 39,
 } as const;
