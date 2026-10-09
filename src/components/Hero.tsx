@@ -31,6 +31,9 @@ export default function Hero({
             <a href={DOWNLOAD_URL} download className="site-cta-primary">
               {t.ctaDownload}
             </a>
+            <a href="/demo/" className="site-cta-secondary" title={t.ctaDemoHint}>
+              {t.ctaDemo}
+            </a>
             <a
               href={`${localePath(lang, "/")}#use-cases`}
               className="site-cta-secondary"

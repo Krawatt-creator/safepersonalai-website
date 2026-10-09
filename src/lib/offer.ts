@@ -6,10 +6,10 @@ import { en } from "@/i18n/dictionaries/en";
 
 export const SITE_URL = "https://safepersonalai.com";
 
-export const APP_VERSION = "0.2.0-beta";
+export const APP_VERSION = "0.2.1-beta";
 
 export const DOWNLOAD_URL =
-  "https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.0-beta/SafePersonalAI-beta.zip";
+  "https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.1-beta/SafePersonalAI-beta.zip";
 
 export const TRIAL_DAYS = 90;
 

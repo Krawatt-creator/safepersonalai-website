@@ -42,6 +42,8 @@ export const zh: Dictionary = {
     body: "SafePersonalAI 在你自己的 Mac 上读取邮件、信息和银行对账单，并准备好待办事项、日历日程和资金概览。每一项都由你确认。你的数据绝不会发送给我们：它留在你的 Mac 上，AI 也在本机通过 Ollama 运行，或使用你自己的 AI 服务商账号。一次付费，无需订阅。",
     ctaDownload: "下载免费测试版",
     ctaUseCases: "查看真实使用场景",
+    ctaDemo: "试用演示",
+    ctaDemoHint: "用虚构数据打开真实应用，无需安装。演示为英文界面。",
     finePrint:
       "适用于搭载 Apple 芯片（M1 或更新）的 Mac。可使用本地 Ollama 模型而无需云账号，或使用你自己的 Anthropic、OpenAI 或 Gemini 密钥。",
   },

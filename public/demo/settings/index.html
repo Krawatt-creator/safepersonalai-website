@@ -1,0 +1,1215 @@
+<!doctype html>
+<html><head><script>
+/* SafePersonalAI demo: the app's real pages with invented data. Nothing here talks to a server. */
+(() => {
+  const PAGES = {"/": "", "/wealth": "wealth", "/investments": "investments", "/travel": "travel", "/todos": "todos", "/custom-rules": "custom-rules", "/trust-center": "trust-center", "/settings": "settings"}, REC = {"/api/health/access": {"status": 200, "type": "application/json", "body": "{\"messages_ok\":true,\"messages_in_use\":false}"}}, HOME = '/';
+  const say = (text) => { let n = document.getElementById('spa-demo-note');
+    if (!n) { n = document.createElement('div'); n.id = 'spa-demo-note'; document.body.appendChild(n); }
+    n.textContent = text; n.classList.add('on'); clearTimeout(say.t); say.t = setTimeout(() => n.classList.remove('on'), 3200); };
+  const NOT_SAVED = 'This is the demo: in the app this would be saved. Nothing is changed here.';
+  const demoPath = (path) => Object.prototype.hasOwnProperty.call(PAGES, path) ? '/demo/' + (PAGES[path] ? PAGES[path] + '/' : '') : null;
+  const answer = (obj, status) => new Response(typeof obj === 'string' ? obj : JSON.stringify(obj),
+    {status: status || 200, headers: {'content-type': 'application/json'}});
+  window.fetch = async (u, o) => {
+    let url; try { url = new URL(typeof u === 'string' ? u : u.url, location.href); } catch (_) { return answer({}, 404); }
+    if (url.origin !== location.origin) return answer({ok: false, error: 'The demo does not go online.'}, 503);
+    const method = ((o && o.method) || 'GET').toUpperCase();
+    if (method === 'GET') { const hit = REC[url.pathname + url.search] || REC[url.pathname];
+      return hit ? new Response(hit.body, {status: hit.status, headers: {'content-type': hit.type}}) : answer({}, 200); }
+    say(NOT_SAVED);
+    return answer({ok: false, demo: true, error: 'This is the demo: nothing is saved here.', detail: 'This is the demo: nothing is saved here.'}, 200);
+  };
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+    const raw = a.getAttribute('href') || '';
+    if (/^(#|mailto:|tel:|javascript:)/i.test(raw) || a.hasAttribute('data-demo-out')) return;
+    let url; try { url = new URL(raw, location.href); } catch (_) { return; }
+    if (url.origin !== location.origin) { e.preventDefault(); say('The demo stays on this page: this link opens only in the app.'); return; }
+    if (url.pathname.startsWith('/demo/')) return;
+    e.preventDefault();
+    const to = demoPath(url.pathname.replace(/\/$/, '') || '/');
+    if (to) location.href = to + url.hash; else say('This page is not part of the demo.');
+  }, true);
+  document.addEventListener('submit', (e) => { const f = e.target;
+    if (f && (f.getAttribute('method') || 'get').toLowerCase() === 'post') { e.preventDefault(); say(NOT_SAVED); } }, true);
+  window.open = () => { say('The demo stays on this page: this opens only in the app.'); return null; };
+  document.addEventListener('DOMContentLoaded', () => {
+    const bar = document.createElement('div'); bar.id = 'spa-demo-bar';
+    bar.innerHTML = '<b>Demo</b><span>The real app with invented data. Click anything: nothing is saved or sent.</span>' +
+      '<a data-demo-out href="' + HOME + '">Back to the website</a><a data-demo-out class="go" href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.1-beta/SafePersonalAI-beta.zip">Download the app</a>';
+    document.body.prepend(bar);
+  });
+})();
+</script>
+<style>
+  #spa-demo-bar { position:sticky; top:0; z-index:2147483000; display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px;
+    padding:9px 16px; background:#0b1f3a; color:#fff; font:13px/1.35 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    border-bottom:1px solid rgba(255,255,255,.18); }
+  #spa-demo-bar b { background:#ffd60a; color:#111; padding:2px 9px; border-radius:999px; font-size:11px; letter-spacing:.06em; text-transform:uppercase; }
+  #spa-demo-bar span { flex:1 1 260px; opacity:.92; }
+  #spa-demo-bar a { color:#fff; text-decoration:underline; text-underline-offset:3px; white-space:nowrap; }
+  #spa-demo-bar a.go { background:#0872ED; text-decoration:none; padding:5px 12px; border-radius:999px; font-weight:600; }
+  #spa-demo-note { position:fixed; left:50%; bottom:26px; transform:translate(-50%,20px); z-index:2147483001; max-width:min(92vw,520px);
+    background:#111; color:#fff; padding:11px 16px; border-radius:12px; font:13px/1.4 -apple-system,BlinkMacSystemFont,sans-serif;
+    box-shadow:0 10px 30px rgba(0,0,0,.4); opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; text-align:center; }
+  #spa-demo-note.on { opacity:1; transform:translate(-50%,0); }
+  #fc-until { display:none !important; }   /* a day of your own needs the app to lay the forecast out again */
+</style>
+<meta name="robots" content="noindex">
+<meta charset="utf-8"><title>Settings — SafePersonalAI</title>
+<script type="application/javascript">(() => {
+  const theme = localStorage.getItem('safepersonalai-theme') || 'auto';
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.dataset.accent = localStorage.getItem('safepersonalai-accent') || 'blue';
+})();</script>
+<style>
+  :root {
+    --bg: #0a0b0d;
+    --card-bg: #14161b;
+    --card-border: rgba(255,255,255,0.08);
+    --card-border-hover: rgba(255,255,255,0.16);
+    --accent: #0872ED;
+    --accent-dark: #013DA9;
+    --on-accent: #ffffff;
+    --accent-dim: color-mix(in srgb, var(--accent) 14%, transparent);
+    --accent-border: color-mix(in srgb, var(--accent) 40%, transparent);
+    --text: #f2f3f5;
+    --text-soft: #a7abb5;
+    --radius: 16px;
+  }
+  :root[data-accent="emerald"] { --accent:#00a86b; --accent-dark:#007a4e; }
+  :root[data-accent="blue"] { --accent:#0872ED; --accent-dark:#013DA9; }
+  :root[data-accent="violet"] { --accent:#8e55ea; --accent-dark:#6330b5; }
+  :root[data-accent="amber"] { --accent:#d88a00; --accent-dark:#9a5d00; }
+  :root[data-accent="rose"] { --accent:#e34d6f; --accent-dark:#a92d4b; }
+  :root[data-accent="slate"] { --accent:#64748b; --accent-dark:#334155; }
+  :root[data-theme="light"] {
+    --bg: #f5f7fb; --card-bg: rgba(255,255,255,.82); --card-border: rgba(15,23,42,.10);
+    --card-border-hover: rgba(8,114,237,.30); --text: #172033; --text-soft: #657084;
+  }
+  @media (prefers-color-scheme: light) {
+    :root[data-theme="auto"] {
+      --bg: #f5f7fb; --card-bg: rgba(255,255,255,.82); --card-border: rgba(15,23,42,.10);
+      --card-border-hover: rgba(8,114,237,.30); --text: #172033; --text-soft: #657084;
+    }
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display:none !important; }
+  button, [role="button"], .accent-choice, .provider-chip, .theme-control button,
+  .switch, .switch-track, .app-nav a, a.nav-link { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
+    background: var(--bg); color: var(--text); margin: 0; padding: 32px;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; }
+  .topbar { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:26px; flex-wrap:wrap; }
+  .topbar-actions { display:flex; align-items:center; gap:10px; }
+  .app-nav { display:flex; align-items:center; gap:4px; flex-wrap:wrap; }
+  .nav-disabled { color:var(--text-soft); opacity:.6; font-size:12px; padding:6px 8px; }
+  .brand { display:flex; align-items:center; gap:10px; }
+  .brand-mark { width:30px; height:30px; border-radius:9px; background:linear-gradient(135deg,var(--accent),var(--accent-dark)); display:grid; place-items:center; color:var(--on-accent); font-size:16px; font-weight:700; box-shadow:0 6px 18px rgba(1,61,169,.28); }
+  h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .sub { color: var(--text-soft); margin-bottom: 24px; font-size: 13px; }
+  .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 18px; }
+  .card h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-soft); margin: 0 0 4px; font-weight: 600; }
+  .card .card-hint { color:var(--text-soft); font-size:12px; margin-bottom:10px; }
+  .row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; }
+  .muted { color: var(--text-soft); font-size: 13px; }
+  .nav-link { color:var(--text-soft); text-decoration:none; font-size:13px; font-weight:600; padding:6px 10px; border-radius:999px; }
+  .nav-link:hover, .nav-link:focus-visible { color:var(--text); background:var(--card-bg); outline:2px solid var(--accent-border); outline-offset:1px; }
+  .settings-row { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:11px 0; border-top:1px solid var(--card-border); }
+  .settings-row:first-child { border-top:none; }
+  .settings-row .settings-label { font-size:14px; }
+  .settings-row .settings-detail { color:var(--text-soft); font-size:12px; margin-top:2px; }
+  .feature-group { margin-top:14px; } .feature-group-title { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text-soft); margin-bottom:4px; }
+  .feature-example { font-style:italic; }
+  .switch { position:relative; display:inline-block; width:40px; height:24px; flex-shrink:0; }
+  .switch input { opacity:0; width:0; height:0; }
+  .switch-track { position:absolute; inset:0; background:var(--card-border); border-radius:999px; cursor:pointer; transition:background .15s ease; }
+  .switch-track::before { content:""; position:absolute; width:18px; height:18px; left:3px; top:3px; background:#fff; border-radius:50%; transition:transform .15s ease; box-shadow:0 1px 3px rgba(0,0,0,.3); }
+  .switch input:checked + .switch-track { background:var(--accent); }
+  .switch input:checked + .switch-track::before { transform:translateX(16px); }
+  .switch input:focus-visible + .switch-track { outline:2px solid var(--accent-border); outline-offset:2px; }
+  .provider-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-top:6px; }
+  .provider-chip { border:1px solid var(--card-border); border-radius:12px; padding:11px 12px; background:transparent; color:var(--text); font:inherit; font-size:13px; cursor:pointer; text-align:left; transition:border-color .15s ease,transform .15s ease; }
+  .provider-chip:hover { border-color:var(--card-border-hover); transform:translateY(-1px); }
+  .provider-chip:focus-visible { border-color:var(--card-border-hover); transform:translateY(-1px); outline:2px solid var(--accent); outline-offset:2px; }
+  .provider-chip[aria-pressed="true"] { border-color:var(--accent); background:var(--accent-dim); color:var(--accent); font-weight:700; }
+  .account-actions { display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+  .danger-button { color:#ff6b73; border-color:color-mix(in srgb, #ff3b30 38%, var(--card-border)); }
+  .danger-button:hover { border-color:#ff6b73; }
+  .remove-confirm { display:inline-flex; align-items:center; gap:7px; flex-wrap:wrap; justify-content:flex-end; }
+  .confirm-button, .cancel-button { border:1px solid var(--card-border); border-radius:999px; padding:5px 9px; background:transparent; color:var(--text); font:inherit; font-size:11px; cursor:pointer; }
+  .confirm-button { background:#ff3b30; border-color:#ff3b30; color:#fff; font-weight:700; }
+  .cancel-button:hover, .cancel-button:focus-visible { border-color:var(--card-border-hover); }
+  .confirm-button:focus-visible, .cancel-button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  .settings-toast { position:fixed; left:50%; bottom:22px; transform:translateX(-50%); background:var(--text); color:var(--bg); border-radius:999px; padding:9px 15px; font-size:12px; font-weight:600; box-shadow:0 8px 30px rgba(0,0,0,.25); z-index:5; }
+  .profile-card { display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:center; }
+  .profile-avatar { width:64px; height:64px; display:grid; place-items:center; border-radius:20px; background:linear-gradient(135deg,var(--accent),var(--accent-dark)); color:#fff; font-size:22px; font-weight:700; box-shadow:0 8px 22px rgba(1,61,169,.24); }
+  .profile-fields { display:grid; gap:8px; } .profile-fields label { color:var(--text-soft); font-size:12px; font-weight:600; }
+  .profile-fields input { width:100%; border:1px solid var(--card-border); border-radius:10px; padding:9px 11px; background:var(--bg); color:var(--text); font:inherit; }
+  .profile-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; } .profile-actions button { border:1px solid var(--card-border); border-radius:999px; padding:7px 11px; background:transparent; color:var(--text); font:inherit; font-size:12px; cursor:pointer; }
+  .profile-actions button.primary { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:700; } .profile-note { color:var(--text-soft); font-size:11px; margin:0; }
+  .settings-row > label { color:var(--text-soft); font-size:13px; font-weight:600; } .settings-row > select { min-width:180px; border:1px solid var(--card-border); border-radius:10px; padding:8px; background:var(--bg); color:var(--text); } .settings-row > button.primary { border:1px solid var(--accent); border-radius:999px; padding:8px 12px; background:var(--accent); color:#fff; font:inherit; font-size:12px; font-weight:700; cursor:pointer; }
+  .accent-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; } .accent-choice { display:grid; justify-items:center; gap:6px; padding:9px 5px; border:1px solid var(--card-border); border-radius:12px; background:transparent; color:var(--text-soft); font:inherit; font-size:11px; cursor:pointer; }
+  .accent-choice[aria-pressed="true"] { border-color:var(--accent); color:var(--accent); background:var(--accent-dim); font-weight:700; } .accent-dot { width:22px; height:22px; border-radius:50%; border:2px solid rgba(255,255,255,.45); }
+  .accent-emerald { background:#00e599; } .accent-blue { background:#0872ed; } .accent-violet { background:#8e55ea; } .accent-amber { background:#f5a524; } .accent-rose { background:#ff6482; } .accent-slate { background:#8d99ae; }
+  body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; } input, textarea, select { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; } }
+  @media (max-width: 720px) { body { padding:18px; } .provider-grid { grid-template-columns:1fr 1fr; } .topbar-actions { width:100%; justify-content:space-between; } .settings-row { align-items:flex-start; } .account-actions { width:100%; } }
+  
+  .app-shell { display:grid; grid-template-columns:190px minmax(0,1fr); gap:22px; align-items:start; max-width:1240px; margin:0 auto; }
+  .app-rail { position:sticky; top:24px; border:1px solid var(--card-border, var(--border)); border-radius:18px; padding:14px 10px; background:var(--card-bg, var(--card)); box-shadow:0 14px 32px rgba(1,61,169,.08); }
+  .rail-brand { display:flex; align-items:center; justify-content:space-between; gap:9px; padding:4px 8px 14px; border-bottom:1px solid var(--card-border, var(--border)); margin-bottom:10px; font-weight:700; font-size:13px; }
+  .rail-brand-link { display:flex; align-items:center; gap:9px; min-width:0; }
+  .rail-mark { width:28px; height:28px; border-radius:9px; display:grid; place-items:center; background:linear-gradient(135deg,var(--accent),var(--accent-dark, var(--accent))); color:#fff; font-weight:700; flex:0 0 auto; }
+  .rail-section { color:var(--text-soft, var(--soft)); font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:10px 8px 6px; }
+  .rail-link, .rail-locked { display:flex; align-items:center; justify-content:space-between; gap:7px; width:100%; border-radius:10px; padding:9px 8px; color:var(--text-soft, var(--soft)); text-decoration:none; font-size:12px; font-weight:600; }
+  .rail-link:hover, .rail-link:focus-visible { color:var(--text); background:var(--accent-dim, var(--dim)); outline:2px solid var(--accent-border, var(--accent)); outline-offset:1px; }
+  .rail-link.current { color:var(--accent); background:var(--accent-dim, var(--dim)); }
+  .rail-locked { opacity:.56; cursor:not-allowed; }
+  .rail-lock { font-size:11px; }
+  .app-content { min-width:0; grid-column:2; }
+  .topbar .app-nav, .topbar .nav { display:none; }
+  @media (max-width: 820px) { .app-shell { grid-template-columns:1fr; gap:12px; } .app-rail { position:static; display:flex; align-items:center; gap:6px; overflow-x:auto; padding:8px; } .rail-brand,.rail-section { display:none; } .rail-link,.rail-locked { flex:0 0 auto; width:auto; white-space:nowrap; } .rail-lock { margin-left:3px; } }
+
+  
+  .rail-pin { border:1px solid var(--card-border, var(--border)); background:transparent; color:var(--text-soft, var(--soft)); width:22px; height:22px; border-radius:6px; cursor:pointer; display:grid; place-items:center; font-size:13px; font-weight:700; flex:0 0 auto; padding:0; }
+  .rail-pin:hover, .rail-pin:focus-visible { color:var(--accent); border-color:var(--accent-border, var(--accent)); outline:none; }
+  .app-shell.rail-autohide .app-rail { display: none; }
+  .app-shell.rail-autohide { grid-template-columns: minmax(0,1fr); }
+  .app-shell.rail-autohide .app-content { grid-column: 1; }
+  .rail-reveal { display:none; position:fixed; top:24px; left:24px; z-index:5; width:30px; height:30px; border-radius:9px; border:1px solid var(--card-border, var(--border)); background:var(--card-bg, var(--card)); color:var(--text-soft, var(--soft)); font-size:13px; font-weight:700; cursor:pointer; align-items:center; justify-content:center; padding:0; }
+  .rail-reveal:hover, .rail-reveal:focus-visible { color:var(--accent); border-color:var(--accent-border, var(--accent)); outline:none; }
+  .app-shell.rail-autohide .rail-reveal { display:flex; }
+  @media (max-width: 820px) { .rail-pin, .rail-reveal { display:none !important; } }
+  .rail-parent { padding:9px 8px 3px; color:var(--text-soft, var(--soft)); font-size:12px; font-weight:600; }
+  .rail-link.rail-sub { position:relative; padding-left:22px; }
+  .rail-link.rail-sub::before { content:""; position:absolute; left:11px; top:50%; width:4px; height:4px; margin-top:-2px; border-radius:50%; background:currentColor; opacity:.55; }
+  @media (max-width: 820px) { .rail-parent { display:none; } .rail-link.rail-sub { padding-left:8px; } .rail-link.rail-sub::before { display:none; } }
+
+</style></head>
+<body><main class="app-shell" aria-label="SafePersonalAI settings"><aside class="app-rail" aria-label="App navigation"><div class="rail-brand"><a href="/demo/" class="rail-brand-link" style="text-decoration:none;color:inherit;"><span class="rail-mark"><svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="display:block"><rect x="20" y="46.5" width="38" height="8.5" rx="4.25" fill="#fff" opacity=".22"/><path d="M23.5 29.5 A23 23 0 0 1 23.5 73.5" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round"/><path d="M55.5 50.5 L60.5 55.5 L80 35" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>SafePersonalAI</span></a><button type="button" class="rail-pin" id="rail-pin-toggle" aria-pressed="true" title="Hide sidebar">‹</button></div><div class="rail-section">Workspace</div><a class="rail-link" href="/demo/"><span>⌂&nbsp; Dashboard</span></a><div class="rail-section">Modules</div><a class="rail-link" href="/demo/"><span>Base · Operational</span><span class="rail-lock" aria-label="Unlocked">●</span></a><a class="rail-link" href="/events"><span>Events</span></a><div class="rail-parent" title="Wealth · Finance">Finance</div><a class="rail-link rail-sub" href="/demo/wealth/"><span>Wealth</span></a><a class="rail-link rail-sub" href="/demo/investments/"><span>Investments</span></a><a class="rail-link" href="/demo/travel/" title="Travel"><span>Travel</span></a><div class="rail-section">Manage</div><a class="rail-link" href="/demo/todos/"><span>✓&nbsp; To-Dos</span></a><a class="rail-link" href="/demo/custom-rules/"><span>✦&nbsp; Custom Rules</span></a><a class="rail-link" href="/demo/trust-center/"><span>🛡&nbsp; Trust Center</span></a><a class="rail-link current" href="/demo/settings/" aria-current="page"><span>⚙&nbsp; Settings</span></a></aside><button type="button" class="rail-reveal" id="rail-reveal-toggle" title="Show sidebar" aria-label="Show sidebar">›</button><div class="app-content"><div class="wrap">
+  <div class="topbar"><div class="brand"><a href="/demo/" class="brand-mark" style="text-decoration:none;" title="Go to Dashboard"><svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="display:block"><rect x="20" y="46.5" width="38" height="8.5" rx="4.25" fill="#fff" opacity=".22"/><path d="M23.5 29.5 A23 23 0 0 1 23.5 73.5" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round"/><path d="M55.5 50.5 L60.5 55.5 L80 35" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div><h1>Settings</h1><div class="sub" style="margin:0">Configure how SafePersonalAI behaves on this Mac</div></div></div><div class="topbar-actions"><nav class="app-nav" aria-label="Primary"><a class="nav-link" href="/demo/">Dashboard</a><a class="nav-link" href="/demo/settings/">Settings</a><a class="nav-link" href="/demo/custom-rules/">Custom Rules</a><a class="nav-link" href="/demo/todos/">To-Dos</a><a class="nav-link" href="/demo/trust-center/">Trust Center</a><a class="nav-link" href="/demo/wealth/">Wealth</a><a class="nav-link" href="/demo/travel/">Travel</a></nav><div class="theme-control" aria-label="Appearance"><button type="button" data-theme-choice="light" aria-pressed="false">Bright</button><button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button><button type="button" data-theme-choice="auto" aria-pressed="true">Auto</button></div></div></div>
+
+  
+
+  <div class="card profile-card" aria-labelledby="profile-heading">
+    <h2 id="profile-heading" style="grid-column:1 / -1;">Profile</h2>
+    <div class="profile-avatar" id="profile-avatar" aria-hidden="true">SP</div>
+    <div class="profile-fields"><label for="profile-name">Display name (this Mac only)</label><input id="profile-name" maxlength="60" autocomplete="name" placeholder="Your name"><div class="profile-actions"><button type="button" class="primary" id="save-profile">Save profile</button><button type="button" id="clear-profile">Clear</button><span class="profile-note" id="profile-status" role="status" aria-live="polite">Cosmetic only — never used by the pipeline.</span></div></div>
+  </div>
+  <div class="card" aria-labelledby="accent-heading">
+    <h2 id="accent-heading">Accent color</h2><div class="card-hint">Choose the highlight color for this browser. Alert meanings stay unchanged.</div>
+    <div class="accent-grid" role="group" aria-label="Accent color"><button type="button" class="accent-choice" data-accent="emerald" aria-pressed="false"><span class="accent-dot accent-emerald"></span>Emerald</button><button type="button" class="accent-choice" data-accent="blue" aria-pressed="true"><span class="accent-dot accent-blue"></span>Blue</button><button type="button" class="accent-choice" data-accent="violet" aria-pressed="false"><span class="accent-dot accent-violet"></span>Violet</button><button type="button" class="accent-choice" data-accent="amber" aria-pressed="false"><span class="accent-dot accent-amber"></span>Amber</button><button type="button" class="accent-choice" data-accent="rose" aria-pressed="false"><span class="accent-dot accent-rose"></span>Rose</button><button type="button" class="accent-choice" data-accent="slate" aria-pressed="false"><span class="accent-dot accent-slate"></span>Slate</button></div>
+  </div>
+  <div class="card">
+    <h2>Auto-Approve</h2>
+    <div class="card-hint">When on, this action type dispatches immediately instead of waiting in your review queue. An action SafePersonalAI is genuinely unsure about always waits for you, regardless of this setting.</div>
+    
+        <div class="settings-row">
+          <div><div class="settings-label">To-Dos</div><div class="settings-detail">Dispatch automatically, skip the review step</div></div>
+          <label class="switch">
+            <input type="checkbox" data-action-type="task" >
+            <span class="switch-track"></span>
+          </label>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Calendar Events</div><div class="settings-detail">Dispatch automatically, skip the review step</div></div>
+          <label class="switch">
+            <input type="checkbox" data-action-type="calendar_event" >
+            <span class="switch-track"></span>
+          </label>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Calendar Changes</div><div class="settings-detail">Dispatch automatically, skip the review step</div></div>
+          <label class="switch">
+            <input type="checkbox" data-action-type="calendar_change" >
+            <span class="switch-track"></span>
+          </label>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Recurring Bills</div><div class="settings-detail">Dispatch automatically, skip the review step</div></div>
+          <label class="switch">
+            <input type="checkbox" data-action-type="recurring_bill" >
+            <span class="switch-track"></span>
+          </label>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Bank CSV Imports</div><div class="settings-detail">Dispatch automatically, skip the review step</div></div>
+          <label class="switch">
+            <input type="checkbox" data-action-type="bank_csv_import" >
+            <span class="switch-track"></span>
+          </label>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Travel Bookings</div><div class="settings-detail">Dispatch automatically, skip the review step</div></div>
+          <label class="switch">
+            <input type="checkbox" data-action-type="travel_booking" >
+            <span class="switch-track"></span>
+          </label>
+        </div>
+  </div>
+  <div class="card" aria-labelledby="reply-drafts-heading"><h2 id="reply-drafts-heading">Reply drafts</h2><label class="settings-row" style="cursor:pointer;align-items:flex-start;gap:12px;"><input type="checkbox" id="reply-drafts-on" checked style="margin-top:3px;"><div><div class="settings-label">Prepare a reply when someone asks me a question by email</div><div class="settings-detail">The draft waits in Pending Actions. You can change it and open it in your own mail; SafePersonalAI never sends it. With this off, no drafts are prepared; everything else works as before.</div></div></label></div><script>document.getElementById('reply-drafts-on')?.addEventListener('change', (e) => fetch('/settings/reply-drafts', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({on: e.target.checked})}).then((r) => r.json()).then((x) => { if (!x.ok) e.target.checked = !e.target.checked; if (window.showToast) showToast(x.ok ? (x.on ? 'Reply drafts are on' : 'Reply drafts are off') : 'Could not save', !x.ok); }).catch(() => { e.target.checked = !e.target.checked; }));</script>
+  <div class="card" aria-labelledby="language-heading"><h2 id="language-heading">Languages</h2><div class="card-hint">Interface language is the language of these pages. Output language is the language of new to-dos and calendar texts. Longer explanations and messages are still in English.</div><div class="settings-row"><label for="interface-language">Interface language</label><select id="interface-language" data-keep-language><option value="en" selected>English</option><option value="de" >Deutsch</option><option value="tr" >Türkçe</option><option value="es" >Español</option><option value="zh" >中文</option><option value="fr" >Français</option></select></div><div class="settings-row"><label for="output-language">Output language</label><select id="output-language" data-keep-language><option value="en" selected>English</option><option value="de" >Deutsch</option><option value="tr" >Türkçe</option><option value="es" >Español</option><option value="zh" >中文</option><option value="fr" >Français</option></select><button type="button" class="profile-actions button primary" id="save-language">Save</button></div></div>
+  <div class="card" aria-labelledby="calendar-heading"><h2 id="calendar-heading">Calendar providers</h2><div class="card-hint">Choose at least one destination for new calendar events. Existing events are never changed.</div><div class="settings-row"><label><input type="checkbox" id="calendar-google" checked> Google Calendar</label><label><input type="checkbox" id="calendar-apple" > Apple Calendar</label><button type="button" class="profile-actions button primary" id="save-calendar">Save</button></div></div>
+
+  <div class="card" aria-labelledby="imessage-heading">
+    <h2 id="imessage-heading">iMessage trusted senders</h2>
+    <div class="card-hint">Only messages from senders listed here are ever read — everything else is silently ignored. Separate multiple entries with commas. Leave blank to turn iMessage automation off. This used to be set only in the one-time setup wizard; you can add or change it here anytime.</div>
+    <input id="imessage-senders" placeholder="e.g. +491701234567, you@icloud.com" value="" style="width:100%;border:1px solid var(--card-border);border-radius:10px;padding:9px 11px;background:var(--bg);color:var(--text);font:inherit;margin-bottom:10px;">
+    <div class="settings-row"><button type="button" class="profile-actions button primary" id="save-imessage">Save</button><span class="profile-note" id="imessage-status" role="status" aria-live="polite"></span></div>
+  </div>
+  <div class="card" id="features" aria-labelledby="features-heading"><h2 id="features-heading">iMessage commands &amp; automatic features <span class="muted" style="font-weight:500;">0 of 38 on</span></h2><div class="card-hint">Text these to SafePersonalAI from a trusted number (set above). They read and reply to you only; a few also add a to-do for you (a letter's deadline, packing for a trip). Nothing is sent to anyone else and no money moves. Text “help” anytime for this list.</div><div class="feature-group"><div class="feature-group-title">Everyday</div><div class="settings-row"><div><div class="settings-label">❓ Help</div><div class="settings-detail">Texts back every command that&#x27;s switched on, with an example.</div><div class="settings-detail feature-example">Text: “help”</div></div><label class="switch"><input type="checkbox" data-feature-id="help" aria-label="Help" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🔎 Find an email</div><div class="settings-detail">Searches the last 60 days of your mail and texts back the best 3.</div><div class="settings-detail feature-example">Text: “Find the email from Anna about the lease”</div></div><label class="switch"><input type="checkbox" data-feature-id="find_email" aria-label="Find an email" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">⏳ Waiting for a reply</div><div class="settings-detail">Emails you sent 3–21 days ago with no answer yet (Gmail).</div><div class="settings-detail feature-example">Text: “Who hasn&#x27;t replied?”</div></div><label class="switch"><input type="checkbox" data-feature-id="waiting_reply" aria-label="Waiting for a reply" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🗓️ Weekly digest</div><div class="settings-detail">Sunday evening: to-dos due, money spent, upcoming trips.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="weekly_digest" aria-label="Weekly digest" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">✅ Quick to-do</div><div class="settings-detail">Saves a to-do (English, German or Turkish).</div><div class="settings-detail feature-example">Text: “Remind me to call the landlord tomorrow”</div></div><label class="switch"><input type="checkbox" data-feature-id="quick_task" aria-label="Quick to-do" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🔁 Repeating reminder</div><div class="settings-detail">Creates a to-do that comes back on a schedule.</div><div class="settings-detail feature-example">Text: “Remind me every Tuesday to take out the trash”</div></div><label class="switch"><input type="checkbox" data-feature-id="recurring_reminder" aria-label="Repeating reminder" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">📋 My to-dos</div><div class="settings-detail">Texts back your open to-dos with deadlines.</div><div class="settings-detail feature-example">Text: “What are my open todos?”</div></div><label class="switch"><input type="checkbox" data-feature-id="list_todos" aria-label="My to-dos" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🔔 My reminders</div><div class="settings-detail">Reads your Apple Reminders back to you.</div><div class="settings-detail feature-example">Text: “What&#x27;s on my reminders list?”</div></div><label class="switch"><input type="checkbox" data-feature-id="reminders_lookup" aria-label="My reminders" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🗓️ Tomorrow&#x27;s agenda</div><div class="settings-detail">Lists tomorrow&#x27;s calendar events.</div><div class="settings-detail feature-example">Text: “What&#x27;s on my calendar tomorrow?”</div></div><label class="switch"><input type="checkbox" data-feature-id="tomorrow_agenda" aria-label="Tomorrow&#x27;s agenda" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">⏱️ Free time check</div><div class="settings-detail">Tells you how long until your next meeting.</div><div class="settings-detail feature-example">Text: “Do I have time to call mom before my next meeting?”</div></div><label class="switch"><input type="checkbox" data-feature-id="free_time_check" aria-label="Free time check" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🧑‍💼 Meeting prep</div><div class="settings-detail">Your next meeting plus the latest email with those people.</div><div class="settings-detail feature-example">Text: “Brief me before my next meeting”</div></div><label class="switch"><input type="checkbox" data-feature-id="meeting_prep" aria-label="Meeting prep" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">📞 Contact info</div><div class="settings-detail">Texts back a contact&#x27;s phone and email.</div><div class="settings-detail feature-example">Text: “Call info for Anna”</div></div><label class="switch"><input type="checkbox" data-feature-id="call_info" aria-label="Contact info" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🔐 Verification code</div><div class="settings-detail">Finds the latest sign-in code in your email.</div><div class="settings-detail feature-example">Text: “What&#x27;s my code?”</div></div><label class="switch"><input type="checkbox" data-feature-id="verification_code" aria-label="Verification code" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">📦 Package status</div><div class="settings-detail">The latest shipping update from your email.</div><div class="settings-detail feature-example">Text: “Where&#x27;s my package?”</div></div><label class="switch"><input type="checkbox" data-feature-id="package_tracking" aria-label="Package status" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🚨 Urgent mail check</div><div class="settings-detail">Spots final notices and reminders among your letters.</div><div class="settings-detail feature-example">Text: “Any urgent bills?”</div></div><label class="switch"><input type="checkbox" data-feature-id="urgent_mail" aria-label="Urgent mail check" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🧾 Explain a letter</div><div class="settings-detail">Explains an official letter in plain language and adds its deadline to your to-dos.</div><div class="settings-detail feature-example">Text: “Explain this: &lt;paste the letter&gt;”</div></div><label class="switch"><input type="checkbox" data-feature-id="explain_text" aria-label="Explain a letter" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🗂️ What to bring</div><div class="settings-detail">Finds what the confirmation email says to bring.</div><div class="settings-detail feature-example">Text: “What do I need to bring to my Bürgeramt appointment?”</div></div><label class="switch"><input type="checkbox" data-feature-id="appointment_checklist" aria-label="What to bring" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">✂️ Cancellation deadline</div><div class="settings-detail">Finds the notice period in your contract emails.</div><div class="settings-detail feature-example">Text: “When can I cancel my gym membership?”</div></div><label class="switch"><input type="checkbox" data-feature-id="cancellation_lookup" aria-label="Cancellation deadline" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🖼️ Find a photo</div><div class="settings-detail">Sends back the best matching photo from Photos.</div><div class="settings-detail feature-example">Text: “Photo: beach sunset”</div></div><label class="switch"><input type="checkbox" data-feature-id="photo_search" aria-label="Find a photo" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">☔ Weather</div><div class="settings-detail">A short weather heads-up.</div><div class="settings-detail feature-example">Text: “Do I need an umbrella tomorrow?”</div></div><label class="switch"><input type="checkbox" data-feature-id="weather" aria-label="Weather" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">💱 Currency converter</div><div class="settings-detail">Converts an amount at today&#x27;s rate.</div><div class="settings-detail feature-example">Text: “Convert 50 usd to eur”</div></div><label class="switch"><input type="checkbox" data-feature-id="currency_convert" aria-label="Currency converter" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">✉️ Reply in my words</div><div class="settings-detail">Finishes a reply draft that is waiting, from what you say, and sends the text back for you to read. Nothing is sent to Anna.</div><div class="settings-detail feature-example">Text: “reply to Anna: Saturday works, 7 pm”</div></div><label class="switch"><input type="checkbox" data-feature-id="reply_words" aria-label="Reply in my words" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🌅 Morning briefing</div><div class="settings-detail">Each morning: today&#x27;s agenda and bills due.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="morning_briefing" aria-label="Morning briefing" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🎂 Birthday nudges</div><div class="settings-detail">A heads-up a few days before a contact&#x27;s birthday.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="birthday_nudge" aria-label="Birthday nudges" ><span class="switch-track"></span></label></div></div><div class="feature-group"><div class="feature-group-title">Money</div><div class="settings-row"><div><div class="settings-label">💳 Spending question</div><div class="settings-detail">Adds up your imported transactions.</div><div class="settings-detail feature-example">Text: “How much have I spent on groceries this month?”</div></div><label class="switch"><input type="checkbox" data-feature-id="spend_query" aria-label="Spending question" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🧮 Upcoming bills</div><div class="settings-detail">Lists recurring bills due soon.</div><div class="settings-detail feature-example">Text: “What bills are coming up this month?”</div></div><label class="switch"><input type="checkbox" data-feature-id="upcoming_bills" aria-label="Upcoming bills" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🔄 Renewals</div><div class="settings-detail">Subscriptions and contracts renewing soon.</div><div class="settings-detail feature-example">Text: “What&#x27;s renewing soon?”</div></div><label class="switch"><input type="checkbox" data-feature-id="renewal_digest" aria-label="Renewals" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🗃️ Tax documents</div><div class="settings-detail">Lists this year&#x27;s tax-relevant emails.</div><div class="settings-detail feature-example">Text: “What tax documents have I received?”</div></div><label class="switch"><input type="checkbox" data-feature-id="tax_documents" aria-label="Tax documents" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🏦 Update a balance</div><div class="settings-detail">Sets that account&#x27;s balance (or ask “Sparkasse balance?”).</div><div class="settings-detail feature-example">Text: “Sparkasse balance 2000 euro”</div></div><label class="switch"><input type="checkbox" data-feature-id="balance_update" aria-label="Update a balance" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">📊 Month summary</div><div class="settings-detail">This month&#x27;s spending by category, compared with last month.</div><div class="settings-detail feature-example">Text: “How was my month?”</div></div><label class="switch"><input type="checkbox" data-feature-id="month_summary" aria-label="Month summary" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🛋️ Can I afford it?</div><div class="settings-detail">The first day it fits your forecast. Set your own rule with “keep at least 1000 euro” or “I want to save 300 a month”.</div><div class="settings-detail feature-example">Text: “When can I afford a 400 euro couch?”</div></div><label class="switch"><input type="checkbox" data-feature-id="afford" aria-label="Can I afford it?" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">💸 Budget alerts</div><div class="settings-detail">An evening message when a budget passes 80% or 100%.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="budget_alerts" aria-label="Budget alerts" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">📥 New statements from my banks</div><div class="settings-detail">Once a day, new statements your saved banks email you are prepared for import (you still click Import).</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="statement_autoimport" aria-label="New statements from my banks" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">📧 Bank alerts from email</div><div class="settings-detail">Transaction and balance emails from your saved banks (e.g. Sparkasse Kontowecker, card-payment alerts) update Wealth the same day; the statement later replaces them.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="bank_alert_mail" aria-label="Bank alerts from email" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🧾 Bills &amp; subscriptions from email</div><div class="settings-detail">Invoices and receipts from services you pay (Cloudflare, Anthropic, Telekom…) are listed on Wealth as monthly costs — never as bank accounts, never counted twice.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="bills_mail" aria-label="Bills &amp; subscriptions from email" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label"> Apple Pay spending</div><div class="settings-detail">Each Apple Pay tap appears in Wealth within minutes. One-time iPhone setup: Shortcuts → Automation → + → Transaction → Run Immediately → &#x27;Append to Text File&#x27; with “Current Date | Amount | Merchant | Card” into Shortcuts/SafePersonalAI/apple_pay.txt in iCloud Drive.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="apple_pay" aria-label="Apple Pay spending" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">📷 Bank screenshots by iMessage</div><div class="settings-detail">Balances and transactions on a banking-app screenshot are read on this Mac and wait in Wealth for your OK.</div><div class="settings-detail feature-example">Text: “(send a screenshot of your banking app)”</div></div><label class="switch"><input type="checkbox" data-feature-id="screenshot_imessage" aria-label="Bank screenshots by iMessage" ><span class="switch-track"></span></label></div></div><div class="feature-group"><div class="feature-group-title">Travel</div><div class="settings-row"><div><div class="settings-label">✈️ Flight check-in reminder</div><div class="settings-detail">About a day before a booked flight: a message that online check-in is open.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="checkin_reminder" aria-label="Flight check-in reminder" ><span class="switch-track"></span></label></div></div></div>
+  <div class="card" aria-labelledby="currency-heading"><h2 id="currency-heading">Display currency</h2><div class="card-hint">Imported amounts keep their original currency; this only changes the currency they are shown in.</div><div class="settings-row"><label for="display-currency">Currency</label><select id="display-currency"><option value="EUR" selected>Euro (€)</option><option value="USD" >US Dollar ($)</option><option value="GBP" >British Pound (£)</option><option value="TRY" >Turkish Lira (₺)</option><option value="CNY" >Chinese Yuan / Renminbi (¥)</option><option value="JPY" >Japanese Yen (¥)</option><option value="CHF" >Swiss Franc (CHF)</option><option value="CAD" >Canadian Dollar (CA$)</option><option value="AUD" >Australian Dollar (A$)</option><option value="INR" >Indian Rupee (₹)</option><option value="SEK" >Swedish Krona (kr)</option><option value="NOK" >Norwegian Krone (kr)</option><option value="MXN" >Mexican Peso (MX$)</option><option value="BRL" >Brazilian Real (R$)</option><option value="SGD" >Singapore Dollar (S$)</option></select><button type="button" class="profile-actions button primary" id="save-currency">Save</button></div></div>
+
+  <div class="card" id="tax-country" aria-labelledby="tax-country-heading"><h2 id="tax-country-heading">Country of residence (for tax hints)</h2><div class="card-hint">Turns on 🧾 hints on transactions that may matter for your taxes, and the Excel export for your tax advisor. Specific hints (for example §35a for tradespeople) are available for Germany; other countries get general hints. These are hints, not tax advice.</div><div class="settings-row"><label for="tax-country-select">Country</label><select id="tax-country-select"><option value="">Not set — tax features off</option><option value="DE">Germany</option><option value="AT">Austria</option><option value="CH">Switzerland</option><option value="NL">Netherlands</option><option value="BE">Belgium</option><option value="FR">France</option><option value="ES">Spain</option><option value="IT">Italy</option><option value="TR">Türkiye</option><option value="GB">United Kingdom</option><option value="IE">Ireland</option><option value="US">United States</option><option value="CA">Canada</option><option value="AU">Australia</option><option value="OTHER">Another country</option></select><button type="button" class="profile-actions button primary" id="save-tax-country">Save</button></div><div class="card-hint" id="tax-country-status" aria-live="polite"></div></div><script>
+document.getElementById('save-tax-country')?.addEventListener('click', async () => {
+  const out = document.getElementById('tax-country-status');
+  const res = await fetch('/settings/tax-country', {method: 'POST', headers: {'content-type': 'application/json'},
+    body: JSON.stringify({country: document.getElementById('tax-country-select').value})}).then((r) => r.json())
+    .catch(() => ({ok: false}));
+  out.textContent = res.ok ? (res.country ? 'Saved — tax hints are on.' : 'Saved — tax hints are off.')
+                           : (res.error || 'Could not save.');
+});
+</script>
+  <div class="card" id="confirmations" aria-labelledby="confirmations-heading"><h2 id="confirmations-heading">Confirmations</h2><div class="card-hint">SafePersonalAI asks “Are you sure?” before a change that touches many things at once or can't be undone. If you chose “Don't ask again”, switch the question back on here.</div><div class="settings-row"><div><div class="settings-label">Changing a category</div><div class="settings-detail">Before a payee&#x27;s transactions are filed under another category.</div></div><label class="switch"><input type="checkbox" data-confirm-key="category_change" aria-label="Ask: Changing a category" checked><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">Removing an investment</div><div class="settings-detail">Before an investment is removed from your list.</div></div><label class="switch"><input type="checkbox" data-confirm-key="remove_holding" aria-label="Ask: Removing an investment" checked><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">Removing a loan</div><div class="settings-detail">Before a loan is removed from your list.</div></div><label class="switch"><input type="checkbox" data-confirm-key="remove_loan" aria-label="Ask: Removing a loan" checked><span class="switch-track"></span></label></div></div><script>
+document.querySelectorAll('[data-confirm-key]').forEach((box) => box.addEventListener('change', async () => {
+  const res = await fetch('/settings/confirmations', {method: 'POST', headers: {'content-type': 'application/json'},
+    body: JSON.stringify({key: box.dataset.confirmKey, ask: box.checked})}).then((r) => r.json()).catch(() => ({ok: false}));
+  if (!res.ok) box.checked = !box.checked;
+}));
+</script>
+  <div class="card" id="iphone" aria-labelledby="iphone-heading"><h2 id="iphone-heading">iPhone</h2><div class="card-hint">See and steer SafePersonalAI from your iPhone. The two talk through your own iCloud; everything is locked with a key only this Mac and your paired iPhone have — not even Apple can read it. <b>The iPhone app is not in the App Store yet</b>; it is on its way. What you ask for on the phone is carried out when this Mac is awake and online.</div><div class="settings-detail" style="padding:6px 0;">Included while your free trial runs. Afterwards the iPhone link is €1.99 a month; cancel any time.</div><div id="phone-devices"><div class="settings-detail" style="padding:8px 0;">No iPhone is paired yet.</div></div><button type="button" class="provider-chip" id="pair-start" style="margin-top:10px;">Pair an iPhone</button><label class="settings-row" style="cursor:pointer;align-items:flex-start;gap:12px;margin-top:10px;"><input type="checkbox" id="phone-stay-awake" style="margin-top:3px;"><div><div class="settings-label">Keep this Mac awake while it is plugged in</div><div class="settings-detail">A sleeping Mac reads no mail and cannot answer your iPhone: the phone then shows the last picture it got, and what you tap waits until the Mac wakes. With this on, the Mac does not fall asleep while it is on mains power and a phone is paired (the screen may still turn off). On battery, and with the lid closed, it sleeps as usual.</div></div></label><dialog id="pair-sheet" class="pair-sheet"><h3>Pair your iPhone</h3><p>Open SafePersonalAI on your iPhone and point its camera at this.</p><div id="pair-visual"></div><p class="pair-wait" id="pair-status" aria-live="polite">Waiting for your iPhone…</p><div class="pair-btns"><button type="button" id="pair-cancel">Cancel</button></div></dialog><style>
+.pair-code { display:block; margin:0 auto; max-width:100%; height:auto; }
+.pair-rings circle { fill:var(--accent, #0872ED); }
+.pair-ring { transform-origin:50% 50%; transform-box:view-box; animation:pair-turn linear infinite; }
+.pair-ring:nth-child(3n+2) circle { fill:#64d2ff; } .pair-ring:nth-child(3n) circle { fill:#5e5ce6; }
+@keyframes pair-turn { to { transform:rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .pair-ring { animation:none !important; } }
+</style><style>
+.pair-sheet { border:1px solid var(--card-border); border-radius:22px; padding:24px 26px 20px; width:min(480px, calc(100vw - 40px));
+  background:color-mix(in srgb, var(--bg) 92%, var(--text) 8%); color:var(--text); box-shadow:0 30px 80px rgba(0,0,0,.5); text-align:center; }
+.pair-sheet::backdrop { background:rgba(0,0,0,.45); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); }
+.pair-sheet[open] { animation:pair-in .28s cubic-bezier(.2,.8,.2,1); }
+@keyframes pair-in { from { opacity:0; transform:scale(.94); } to { opacity:1; transform:none; } }
+.pair-sheet h3 { margin:0 0 6px; font-size:18px; font-weight:700; }
+.pair-sheet p { margin:0 0 14px; font-size:13px; color:var(--text-soft); line-height:1.45; }
+.pair-wait { margin:14px 0 !important; font-weight:600; }
+.pair-btns { display:flex; gap:10px; justify-content:center; }
+.pair-btns button { height:36px; min-width:110px; border-radius:10px; border:1px solid var(--card-border); background:transparent;
+  color:var(--text); font:inherit; font-size:13px; font-weight:600; cursor:pointer; }
+.pair-btns button.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+</style><script>
+(() => {
+  const sheet = document.getElementById('pair-sheet');
+  if (!sheet) return;
+  const post = (url, body) => fetch(url, {method: 'POST', headers: {'content-type': 'application/json'},
+    body: JSON.stringify(body || {})}).then((r) => r.json()).catch(() => ({ok: false}));
+  const status = document.getElementById('pair-status'), visual = document.getElementById('pair-visual'),
+        btns = sheet.querySelector('.pair-btns'), devices = document.getElementById('phone-devices');
+  document.getElementById('phone-stay-awake')?.addEventListener('change', async (e) => {
+    const res = await post('/phone/stay-awake', {on: e.target.checked});
+    if (!res.ok) e.target.checked = !e.target.checked;
+  });
+  let session = null, timer = null, ends = 0;
+  const stop = () => { clearInterval(timer); timer = null; };
+  const close = (cancel) => {
+    stop();
+    if (cancel && session) post('/phone/pairing/cancel', {id: session});
+    session = null;
+    if (sheet.open) sheet.close();
+  };
+  document.getElementById('pair-start').addEventListener('click', async () => {
+    const res = await post('/phone/pairing/start');
+    if (!res.ok) return;
+    session = res.id; ends = Date.now() + res.expires_in * 1000;
+    visual.innerHTML = res.svg;
+    btns.innerHTML = '<button type="button" id="pair-cancel">Cancel</button>';
+    status.textContent = 'Waiting for your iPhone…';
+    sheet.showModal();
+    stop();
+    timer = setInterval(async () => {
+      if (Date.now() > ends) { status.textContent = 'This code has expired. Start again.'; visual.style.opacity = .25; stop(); return; }
+      const s = await fetch('/phone/pairing/status?id=' + encodeURIComponent(session)).then((r) => r.json()).catch(() => ({}));
+      if (s.pending && !btns.querySelector('#pair-ok')) {
+        status.textContent = `Pair with “${s.pending}”?`;
+        btns.innerHTML = '<button type="button" id="pair-cancel">Cancel</button><button type="button" class="primary" id="pair-ok">Pair</button>';
+      }
+    }, 1500);
+  });
+  sheet.addEventListener('click', async (e) => {
+    if (e.target.closest('#pair-cancel')) { close(true); return; }
+    if (e.target.closest('#pair-ok')) {
+      const res = await post('/phone/pairing/confirm', {id: session});
+      if (res.ok) { devices.innerHTML = res.html; close(false); } else status.textContent = res.error || 'Pairing did not work.';
+    }
+  });
+  sheet.addEventListener('cancel', (e) => { e.preventDefault(); close(true); });
+  devices.addEventListener('click', async (e) => {
+    const btn = e.target.closest('[data-unpair]');
+    if (!btn) return;
+    const ask = window.spaConfirm ? await window.spaConfirm({title: `Unpair “${btn.dataset.name}”?`, ok: 'Unpair', danger: true,
+      text: 'That iPhone can no longer see or steer SafePersonalAI. You can pair it again at any time.'}) : confirm('Unpair?');
+    if (!ask) return;
+    const res = await post(`/phone/devices/${btn.dataset.unpair}/remove`);
+    if (res.ok) devices.innerHTML = res.html;
+  });
+})();
+</script></div><style>
+.spa-sheet { border:1px solid var(--card-border); border-radius:18px; padding:22px 22px 18px; width:min(380px, calc(100vw - 48px));
+  background:color-mix(in srgb, var(--bg) 92%, var(--text) 8%); color:var(--text); box-shadow:0 24px 70px rgba(0,0,0,.45);
+  animation:spa-sheet-in .22s cubic-bezier(.2,.8,.2,1); }
+.spa-sheet::backdrop { background:rgba(0,0,0,.38); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px); }
+.spa-sheet h3 { margin:0 0 8px; font-size:16px; font-weight:650; text-align:center; }
+.spa-sheet p { margin:0 0 14px; font-size:13px; line-height:1.45; color:var(--text-soft); text-align:center; overflow-wrap:anywhere; }
+.spa-dont { display:flex; align-items:center; justify-content:center; gap:8px; font-size:12px; color:var(--text-soft); margin-bottom:14px; cursor:pointer; }
+.spa-dont small { display:block; }
+.spa-btns { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.spa-btns button { height:38px; border-radius:10px; border:1px solid var(--card-border); background:transparent; color:var(--text);
+  font:inherit; font-size:13px; font-weight:600; cursor:pointer; }
+.spa-btns button[data-yes] { background:var(--accent); border-color:var(--accent); color:#fff; }
+.spa-btns button[data-yes].danger { background:#ff3b30; border-color:#ff3b30; }
+.spa-btns button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+@keyframes spa-sheet-in { from { opacity:0; transform:scale(.94); } to { opacity:1; transform:none; } }
+</style><script>
+window.spaConfirm = (o) => new Promise((resolve) => {
+  const silenced = window.SPA_SILENCED || (window.SPA_SILENCED = []);
+  if (o.key && silenced.includes(o.key)) { resolve(true); return; }
+  const d = document.createElement('dialog');
+  d.className = 'spa-sheet';
+  d.innerHTML = '<h3></h3><p></p>' + (o.key ? '<label class="spa-dont"><input type="checkbox"><span>Don’t ask again' +
+    '<small>You can turn this back on in Settings.</small></span></label>' : '') +
+    '<div class="spa-btns"><button type="button" data-no>Cancel</button><button type="button" data-yes></button></div>';
+  d.querySelector('h3').textContent = o.title;
+  d.querySelector('p').textContent = o.text || '';
+  const yes = d.querySelector('[data-yes]'), no = d.querySelector('[data-no]');
+  yes.textContent = o.ok || 'OK';
+  if (o.danger) yes.classList.add('danger');
+  document.body.appendChild(d);
+  const done = (answer) => {
+    if (answer && o.key && d.querySelector('input')?.checked) {
+      silenced.push(o.key);
+      fetch('/settings/confirmations', {method: 'POST', headers: {'content-type': 'application/json'},
+        body: JSON.stringify({key: o.key, ask: false})}).catch(() => {});
+    }
+    d.close(); d.remove(); resolve(answer);
+  };
+  yes.addEventListener('click', () => done(true));
+  no.addEventListener('click', () => done(false));
+  d.addEventListener('cancel', (e) => { e.preventDefault(); done(false); });   // Esc
+  d.addEventListener('click', (e) => { if (e.target === d) done(false); });    // outside the sheet
+  d.showModal();
+  (o.danger ? no : yes).focus();
+});
+</script>
+
+  <div class="card" id="document-backup" aria-labelledby="backup-heading"><h2 id="backup-heading">Save copies of your documents</h2><div class="card-hint">Every bank statement or screenshot you import (the original file) and every tax export is filed into a <b>SafePersonalAI</b> folder: <i>Bank statements / account / year</i> and <i>Tax / year</i>. Choose one place or both. Nothing is ever overwritten or deleted there.</div><div class="settings-row"><div><div class="settings-label">☁️ iCloud Drive</div><div class="settings-detail"></div></div><label class="switch"><input type="checkbox" data-backup="icloud" aria-label="Save copies to iCloud Drive" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🟢 Google Drive</div><div class="settings-detail"></div></div><label class="switch"><input type="checkbox" data-backup="google_drive" aria-label="Save copies to Google Drive" ><span class="switch-track"></span></label></div><div class="card-hint" data-backup-status aria-live="polite"></div></div><script>
+(() => {
+  const card = document.getElementById('document-backup');
+  if (!card) return;
+  const out = card.querySelector('[data-backup-status]');
+  const post = (url, body) => fetch(url, {method: 'POST', headers: {'content-type': 'application/json'},
+    body: JSON.stringify(body || {})}).then((r) => r.json()).catch(() => ({ok: false}));
+  card.querySelectorAll('input[data-backup]').forEach((box) => box.addEventListener('change', async () => {
+    const res = await post('/settings/document-backup', {
+      icloud: card.querySelector('[data-backup=icloud]').checked,
+      google_drive: card.querySelector('[data-backup=google_drive]').checked});
+    out.textContent = res.ok ? 'Saved ✓ — reopen Settings to see the status.' : (res.error || 'Could not save.');
+  }));
+  card.querySelector('[data-allow-drive]')?.addEventListener('click', async (e) => {
+    e.target.disabled = true;
+    out.textContent = 'A Google page opens in your browser. Approve it, then come back here.';
+    await post('/settings/document-backup/allow-drive');
+  });
+})();
+</script>
+
+  <div class="card">
+    <h2>AI Provider <span class="info-wrap"><button type="button" class="info-tip" aria-expanded="false" aria-label="About the AI provider">i</button><span class="tip-pop" role="tooltip" hidden>The AI that reads your emails and turns them into appointments, to-dos and bills. You use your own key and pay the provider directly (usually a few cents a day). Ollama runs fully on your Mac, no key needed.</span></span></h2>
+    <div class="provider-grid" role="group" aria-label="AI provider"><button type="button" class="provider-chip" data-provider="anthropic" aria-pressed="true">Anthropic</button><button type="button" class="provider-chip" data-provider="gemini" aria-pressed="false">Gemini</button><button type="button" class="provider-chip" data-provider="openai" aria-pressed="false">OpenAI</button><button type="button" class="provider-chip" data-provider="ollama" aria-pressed="false">Ollama (local)</button></div>
+    <div class="settings-detail" style="margin-top:10px;">🔑 ✅ Anthropic key saved</div><form class="add-form" id="provider-key-form" data-provider="anthropic" style="grid-template-columns:1fr auto;margin-top:8px;"><input name="key" type="password" placeholder="Replace your Anthropic API key" aria-label="Anthropic API key" autocomplete="off"><button type="submit" class="primary">Save</button><a href="https://console.anthropic.com/settings/keys" style="color:var(--accent);font-size:12px;grid-column:1/-1;">Get a key ↗</a></form><div class="card-hint" id="provider-key-status" aria-live="polite"></div><script>
+document.getElementById('provider-key-form')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const f = e.target, out = document.getElementById('provider-key-status');
+  const res = await fetch('/settings/provider-key', {method: 'POST', headers: {'content-type': 'application/json'},
+    body: JSON.stringify({provider: f.dataset.provider, key: f.elements.namedItem('key').value})})
+    .then((r) => r.json()).catch(() => ({ok: false}));
+  out.textContent = res.ok ? '✅ Key saved — your emails are read from the next check (within 15 minutes).'
+                           : (res.error || 'Could not save the key.');
+  if (res.ok) f.elements.namedItem('key').value = '';
+});
+document.querySelectorAll('.provider-chip[data-provider]').forEach((chip) => chip.addEventListener('click', () => {
+  const f = document.getElementById('provider-key-form');
+  if (!f) return;
+  const names = {anthropic: 'Anthropic', gemini: 'Gemini', openai: 'OpenAI'};
+  const links = {anthropic: 'https://console.anthropic.com/settings/keys', gemini: 'https://aistudio.google.com/app/apikey',
+                 openai: 'https://platform.openai.com/api-keys'};
+  const p = chip.dataset.provider;
+  f.hidden = p === 'ollama';
+  if (p === 'ollama') return;
+  f.dataset.provider = p;
+  f.elements.namedItem('key').placeholder = 'Paste your ' + names[p] + ' API key';
+  const a = f.querySelector('a'); if (a) a.href = links[p];
+  document.getElementById('provider-key-status').textContent = 'Save the ' + names[p] + ' key if you haven\'t yet.';
+}));
+</script>
+  </div>
+
+  <div class="card" id="mail-accounts">
+    <h2>Mail <span class="info-wrap"><button type="button" class="info-tip" aria-expanded="false" aria-label="About mail accounts">i</button><span class="tip-pop" role="tooltip" hidden>Where SafePersonalAI reads your email: to find appointments, bills, bank statements and alerts. Read-only — it never sends, deletes or marks anything.</span></span></h2>
+    <div class="settings-row"><div><div class="settings-label">🟢 Gmail</div><div class="settings-detail">Not connected</div></div><button type="button" class="primary" data-connect-gmail="main" style="border-radius:999px;padding:8px 16px;">Connect Gmail</button></div>
+    <div class="settings-row">
+      <div><div class="settings-label">✉️ Apple Mail <span class="info-wrap"><button type="button" class="info-tip" aria-expanded="false" aria-label="About Apple Mail">i</button><span class="tip-pop" role="tooltip" hidden>Reads every account you added to the Mail app: iCloud, Outlook/Hotmail, GMX, work Exchange… macOS asks once for permission.</span></span></div>
+        <div class="settings-detail">Off</div></div>
+      <label class="switch"><input type="checkbox" data-apple-mail aria-label="Apple Mail" ><span class="switch-track"></span></label>
+    </div>
+    <div class="settings-row">
+      <div><div class="settings-label">🟦 Microsoft (Outlook, Hotmail) <span class="info-wrap"><button type="button" class="info-tip" aria-expanded="false" aria-label="About Microsoft">i</button><span class="tip-pop" role="tooltip" hidden>A direct Microsoft sign-in is coming soon. Today: add your Outlook/Hotmail account in the Mail app and switch Apple Mail on — it works the same.</span></span></div>
+        <div class="settings-detail">Coming soon · works now through Apple Mail</div></div>
+      <button type="button" class="provider-chip" disabled title="Coming soon" style="opacity:.5;padding:6px 12px;">Connect Microsoft</button>
+    </div>
+    
+        <div class="settings-row">
+          <div><div class="settings-label">Gmail</div><div class="settings-detail">No additional Gmail accounts connected</div></div>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Outlook</div><div class="settings-detail">No additional Outlook accounts connected</div></div>
+        </div>
+    <div class="card-hint" data-mail-status aria-live="polite"></div>
+    <script>
+document.querySelectorAll('[data-connect-gmail]').forEach((btn) => btn.addEventListener('click', async () => {
+  btn.disabled = true;
+  const out = document.querySelector('[data-mail-status]');
+  out.textContent = 'A Google page opens in your browser — approve it, then come back. This page updates by itself.';
+  await fetch('/settings/accounts/connect-gmail', {method: 'POST', headers: {'content-type': 'application/json'},
+    body: JSON.stringify({extra: btn.dataset.connectGmail === 'extra'})}).catch(() => {});
+  const started = Date.now();
+  const poll = setInterval(async () => {
+    const s = await fetch('/api/mail-accounts').then((r) => r.json()).catch(() => ({}));
+    if (s.changed_since && s.changed_since > started / 1000) {
+      clearInterval(poll);
+      out.textContent = '✅ Connected' + (s.email ? ' — ' + s.email : '') + '.';
+      btn.textContent = '＋ Add another'; btn.dataset.connectGmail = 'extra'; btn.disabled = false;
+    } else if (Date.now() - started > 180000) {
+      clearInterval(poll); btn.disabled = false; out.textContent = 'No sign-in yet — try again when ready.';
+    }
+  }, 3000);
+}));
+</script>
+  </div>
+  <style>
+.info-wrap { position:relative; display:inline-flex; vertical-align:middle; }
+.info-tip { width:20px; height:20px; border-radius:50%; border:1px solid var(--card-border); background:transparent;
+  color:var(--text-soft); font:600 12px/1 -apple-system, sans-serif; cursor:pointer; padding:0; margin-left:6px; }
+.info-tip:hover, .info-tip[aria-expanded="true"] { color:var(--accent); border-color:var(--accent); }
+.tip-pop { position:absolute; z-index:20; top:26px; left:-8px; width:min(320px, 80vw); padding:10px 12px;
+  border-radius:12px; background:var(--card-bg, #1c1c1e); border:1px solid var(--card-border);
+  box-shadow:0 10px 30px rgba(0,0,0,.35); font-size:12px; line-height:1.5; color:var(--text); font-weight:400;
+  text-transform:none; letter-spacing:0; backdrop-filter:blur(20px); }
+</style><script>
+if (!window.__infoTip) { window.__infoTip = true;
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.info-tip');
+    document.querySelectorAll('.info-tip[aria-expanded="true"]').forEach((b) => {
+      if (b !== btn) { b.setAttribute('aria-expanded', 'false'); b.nextElementSibling.hidden = true; } });
+    if (!btn) return;
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.setAttribute('aria-expanded', String(open)); btn.nextElementSibling.hidden = !open;
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelectorAll(
+    '.info-tip[aria-expanded="true"]').forEach((b) => { b.setAttribute('aria-expanded', 'false');
+    b.nextElementSibling.hidden = true; }); });
+}
+</script>
+
+  <div class="muted" style="text-align:center;margin-top:24px;">Changes here take effect immediately — no restart needed.</div>
+</div></div></main><div id="settings-toast" class="settings-toast" role="status" aria-live="polite" hidden></div><script type="application/javascript">
+  (() => {
+    document.addEventListener('contextmenu', (event) => event.preventDefault());
+    document.addEventListener('selectstart', (event) => { if (!event.target.closest('input, textarea, select')) event.preventDefault(); });
+    const root = document.documentElement;
+    const saved = localStorage.getItem('safepersonalai-theme') || 'auto';
+    root.dataset.theme = saved;
+    const themeButtons = [...document.querySelectorAll('[data-theme-choice]')];
+    const setTheme = (theme) => {
+      root.dataset.theme = theme;
+      localStorage.setItem('safepersonalai-theme', theme);
+      themeButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === theme)));
+    };
+    themeButtons.forEach((button) => button.addEventListener('click', () => setTheme(button.dataset.themeChoice)));
+    setTheme(saved);
+
+    const toast = document.getElementById('settings-toast');
+    let toastTimer;
+    const showToast = (message, isError = false) => {
+      message = String(message ?? '').replace(/\s+/g, ' ').trim();
+      if (message.length > 180) message = message.slice(0, 179) + '…';
+      toast.textContent = message;
+      toast.style.background = isError ? '#ff3b30' : 'var(--text)';
+      toast.style.color = isError ? '#fff' : 'var(--bg)';
+      toast.hidden = false;
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { toast.hidden = true; }, 3200);
+    };
+
+    document.querySelectorAll('[data-action-type]').forEach((input) => {
+      input.addEventListener('change', () => {
+        fetch('/settings/approval', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ action_type: input.dataset.actionType, enabled: input.checked }),
+        }).then((response) => response.json()).then((result) => {
+          if (result.ok) showToast(`${input.checked ? 'Auto-Approve enabled' : 'Auto-Approve disabled'}`);
+          else { input.checked = !input.checked; showToast(result.error || 'Could not save this setting', true); }
+        }).catch(() => { input.checked = !input.checked; showToast('Could not save this setting', true); });
+      });
+    });
+
+    const toggle = (input, url, body, onText, offText) => {
+      fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) })
+        .then((response) => response.json()).then((result) => {
+          if (result.ok) showToast(input.checked ? onText : offText);
+          else { input.checked = !input.checked; showToast(result.error || 'Could not save this setting', true); }
+        }).catch(() => { input.checked = !input.checked; showToast('Could not save this setting', true); });
+    };
+    document.querySelectorAll('[data-feature-id]').forEach((input) => {
+      input.addEventListener('change', () => toggle(input, '/settings/features',
+        { feature_id: input.dataset.featureId, enabled: input.checked },
+        `${input.getAttribute('aria-label')} is on`, `${input.getAttribute('aria-label')} is off`));
+    });
+    document.querySelectorAll('[data-apple-mail]').forEach((input) => {
+      input.addEventListener('change', () => toggle(input, '/settings/apple-mail', { enabled: input.checked },
+        'Apple Mail is on — macOS may ask for permission', 'Apple Mail is off'));
+    });
+
+    document.querySelectorAll('[data-provider]').forEach((button) => {
+      button.addEventListener('click', () => {
+        fetch('/settings/provider', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ provider: button.dataset.provider }),
+        }).then((response) => response.json()).then((result) => {
+          if (result.ok) {
+            document.querySelectorAll('[data-provider]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+            showToast(result.warning || `${button.textContent} is now your AI provider`);
+          } else showToast(result.error || 'Could not change provider', true);
+        }).catch(() => showToast('Could not change provider', true));
+      });
+    });
+
+    document.querySelectorAll('[data-remove-account]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const confirmation = button.parentElement.querySelector('[data-confirm-remove]')?.parentElement;
+        if (confirmation) { confirmation.hidden = false; button.hidden = true; confirmation.querySelector('[data-confirm-remove]')?.focus(); }
+      });
+      button.parentElement.querySelector('[data-confirm-remove]')?.addEventListener('click', () => {
+        fetch('/settings/accounts/remove', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ provider: button.dataset.removeProvider, account_id: button.dataset.removeAccount }),
+        }).then((response) => response.json()).then((result) => {
+          if (result.ok) { button.closest('.settings-row').remove(); showToast('Account removed from this Mac'); }
+          else showToast(result.error || 'Could not remove account', true);
+        }).catch(() => showToast('Could not remove account', true));
+      });
+      button.parentElement.querySelector('[data-cancel-remove]')?.addEventListener('click', () => {
+        const confirmation = button.parentElement.querySelector('.remove-confirm');
+        if (confirmation) { confirmation.hidden = true; button.hidden = false; button.focus(); }
+      });
+    });
+    const profileName = document.getElementById('profile-name');
+    const profileAvatar = document.getElementById('profile-avatar');
+    const profileStatus = document.getElementById('profile-status');
+    const initials = (name) => (name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase() || 'SP');
+    const savedName = localStorage.getItem('safepersonalai-profile-name') || '';
+    if (profileName) { profileName.value = savedName; profileAvatar.textContent = initials(savedName); }
+    document.getElementById('save-profile')?.addEventListener('click', () => {
+      const value = profileName.value.trim();
+      localStorage.setItem('safepersonalai-profile-name', value);
+      profileAvatar.textContent = initials(value); profileStatus.textContent = 'Saved on this browser only.';
+    });
+    document.getElementById('clear-profile')?.addEventListener('click', () => {
+      localStorage.removeItem('safepersonalai-profile-name'); profileName.value = ''; profileAvatar.textContent = 'SP'; profileStatus.textContent = 'Profile cleared on this browser.'; profileName.focus();
+    });
+    const accent = localStorage.getItem('safepersonalai-accent') || 'blue';
+    root.dataset.accent = accent;
+    const accentButtons = [...document.querySelectorAll('button[data-accent]')];
+    accentButtons.forEach((button) => {
+      button.setAttribute('aria-pressed', String(button.dataset.accent === accent));
+      button.addEventListener('click', () => { root.dataset.accent = button.dataset.accent; localStorage.setItem('safepersonalai-accent', button.dataset.accent); accentButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button))); showToast(`${button.textContent.trim()} accent selected`); });
+    });
+    document.getElementById('save-language')?.addEventListener('click', () => fetch('/settings/language', { method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify({output_language:document.getElementById('output-language').value, interface_language:document.getElementById('interface-language').value}) }).then(r=>r.json()).then(x=>{ showToast(x.ok ? 'Languages saved' : (x.error || 'Could not save language'), !x.ok); if (x.ok && x.reload) location.reload(); }).catch(()=>showToast('Could not save language', true)));
+    document.getElementById('save-calendar')?.addEventListener('click', () => fetch('/settings/calendar', { method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify({google_enabled:document.getElementById('calendar-google').checked, apple_enabled:document.getElementById('calendar-apple').checked}) }).then(r=>r.json()).then(x=>showToast(x.ok ? 'Calendar providers saved' : (x.error || 'At least one calendar must stay enabled'), !x.ok)).catch(()=>showToast('Could not save calendar providers', true)));
+    document.getElementById('save-imessage')?.addEventListener('click', () => {
+      const raw = document.getElementById('imessage-senders').value;
+      const senders = raw.split(',').map((s) => s.trim()).filter(Boolean);
+      const statusEl = document.getElementById('imessage-status');
+      fetch('/settings/imessage', { method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify({trusted_senders:senders}) })
+        .then((r) => r.json())
+        .then((x) => {
+          const msg = x.ok ? (senders.length ? `Saved — ${senders.length} trusted sender(s)` : 'Saved — iMessage automation is off') : (x.error || 'Could not save trusted senders');
+          if (statusEl) statusEl.textContent = msg;
+          showToast(msg, !x.ok);
+        })
+        .catch(() => { if (statusEl) statusEl.textContent = 'Could not save trusted senders'; showToast('Could not save trusted senders', true); });
+    });
+    document.getElementById('save-currency')?.addEventListener('click', () => fetch('/settings/currency', { method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify({display_currency:document.getElementById('display-currency').value}) }).then(r=>r.json()).then(x=>showToast(x.ok ? 'Display currency saved' : (x.error || 'Could not save currency'), !x.ok)).catch(()=>showToast('Could not save currency', true)));
+  })();
+  
+    (function() {
+      const shell = document.querySelector('.app-shell');
+      const pinBtn = document.getElementById('rail-pin-toggle');
+      const revealBtn = document.getElementById('rail-reveal-toggle');
+      if (!shell || !pinBtn) return;
+      const KEY = 'safepersonalai-rail-pinned';
+      const setPinned = (pinned) => {
+        shell.classList.toggle('rail-autohide', !pinned);
+        pinBtn.title = pinned ? 'Hide sidebar' : 'Show sidebar';
+        try { localStorage.setItem(KEY, pinned ? '1' : '0'); } catch (_) {}
+      };
+      let saved = null;
+      try { saved = localStorage.getItem(KEY); } catch (_) {}
+      setPinned(saved !== '0');
+      pinBtn.addEventListener('click', (ev) => { ev.preventDefault(); setPinned(false); });
+      revealBtn?.addEventListener('click', () => setPinned(true));
+    })();
+
+    (function() {
+      fetch('/api/health/access').then((r) => r.json()).then((s) => {
+        if (!s || s.messages_ok !== false || document.getElementById('fda-banner')) return;
+        const host = document.querySelector('main') || document.querySelector('.main') || document.body;
+        const box = document.createElement('div');
+        box.id = 'fda-banner'; box.setAttribute('role', 'alert');
+        box.style.cssText = 'display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;' +
+          'border:1px solid rgba(255,159,10,.45);background:rgba(255,159,10,.12);border-radius:12px;' +
+          'padding:12px 14px;margin:0 0 16px;font-size:13px;color:var(--text);';
+        box.innerHTML = '<div><b>⚠️ SafePersonalAI can\'t read your Messages.</b><br>' +
+          '<span style="color:var(--muted)">Texts, screenshots and files you send yourself aren\'t being read. ' +
+          'macOS removes this permission when the app is reinstalled. In System Settings → Privacy &amp; Security ' +
+          '→ Full Disk Access, switch SafePersonalAI on (remove and add it again if it\'s already listed). ' +
+          'Anything you sent in the last 3 days is read once it\'s allowed.</span></div>' +
+          '<button type="button" class="primary" style="white-space:nowrap">Open System Settings</button>';
+        box.querySelector('button').addEventListener('click', () =>
+          fetch('/api/health/open-full-disk-access', {method: 'POST'}));
+        host.prepend(box);
+      }).catch(() => {});
+    })();
+
+    (function () {
+      const wrap = document.querySelector('.app-content .wrap');
+      if (!wrap) return;
+      const page = location.pathname.replace(/\/+$/, '') || '/';
+      const store = {
+        get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
+        set(k, v) { try { v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (_) {} },
+      };
+      const css = document.createElement('style');
+      css.textContent = `
+        .card.sec-card { position:relative; }
+        .sec-chev { border:0; background:transparent; color:var(--text-soft,#8e8e93); cursor:pointer; font:inherit;
+          font-size:12px; width:20px; height:20px; margin:0 4px 0 -4px; border-radius:6px; display:inline-grid;
+          place-items:center; vertical-align:middle; transition:transform .2s ease, background .15s; }
+        .sec-chev:hover { background:rgba(127,127,127,.14); color:var(--text); }
+        .card.sec-collapsed .sec-chev { transform:rotate(-90deg); }
+        .card.sec-collapsed > :not(.sec-head):not(.sec-tools) { display:none !important; }
+        body.sec-arranging .sec-head > :not(h2):not(:has(h2)), body.sec-arranging .sec-chev { display:none !important; }
+        .card.sec-collapsed { padding-bottom:14px; }
+        .card.sec-collapsed .sec-head { margin-bottom:0 !important; }
+        .sec-bar { display:flex; justify-content:flex-end; gap:8px; margin:-6px 0 12px; }
+        .sec-bar button { border:1px solid var(--card-border,rgba(127,127,127,.25)); background:var(--card,transparent);
+          color:var(--text); font:inherit; font-size:12px; padding:6px 12px; border-radius:999px; cursor:pointer; }
+        .sec-bar button.primary-done { background:var(--accent,#0a84ff); border-color:transparent; color:#fff;
+          font-weight:600; }
+        .sec-tools { display:none; position:absolute; right:12px; top:50%; transform:translateY(-50%); gap:4px;
+          align-items:center; }
+        body.sec-arranging .sec-tools { display:flex; }
+        .sec-tools button { border:0; background:rgba(127,127,127,.14); color:var(--text); width:28px; height:28px;
+          border-radius:8px; cursor:pointer; font-size:13px; }
+        .sec-tools .sec-grip { cursor:grab; touch-action:none; font-size:16px; background:transparent; }
+        body.sec-arranging .card.sec-card > :not(.sec-head):not(.sec-tools) { display:none !important; }
+        body.sec-arranging .card.sec-card { padding:14px 120px 14px 18px; cursor:default;
+          animation:sec-jiggle .28s ease-in-out infinite alternate; }
+        body.sec-arranging .card.sec-card:nth-child(2n) { animation-delay:-.14s; }
+        body.sec-arranging .card.sec-card .sec-head * { pointer-events:none; }
+        body.sec-arranging .card.sec-card .sec-head { margin:0 !important; }
+        .card.sec-dragging { animation:none !important; box-shadow:0 14px 36px rgba(0,0,0,.28);
+          transform:scale(1.02); z-index:5; }
+        @keyframes sec-jiggle { from { transform:rotate(-.25deg); } to { transform:rotate(.25deg); } }
+        @media (prefers-reduced-motion: reduce) { body.sec-arranging .card.sec-card { animation:none; } }`;
+      document.head.appendChild(css);
+
+      const slug = (t) => (t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'section';
+      const cards = () => [...wrap.children].filter((el) => el.classList.contains('card') && el.querySelector('h2'));
+      const seen = {}, unhide = [];
+      cards().forEach((card) => {
+        const h2 = card.querySelector('h2');
+        const text = card.id || [...h2.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join(' ')
+          .replace(/\(\d+\)|\d+/g, '').trim() || h2.textContent;
+        let id = slug(text);
+        seen[id] = (seen[id] || 0) + 1;
+        if (seen[id] > 1) id += '-' + seen[id];
+        card.dataset.sec = id;
+        card.classList.add('sec-card');
+        let head = h2;
+        while (head.parentElement && head.parentElement !== card) head = head.parentElement;
+        head.classList.add('sec-head');
+        const tools = document.createElement('div');
+        tools.className = 'sec-tools';
+        tools.innerHTML = '<button type="button" data-move="-1" aria-label="Move up">↑</button>' +
+          '<button type="button" data-move="1" aria-label="Move down">↓</button>' +
+          '<button type="button" class="sec-grip" aria-label="Drag to reorder" title="Drag to reorder">≡</button>';
+        card.appendChild(tools);
+        if (card.querySelector('.card-minimize')) return;  // the Dashboard's cards already have their own
+        const chev = document.createElement('button');
+        chev.type = 'button'; chev.className = 'sec-chev'; chev.textContent = '⌄';
+        const name = h2.textContent.trim().slice(0, 40);
+        const key = `spa-hide:${page}:${id}`;
+        const setHidden = (hide) => {
+          card.classList.toggle('sec-collapsed', hide);
+          chev.setAttribute('aria-expanded', String(!hide));
+          chev.title = hide ? `Show ${name}` : `Hide ${name}`;
+          chev.setAttribute('aria-label', chev.title);
+          store.set(key, hide ? '1' : null);
+        };
+        chev.addEventListener('click', (e) => { e.stopPropagation(); setHidden(!card.classList.contains('sec-collapsed')); });
+        h2.prepend(chev);
+        setHidden(store.get(key) === '1');
+        unhide.push(() => setHidden(false));
+      });
+      const all = cards();  // the page's own order, for "Reset order"
+      if (all.length < 2) return;
+
+      const orderKey = `spa-order:${page}`;
+      const place = (ordered) => {
+        const marker = document.createComment('sections');
+        wrap.insertBefore(marker, cards()[0]);
+        let ref = marker;
+        ordered.forEach((c) => { wrap.insertBefore(c, ref.nextSibling); ref = c; });
+        marker.remove();
+      };
+      try {
+        const saved = JSON.parse(store.get(orderKey) || 'null');
+        if (Array.isArray(saved)) {
+          const byId = Object.fromEntries(all.map((c) => [c.dataset.sec, c]));
+          const ordered = saved.map((id) => byId[id]).filter(Boolean);
+          all.forEach((c) => { if (!ordered.includes(c)) ordered.splice(all.indexOf(c), 0, c); });
+          place(ordered);
+        }
+      } catch (_) {}
+      const save = () => store.set(orderKey, JSON.stringify(cards().map((c) => c.dataset.sec)));
+
+      const flip = (change) => {
+        const before = new Map(cards().map((c) => [c, c.getBoundingClientRect().top]));
+        change();
+        cards().forEach((c) => {
+          const dy = before.get(c) - c.getBoundingClientRect().top;
+          if (!dy || c.classList.contains('sec-dragging')) return;
+          c.animate([{ translate: `0 ${dy}px` }, { translate: '0 0' }], { duration: 220, easing: 'cubic-bezier(.2,.8,.2,1)' });
+        });
+      };
+
+      const bar = document.createElement('div');
+      bar.className = 'sec-bar';
+      bar.innerHTML = '<button type="button" data-sec="reset" hidden>Reset order</button>' +
+        '<button type="button" data-sec="arrange" title="Change the order of the sections">⇅ Arrange</button>';
+      wrap.insertBefore(bar, cards()[0]);
+      const arrangeBtn = bar.querySelector('[data-sec=arrange]'), resetBtn = bar.querySelector('[data-sec=reset]');
+      const setArranging = (on) => {
+        document.body.classList.toggle('sec-arranging', on);
+        arrangeBtn.textContent = on ? 'Done' : '⇅ Arrange';
+        arrangeBtn.classList.toggle('primary-done', on);
+        resetBtn.hidden = !on;
+        if (!on) save();
+      };
+      arrangeBtn.addEventListener('click', () => setArranging(!document.body.classList.contains('sec-arranging')));
+      resetBtn.addEventListener('click', () => {
+        flip(() => place(all));
+        unhide.forEach((f) => f());
+        store.set(orderKey, null);
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.body.classList.contains('sec-arranging')) setArranging(false);
+      });
+
+      wrap.addEventListener('click', (e) => {
+        const btn = e.target.closest('.sec-tools [data-move]');
+        if (!btn) return;
+        const card = btn.closest('.card'), list = cards(), i = list.indexOf(card), j = i + Number(btn.dataset.move);
+        if (j < 0 || j >= list.length) return;
+        flip(() => wrap.insertBefore(card, Number(btn.dataset.move) < 0 ? list[j] : list[j].nextSibling));
+        save();
+      });
+
+      let drag = null;
+      wrap.addEventListener('pointerdown', (e) => {
+        const grip = e.target.closest('.sec-grip');
+        if (!grip || !document.body.classList.contains('sec-arranging')) return;
+        e.preventDefault();
+        drag = { card: grip.closest('.card'), grip, id: e.pointerId };
+        grip.setPointerCapture(e.pointerId);
+        drag.card.classList.add('sec-dragging');
+      });
+      wrap.addEventListener('pointermove', (e) => {
+        if (!drag || e.pointerId !== drag.id) return;
+        const card = drag.card, y = e.clientY;
+        for (const other of cards()) {
+          if (other === card) continue;
+          const r = other.getBoundingClientRect(), mine = card.getBoundingClientRect();
+          const mid = r.top + r.height / 2;
+          if (y < mid && mine.top > r.top) { flip(() => wrap.insertBefore(card, other)); break; }
+          if (y > mid && mine.top < r.top) { flip(() => wrap.insertBefore(card, other.nextSibling)); break; }
+        }
+      });
+      const end = (e) => {
+        if (!drag || (e && e.pointerId !== drag.id)) return;
+        drag.card.classList.remove('sec-dragging');
+        drag = null;
+        save();
+      };
+      wrap.addEventListener('pointerup', end);
+      wrap.addEventListener('pointercancel', end);
+    })();
+
+    (function () {
+      const wrap = document.querySelector('.app-content .wrap');
+      if (!wrap) return;
+      const cards = () => [...wrap.children].filter((el) => el.classList.contains('sec-card'));
+      if (cards().length < 2) return;
+      const page = location.pathname.replace(/\/+$/, '') || '/';
+      const store = {
+        get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
+        set(k, v) { try { localStorage.setItem(k, v); } catch (_) {} },
+      };
+      const session = {
+        get(k) { try { return sessionStorage.getItem(k); } catch (_) { return null; } },
+        set(k, v) { try { v === null ? sessionStorage.removeItem(k) : sessionStorage.setItem(k, v); } catch (_) {} },
+      };
+      const css = document.createElement('style');
+      css.textContent = `
+        .layout-bar { display:flex; justify-content:flex-end; margin:0 0 10px; }
+        .layout-switch { display:inline-flex; gap:2px; padding:3px; border:1px solid var(--card-border,var(--border,rgba(127,127,127,.25)));
+          border-radius:999px; }
+        .layout-switch button { border:0; background:transparent; color:var(--text-soft,var(--soft,#8e8e93)); font:inherit;
+          font-size:12px; padding:5px 12px; border-radius:999px; cursor:pointer; }
+        .layout-switch button[aria-pressed=true] { background:var(--accent-dim,var(--dim,rgba(10,132,255,.16)));
+          color:var(--accent,#0a84ff); font-weight:700; }
+        .tile-face, .tile-close { display:none; }
+        body.layout-tiles .app-content .wrap { display:grid; grid-template-columns:repeat(auto-fill,minmax(164px,1fr));
+          gap:18px; align-items:start; }
+        body.layout-tiles .app-content .wrap > * { grid-column:1 / -1; min-width:0; }
+        body.layout-tiles .app-content .wrap > .card.sec-card { grid-column:auto; }
+        body.layout-tiles .sec-bar { display:none; }
+        body.layout-tiles .card.sec-card:not(.tile-open) { aspect-ratio:1 / 1; margin:0; padding:16px; border-radius:28px;
+          cursor:pointer; overflow:hidden; display:flex; transition:transform .16s ease, box-shadow .16s ease;
+          background:linear-gradient(160deg, hsl(var(--tile-hue,210) 70% 55% / .16), transparent 62%), var(--card,transparent); }
+        body.layout-tiles .card.sec-card:not(.tile-open):hover { transform:translateY(-3px) scale(1.02);
+          box-shadow:0 14px 34px rgba(0,0,0,.22); }
+        body.layout-tiles .card.sec-card:not(.tile-open):focus-visible { outline:2px solid var(--accent,#0a84ff); outline-offset:3px; }
+        body.layout-tiles .card.sec-card:not(.tile-open) > :not(.tile-face) { display:none !important; }
+        body.layout-tiles .card.sec-card:not(.tile-open) > .tile-face { display:flex; flex-direction:column; width:100%;
+          justify-content:space-between; }
+        .tile-icon { width:52px; height:52px; border-radius:15px; display:grid; place-items:center; font-size:26px; color:#fff;
+          font-weight:700; background:linear-gradient(145deg, hsl(var(--tile-hue,210) 78% 58%), hsl(calc(var(--tile-hue,210) + 28) 72% 42%));
+          box-shadow:0 6px 16px hsl(var(--tile-hue,210) 70% 40% / .35); }
+        .tile-peek { font-size:22px; font-weight:700; letter-spacing:-.01em; font-variant-numeric:tabular-nums; margin-top:auto;
+          white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .tile-name { font-size:14px; font-weight:600; line-height:1.25; margin-top:6px; display:-webkit-box;
+          -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+        body.tile-opened { overflow:hidden; }
+        body.tile-opened::before { content:""; position:fixed; inset:0; z-index:900; background:rgba(0,0,0,.5);
+          -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); animation:tile-fade .2s ease; }
+        body.layout-tiles .card.sec-card.tile-open { position:fixed; z-index:901; left:50%; top:4vh; width:min(1040px,94vw);
+          max-height:92vh; overflow:auto; margin:0; transform:translateX(-50%); border-radius:26px; padding:22px 24px 26px;
+          box-shadow:0 30px 80px rgba(0,0,0,.45); animation:tile-zoom .24s cubic-bezier(.2,.9,.25,1);
+          background:var(--tile-sheet, var(--card,#14161b)); -webkit-backdrop-filter:none; backdrop-filter:none; }
+        body.layout-tiles .card.tile-open > .tile-close { display:grid; place-items:center; position:sticky; top:0; float:right;
+          z-index:3; width:32px; height:32px; margin:-6px -8px 0 10px; border:0; border-radius:50%; cursor:pointer;
+          background:rgba(127,127,127,.22); color:var(--text,#fff); font-size:15px; }
+        body.layout-tiles .card.tile-open > .tile-close:hover { background:rgba(127,127,127,.36); }
+        .layout-bar { gap:8px; align-items:center; }
+        .layout-bar .tiles-arrange { border:1px solid var(--card-border,var(--border,rgba(127,127,127,.25))); background:var(--card,transparent);
+          color:var(--text); font:inherit; font-size:12px; padding:6px 12px; border-radius:999px; cursor:pointer; }
+        .layout-bar .tiles-arrange.primary-done { background:var(--accent,#0a84ff); border-color:transparent; color:#fff; font-weight:600; }
+        body.tiles-arranging .card.sec-card:not(.tile-open) { cursor:grab; touch-action:none;
+          animation:sec-jiggle .28s ease-in-out infinite alternate; }
+        body.tiles-arranging .card.sec-card:not(.tile-open):nth-child(2n) { animation-delay:-.14s; }
+        body.tiles-arranging .card.sec-card:not(.tile-open):hover { transform:none; }
+        .card.sec-card.tile-dragging { animation:none !important; opacity:.55; outline:2px dashed var(--accent,#0a84ff);
+          outline-offset:3px; cursor:grabbing; }
+        @keyframes tile-zoom { from { opacity:0; transform:translateX(-50%) scale(.9); } to { opacity:1; transform:translateX(-50%) scale(1); } }
+        @keyframes tile-fade { from { opacity:0; } to { opacity:1; } }
+        @media (prefers-reduced-motion: reduce) { body.layout-tiles .card.sec-card, body.tile-opened::before { animation:none !important; transition:none !important; } }`;
+      document.head.appendChild(css);
+
+      const ICONS = [[/overview|glance|made of|over time|month by month/, '📊'], [/forecast|coming|upcoming/, '📅'], [/spend|category/, '💳'], [/account|balance|wealth/, '🏦'],
+        [/transaction/, '🧾'], [/budget/, '🎯'], [/invest|holding|portfolio/, '📈'], [/loan|mortgage/, '🏠'],
+        [/pending|waiting|review|action/, '✅'], [/module/, '🧩'], [/running|status|licen/, '🔌'], [/bank|statement/, '🏛️'],
+        [/activity|history|timeline/, '🕘'], [/mail|inbox|reply/, '✉️'], [/calendar|event/, '🗓️'], [/to-?do|task/, '☑️'],
+        [/route|flight|travel|trip|booking/, '✈️'], [/price|alert/, '🔔'], [/rule/, '✨'], [/iphone|phone/, '📱'],
+        [/language/, '🌐'], [/backup/, '💾'], [/privacy|trust|safe/, '🛡️'], [/ai|provider|key/, '🧠'], [/profile|name/, '🙂'],
+        [/colou?r|accent|appearance/, '🎨'], [/subscription|monthly|every month/, '🔁'], [/update/, '🔄'], [/add /, '➕']];
+      const emoji = /\p{Extended_Pictographic}(?:\uFE0F|\u200D\p{Extended_Pictographic})*/u;
+      const money = /^[+\u2212-]?\s?[€$£₺]?\s?\d[\d.,' ]*\s?(?:€|%|EUR|USD|TRY)?$/;
+
+      const face = (card) => {
+        const h2 = card.querySelector('h2');
+        const raw = [...h2.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join(' ').trim()
+          || (card.dataset.sec || '').replace(/-/g, ' ');
+        const found = raw.match(emoji);
+        const name = raw.replace(emoji, '').replace(/\s+/g, ' ').trim() || raw;
+        const low = name.toLowerCase();
+        const icon = found ? found[0] : ((ICONS.find(([re]) => re.test(low)) || [])[1] || name.slice(0, 1).toUpperCase());
+        let peek = '';
+        for (const el of [...card.querySelectorAll('b, strong, .value, [class*=total], [class*=value], [class*=amount]')].slice(0, 80)) {
+          const text = (el.textContent || '').trim();
+          if (text.length && text.length <= 16 && money.test(text) && parseFloat(getComputedStyle(el).fontSize) >= 17) { peek = text; break; }
+        }
+        let hue = 0;
+        for (const ch of card.dataset.sec || name) hue = (hue * 31 + ch.charCodeAt(0)) % 360;
+        card.style.setProperty('--tile-hue', String(hue));
+        const el = document.createElement('div');
+        el.className = 'tile-face';
+        el.innerHTML = '<div class="tile-icon" aria-hidden="true"></div><div class="tile-peek"></div><div class="tile-name"></div>';
+        el.children[0].textContent = icon;
+        el.children[1].textContent = peek;
+        el.children[2].textContent = name;
+        card.appendChild(el);
+        const close = document.createElement('button');
+        close.type = 'button'; close.className = 'tile-close'; close.textContent = '✕';
+        close.setAttribute('aria-label', 'Close'); close.title = 'Close';
+        card.prepend(close);
+        return name;
+      };
+
+      const openKey = `spa-tile-open:${page}`;
+      let opened = null, wasFolded = false;
+      const close = () => {
+        if (!opened) return;
+        opened.classList.remove('tile-open');
+        if (wasFolded) opened.classList.add('sec-collapsed');
+        document.body.classList.remove('tile-opened');
+        opened.focus({preventScroll: true});
+        opened = null;
+        session.set(openKey, null);
+      };
+      const open = (card) => {
+        if (opened === card) return;
+        close();
+        wasFolded = card.classList.contains('sec-collapsed');   // a folded section opens unfolded
+        card.classList.remove('sec-collapsed');
+        card.classList.add('tile-open');
+        document.body.classList.add('tile-opened');
+        card.scrollTop = 0;
+        opened = card;
+        session.set(openKey, card.dataset.sec);
+      };
+      const tiles = () => document.body.classList.contains('layout-tiles');
+
+      cards().forEach((card) => {
+        const name = face(card);
+        card.addEventListener('click', (e) => {
+          if (!tiles()) return;
+          if (document.body.classList.contains('tiles-arranging')) { e.preventDefault(); e.stopPropagation(); return; }
+          if (e.target.closest('.tile-close')) { e.stopPropagation(); close(); return; }
+          if (card.classList.contains('tile-open')) return;
+          e.preventDefault(); e.stopPropagation();
+          open(card);
+        }, true);
+        card.addEventListener('keydown', (e) => {
+          if (!tiles() || card.classList.contains('tile-open') || e.target !== card) return;
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(card); }
+        });
+        card.dataset.tileName = name;
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        if (opened) close();
+        else if (document.body.classList.contains('tiles-arranging')) document.querySelector('.tiles-arrange')?.click();
+      });
+      document.addEventListener('click', (e) => {     // a click on the dimmed page behind the sheet
+        if (opened && !e.target.closest('.tile-open') && document.body.contains(e.target)) close();
+      });
+
+      const bar = document.createElement('div');
+      bar.className = 'layout-bar';
+      bar.innerHTML = '<div class="layout-switch" role="group" aria-label="Layout">' +
+        '<button type="button" data-layout="classic" title="Every section open, one under the other">Classic</button>' +
+        '<button type="button" data-layout="tiles" title="Every section as a tile; click one to open it">Tiles</button></div>';
+      const arrangeBtn = document.createElement('button');
+      arrangeBtn.type = 'button'; arrangeBtn.className = 'tiles-arrange'; arrangeBtn.hidden = true;
+      arrangeBtn.textContent = '⇅ Arrange'; arrangeBtn.title = 'Drag the tiles into your own order';
+      bar.prepend(arrangeBtn);
+      const orderKey = `spa-order:${page}`;
+      const setArranging = (on) => {
+        if (on) close();
+        document.body.classList.toggle('tiles-arranging', on);
+        arrangeBtn.textContent = on ? 'Done' : '⇅ Arrange';
+        arrangeBtn.classList.toggle('primary-done', on);
+        if (!on) store.set(orderKey, JSON.stringify(cards().map((c) => c.dataset.sec)));
+      };
+      arrangeBtn.addEventListener('click', () => setArranging(!document.body.classList.contains('tiles-arranging')));
+      const slide = (change) => {          // every tile that moved glides to its new place
+        const before = new Map(cards().map((c) => [c, c.getBoundingClientRect()]));
+        change();
+        cards().forEach((c) => {
+          const a = before.get(c), b = c.getBoundingClientRect();
+          if ((a.left === b.left && a.top === b.top) || c.classList.contains('tile-dragging')) return;
+          c.animate([{ translate: `${a.left - b.left}px ${a.top - b.top}px` }, { translate: '0 0' }],
+            { duration: 220, easing: 'cubic-bezier(.2,.8,.2,1)' });
+        });
+      };
+      let drag = null;
+      wrap.addEventListener('pointerdown', (e) => {
+        if (!document.body.classList.contains('tiles-arranging')) return;
+        const card = e.target.closest('.card.sec-card');
+        if (!card || card.parentElement !== wrap) return;
+        e.preventDefault();
+        drag = { card, id: e.pointerId };
+        card.setPointerCapture(e.pointerId);
+        card.classList.add('tile-dragging');
+      });
+      wrap.addEventListener('pointermove', (e) => {
+        if (!drag || e.pointerId !== drag.id) return;
+        const over = cards().find((c) => {
+          if (c === drag.card) return false;
+          const r = c.getBoundingClientRect();
+          return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+        });
+        if (!over) return;
+        const list = cards(), after = list.indexOf(over) > list.indexOf(drag.card);
+        slide(() => wrap.insertBefore(drag.card, after ? over.nextSibling : over));
+      });
+      const drop = (e) => {
+        if (!drag || (e && e.pointerId !== drag.id)) return;
+        drag.card.classList.remove('tile-dragging');
+        drag = null;
+        store.set(orderKey, JSON.stringify(cards().map((c) => c.dataset.sec)));
+      };
+      wrap.addEventListener('pointerup', drop);
+      wrap.addEventListener('pointercancel', drop);
+      wrap.insertBefore(bar, wrap.querySelector('.sec-bar') || cards()[0]);
+      const apply = (mode) => {
+        const on = mode === 'tiles';
+        if (!on) close();
+        if (!on && document.body.classList.contains('tiles-arranging')) setArranging(false);
+        arrangeBtn.hidden = !on;
+        document.body.classList.toggle('layout-tiles', on);
+        document.body.classList.remove('sec-arranging');
+        bar.querySelectorAll('[data-layout]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.layout === mode)));
+        cards().forEach((card) => {
+          if (on) { card.tabIndex = 0; card.setAttribute('role', 'button'); card.setAttribute('aria-label', card.dataset.tileName || ''); }
+          else { card.removeAttribute('tabindex'); card.removeAttribute('role'); card.removeAttribute('aria-label'); }
+        });
+      };
+      bar.addEventListener('click', (e) => {
+        const b = e.target.closest('[data-layout]');
+        if (!b) return;
+        store.set('safepersonalai-layout', b.dataset.layout);
+        apply(b.dataset.layout);
+      });
+      apply(store.get('safepersonalai-layout') === 'tiles' ? 'tiles' : 'classic');
+      if (tiles()) {
+        const want = (location.hash || '').slice(1) || session.get(openKey);
+        const target = want && cards().find((c) => c.id === want || c.dataset.sec === want);
+        if (target) open(target);
+      }
+    })();
+
+    (function () {
+      const charts = document.querySelectorAll('svg.wc-line');
+      if (!charts.length) return;
+      const tip = document.createElement('div');
+      tip.className = 'wc-hover-tip';
+      tip.hidden = true;
+      tip.style.cssText = 'position:fixed;z-index:1000;pointer-events:none;padding:6px 10px;border-radius:10px;font-size:12px;' +
+        'font-weight:600;line-height:1.35;white-space:nowrap;background:rgba(20,22,27,.96);color:#fff;' +
+        'border:1px solid rgba(255,255,255,.16);box-shadow:0 8px 24px rgba(0,0,0,.35);font-variant-numeric:tabular-nums;';
+      document.body.appendChild(tip);
+      const NS = 'http://www.w3.org/2000/svg';
+      charts.forEach((svg) => {
+        const dots = [...svg.querySelectorAll('circle')].map((c) => {
+          const title = c.querySelector('title');
+          const text = title ? title.textContent : '';
+          const cut = text.lastIndexOf(': ');
+          return { el: c, x: Number(c.getAttribute('cx')), y: Number(c.getAttribute('cy')), r: c.getAttribute('r'),
+                   day: cut > 0 ? text.slice(0, cut) : '', value: cut > 0 ? text.slice(cut + 2) : text };
+        }).filter((d) => d.value);
+        if (dots.length < 2) return;
+        const box = svg.viewBox.baseVal;
+        const guide = document.createElementNS(NS, 'line');
+        guide.setAttribute('stroke', 'currentColor'); guide.setAttribute('stroke-opacity', '.45');
+        guide.setAttribute('stroke-width', '1'); guide.setAttribute('y1', '0'); guide.setAttribute('y2', String(box.height - 24));
+        guide.style.display = 'none'; guide.style.pointerEvents = 'none';
+        svg.insertBefore(guide, svg.querySelector('circle'));
+        let last = null;
+        const leave = () => {
+          if (last) last.el.setAttribute('r', last.r);
+          last = null; guide.style.display = 'none'; tip.hidden = true;
+        };
+        svg.addEventListener('pointermove', (e) => {
+          const r = svg.getBoundingClientRect();
+          if (!r.width) return;
+          const x = (e.clientX - r.left) * box.width / r.width;
+          let near = dots[0];
+          for (const d of dots) if (Math.abs(d.x - x) < Math.abs(near.x - x)) near = d;
+          if (near !== last) {
+            if (last) last.el.setAttribute('r', last.r);
+            near.el.setAttribute('r', '6');
+            last = near;
+            guide.setAttribute('x1', String(near.x)); guide.setAttribute('x2', String(near.x));
+            guide.style.display = '';
+            tip.textContent = '';
+            const day = document.createElement('div'); day.style.cssText = 'font-weight:500;opacity:.7'; day.textContent = near.day;
+            const amount = document.createElement('div'); amount.style.fontSize = '14px'; amount.textContent = near.value;
+            tip.append(day, amount);
+          }
+          tip.hidden = false;
+          const w = tip.offsetWidth, px = r.left + near.x * r.width / box.width;
+          tip.style.left = Math.max(8, Math.min(window.innerWidth - w - 8, px - w / 2)) + 'px';
+          tip.style.top = Math.max(8, r.top + near.y * r.height / box.height - tip.offsetHeight - 14) + 'px';
+        });
+        svg.addEventListener('pointerleave', leave);
+        svg.style.cursor = 'crosshair';
+      });
+      window.addEventListener('scroll', () => { tip.hidden = true; }, true);
+    })();
+
+    (function () {
+      const rail = document.querySelector('.app-rail');
+      if (!rail || rail.querySelector('.rail-layout')) return;
+      const read = () => { try { return localStorage.getItem('safepersonalai-layout') === 'tiles' ? 'tiles' : 'classic'; } catch (_) { return 'classic'; } };
+      const css = document.createElement('style');
+      css.textContent = `
+        .rail-layout { margin:14px 8px 4px; }
+        .rail-layout .rail-layout-name { font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:700;
+          color:var(--text-soft,var(--soft,#8e8e93)); margin:0 4px 6px; }
+        .rail-layout .rail-layout-switch { display:flex; gap:2px; padding:3px; border-radius:999px;
+          border:1px solid var(--card-border,var(--border,rgba(127,127,127,.25))); }
+        .rail-layout button { flex:1; border:0; background:transparent; color:var(--text-soft,var(--soft,#8e8e93)); font:inherit;
+          font-size:12px; padding:5px 8px; border-radius:999px; cursor:pointer; }
+        .rail-layout button[aria-pressed=true] { background:var(--accent-dim,var(--dim,rgba(10,132,255,.16)));
+          color:var(--accent,#0a84ff); font-weight:700; }`;
+      document.head.appendChild(css);
+      const box = document.createElement('div');
+      box.className = 'rail-layout';
+      box.innerHTML = '<div class="rail-layout-name">Layout</div><div class="rail-layout-switch" role="group" aria-label="Layout">' +
+        '<button type="button" data-rail-layout="classic" title="Every section open, one under the other">Classic</button>' +
+        '<button type="button" data-rail-layout="tiles" title="Every section as a tile; click one to open it">Tiles</button></div>';
+      rail.appendChild(box);
+      const mark = () => box.querySelectorAll('[data-rail-layout]').forEach((b) =>
+        b.setAttribute('aria-pressed', String(b.dataset.railLayout === read())));
+      box.addEventListener('click', (e) => {
+        const b = e.target.closest('[data-rail-layout]');
+        if (!b) return;
+        const inPage = document.querySelector(`.layout-switch [data-layout="${b.dataset.railLayout}"]`);
+        if (inPage) inPage.click();                       // this page has sections: switch it now
+        else { try { localStorage.setItem('safepersonalai-layout', b.dataset.railLayout); } catch (_) {} }
+        mark();
+      });
+      document.addEventListener('click', (e) => { if (e.target.closest('.layout-switch [data-layout]')) setTimeout(mark, 0); });
+      mark();
+    })();
+
+</script></body></html>

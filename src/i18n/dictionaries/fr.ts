@@ -42,6 +42,8 @@ export const fr: Dictionary = {
     body: "SafePersonalAI lit vos e-mails, vos messages et vos relevés bancaires sur votre propre Mac et prépare les tâches, les événements de calendrier et la vue d’ensemble de votre argent. Vous approuvez chacun d’eux. Vos données ne nous sont jamais envoyées : elles restent sur votre Mac, et l’IA y fonctionne aussi avec Ollama, ou passe par votre propre compte de fournisseur d’IA. Un seul paiement, sans abonnement.",
     ctaDownload: "Télécharger la bêta gratuite",
     ctaUseCases: "Voir des cas d’usage réels",
+    ctaDemo: "Essayer la démo",
+    ctaDemoHint: "Ouvre la vraie app avec des données inventées. Rien à installer. La démo est en anglais.",
     finePrint:
       "Pour les Mac avec Apple Silicon (M1 ou plus récent). Utilisez un modèle Ollama local sans compte cloud, ou votre propre clé Anthropic, OpenAI ou Gemini.",
   },

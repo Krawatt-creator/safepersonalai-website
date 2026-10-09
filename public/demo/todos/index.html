@@ -1,0 +1,678 @@
+<!doctype html><html><head><script>
+/* SafePersonalAI demo: the app's real pages with invented data. Nothing here talks to a server. */
+(() => {
+  const PAGES = {"/": "", "/wealth": "wealth", "/investments": "investments", "/travel": "travel", "/todos": "todos", "/custom-rules": "custom-rules", "/trust-center": "trust-center", "/settings": "settings"}, REC = {"/api/health/access": {"status": 200, "type": "application/json", "body": "{\"messages_ok\":true,\"messages_in_use\":false}"}}, HOME = '/';
+  const say = (text) => { let n = document.getElementById('spa-demo-note');
+    if (!n) { n = document.createElement('div'); n.id = 'spa-demo-note'; document.body.appendChild(n); }
+    n.textContent = text; n.classList.add('on'); clearTimeout(say.t); say.t = setTimeout(() => n.classList.remove('on'), 3200); };
+  const NOT_SAVED = 'This is the demo: in the app this would be saved. Nothing is changed here.';
+  const demoPath = (path) => Object.prototype.hasOwnProperty.call(PAGES, path) ? '/demo/' + (PAGES[path] ? PAGES[path] + '/' : '') : null;
+  const answer = (obj, status) => new Response(typeof obj === 'string' ? obj : JSON.stringify(obj),
+    {status: status || 200, headers: {'content-type': 'application/json'}});
+  window.fetch = async (u, o) => {
+    let url; try { url = new URL(typeof u === 'string' ? u : u.url, location.href); } catch (_) { return answer({}, 404); }
+    if (url.origin !== location.origin) return answer({ok: false, error: 'The demo does not go online.'}, 503);
+    const method = ((o && o.method) || 'GET').toUpperCase();
+    if (method === 'GET') { const hit = REC[url.pathname + url.search] || REC[url.pathname];
+      return hit ? new Response(hit.body, {status: hit.status, headers: {'content-type': hit.type}}) : answer({}, 200); }
+    say(NOT_SAVED);
+    return answer({ok: false, demo: true, error: 'This is the demo: nothing is saved here.', detail: 'This is the demo: nothing is saved here.'}, 200);
+  };
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+    const raw = a.getAttribute('href') || '';
+    if (/^(#|mailto:|tel:|javascript:)/i.test(raw) || a.hasAttribute('data-demo-out')) return;
+    let url; try { url = new URL(raw, location.href); } catch (_) { return; }
+    if (url.origin !== location.origin) { e.preventDefault(); say('The demo stays on this page: this link opens only in the app.'); return; }
+    if (url.pathname.startsWith('/demo/')) return;
+    e.preventDefault();
+    const to = demoPath(url.pathname.replace(/\/$/, '') || '/');
+    if (to) location.href = to + url.hash; else say('This page is not part of the demo.');
+  }, true);
+  document.addEventListener('submit', (e) => { const f = e.target;
+    if (f && (f.getAttribute('method') || 'get').toLowerCase() === 'post') { e.preventDefault(); say(NOT_SAVED); } }, true);
+  window.open = () => { say('The demo stays on this page: this opens only in the app.'); return null; };
+  document.addEventListener('DOMContentLoaded', () => {
+    const bar = document.createElement('div'); bar.id = 'spa-demo-bar';
+    bar.innerHTML = '<b>Demo</b><span>The real app with invented data. Click anything: nothing is saved or sent.</span>' +
+      '<a data-demo-out href="' + HOME + '">Back to the website</a><a data-demo-out class="go" href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.1-beta/SafePersonalAI-beta.zip">Download the app</a>';
+    document.body.prepend(bar);
+  });
+})();
+</script>
+<style>
+  #spa-demo-bar { position:sticky; top:0; z-index:2147483000; display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px;
+    padding:9px 16px; background:#0b1f3a; color:#fff; font:13px/1.35 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    border-bottom:1px solid rgba(255,255,255,.18); }
+  #spa-demo-bar b { background:#ffd60a; color:#111; padding:2px 9px; border-radius:999px; font-size:11px; letter-spacing:.06em; text-transform:uppercase; }
+  #spa-demo-bar span { flex:1 1 260px; opacity:.92; }
+  #spa-demo-bar a { color:#fff; text-decoration:underline; text-underline-offset:3px; white-space:nowrap; }
+  #spa-demo-bar a.go { background:#0872ED; text-decoration:none; padding:5px 12px; border-radius:999px; font-weight:600; }
+  #spa-demo-note { position:fixed; left:50%; bottom:26px; transform:translate(-50%,20px); z-index:2147483001; max-width:min(92vw,520px);
+    background:#111; color:#fff; padding:11px 16px; border-radius:12px; font:13px/1.4 -apple-system,BlinkMacSystemFont,sans-serif;
+    box-shadow:0 10px 30px rgba(0,0,0,.4); opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; text-align:center; }
+  #spa-demo-note.on { opacity:1; transform:translate(-50%,0); }
+  #fc-until { display:none !important; }   /* a day of your own needs the app to lay the forecast out again */
+</style>
+<meta name="robots" content="noindex">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>To-Dos — SafePersonalAI</title>
+<style>:root{--bg:#0a0b0d;--card:#14161b;--border:rgba(255,255,255,.08);--text:#f2f3f5;--soft:#a7abb5;--accent:#0872ED;--dim:rgba(8,114,237,.14)}:root[data-accent="emerald"]{--accent:#00a86b}:root[data-accent="blue"]{--accent:#0872ED}:root[data-accent="violet"]{--accent:#8e55ea}:root[data-accent="amber"]{--accent:#d88a00}:root[data-accent="rose"]{--accent:#e34d6f}:root[data-accent="slate"]{--accent:#64748b}:root[data-theme="light"]{--bg:#f5f7fb;--card:rgba(255,255,255,.86);--border:rgba(15,23,42,.1);--text:#172033;--soft:#657084}@media(prefers-color-scheme:light){:root[data-theme="auto"]{--bg:#f5f7fb;--card:rgba(255,255,255,.86);--border:rgba(15,23,42,.1);--text:#172033;--soft:#657084}}*{box-sizing:border-box}button,[role="button"],.nav-link,.theme-control button{-webkit-user-select:none;user-select:none}body{margin:0;padding:28px;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}input,textarea,select{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}.wrap{max-width:900px;margin:auto}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:26px}h1{margin:0 0 4px;font-size:22px}.sub,.muted{color:var(--soft);font-size:13px;line-height:1.45}.app-nav{display:flex;gap:4px;flex-wrap:wrap;align-items:center}.nav-link{display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border-radius:999px;color:var(--soft);font-size:13px;font-weight:600;text-decoration:none}.nav-link:hover,.nav-link:focus-visible{color:var(--text);background:var(--card);outline:2px solid var(--accent);outline-offset:2px}.nav-current{color:var(--accent);background:var(--dim)}.theme-control{display:inline-flex;gap:2px;padding:3px;border:1px solid var(--border);border-radius:999px}.theme-control button{border:0;border-radius:999px;padding:6px 9px;background:transparent;color:var(--soft);cursor:pointer}.theme-control button[aria-pressed=true]{background:var(--dim);color:var(--accent);font-weight:700}button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.card{padding:20px;border:1px solid var(--border);border-radius:16px;background:var(--card);margin-bottom:18px}.card h2{font-size:16px;margin:0 0 8px}.status{border-color:color-mix(in srgb,var(--accent) 40%,transparent);background:var(--dim)}.status strong{display:block;margin-bottom:5px}.status p{margin:0 0 10px;color:var(--soft);font-size:12px}.empty{text-align:center;padding:44px 20px}.empty-icon{font-size:30px}.empty h2{margin:10px 0 6px}.tasks{display:grid;gap:10px;margin:18px 0;padding:0;list-style:none}.task{display:flex;gap:10px;align-items:flex-start;padding:12px;border-top:1px solid var(--border)}.task:first-child{border-top:0}.task strong{font-size:14px}.task p{margin:4px 0 0;font-size:12px}.task-dot{width:9px;height:9px;margin-top:5px;border-radius:50%;background:var(--accent);flex:0 0 auto}@media(max-width:720px){body{padding:18px}.topbar-actions{width:100%;display:flex;justify-content:space-between;gap:8px}.card{padding:16px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+  .app-shell { display:grid; grid-template-columns:190px minmax(0,1fr); gap:22px; align-items:start; max-width:1240px; margin:0 auto; }
+  .app-rail { position:sticky; top:24px; border:1px solid var(--card-border, var(--border)); border-radius:18px; padding:14px 10px; background:var(--card-bg, var(--card)); box-shadow:0 14px 32px rgba(1,61,169,.08); }
+  .rail-brand { display:flex; align-items:center; justify-content:space-between; gap:9px; padding:4px 8px 14px; border-bottom:1px solid var(--card-border, var(--border)); margin-bottom:10px; font-weight:700; font-size:13px; }
+  .rail-brand-link { display:flex; align-items:center; gap:9px; min-width:0; }
+  .rail-mark { width:28px; height:28px; border-radius:9px; display:grid; place-items:center; background:linear-gradient(135deg,var(--accent),var(--accent-dark, var(--accent))); color:#fff; font-weight:700; flex:0 0 auto; }
+  .rail-section { color:var(--text-soft, var(--soft)); font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:10px 8px 6px; }
+  .rail-link, .rail-locked { display:flex; align-items:center; justify-content:space-between; gap:7px; width:100%; border-radius:10px; padding:9px 8px; color:var(--text-soft, var(--soft)); text-decoration:none; font-size:12px; font-weight:600; }
+  .rail-link:hover, .rail-link:focus-visible { color:var(--text); background:var(--accent-dim, var(--dim)); outline:2px solid var(--accent-border, var(--accent)); outline-offset:1px; }
+  .rail-link.current { color:var(--accent); background:var(--accent-dim, var(--dim)); }
+  .rail-locked { opacity:.56; cursor:not-allowed; }
+  .rail-lock { font-size:11px; }
+  .app-content { min-width:0; grid-column:2; }
+  .topbar .app-nav, .topbar .nav { display:none; }
+  @media (max-width: 820px) { .app-shell { grid-template-columns:1fr; gap:12px; } .app-rail { position:static; display:flex; align-items:center; gap:6px; overflow-x:auto; padding:8px; } .rail-brand,.rail-section { display:none; } .rail-link,.rail-locked { flex:0 0 auto; width:auto; white-space:nowrap; } .rail-lock { margin-left:3px; } }
+
+  .rail-pin { border:1px solid var(--card-border, var(--border)); background:transparent; color:var(--text-soft, var(--soft)); width:22px; height:22px; border-radius:6px; cursor:pointer; display:grid; place-items:center; font-size:13px; font-weight:700; flex:0 0 auto; padding:0; }
+  .rail-pin:hover, .rail-pin:focus-visible { color:var(--accent); border-color:var(--accent-border, var(--accent)); outline:none; }
+  .app-shell.rail-autohide .app-rail { display: none; }
+  .app-shell.rail-autohide { grid-template-columns: minmax(0,1fr); }
+  .app-shell.rail-autohide .app-content { grid-column: 1; }
+  .rail-reveal { display:none; position:fixed; top:24px; left:24px; z-index:5; width:30px; height:30px; border-radius:9px; border:1px solid var(--card-border, var(--border)); background:var(--card-bg, var(--card)); color:var(--text-soft, var(--soft)); font-size:13px; font-weight:700; cursor:pointer; align-items:center; justify-content:center; padding:0; }
+  .rail-reveal:hover, .rail-reveal:focus-visible { color:var(--accent); border-color:var(--accent-border, var(--accent)); outline:none; }
+  .app-shell.rail-autohide .rail-reveal { display:flex; }
+  @media (max-width: 820px) { .rail-pin, .rail-reveal { display:none !important; } }
+  .rail-parent { padding:9px 8px 3px; color:var(--text-soft, var(--soft)); font-size:12px; font-weight:600; }
+  .rail-link.rail-sub { position:relative; padding-left:22px; }
+  .rail-link.rail-sub::before { content:""; position:absolute; left:11px; top:50%; width:4px; height:4px; margin-top:-2px; border-radius:50%; background:currentColor; opacity:.55; }
+  @media (max-width: 820px) { .rail-parent { display:none; } .rail-link.rail-sub { padding-left:8px; } .rail-link.rail-sub::before { display:none; } }
+
+.todo-add{display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;gap:8px;margin-top:12px}
+.todo-add input{border:1px solid var(--border);border-radius:10px;padding:9px 10px;background:var(--bg);color:var(--text);font:inherit;font-size:13px}
+.todo-btn{border:1px solid var(--border);border-radius:999px;padding:6px 11px;background:transparent;color:var(--text);font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+.todo-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.todo-row{display:flex;gap:10px;align-items:center;padding:11px 0;border-top:1px solid var(--border)}
+.todo-row:first-child{border-top:0}
+.todo-main{flex:1;min-width:0}.todo-main strong{font-size:14px;overflow-wrap:anywhere}
+.todo-meta{color:var(--soft);font-size:12px;margin-top:2px}
+.todo-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.todo-done{color:var(--soft);text-decoration:line-through}
+.todo-error{color:#ff6482;font-size:12px;margin:8px 0 0}
+@media(max-width:720px){.todo-add{grid-template-columns:1fr 1fr}.todo-row{flex-wrap:wrap}}
+</style></head><body><main class="app-shell" aria-label="SafePersonalAI to-dos"><aside class="app-rail" aria-label="App navigation"><div class="rail-brand"><a href="/demo/" class="rail-brand-link" style="text-decoration:none;color:inherit;"><span class="rail-mark"><svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="display:block"><rect x="20" y="46.5" width="38" height="8.5" rx="4.25" fill="#fff" opacity=".22"/><path d="M23.5 29.5 A23 23 0 0 1 23.5 73.5" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round"/><path d="M55.5 50.5 L60.5 55.5 L80 35" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>SafePersonalAI</span></a><button type="button" class="rail-pin" id="rail-pin-toggle" aria-pressed="true" title="Hide sidebar">‹</button></div><div class="rail-section">Workspace</div><a class="rail-link" href="/demo/"><span>⌂&nbsp; Dashboard</span></a><div class="rail-section">Modules</div><a class="rail-link" href="/demo/"><span>Base · Operational</span><span class="rail-lock" aria-label="Unlocked">●</span></a><a class="rail-link" href="/events"><span>Events</span></a><div class="rail-parent" title="Wealth · Finance">Finance</div><a class="rail-link rail-sub" href="/demo/wealth/"><span>Wealth</span></a><a class="rail-link rail-sub" href="/demo/investments/"><span>Investments</span></a><a class="rail-link" href="/demo/travel/" title="Travel"><span>Travel</span></a><div class="rail-section">Manage</div><a class="rail-link current" href="/demo/todos/" aria-current="page"><span>✓&nbsp; To-Dos</span></a><a class="rail-link" href="/demo/custom-rules/"><span>✦&nbsp; Custom Rules</span></a><a class="rail-link" href="/demo/trust-center/"><span>🛡&nbsp; Trust Center</span></a><a class="rail-link" href="/demo/settings/"><span>⚙&nbsp; Settings</span></a></aside><button type="button" class="rail-reveal" id="rail-reveal-toggle" title="Show sidebar" aria-label="Show sidebar">›</button><div class="app-content"><div class="wrap"><div class="topbar"><div><h1>To-Dos</h1><div class="sub">Your to-do list, plus task proposals waiting for approval</div></div><div class="topbar-actions"><nav class="app-nav" aria-label="Primary"><a class="nav-link" href="/demo/">Dashboard</a><a class="nav-link" href="/demo/settings/">Settings</a><a class="nav-link" href="/demo/custom-rules/">Custom Rules</a><a class="nav-link nav-current" href="/demo/todos/" aria-current="page">To-Dos</a><a class="nav-link" href="/demo/wealth/">Wealth</a><a class="nav-link" href="/demo/travel/">Travel</a><a class="nav-link" href="/demo/trust-center/">Trust Center</a></nav><div class="theme-control" aria-label="Appearance"><button data-theme-choice="light" aria-pressed="false">Bright</button><button data-theme-choice="dark" aria-pressed="false">Dark</button><button data-theme-choice="auto" aria-pressed="true">Auto</button></div></div></div><section class="card" aria-labelledby="todo-list-heading"><h2 id="todo-list-heading">Your to-dos <span class="muted" style="font-size:13px;font-weight:500;">4 open</span></h2><form id="todo-add" class="todo-add" autocomplete="off"><input name="title" maxlength="200" placeholder="Add a to-do…" aria-label="To-do title" required><input name="due_date" type="date" aria-label="Due date (optional)"><input name="due_time" type="time" aria-label="Due time (optional)"><button class="todo-btn primary" type="submit">Add</button></form><p id="todo-error" class="todo-error" role="alert" hidden></p><div style="margin-top:6px;"><div class="todo-row" data-todo-row="todo-f576763ac7e0"><span class="task-dot" style="background:#ff6482" aria-hidden="true"></span><div class="todo-main"><strong>Return the parcel</strong><div class="todo-meta">Due 2026-10-06 · <span style=color:#ff6482>Overdue</span></div></div><div class="todo-actions"><button class="todo-btn primary" data-todo-action="complete" data-todo-id="todo-f576763ac7e0">✓ Done</button><button class="todo-btn" data-todo-action="snooze" data-todo-id="todo-f576763ac7e0">Tomorrow</button><button class="todo-btn" data-todo-action="remove" data-todo-id="todo-f576763ac7e0" aria-label="Remove Return the parcel">Remove</button></div></div><div class="todo-row" data-todo-row="todo-410bce03eecd"><span class="task-dot" style="background:#00e599" aria-hidden="true"></span><div class="todo-main"><strong>Send the tax documents to the adviser</strong><div class="todo-meta">Due 2026-10-20</div></div><div class="todo-actions"><button class="todo-btn primary" data-todo-action="complete" data-todo-id="todo-410bce03eecd">✓ Done</button><button class="todo-btn" data-todo-action="snooze" data-todo-id="todo-410bce03eecd">Tomorrow</button><button class="todo-btn" data-todo-action="remove" data-todo-id="todo-410bce03eecd" aria-label="Remove Send the tax documents to the adviser">Remove</button></div></div><div class="todo-row" data-todo-row="todo-dd9ade4e2e99"><span class="task-dot" style="background:#00e599" aria-hidden="true"></span><div class="todo-main"><strong>Renew the car insurance</strong><div class="todo-meta">Due 2026-11-30</div></div><div class="todo-actions"><button class="todo-btn primary" data-todo-action="complete" data-todo-id="todo-dd9ade4e2e99">✓ Done</button><button class="todo-btn" data-todo-action="snooze" data-todo-id="todo-dd9ade4e2e99">Tomorrow</button><button class="todo-btn" data-todo-action="remove" data-todo-id="todo-dd9ade4e2e99" aria-label="Remove Renew the car insurance">Remove</button></div></div><div class="todo-row" data-todo-row="todo-25d331afe06a"><span class="task-dot" style="background:#00e599" aria-hidden="true"></span><div class="todo-main"><strong>Book the dentist check-up</strong><div class="todo-meta">No date</div></div><div class="todo-actions"><button class="todo-btn primary" data-todo-action="complete" data-todo-id="todo-25d331afe06a">✓ Done</button><button class="todo-btn" data-todo-action="snooze" data-todo-id="todo-25d331afe06a">Tomorrow</button><button class="todo-btn" data-todo-action="remove" data-todo-id="todo-25d331afe06a" aria-label="Remove Book the dentist check-up">Remove</button></div></div></div></section><script>
+(() => {
+  const post = (url, body) => fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(body || {})}).then((r) => r.json());
+  const err = document.getElementById('todo-error');
+  const show = (text) => { if (err) { err.textContent = text; err.hidden = false; } };
+  document.getElementById('todo-add')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const v = (n) => e.target.elements.namedItem(n).value;
+    const res = await post('/todos', {title: v('title'), due_date: v('due_date') || null,
+      due_time: v('due_time') || null}).catch(() => ({ok: false, error: 'Could not reach SafePersonalAI.'}));
+    if (res.ok) location.reload(); else show(res.error || 'Something went wrong.');
+  });
+  document.addEventListener('click', async (e) => {
+    const b = e.target.closest('[data-todo-action]');
+    if (!b) return;
+    b.disabled = true;
+    const res = await post(`/todos/${b.dataset.todoId}/${b.dataset.todoAction}`)
+      .catch(() => ({ok: false, error: 'Could not reach SafePersonalAI.'}));
+    if (res.ok) location.reload(); else { b.disabled = false; show(res.error || 'Something went wrong.'); }
+  });
+})();
+</script><section class="card"><h2>Task proposals</h2><p class="muted">These are the real task actions in the current digest window. Review or approve them from the action center.</p><ul class="tasks"><li class="task"><span class="task-dot" aria-hidden="true"></span><div><strong>Send the meter reading to Stadtwerke Musterstadt</strong><p class="muted">Awaiting your review</p></div></li><li class="task"><span class="task-dot" aria-hidden="true"></span><div><strong>Call the landlord</strong><p class="muted">Awaiting your review</p></div></li></ul><a class="nav-link nav-current" href="/demo/">Review in action center →</a></section></div></div></main><script>const r=document.documentElement,saved=localStorage.getItem('safepersonalai-theme')||'auto';r.dataset.theme=saved;r.dataset.accent=localStorage.getItem('safepersonalai-accent')||'blue';document.querySelectorAll('[data-theme-choice]').forEach(b=>b.addEventListener('click',()=>{r.dataset.theme=b.dataset.themeChoice;localStorage.setItem('safepersonalai-theme',b.dataset.themeChoice);document.querySelectorAll('[data-theme-choice]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))}));document.querySelector(`[data-theme-choice="${saved}"]`)?.setAttribute('aria-pressed','true');
+    (function() {
+      const shell = document.querySelector('.app-shell');
+      const pinBtn = document.getElementById('rail-pin-toggle');
+      const revealBtn = document.getElementById('rail-reveal-toggle');
+      if (!shell || !pinBtn) return;
+      const KEY = 'safepersonalai-rail-pinned';
+      const setPinned = (pinned) => {
+        shell.classList.toggle('rail-autohide', !pinned);
+        pinBtn.title = pinned ? 'Hide sidebar' : 'Show sidebar';
+        try { localStorage.setItem(KEY, pinned ? '1' : '0'); } catch (_) {}
+      };
+      let saved = null;
+      try { saved = localStorage.getItem(KEY); } catch (_) {}
+      setPinned(saved !== '0');
+      pinBtn.addEventListener('click', (ev) => { ev.preventDefault(); setPinned(false); });
+      revealBtn?.addEventListener('click', () => setPinned(true));
+    })();
+
+    (function() {
+      fetch('/api/health/access').then((r) => r.json()).then((s) => {
+        if (!s || s.messages_ok !== false || document.getElementById('fda-banner')) return;
+        const host = document.querySelector('main') || document.querySelector('.main') || document.body;
+        const box = document.createElement('div');
+        box.id = 'fda-banner'; box.setAttribute('role', 'alert');
+        box.style.cssText = 'display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;' +
+          'border:1px solid rgba(255,159,10,.45);background:rgba(255,159,10,.12);border-radius:12px;' +
+          'padding:12px 14px;margin:0 0 16px;font-size:13px;color:var(--text);';
+        box.innerHTML = '<div><b>⚠️ SafePersonalAI can\'t read your Messages.</b><br>' +
+          '<span style="color:var(--muted)">Texts, screenshots and files you send yourself aren\'t being read. ' +
+          'macOS removes this permission when the app is reinstalled. In System Settings → Privacy &amp; Security ' +
+          '→ Full Disk Access, switch SafePersonalAI on (remove and add it again if it\'s already listed). ' +
+          'Anything you sent in the last 3 days is read once it\'s allowed.</span></div>' +
+          '<button type="button" class="primary" style="white-space:nowrap">Open System Settings</button>';
+        box.querySelector('button').addEventListener('click', () =>
+          fetch('/api/health/open-full-disk-access', {method: 'POST'}));
+        host.prepend(box);
+      }).catch(() => {});
+    })();
+
+    (function () {
+      const wrap = document.querySelector('.app-content .wrap');
+      if (!wrap) return;
+      const page = location.pathname.replace(/\/+$/, '') || '/';
+      const store = {
+        get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
+        set(k, v) { try { v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (_) {} },
+      };
+      const css = document.createElement('style');
+      css.textContent = `
+        .card.sec-card { position:relative; }
+        .sec-chev { border:0; background:transparent; color:var(--text-soft,#8e8e93); cursor:pointer; font:inherit;
+          font-size:12px; width:20px; height:20px; margin:0 4px 0 -4px; border-radius:6px; display:inline-grid;
+          place-items:center; vertical-align:middle; transition:transform .2s ease, background .15s; }
+        .sec-chev:hover { background:rgba(127,127,127,.14); color:var(--text); }
+        .card.sec-collapsed .sec-chev { transform:rotate(-90deg); }
+        .card.sec-collapsed > :not(.sec-head):not(.sec-tools) { display:none !important; }
+        body.sec-arranging .sec-head > :not(h2):not(:has(h2)), body.sec-arranging .sec-chev { display:none !important; }
+        .card.sec-collapsed { padding-bottom:14px; }
+        .card.sec-collapsed .sec-head { margin-bottom:0 !important; }
+        .sec-bar { display:flex; justify-content:flex-end; gap:8px; margin:-6px 0 12px; }
+        .sec-bar button { border:1px solid var(--card-border,rgba(127,127,127,.25)); background:var(--card,transparent);
+          color:var(--text); font:inherit; font-size:12px; padding:6px 12px; border-radius:999px; cursor:pointer; }
+        .sec-bar button.primary-done { background:var(--accent,#0a84ff); border-color:transparent; color:#fff;
+          font-weight:600; }
+        .sec-tools { display:none; position:absolute; right:12px; top:50%; transform:translateY(-50%); gap:4px;
+          align-items:center; }
+        body.sec-arranging .sec-tools { display:flex; }
+        .sec-tools button { border:0; background:rgba(127,127,127,.14); color:var(--text); width:28px; height:28px;
+          border-radius:8px; cursor:pointer; font-size:13px; }
+        .sec-tools .sec-grip { cursor:grab; touch-action:none; font-size:16px; background:transparent; }
+        body.sec-arranging .card.sec-card > :not(.sec-head):not(.sec-tools) { display:none !important; }
+        body.sec-arranging .card.sec-card { padding:14px 120px 14px 18px; cursor:default;
+          animation:sec-jiggle .28s ease-in-out infinite alternate; }
+        body.sec-arranging .card.sec-card:nth-child(2n) { animation-delay:-.14s; }
+        body.sec-arranging .card.sec-card .sec-head * { pointer-events:none; }
+        body.sec-arranging .card.sec-card .sec-head { margin:0 !important; }
+        .card.sec-dragging { animation:none !important; box-shadow:0 14px 36px rgba(0,0,0,.28);
+          transform:scale(1.02); z-index:5; }
+        @keyframes sec-jiggle { from { transform:rotate(-.25deg); } to { transform:rotate(.25deg); } }
+        @media (prefers-reduced-motion: reduce) { body.sec-arranging .card.sec-card { animation:none; } }`;
+      document.head.appendChild(css);
+
+      const slug = (t) => (t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'section';
+      const cards = () => [...wrap.children].filter((el) => el.classList.contains('card') && el.querySelector('h2'));
+      const seen = {}, unhide = [];
+      cards().forEach((card) => {
+        const h2 = card.querySelector('h2');
+        const text = card.id || [...h2.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join(' ')
+          .replace(/\(\d+\)|\d+/g, '').trim() || h2.textContent;
+        let id = slug(text);
+        seen[id] = (seen[id] || 0) + 1;
+        if (seen[id] > 1) id += '-' + seen[id];
+        card.dataset.sec = id;
+        card.classList.add('sec-card');
+        let head = h2;
+        while (head.parentElement && head.parentElement !== card) head = head.parentElement;
+        head.classList.add('sec-head');
+        const tools = document.createElement('div');
+        tools.className = 'sec-tools';
+        tools.innerHTML = '<button type="button" data-move="-1" aria-label="Move up">↑</button>' +
+          '<button type="button" data-move="1" aria-label="Move down">↓</button>' +
+          '<button type="button" class="sec-grip" aria-label="Drag to reorder" title="Drag to reorder">≡</button>';
+        card.appendChild(tools);
+        if (card.querySelector('.card-minimize')) return;  // the Dashboard's cards already have their own
+        const chev = document.createElement('button');
+        chev.type = 'button'; chev.className = 'sec-chev'; chev.textContent = '⌄';
+        const name = h2.textContent.trim().slice(0, 40);
+        const key = `spa-hide:${page}:${id}`;
+        const setHidden = (hide) => {
+          card.classList.toggle('sec-collapsed', hide);
+          chev.setAttribute('aria-expanded', String(!hide));
+          chev.title = hide ? `Show ${name}` : `Hide ${name}`;
+          chev.setAttribute('aria-label', chev.title);
+          store.set(key, hide ? '1' : null);
+        };
+        chev.addEventListener('click', (e) => { e.stopPropagation(); setHidden(!card.classList.contains('sec-collapsed')); });
+        h2.prepend(chev);
+        setHidden(store.get(key) === '1');
+        unhide.push(() => setHidden(false));
+      });
+      const all = cards();  // the page's own order, for "Reset order"
+      if (all.length < 2) return;
+
+      const orderKey = `spa-order:${page}`;
+      const place = (ordered) => {
+        const marker = document.createComment('sections');
+        wrap.insertBefore(marker, cards()[0]);
+        let ref = marker;
+        ordered.forEach((c) => { wrap.insertBefore(c, ref.nextSibling); ref = c; });
+        marker.remove();
+      };
+      try {
+        const saved = JSON.parse(store.get(orderKey) || 'null');
+        if (Array.isArray(saved)) {
+          const byId = Object.fromEntries(all.map((c) => [c.dataset.sec, c]));
+          const ordered = saved.map((id) => byId[id]).filter(Boolean);
+          all.forEach((c) => { if (!ordered.includes(c)) ordered.splice(all.indexOf(c), 0, c); });
+          place(ordered);
+        }
+      } catch (_) {}
+      const save = () => store.set(orderKey, JSON.stringify(cards().map((c) => c.dataset.sec)));
+
+      const flip = (change) => {
+        const before = new Map(cards().map((c) => [c, c.getBoundingClientRect().top]));
+        change();
+        cards().forEach((c) => {
+          const dy = before.get(c) - c.getBoundingClientRect().top;
+          if (!dy || c.classList.contains('sec-dragging')) return;
+          c.animate([{ translate: `0 ${dy}px` }, { translate: '0 0' }], { duration: 220, easing: 'cubic-bezier(.2,.8,.2,1)' });
+        });
+      };
+
+      const bar = document.createElement('div');
+      bar.className = 'sec-bar';
+      bar.innerHTML = '<button type="button" data-sec="reset" hidden>Reset order</button>' +
+        '<button type="button" data-sec="arrange" title="Change the order of the sections">⇅ Arrange</button>';
+      wrap.insertBefore(bar, cards()[0]);
+      const arrangeBtn = bar.querySelector('[data-sec=arrange]'), resetBtn = bar.querySelector('[data-sec=reset]');
+      const setArranging = (on) => {
+        document.body.classList.toggle('sec-arranging', on);
+        arrangeBtn.textContent = on ? 'Done' : '⇅ Arrange';
+        arrangeBtn.classList.toggle('primary-done', on);
+        resetBtn.hidden = !on;
+        if (!on) save();
+      };
+      arrangeBtn.addEventListener('click', () => setArranging(!document.body.classList.contains('sec-arranging')));
+      resetBtn.addEventListener('click', () => {
+        flip(() => place(all));
+        unhide.forEach((f) => f());
+        store.set(orderKey, null);
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.body.classList.contains('sec-arranging')) setArranging(false);
+      });
+
+      wrap.addEventListener('click', (e) => {
+        const btn = e.target.closest('.sec-tools [data-move]');
+        if (!btn) return;
+        const card = btn.closest('.card'), list = cards(), i = list.indexOf(card), j = i + Number(btn.dataset.move);
+        if (j < 0 || j >= list.length) return;
+        flip(() => wrap.insertBefore(card, Number(btn.dataset.move) < 0 ? list[j] : list[j].nextSibling));
+        save();
+      });
+
+      let drag = null;
+      wrap.addEventListener('pointerdown', (e) => {
+        const grip = e.target.closest('.sec-grip');
+        if (!grip || !document.body.classList.contains('sec-arranging')) return;
+        e.preventDefault();
+        drag = { card: grip.closest('.card'), grip, id: e.pointerId };
+        grip.setPointerCapture(e.pointerId);
+        drag.card.classList.add('sec-dragging');
+      });
+      wrap.addEventListener('pointermove', (e) => {
+        if (!drag || e.pointerId !== drag.id) return;
+        const card = drag.card, y = e.clientY;
+        for (const other of cards()) {
+          if (other === card) continue;
+          const r = other.getBoundingClientRect(), mine = card.getBoundingClientRect();
+          const mid = r.top + r.height / 2;
+          if (y < mid && mine.top > r.top) { flip(() => wrap.insertBefore(card, other)); break; }
+          if (y > mid && mine.top < r.top) { flip(() => wrap.insertBefore(card, other.nextSibling)); break; }
+        }
+      });
+      const end = (e) => {
+        if (!drag || (e && e.pointerId !== drag.id)) return;
+        drag.card.classList.remove('sec-dragging');
+        drag = null;
+        save();
+      };
+      wrap.addEventListener('pointerup', end);
+      wrap.addEventListener('pointercancel', end);
+    })();
+
+    (function () {
+      const wrap = document.querySelector('.app-content .wrap');
+      if (!wrap) return;
+      const cards = () => [...wrap.children].filter((el) => el.classList.contains('sec-card'));
+      if (cards().length < 2) return;
+      const page = location.pathname.replace(/\/+$/, '') || '/';
+      const store = {
+        get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
+        set(k, v) { try { localStorage.setItem(k, v); } catch (_) {} },
+      };
+      const session = {
+        get(k) { try { return sessionStorage.getItem(k); } catch (_) { return null; } },
+        set(k, v) { try { v === null ? sessionStorage.removeItem(k) : sessionStorage.setItem(k, v); } catch (_) {} },
+      };
+      const css = document.createElement('style');
+      css.textContent = `
+        .layout-bar { display:flex; justify-content:flex-end; margin:0 0 10px; }
+        .layout-switch { display:inline-flex; gap:2px; padding:3px; border:1px solid var(--card-border,var(--border,rgba(127,127,127,.25)));
+          border-radius:999px; }
+        .layout-switch button { border:0; background:transparent; color:var(--text-soft,var(--soft,#8e8e93)); font:inherit;
+          font-size:12px; padding:5px 12px; border-radius:999px; cursor:pointer; }
+        .layout-switch button[aria-pressed=true] { background:var(--accent-dim,var(--dim,rgba(10,132,255,.16)));
+          color:var(--accent,#0a84ff); font-weight:700; }
+        .tile-face, .tile-close { display:none; }
+        body.layout-tiles .app-content .wrap { display:grid; grid-template-columns:repeat(auto-fill,minmax(164px,1fr));
+          gap:18px; align-items:start; }
+        body.layout-tiles .app-content .wrap > * { grid-column:1 / -1; min-width:0; }
+        body.layout-tiles .app-content .wrap > .card.sec-card { grid-column:auto; }
+        body.layout-tiles .sec-bar { display:none; }
+        body.layout-tiles .card.sec-card:not(.tile-open) { aspect-ratio:1 / 1; margin:0; padding:16px; border-radius:28px;
+          cursor:pointer; overflow:hidden; display:flex; transition:transform .16s ease, box-shadow .16s ease;
+          background:linear-gradient(160deg, hsl(var(--tile-hue,210) 70% 55% / .16), transparent 62%), var(--card,transparent); }
+        body.layout-tiles .card.sec-card:not(.tile-open):hover { transform:translateY(-3px) scale(1.02);
+          box-shadow:0 14px 34px rgba(0,0,0,.22); }
+        body.layout-tiles .card.sec-card:not(.tile-open):focus-visible { outline:2px solid var(--accent,#0a84ff); outline-offset:3px; }
+        body.layout-tiles .card.sec-card:not(.tile-open) > :not(.tile-face) { display:none !important; }
+        body.layout-tiles .card.sec-card:not(.tile-open) > .tile-face { display:flex; flex-direction:column; width:100%;
+          justify-content:space-between; }
+        .tile-icon { width:52px; height:52px; border-radius:15px; display:grid; place-items:center; font-size:26px; color:#fff;
+          font-weight:700; background:linear-gradient(145deg, hsl(var(--tile-hue,210) 78% 58%), hsl(calc(var(--tile-hue,210) + 28) 72% 42%));
+          box-shadow:0 6px 16px hsl(var(--tile-hue,210) 70% 40% / .35); }
+        .tile-peek { font-size:22px; font-weight:700; letter-spacing:-.01em; font-variant-numeric:tabular-nums; margin-top:auto;
+          white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .tile-name { font-size:14px; font-weight:600; line-height:1.25; margin-top:6px; display:-webkit-box;
+          -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+        body.tile-opened { overflow:hidden; }
+        body.tile-opened::before { content:""; position:fixed; inset:0; z-index:900; background:rgba(0,0,0,.5);
+          -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); animation:tile-fade .2s ease; }
+        body.layout-tiles .card.sec-card.tile-open { position:fixed; z-index:901; left:50%; top:4vh; width:min(1040px,94vw);
+          max-height:92vh; overflow:auto; margin:0; transform:translateX(-50%); border-radius:26px; padding:22px 24px 26px;
+          box-shadow:0 30px 80px rgba(0,0,0,.45); animation:tile-zoom .24s cubic-bezier(.2,.9,.25,1);
+          background:var(--tile-sheet, var(--card,#14161b)); -webkit-backdrop-filter:none; backdrop-filter:none; }
+        body.layout-tiles .card.tile-open > .tile-close { display:grid; place-items:center; position:sticky; top:0; float:right;
+          z-index:3; width:32px; height:32px; margin:-6px -8px 0 10px; border:0; border-radius:50%; cursor:pointer;
+          background:rgba(127,127,127,.22); color:var(--text,#fff); font-size:15px; }
+        body.layout-tiles .card.tile-open > .tile-close:hover { background:rgba(127,127,127,.36); }
+        .layout-bar { gap:8px; align-items:center; }
+        .layout-bar .tiles-arrange { border:1px solid var(--card-border,var(--border,rgba(127,127,127,.25))); background:var(--card,transparent);
+          color:var(--text); font:inherit; font-size:12px; padding:6px 12px; border-radius:999px; cursor:pointer; }
+        .layout-bar .tiles-arrange.primary-done { background:var(--accent,#0a84ff); border-color:transparent; color:#fff; font-weight:600; }
+        body.tiles-arranging .card.sec-card:not(.tile-open) { cursor:grab; touch-action:none;
+          animation:sec-jiggle .28s ease-in-out infinite alternate; }
+        body.tiles-arranging .card.sec-card:not(.tile-open):nth-child(2n) { animation-delay:-.14s; }
+        body.tiles-arranging .card.sec-card:not(.tile-open):hover { transform:none; }
+        .card.sec-card.tile-dragging { animation:none !important; opacity:.55; outline:2px dashed var(--accent,#0a84ff);
+          outline-offset:3px; cursor:grabbing; }
+        @keyframes tile-zoom { from { opacity:0; transform:translateX(-50%) scale(.9); } to { opacity:1; transform:translateX(-50%) scale(1); } }
+        @keyframes tile-fade { from { opacity:0; } to { opacity:1; } }
+        @media (prefers-reduced-motion: reduce) { body.layout-tiles .card.sec-card, body.tile-opened::before { animation:none !important; transition:none !important; } }`;
+      document.head.appendChild(css);
+
+      const ICONS = [[/overview|glance|made of|over time|month by month/, '📊'], [/forecast|coming|upcoming/, '📅'], [/spend|category/, '💳'], [/account|balance|wealth/, '🏦'],
+        [/transaction/, '🧾'], [/budget/, '🎯'], [/invest|holding|portfolio/, '📈'], [/loan|mortgage/, '🏠'],
+        [/pending|waiting|review|action/, '✅'], [/module/, '🧩'], [/running|status|licen/, '🔌'], [/bank|statement/, '🏛️'],
+        [/activity|history|timeline/, '🕘'], [/mail|inbox|reply/, '✉️'], [/calendar|event/, '🗓️'], [/to-?do|task/, '☑️'],
+        [/route|flight|travel|trip|booking/, '✈️'], [/price|alert/, '🔔'], [/rule/, '✨'], [/iphone|phone/, '📱'],
+        [/language/, '🌐'], [/backup/, '💾'], [/privacy|trust|safe/, '🛡️'], [/ai|provider|key/, '🧠'], [/profile|name/, '🙂'],
+        [/colou?r|accent|appearance/, '🎨'], [/subscription|monthly|every month/, '🔁'], [/update/, '🔄'], [/add /, '➕']];
+      const emoji = /\p{Extended_Pictographic}(?:\uFE0F|\u200D\p{Extended_Pictographic})*/u;
+      const money = /^[+\u2212-]?\s?[€$£₺]?\s?\d[\d.,' ]*\s?(?:€|%|EUR|USD|TRY)?$/;
+
+      const face = (card) => {
+        const h2 = card.querySelector('h2');
+        const raw = [...h2.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join(' ').trim()
+          || (card.dataset.sec || '').replace(/-/g, ' ');
+        const found = raw.match(emoji);
+        const name = raw.replace(emoji, '').replace(/\s+/g, ' ').trim() || raw;
+        const low = name.toLowerCase();
+        const icon = found ? found[0] : ((ICONS.find(([re]) => re.test(low)) || [])[1] || name.slice(0, 1).toUpperCase());
+        let peek = '';
+        for (const el of [...card.querySelectorAll('b, strong, .value, [class*=total], [class*=value], [class*=amount]')].slice(0, 80)) {
+          const text = (el.textContent || '').trim();
+          if (text.length && text.length <= 16 && money.test(text) && parseFloat(getComputedStyle(el).fontSize) >= 17) { peek = text; break; }
+        }
+        let hue = 0;
+        for (const ch of card.dataset.sec || name) hue = (hue * 31 + ch.charCodeAt(0)) % 360;
+        card.style.setProperty('--tile-hue', String(hue));
+        const el = document.createElement('div');
+        el.className = 'tile-face';
+        el.innerHTML = '<div class="tile-icon" aria-hidden="true"></div><div class="tile-peek"></div><div class="tile-name"></div>';
+        el.children[0].textContent = icon;
+        el.children[1].textContent = peek;
+        el.children[2].textContent = name;
+        card.appendChild(el);
+        const close = document.createElement('button');
+        close.type = 'button'; close.className = 'tile-close'; close.textContent = '✕';
+        close.setAttribute('aria-label', 'Close'); close.title = 'Close';
+        card.prepend(close);
+        return name;
+      };
+
+      const openKey = `spa-tile-open:${page}`;
+      let opened = null, wasFolded = false;
+      const close = () => {
+        if (!opened) return;
+        opened.classList.remove('tile-open');
+        if (wasFolded) opened.classList.add('sec-collapsed');
+        document.body.classList.remove('tile-opened');
+        opened.focus({preventScroll: true});
+        opened = null;
+        session.set(openKey, null);
+      };
+      const open = (card) => {
+        if (opened === card) return;
+        close();
+        wasFolded = card.classList.contains('sec-collapsed');   // a folded section opens unfolded
+        card.classList.remove('sec-collapsed');
+        card.classList.add('tile-open');
+        document.body.classList.add('tile-opened');
+        card.scrollTop = 0;
+        opened = card;
+        session.set(openKey, card.dataset.sec);
+      };
+      const tiles = () => document.body.classList.contains('layout-tiles');
+
+      cards().forEach((card) => {
+        const name = face(card);
+        card.addEventListener('click', (e) => {
+          if (!tiles()) return;
+          if (document.body.classList.contains('tiles-arranging')) { e.preventDefault(); e.stopPropagation(); return; }
+          if (e.target.closest('.tile-close')) { e.stopPropagation(); close(); return; }
+          if (card.classList.contains('tile-open')) return;
+          e.preventDefault(); e.stopPropagation();
+          open(card);
+        }, true);
+        card.addEventListener('keydown', (e) => {
+          if (!tiles() || card.classList.contains('tile-open') || e.target !== card) return;
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(card); }
+        });
+        card.dataset.tileName = name;
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        if (opened) close();
+        else if (document.body.classList.contains('tiles-arranging')) document.querySelector('.tiles-arrange')?.click();
+      });
+      document.addEventListener('click', (e) => {     // a click on the dimmed page behind the sheet
+        if (opened && !e.target.closest('.tile-open') && document.body.contains(e.target)) close();
+      });
+
+      const bar = document.createElement('div');
+      bar.className = 'layout-bar';
+      bar.innerHTML = '<div class="layout-switch" role="group" aria-label="Layout">' +
+        '<button type="button" data-layout="classic" title="Every section open, one under the other">Classic</button>' +
+        '<button type="button" data-layout="tiles" title="Every section as a tile; click one to open it">Tiles</button></div>';
+      const arrangeBtn = document.createElement('button');
+      arrangeBtn.type = 'button'; arrangeBtn.className = 'tiles-arrange'; arrangeBtn.hidden = true;
+      arrangeBtn.textContent = '⇅ Arrange'; arrangeBtn.title = 'Drag the tiles into your own order';
+      bar.prepend(arrangeBtn);
+      const orderKey = `spa-order:${page}`;
+      const setArranging = (on) => {
+        if (on) close();
+        document.body.classList.toggle('tiles-arranging', on);
+        arrangeBtn.textContent = on ? 'Done' : '⇅ Arrange';
+        arrangeBtn.classList.toggle('primary-done', on);
+        if (!on) store.set(orderKey, JSON.stringify(cards().map((c) => c.dataset.sec)));
+      };
+      arrangeBtn.addEventListener('click', () => setArranging(!document.body.classList.contains('tiles-arranging')));
+      const slide = (change) => {          // every tile that moved glides to its new place
+        const before = new Map(cards().map((c) => [c, c.getBoundingClientRect()]));
+        change();
+        cards().forEach((c) => {
+          const a = before.get(c), b = c.getBoundingClientRect();
+          if ((a.left === b.left && a.top === b.top) || c.classList.contains('tile-dragging')) return;
+          c.animate([{ translate: `${a.left - b.left}px ${a.top - b.top}px` }, { translate: '0 0' }],
+            { duration: 220, easing: 'cubic-bezier(.2,.8,.2,1)' });
+        });
+      };
+      let drag = null;
+      wrap.addEventListener('pointerdown', (e) => {
+        if (!document.body.classList.contains('tiles-arranging')) return;
+        const card = e.target.closest('.card.sec-card');
+        if (!card || card.parentElement !== wrap) return;
+        e.preventDefault();
+        drag = { card, id: e.pointerId };
+        card.setPointerCapture(e.pointerId);
+        card.classList.add('tile-dragging');
+      });
+      wrap.addEventListener('pointermove', (e) => {
+        if (!drag || e.pointerId !== drag.id) return;
+        const over = cards().find((c) => {
+          if (c === drag.card) return false;
+          const r = c.getBoundingClientRect();
+          return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+        });
+        if (!over) return;
+        const list = cards(), after = list.indexOf(over) > list.indexOf(drag.card);
+        slide(() => wrap.insertBefore(drag.card, after ? over.nextSibling : over));
+      });
+      const drop = (e) => {
+        if (!drag || (e && e.pointerId !== drag.id)) return;
+        drag.card.classList.remove('tile-dragging');
+        drag = null;
+        store.set(orderKey, JSON.stringify(cards().map((c) => c.dataset.sec)));
+      };
+      wrap.addEventListener('pointerup', drop);
+      wrap.addEventListener('pointercancel', drop);
+      wrap.insertBefore(bar, wrap.querySelector('.sec-bar') || cards()[0]);
+      const apply = (mode) => {
+        const on = mode === 'tiles';
+        if (!on) close();
+        if (!on && document.body.classList.contains('tiles-arranging')) setArranging(false);
+        arrangeBtn.hidden = !on;
+        document.body.classList.toggle('layout-tiles', on);
+        document.body.classList.remove('sec-arranging');
+        bar.querySelectorAll('[data-layout]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.layout === mode)));
+        cards().forEach((card) => {
+          if (on) { card.tabIndex = 0; card.setAttribute('role', 'button'); card.setAttribute('aria-label', card.dataset.tileName || ''); }
+          else { card.removeAttribute('tabindex'); card.removeAttribute('role'); card.removeAttribute('aria-label'); }
+        });
+      };
+      bar.addEventListener('click', (e) => {
+        const b = e.target.closest('[data-layout]');
+        if (!b) return;
+        store.set('safepersonalai-layout', b.dataset.layout);
+        apply(b.dataset.layout);
+      });
+      apply(store.get('safepersonalai-layout') === 'tiles' ? 'tiles' : 'classic');
+      if (tiles()) {
+        const want = (location.hash || '').slice(1) || session.get(openKey);
+        const target = want && cards().find((c) => c.id === want || c.dataset.sec === want);
+        if (target) open(target);
+      }
+    })();
+
+    (function () {
+      const charts = document.querySelectorAll('svg.wc-line');
+      if (!charts.length) return;
+      const tip = document.createElement('div');
+      tip.className = 'wc-hover-tip';
+      tip.hidden = true;
+      tip.style.cssText = 'position:fixed;z-index:1000;pointer-events:none;padding:6px 10px;border-radius:10px;font-size:12px;' +
+        'font-weight:600;line-height:1.35;white-space:nowrap;background:rgba(20,22,27,.96);color:#fff;' +
+        'border:1px solid rgba(255,255,255,.16);box-shadow:0 8px 24px rgba(0,0,0,.35);font-variant-numeric:tabular-nums;';
+      document.body.appendChild(tip);
+      const NS = 'http://www.w3.org/2000/svg';
+      charts.forEach((svg) => {
+        const dots = [...svg.querySelectorAll('circle')].map((c) => {
+          const title = c.querySelector('title');
+          const text = title ? title.textContent : '';
+          const cut = text.lastIndexOf(': ');
+          return { el: c, x: Number(c.getAttribute('cx')), y: Number(c.getAttribute('cy')), r: c.getAttribute('r'),
+                   day: cut > 0 ? text.slice(0, cut) : '', value: cut > 0 ? text.slice(cut + 2) : text };
+        }).filter((d) => d.value);
+        if (dots.length < 2) return;
+        const box = svg.viewBox.baseVal;
+        const guide = document.createElementNS(NS, 'line');
+        guide.setAttribute('stroke', 'currentColor'); guide.setAttribute('stroke-opacity', '.45');
+        guide.setAttribute('stroke-width', '1'); guide.setAttribute('y1', '0'); guide.setAttribute('y2', String(box.height - 24));
+        guide.style.display = 'none'; guide.style.pointerEvents = 'none';
+        svg.insertBefore(guide, svg.querySelector('circle'));
+        let last = null;
+        const leave = () => {
+          if (last) last.el.setAttribute('r', last.r);
+          last = null; guide.style.display = 'none'; tip.hidden = true;
+        };
+        svg.addEventListener('pointermove', (e) => {
+          const r = svg.getBoundingClientRect();
+          if (!r.width) return;
+          const x = (e.clientX - r.left) * box.width / r.width;
+          let near = dots[0];
+          for (const d of dots) if (Math.abs(d.x - x) < Math.abs(near.x - x)) near = d;
+          if (near !== last) {
+            if (last) last.el.setAttribute('r', last.r);
+            near.el.setAttribute('r', '6');
+            last = near;
+            guide.setAttribute('x1', String(near.x)); guide.setAttribute('x2', String(near.x));
+            guide.style.display = '';
+            tip.textContent = '';
+            const day = document.createElement('div'); day.style.cssText = 'font-weight:500;opacity:.7'; day.textContent = near.day;
+            const amount = document.createElement('div'); amount.style.fontSize = '14px'; amount.textContent = near.value;
+            tip.append(day, amount);
+          }
+          tip.hidden = false;
+          const w = tip.offsetWidth, px = r.left + near.x * r.width / box.width;
+          tip.style.left = Math.max(8, Math.min(window.innerWidth - w - 8, px - w / 2)) + 'px';
+          tip.style.top = Math.max(8, r.top + near.y * r.height / box.height - tip.offsetHeight - 14) + 'px';
+        });
+        svg.addEventListener('pointerleave', leave);
+        svg.style.cursor = 'crosshair';
+      });
+      window.addEventListener('scroll', () => { tip.hidden = true; }, true);
+    })();
+
+    (function () {
+      const rail = document.querySelector('.app-rail');
+      if (!rail || rail.querySelector('.rail-layout')) return;
+      const read = () => { try { return localStorage.getItem('safepersonalai-layout') === 'tiles' ? 'tiles' : 'classic'; } catch (_) { return 'classic'; } };
+      const css = document.createElement('style');
+      css.textContent = `
+        .rail-layout { margin:14px 8px 4px; }
+        .rail-layout .rail-layout-name { font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:700;
+          color:var(--text-soft,var(--soft,#8e8e93)); margin:0 4px 6px; }
+        .rail-layout .rail-layout-switch { display:flex; gap:2px; padding:3px; border-radius:999px;
+          border:1px solid var(--card-border,var(--border,rgba(127,127,127,.25))); }
+        .rail-layout button { flex:1; border:0; background:transparent; color:var(--text-soft,var(--soft,#8e8e93)); font:inherit;
+          font-size:12px; padding:5px 8px; border-radius:999px; cursor:pointer; }
+        .rail-layout button[aria-pressed=true] { background:var(--accent-dim,var(--dim,rgba(10,132,255,.16)));
+          color:var(--accent,#0a84ff); font-weight:700; }`;
+      document.head.appendChild(css);
+      const box = document.createElement('div');
+      box.className = 'rail-layout';
+      box.innerHTML = '<div class="rail-layout-name">Layout</div><div class="rail-layout-switch" role="group" aria-label="Layout">' +
+        '<button type="button" data-rail-layout="classic" title="Every section open, one under the other">Classic</button>' +
+        '<button type="button" data-rail-layout="tiles" title="Every section as a tile; click one to open it">Tiles</button></div>';
+      rail.appendChild(box);
+      const mark = () => box.querySelectorAll('[data-rail-layout]').forEach((b) =>
+        b.setAttribute('aria-pressed', String(b.dataset.railLayout === read())));
+      box.addEventListener('click', (e) => {
+        const b = e.target.closest('[data-rail-layout]');
+        if (!b) return;
+        const inPage = document.querySelector(`.layout-switch [data-layout="${b.dataset.railLayout}"]`);
+        if (inPage) inPage.click();                       // this page has sections: switch it now
+        else { try { localStorage.setItem('safepersonalai-layout', b.dataset.railLayout); } catch (_) {} }
+        mark();
+      });
+      document.addEventListener('click', (e) => { if (e.target.closest('.layout-switch [data-layout]')) setTimeout(mark, 0); });
+      mark();
+    })();
+</script></body></html>

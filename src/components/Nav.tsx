@@ -34,6 +34,8 @@ export default function Nav({
     { href: `${home}#use-cases`, label: t.useCases },
     { href: `${home}#modules`, label: t.modules },
     { href: localePath(lang, "/iphone"), label: "iPhone" },
+    // The clickable demo: the app's real pages with invented data (plain files under /demo/).
+    { href: "/demo/", label: "Demo" },
     { href: `${home}#boundary`, label: t.howItWorks },
     { href: `${home}#pricing`, label: t.pricing },
     { href: `${home}#faq`, label: t.faq },

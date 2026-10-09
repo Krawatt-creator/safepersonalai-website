@@ -42,6 +42,8 @@ export const tr: Dictionary = {
     body: "SafePersonalAI e-postalarınızı, mesajlarınızı ve hesap özetlerinizi kendi Mac'inizde okur; yapılacakları, takvim kayıtlarını ve para özetini hazırlar. Her birini siz onaylarsınız. Verileriniz bize asla gönderilmez: Mac'inizde kalır, yapay zekâ da orada Ollama ile ya da kendi yapay zekâ sağlayıcı hesabınız üzerinden çalışır. Bir kez ödeyin, abonelik yok.",
     ctaDownload: "Ücretsiz betayı indir",
     ctaUseCases: "Gerçek kullanım örneklerine bak",
+    ctaDemo: "Demoyu dene",
+    ctaDemoHint: "Gerçek uygulamayı uydurma verilerle açar. Kurulum gerekmez. Demo İngilizcedir.",
     finePrint:
       "Apple Silicon (M1 veya üstü) Mac'ler için. Bulut hesabı olmadan yerel bir Ollama modeli ya da kendi Anthropic, OpenAI veya Gemini anahtarınızı kullanın.",
   },
