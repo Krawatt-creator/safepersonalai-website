@@ -1,13 +1,13 @@
 // English: the source text. Every other language file has exactly this shape.
-// {days}, {base}, {travel}, {wealth}, {bundleBeta}, {bundle} are filled from
+// {days}, {base}, {travel}, {wealth}, {bundle} are filled from
 // src/lib/offer.ts, so a price is never typed into a sentence by hand.
 // Claims follow product_features/FEATURES.md.
 
 export const en = {
   meta: {
-    homeTitle: "SafePersonalAI — Private actions from your inbox, approved by you",
+    homeTitle: "SafePersonalAI — Private AI assistant for Mac, no subscription",
     homeDescription:
-      "SafePersonalAI runs on your Mac, turns email into approval-ready tasks and calendar actions, and supports local Ollama or your own AI provider account.",
+      "A private AI assistant that runs on your Mac. It turns email, messages and bank statements into to-dos, calendar entries and a money overview, and waits for your approval. Pay once, no subscription.",
     wealthTitle: "Wealth — any bank's statement on your Mac, no bank login",
     wealthDescription:
       "Read any bank's statement on your Mac — CSV, Excel, PDF, MT940, CAMT, OFX or QIF — without logging in to your bank. Spending by category, a forecast of the coming months, budgets and your investments.",
@@ -32,16 +32,16 @@ export const en = {
   offer: {
     trialLine: "Free during the beta: every module is open for {days} days.",
     priceLine:
-      "After that, a one-time purchase: Base €{base}, Travel €{travel}, Wealth €{wealth} — or all three for €{bundleBeta} while the beta runs (€{bundle} afterwards). Buying opens soon.",
+      "After that, a one-time purchase: Base €{base}, Travel €{travel}, Wealth €{wealth} — or all three for €{bundle}. Buying opens soon.",
     priceNote: "one time · free for {days} days in the beta",
     downloadNote:
       "Free for {days} days, every module included · notarized by Apple · Apple silicon (M1 or later)",
   },
   hero: {
-    badge: "Private Mac assistant · free beta",
-    titleLine1: "It turns your inbox into actions.",
-    titleLine2: "It waits for your approval.",
-    body: "SafePersonalAI reads new email, prepares the task or calendar action it found, and shows you exactly what will happen before anything changes. It runs on your Mac with Ollama locally or your own cloud-provider account.",
+    badge: "The AI assistant that asks first · free beta",
+    titleLine1: "A private AI assistant that lives on your Mac.",
+    titleLine2: "Nothing happens without your yes.",
+    body: "SafePersonalAI reads your email, messages and bank statements on your own Mac and prepares the to-dos, calendar entries and money overview. You approve each one. Your data is never sent to us: it stays on your Mac, and the AI runs there too with Ollama, or through your own AI provider account. Pay once, no subscription.",
     ctaDownload: "Download the free beta",
     ctaUseCases: "Explore real use cases",
     finePrint:
@@ -206,8 +206,8 @@ export const en = {
     intro:
       "Download the beta and every module is open for {days} days, free. After that each module is a one-time purchase — the Mac app has no subscription. A module you do not buy closes; its data stays on your Mac and comes back when you add it. Buying opens soon, and nothing is charged today.",
     bundleLead: "All three together:",
-    bundleStrong: "€{bundleBeta} one time while the beta runs",
-    bundleRest: ", instead of €{bundle} afterwards. Buying opens soon — until then there is nothing to pay.",
+    bundleStrong: "€{bundle} one time",
+    bundleRest: ". Buying opens soon — until then there is nothing to pay.",
     learnMore: "Learn more →",
     download: "Download beta",
     included: "Included in the {days}-day trial",
@@ -288,7 +288,7 @@ export const en = {
     items: [
       {
         q: "What does it cost, and is there a free trial?",
-        a: "The beta is free to download, and every module — Base, Travel and Wealth — is open for {days} days. After that each module is a one-time purchase, not a subscription: Base €{base}, Travel €{travel}, Wealth €{wealth}, or all three for €{bundleBeta} while the beta runs (€{bundle} afterwards). Buying is not open yet, so nothing is charged today. When the {days} days end, a module without a license closes and its data stays on your Mac. If you use a cloud AI provider you pay that provider directly; a local Ollama model has no AI bill.",
+        a: "The beta is free to download, and every module — Base, Travel and Wealth — is open for {days} days. After that each module is a one-time purchase, not a subscription: Base €{base}, Travel €{travel}, Wealth €{wealth}, or all three for €{bundle}. Buying is not open yet, so nothing is charged today. When the {days} days end, a module without a license closes and its data stays on your Mac. If you use a cloud AI provider you pay that provider directly; a local Ollama model has no AI bill.",
       },
       {
         q: "Do I need my own Claude, OpenAI, or Gemini account?",

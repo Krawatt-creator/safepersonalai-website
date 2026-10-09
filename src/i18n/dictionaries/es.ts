@@ -3,7 +3,7 @@ import type { Dictionary } from "./en";
 // Spanish. Same shape as en.ts. Not yet checked by a native-speaking editor.
 export const es: Dictionary = {
   meta: {
-    homeTitle: "SafePersonalAI — Asistente de IA privado para Mac: del correo al calendario y a las tareas",
+    homeTitle: "SafePersonalAI — Asistente de IA privado para Mac, sin suscripción",
     homeDescription:
       "SafePersonalAI funciona en tu Mac, convierte el correo en tareas y eventos de calendario que esperan tu aprobación, y trabaja con Ollama en local o con tu propia cuenta de proveedor de IA.",
     wealthTitle: "Wealth — el extracto de cualquier banco en tu Mac, sin acceso al banco",
@@ -30,16 +30,16 @@ export const es: Dictionary = {
   offer: {
     trialLine: "Gratis durante la beta: todos los módulos están abiertos durante {days} días.",
     priceLine:
-      "Después, una compra única: Base {base} €, Travel {travel} €, Wealth {wealth} € — o los tres por {bundleBeta} € mientras dure la beta ({bundle} € después). La compra se abrirá pronto.",
+      "Después, una compra única: Base {base} €, Travel {travel} €, Wealth {wealth} € — o los tres por {bundle} €. La compra se abrirá pronto.",
     priceNote: "pago único · gratis {days} días en la beta",
     downloadNote:
       "Gratis durante {days} días, con todos los módulos · notarizada por Apple · Apple Silicon (M1 o posterior)",
   },
   hero: {
-    badge: "Asistente privado para Mac · beta gratuita",
-    titleLine1: "Convierte tu bandeja de entrada en acciones.",
-    titleLine2: "Y espera tu aprobación.",
-    body: "SafePersonalAI lee el correo nuevo, prepara la tarea o el evento de calendario que ha encontrado y te muestra exactamente qué va a pasar antes de que nada cambie. Funciona en tu Mac, en local con Ollama o con tu propia cuenta de un proveedor en la nube.",
+    badge: "El asistente de IA que pregunta primero · beta gratuita",
+    titleLine1: "Un asistente de IA privado que vive en tu Mac.",
+    titleLine2: "Nada ocurre sin tu sí.",
+    body: "SafePersonalAI lee tu correo, tus mensajes y tus extractos bancarios en tu propio Mac y prepara las tareas, los eventos de calendario y el resumen de tu dinero. Tú apruebas cada uno. Tus datos nunca se nos envían: se quedan en tu Mac, y la IA funciona también ahí con Ollama, o a través de tu propia cuenta de proveedor de IA. Un solo pago, sin suscripción.",
     ctaDownload: "Descargar la beta gratuita",
     ctaUseCases: "Ver casos de uso reales",
     finePrint:
@@ -204,8 +204,8 @@ export const es: Dictionary = {
     intro:
       "Descarga la beta y todos los módulos estarán abiertos durante {days} días, gratis. Después, cada módulo es una compra única: la app de Mac no tiene suscripción. Un módulo que no compres se cierra; sus datos se quedan en tu Mac y vuelven cuando lo añadas. La compra se abrirá pronto y hoy no se cobra nada.",
     bundleLead: "Los tres juntos:",
-    bundleStrong: "{bundleBeta} € en un solo pago mientras dure la beta",
-    bundleRest: ", en lugar de {bundle} € después. La compra se abrirá pronto; hasta entonces no hay nada que pagar.",
+    bundleStrong: "{bundle} € en un solo pago",
+    bundleRest: ". La compra se abrirá pronto; hasta entonces no hay nada que pagar.",
     learnMore: "Más información →",
     download: "Descargar beta",
     included: "Incluido en la prueba de {days} días",
@@ -286,7 +286,7 @@ export const es: Dictionary = {
     items: [
       {
         q: "¿Cuánto cuesta y hay prueba gratuita?",
-        a: "La beta se descarga gratis y todos los módulos — Base, Travel y Wealth — están abiertos durante {days} días. Después, cada módulo es una compra única, no una suscripción: Base {base} €, Travel {travel} €, Wealth {wealth} €, o los tres por {bundleBeta} € mientras dure la beta ({bundle} € después). La compra todavía no está abierta, así que hoy no se cobra nada. Cuando terminan los {days} días, un módulo sin licencia se cierra y sus datos se quedan en tu Mac. Si usas un proveedor de IA en la nube, le pagas directamente a él; un modelo local de Ollama no genera ningún coste de IA.",
+        a: "La beta se descarga gratis y todos los módulos — Base, Travel y Wealth — están abiertos durante {days} días. Después, cada módulo es una compra única, no una suscripción: Base {base} €, Travel {travel} €, Wealth {wealth} €, o los tres por {bundle} €. La compra todavía no está abierta, así que hoy no se cobra nada. Cuando terminan los {days} días, un módulo sin licencia se cierra y sus datos se quedan en tu Mac. Si usas un proveedor de IA en la nube, le pagas directamente a él; un modelo local de Ollama no genera ningún coste de IA.",
       },
       {
         q: "¿Necesito mi propia cuenta de Claude, OpenAI o Gemini?",

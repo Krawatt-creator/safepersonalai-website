@@ -3,7 +3,7 @@ import type { Dictionary } from "./en";
 // German. Same shape as en.ts. Not yet checked by a native-speaking editor.
 export const de: Dictionary = {
   meta: {
-    homeTitle: "SafePersonalAI — Privater KI-Assistent für den Mac: aus E-Mails werden Termine und Aufgaben",
+    homeTitle: "SafePersonalAI — Privater KI-Assistent für den Mac, ohne Abo",
     homeDescription:
       "SafePersonalAI läuft auf Ihrem Mac, macht aus E-Mails Aufgaben und Kalendereinträge, die auf Ihre Freigabe warten, und arbeitet mit lokalem Ollama oder Ihrem eigenen KI-Anbieter-Konto.",
     wealthTitle: "Wealth — Kontoauszüge jeder Bank auf dem Mac, ohne Bankzugang",
@@ -30,16 +30,16 @@ export const de: Dictionary = {
   offer: {
     trialLine: "Während der Beta kostenlos: Alle Module sind {days} Tage lang freigeschaltet.",
     priceLine:
-      "Danach ein einmaliger Kauf: Base {base} €, Travel {travel} €, Wealth {wealth} € — oder alle drei für {bundleBeta} €, solange die Beta läuft (danach {bundle} €). Der Kauf wird in Kürze möglich.",
+      "Danach ein einmaliger Kauf: Base {base} €, Travel {travel} €, Wealth {wealth} € — oder alle drei für {bundle} €. Der Kauf wird in Kürze möglich.",
     priceNote: "einmalig · in der Beta {days} Tage kostenlos",
     downloadNote:
       "{days} Tage kostenlos, alle Module inklusive · von Apple notarisiert · Apple Silicon (M1 oder neuer)",
   },
   hero: {
-    badge: "Privater Mac-Assistent · kostenlose Beta",
-    titleLine1: "Aus Ihrem Posteingang werden Aktionen.",
-    titleLine2: "Erst nach Ihrer Freigabe.",
-    body: "SafePersonalAI liest neue E-Mails, bereitet die Aufgabe oder den Kalendereintrag vor, den es darin findet, und zeigt Ihnen genau, was passieren wird, bevor sich etwas ändert. Es läuft auf Ihrem Mac — lokal mit Ollama oder mit Ihrem eigenen Cloud-Anbieter-Konto.",
+    badge: "Der KI-Assistent, der erst fragt · kostenlose Beta",
+    titleLine1: "Ein privater KI-Assistent, direkt auf Ihrem Mac.",
+    titleLine2: "Nichts geschieht ohne Ihr Ja.",
+    body: "SafePersonalAI liest Ihre E-Mails, Nachrichten und Kontoauszüge auf Ihrem eigenen Mac und bereitet Aufgaben, Kalendereinträge und die Finanzübersicht vor. Sie geben jeden Schritt frei. Ihre Daten werden nie an uns gesendet: Sie bleiben auf Ihrem Mac, und die KI läuft ebenfalls dort mit Ollama oder über Ihr eigenes Konto bei einem KI-Anbieter. Einmal zahlen, kein Abo.",
     ctaDownload: "Kostenlose Beta laden",
     ctaUseCases: "Echte Anwendungsfälle ansehen",
     finePrint:
@@ -204,8 +204,8 @@ export const de: Dictionary = {
     intro:
       "Laden Sie die Beta, und alle Module sind {days} Tage lang kostenlos freigeschaltet. Danach ist jedes Modul ein einmaliger Kauf — die Mac-App hat kein Abo. Ein Modul, das Sie nicht kaufen, wird geschlossen; seine Daten bleiben auf Ihrem Mac und sind wieder da, wenn Sie es hinzunehmen. Der Kauf wird in Kürze möglich, heute wird nichts berechnet.",
     bundleLead: "Alle drei zusammen:",
-    bundleStrong: "einmalig {bundleBeta} €, solange die Beta läuft",
-    bundleRest: ", statt {bundle} € danach. Der Kauf wird in Kürze möglich — bis dahin gibt es nichts zu bezahlen.",
+    bundleStrong: "einmalig {bundle} €",
+    bundleRest: ". Der Kauf wird in Kürze möglich — bis dahin gibt es nichts zu bezahlen.",
     learnMore: "Mehr erfahren →",
     download: "Beta laden",
     included: "In den {days} Testtagen enthalten",
@@ -286,7 +286,7 @@ export const de: Dictionary = {
     items: [
       {
         q: "Was kostet es, und gibt es eine kostenlose Testphase?",
-        a: "Die Beta ist kostenlos zu laden, und alle Module — Base, Travel und Wealth — sind {days} Tage lang freigeschaltet. Danach ist jedes Modul ein einmaliger Kauf, kein Abo: Base {base} €, Travel {travel} €, Wealth {wealth} € oder alle drei für {bundleBeta} €, solange die Beta läuft (danach {bundle} €). Der Kauf ist noch nicht möglich, heute wird also nichts berechnet. Nach den {days} Tagen wird ein Modul ohne Lizenz geschlossen; seine Daten bleiben auf Ihrem Mac. Wenn Sie einen Cloud-KI-Anbieter nutzen, bezahlen Sie diesen direkt; ein lokales Ollama-Modell verursacht keine KI-Kosten.",
+        a: "Die Beta ist kostenlos zu laden, und alle Module — Base, Travel und Wealth — sind {days} Tage lang freigeschaltet. Danach ist jedes Modul ein einmaliger Kauf, kein Abo: Base {base} €, Travel {travel} €, Wealth {wealth} € oder alle drei für {bundle} €. Der Kauf ist noch nicht möglich, heute wird also nichts berechnet. Nach den {days} Tagen wird ein Modul ohne Lizenz geschlossen; seine Daten bleiben auf Ihrem Mac. Wenn Sie einen Cloud-KI-Anbieter nutzen, bezahlen Sie diesen direkt; ein lokales Ollama-Modell verursacht keine KI-Kosten.",
       },
       {
         q: "Brauche ich ein eigenes Konto bei Claude, OpenAI oder Gemini?",

@@ -42,7 +42,7 @@ export const trAbout: AboutDictionary = {
     {
       label: "Fiyat",
       value:
-        "Ücretsiz beta: her modül {days} gün açıktır. Sonrasında tek seferlik satın alma: Base {base} €, Travel {travel} €, Wealth {wealth} € ya da beta sürdüğü sürece üçü birlikte {bundleBeta} € (sonrasında {bundle} €).",
+        "Ücretsiz beta: her modül {days} gün açıktır. Sonrasında tek seferlik satın alma: Base {base} €, Travel {travel} €, Wealth {wealth} € ya da üçü birlikte {bundle} €.",
     },
     { label: "Abonelik", value: "Mac uygulaması için yoktur." },
     {
@@ -83,7 +83,7 @@ export const trAbout: AboutDictionary = {
     {
       title: "Ne kadar tutar",
       paragraphs: [
-        "Beta ücretsiz indirilir ve her modül {days} gün açıktır. Sonrasında her modül bir kez satın alınır: Base {base} €, Travel {travel} €, Wealth {wealth} €. Üçü birlikte beta sürdüğü sürece {bundleBeta} €, sonrasında {bundle} € tutar. Satın alma henüz açık değildir; bugün hiçbir ücret alınmaz.",
+        "Beta ücretsiz indirilir ve her modül {days} gün açıktır. Sonrasında her modül bir kez satın alınır: Base {base} €, Travel {travel} €, Wealth {wealth} €. Üçü birlikte {bundle} € tutar. Satın alma henüz açık değildir; bugün hiçbir ücret alınmaz.",
         "Satın almadığınız bir modül {days} günün sonunda kapanır. Verileri Mac'inizde kalır ve modülü eklediğinizde geri gelir.",
       ],
     },

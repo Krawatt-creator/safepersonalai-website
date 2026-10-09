@@ -14,12 +14,11 @@ export const DOWNLOAD_URL =
 export const TRIAL_DAYS = 90;
 
 export const PRICES = {
-  base: 49,
+  base: 19,
   travel: 29,
   wealth: 29,
   // All three modules together.
-  bundleBeta: 59, // while the beta runs
-  bundle: 100, // afterwards
+  bundle: 39,
 } as const;
 
 // The numbers every translated sentence is filled with.

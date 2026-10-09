@@ -1,6 +1,6 @@
 // Answer pages: one question people really type, answered in the first
 // paragraph, then explained. English only for now.
-// {days}, {base}, {travel}, {wealth}, {bundleBeta}, {bundle} come from
+// {days}, {base}, {travel}, {wealth}, {bundle} come from
 // src/lib/offer.ts. Claims about the app follow product_features/FEATURES.md.
 // Other products are described by kind, never by name: nothing here is a
 // claim about a specific competitor.
@@ -47,7 +47,7 @@ export const answers: Answer[] = [
         bullets: [
           "The app runs on your Mac. There is no SafePersonalAI server that processes or stores your data.",
           "The AI model is your choice: a local Ollama model on your Mac, with no account and no bill, or your own Anthropic, OpenAI or Gemini key, where you pay that provider directly for what you use. Google currently offers a free Gemini tier with daily limits and its own data terms; please check the provider's official website for current prices and terms.",
-          "Each module is a one-time purchase: Base €{base}, Travel €{travel}, Wealth €{wealth}, or all three for €{bundleBeta} while the beta runs (€{bundle} afterwards).",
+          "Each module is a one-time purchase: Base €{base}, Travel €{travel}, Wealth €{wealth}, or all three for €{bundle}.",
         ],
       },
       {

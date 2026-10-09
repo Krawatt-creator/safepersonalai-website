@@ -1,6 +1,6 @@
 // "What is SafePersonalAI?" — the plain description of the product, written so
 // that a person or an AI assistant can quote any sentence on its own.
-// {days}, {base}, {travel}, {wealth}, {bundleBeta}, {bundle} come from
+// {days}, {base}, {travel}, {wealth}, {bundle} come from
 // src/lib/offer.ts; {version} is the app version.
 // Claims follow product_features/FEATURES.md.
 
@@ -45,7 +45,7 @@ export const enAbout = {
     {
       label: "Price",
       value:
-        "Free beta: every module is open for {days} days. After that a one-time purchase: Base €{base}, Travel €{travel}, Wealth €{wealth}, or all three for €{bundleBeta} while the beta runs (€{bundle} afterwards).",
+        "Free beta: every module is open for {days} days. After that a one-time purchase: Base €{base}, Travel €{travel}, Wealth €{wealth}, or all three for €{bundle}.",
     },
     { label: "Subscription", value: "None for the Mac app." },
     { label: "Current version", value: "{version}, notarized by Apple. Menus, headings and buttons in English, German, Turkish, Spanish, Chinese or French; longer texts are still English." },
@@ -83,7 +83,7 @@ export const enAbout = {
     {
       title: "What it costs",
       paragraphs: [
-        "The beta is free to download, and every module is open for {days} days. After that each module is bought once: Base €{base}, Travel €{travel}, Wealth €{wealth}. All three together cost €{bundleBeta} while the beta runs and €{bundle} afterwards. Buying is not open yet, so nothing is charged today.",
+        "The beta is free to download, and every module is open for {days} days. After that each module is bought once: Base €{base}, Travel €{travel}, Wealth €{wealth}. All three together cost €{bundle}. Buying is not open yet, so nothing is charged today.",
         "A module you do not buy closes after the {days} days. Its data stays on your Mac and comes back when you add the module.",
       ],
     },

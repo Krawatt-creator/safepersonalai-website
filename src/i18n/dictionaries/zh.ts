@@ -4,7 +4,7 @@ import type { Dictionary } from "./en";
 // native-speaking editor.
 export const zh: Dictionary = {
   meta: {
-    homeTitle: "SafePersonalAI — Mac 上的私密 AI 助手：把邮件变成日程和待办",
+    homeTitle: "SafePersonalAI — Mac 上的私密 AI 助手，无需订阅",
     homeDescription:
       "SafePersonalAI 在你的 Mac 上运行，把邮件变成等待你确认的待办事项和日历日程，支持本地 Ollama 或你自己的 AI 服务商账号。",
     wealthTitle: "Wealth — 在 Mac 上读取任何银行的对账单，无需登录银行",
@@ -31,15 +31,15 @@ export const zh: Dictionary = {
   offer: {
     trialLine: "测试期间免费：全部模块开放 {days} 天。",
     priceLine:
-      "之后一次性购买：Base €{base}、Travel €{travel}、Wealth €{wealth}——测试期间三个模块合计 €{bundleBeta}（之后为 €{bundle}）。购买即将开放。",
+      "之后一次性购买：Base €{base}、Travel €{travel}、Wealth €{wealth}——三个模块合计 €{bundle}。购买即将开放。",
     priceNote: "一次性付费 · 测试期间免费 {days} 天",
     downloadNote: "免费 {days} 天，包含全部模块 · 已通过 Apple 公证 · Apple 芯片（M1 或更新）",
   },
   hero: {
-    badge: "Mac 私密助手 · 免费测试版",
-    titleLine1: "把收件箱变成行动。",
-    titleLine2: "等你确认后才执行。",
-    body: "SafePersonalAI 读取新邮件，准备好它从中找到的待办事项或日历日程，并在任何改动发生之前，让你清楚看到将要发生什么。它在你的 Mac 上运行，可以使用本地的 Ollama，也可以使用你自己的云服务商账号。",
+    badge: "先问你再行动的 AI 助手 · 免费测试版",
+    titleLine1: "住在你 Mac 上的私密 AI 助手。",
+    titleLine2: "没有你的同意，什么都不会发生。",
+    body: "SafePersonalAI 在你自己的 Mac 上读取邮件、信息和银行对账单，并准备好待办事项、日历日程和资金概览。每一项都由你确认。你的数据绝不会发送给我们：它留在你的 Mac 上，AI 也在本机通过 Ollama 运行，或使用你自己的 AI 服务商账号。一次付费，无需订阅。",
     ctaDownload: "下载免费测试版",
     ctaUseCases: "查看真实使用场景",
     finePrint:
@@ -203,8 +203,8 @@ export const zh: Dictionary = {
     intro:
       "下载测试版，全部模块免费开放 {days} 天。之后每个模块一次性购买——Mac 应用没有订阅。未购买的模块会关闭；它的数据留在你的 Mac 上，购买后即可恢复。购买即将开放，今天不会收取任何费用。",
     bundleLead: "三个模块一起：",
-    bundleStrong: "测试期间一次性 €{bundleBeta}",
-    bundleRest: "，之后为 €{bundle}。购买即将开放——在此之前无需支付任何费用。",
+    bundleStrong: "一次性 €{bundle}",
+    bundleRest: "。购买即将开放——在此之前无需支付任何费用。",
     learnMore: "了解更多 →",
     download: "下载测试版",
     included: "包含在 {days} 天试用中",
@@ -285,7 +285,7 @@ export const zh: Dictionary = {
     items: [
       {
         q: "价格是多少？有免费试用吗？",
-        a: "测试版免费下载，全部模块——Base、Travel 和 Wealth——开放 {days} 天。之后每个模块一次性购买，不是订阅：Base €{base}、Travel €{travel}、Wealth €{wealth}，测试期间三个模块合计 €{bundleBeta}（之后为 €{bundle}）。购买尚未开放，所以今天不会收取任何费用。{days} 天结束后，没有许可的模块会关闭，它的数据仍留在你的 Mac 上。如果你使用云端 AI 服务商，费用由你直接支付给该服务商；本地 Ollama 模型不产生任何 AI 费用。",
+        a: "测试版免费下载，全部模块——Base、Travel 和 Wealth——开放 {days} 天。之后每个模块一次性购买，不是订阅：Base €{base}、Travel €{travel}、Wealth €{wealth}，三个模块合计 €{bundle}。购买尚未开放，所以今天不会收取任何费用。{days} 天结束后，没有许可的模块会关闭，它的数据仍留在你的 Mac 上。如果你使用云端 AI 服务商，费用由你直接支付给该服务商；本地 Ollama 模型不产生任何 AI 费用。",
       },
       {
         q: "我需要自己的 Claude、OpenAI 或 Gemini 账号吗？",

@@ -42,7 +42,7 @@ export const esAbout: AboutDictionary = {
     {
       label: "Precio",
       value:
-        "Beta gratuita: todos los módulos están abiertos durante {days} días. Después, una compra única: Base {base} €, Travel {travel} €, Wealth {wealth} €, o los tres por {bundleBeta} € mientras dure la beta ({bundle} € después).",
+        "Beta gratuita: todos los módulos están abiertos durante {days} días. Después, una compra única: Base {base} €, Travel {travel} €, Wealth {wealth} €, o los tres por {bundle} €.",
     },
     { label: "Suscripción", value: "Ninguna para la app de Mac." },
     {
@@ -83,7 +83,7 @@ export const esAbout: AboutDictionary = {
     {
       title: "Cuánto cuesta",
       paragraphs: [
-        "La beta se descarga gratis y todos los módulos están abiertos durante {days} días. Después, cada módulo se compra una vez: Base {base} €, Travel {travel} €, Wealth {wealth} €. Los tres juntos cuestan {bundleBeta} € mientras dure la beta y {bundle} € después. La compra aún no está abierta, así que hoy no se cobra nada.",
+        "La beta se descarga gratis y todos los módulos están abiertos durante {days} días. Después, cada módulo se compra una vez: Base {base} €, Travel {travel} €, Wealth {wealth} €. Los tres juntos cuestan {bundle} €. La compra aún no está abierta, así que hoy no se cobra nada.",
         "Un módulo que no compres se cierra al terminar los {days} días. Sus datos se quedan en tu Mac y vuelven cuando añades el módulo.",
       ],
     },

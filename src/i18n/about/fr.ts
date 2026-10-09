@@ -42,7 +42,7 @@ export const frAbout: AboutDictionary = {
     {
       label: "Prix",
       value:
-        "Bêta gratuite : chaque module est ouvert pendant {days} jours. Ensuite, un achat unique : Base {base} €, Travel {travel} €, Wealth {wealth} €, ou les trois pour {bundleBeta} € tant que dure la bêta ({bundle} € ensuite).",
+        "Bêta gratuite : chaque module est ouvert pendant {days} jours. Ensuite, un achat unique : Base {base} €, Travel {travel} €, Wealth {wealth} €, ou les trois pour {bundle} €.",
     },
     { label: "Abonnement", value: "Aucun pour l'app Mac." },
     {
@@ -83,7 +83,7 @@ export const frAbout: AboutDictionary = {
     {
       title: "Ce que ça coûte",
       paragraphs: [
-        "La bêta se télécharge gratuitement et chaque module est ouvert pendant {days} jours. Ensuite, chaque module s'achète une fois : Base {base} €, Travel {travel} €, Wealth {wealth} €. Les trois ensemble coûtent {bundleBeta} € tant que dure la bêta et {bundle} € ensuite. L'achat n'est pas encore ouvert : rien n'est facturé aujourd'hui.",
+        "La bêta se télécharge gratuitement et chaque module est ouvert pendant {days} jours. Ensuite, chaque module s'achète une fois : Base {base} €, Travel {travel} €, Wealth {wealth} €. Les trois ensemble coûtent {bundle} €. L'achat n'est pas encore ouvert : rien n'est facturé aujourd'hui.",
         "Un module que vous n'achetez pas se ferme à la fin des {days} jours. Ses données restent sur votre Mac et reviennent quand vous ajoutez le module.",
       ],
     },

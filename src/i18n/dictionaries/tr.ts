@@ -3,7 +3,7 @@ import type { Dictionary } from "./en";
 // Turkish. Same shape as en.ts. Not yet checked by a native-speaking editor.
 export const tr: Dictionary = {
   meta: {
-    homeTitle: "SafePersonalAI — Mac için özel yapay zekâ asistanı: e-postadan takvime ve yapılacaklara",
+    homeTitle: "SafePersonalAI — Mac için özel yapay zekâ asistanı, abonelik yok",
     homeDescription:
       "SafePersonalAI Mac'inizde çalışır, e-postalarınızı onayınızı bekleyen görevlere ve takvim kayıtlarına dönüştürür; yerel Ollama ile ya da kendi yapay zekâ sağlayıcı hesabınızla çalışır.",
     wealthTitle: "Wealth — her bankanın ekstresi Mac'inizde, banka girişi olmadan",
@@ -30,16 +30,16 @@ export const tr: Dictionary = {
   offer: {
     trialLine: "Beta süresince ücretsiz: tüm modüller {days} gün boyunca açık.",
     priceLine:
-      "Sonrasında tek seferlik satın alma: Base {base} €, Travel {travel} €, Wealth {wealth} € — ya da beta sürerken üçü birlikte {bundleBeta} € (sonrasında {bundle} €). Satın alma yakında açılıyor.",
+      "Sonrasında tek seferlik satın alma: Base {base} €, Travel {travel} €, Wealth {wealth} € — ya da üçü birlikte {bundle} €. Satın alma yakında açılıyor.",
     priceNote: "tek seferlik · betada {days} gün ücretsiz",
     downloadNote:
       "{days} gün ücretsiz, tüm modüller dahil · Apple tarafından onaylı (notarized) · Apple Silicon (M1 veya üstü)",
   },
   hero: {
-    badge: "Özel Mac asistanı · ücretsiz beta",
-    titleLine1: "Gelen kutunuzu eyleme dönüştürür.",
-    titleLine2: "Onayınızı bekler.",
-    body: "SafePersonalAI yeni e-postaları okur, içinde bulduğu görevi ya da takvim kaydını hazırlar ve herhangi bir şey değişmeden önce tam olarak ne olacağını size gösterir. Mac'inizde, yerel olarak Ollama ile ya da kendi bulut sağlayıcı hesabınızla çalışır.",
+    badge: "Önce soran yapay zekâ asistanı · ücretsiz beta",
+    titleLine1: "Mac'inizde yaşayan özel bir yapay zekâ asistanı.",
+    titleLine2: "Siz evet demeden hiçbir şey olmaz.",
+    body: "SafePersonalAI e-postalarınızı, mesajlarınızı ve hesap özetlerinizi kendi Mac'inizde okur; yapılacakları, takvim kayıtlarını ve para özetini hazırlar. Her birini siz onaylarsınız. Verileriniz bize asla gönderilmez: Mac'inizde kalır, yapay zekâ da orada Ollama ile ya da kendi yapay zekâ sağlayıcı hesabınız üzerinden çalışır. Bir kez ödeyin, abonelik yok.",
     ctaDownload: "Ücretsiz betayı indir",
     ctaUseCases: "Gerçek kullanım örneklerine bak",
     finePrint:
@@ -204,8 +204,8 @@ export const tr: Dictionary = {
     intro:
       "Betayı indirin; tüm modüller {days} gün boyunca ücretsiz açık. Sonrasında her modül tek seferlik bir satın almadır — Mac uygulamasında abonelik yoktur. Satın almadığınız modül kapanır; verileri Mac'inizde kalır ve modülü eklediğinizde geri gelir. Satın alma yakında açılıyor; bugün hiçbir ücret alınmıyor.",
     bundleLead: "Üçü birlikte:",
-    bundleStrong: "beta sürerken tek seferlik {bundleBeta} €",
-    bundleRest: ", sonrasında {bundle} € yerine. Satın alma yakında açılıyor — o zamana kadar ödenecek bir şey yok.",
+    bundleStrong: "tek seferlik {bundle} €",
+    bundleRest: ". Satın alma yakında açılıyor — o zamana kadar ödenecek bir şey yok.",
     learnMore: "Daha fazla bilgi →",
     download: "Betayı indir",
     included: "{days} günlük denemeye dahil",
@@ -286,7 +286,7 @@ export const tr: Dictionary = {
     items: [
       {
         q: "Fiyatı nedir, ücretsiz deneme var mı?",
-        a: "Beta ücretsiz indirilir ve tüm modüller — Base, Travel ve Wealth — {days} gün boyunca açıktır. Sonrasında her modül abonelik değil, tek seferlik bir satın almadır: Base {base} €, Travel {travel} €, Wealth {wealth} € ya da beta sürerken üçü birlikte {bundleBeta} € (sonrasında {bundle} €). Satın alma henüz açık değil, yani bugün hiçbir ücret alınmıyor. {days} gün dolduğunda lisansı olmayan modül kapanır; verileri Mac'inizde kalır. Bir bulut yapay zekâ sağlayıcısı kullanıyorsanız ücretini doğrudan ona ödersiniz; yerel bir Ollama modelinin yapay zekâ faturası yoktur.",
+        a: "Beta ücretsiz indirilir ve tüm modüller — Base, Travel ve Wealth — {days} gün boyunca açıktır. Sonrasında her modül abonelik değil, tek seferlik bir satın almadır: Base {base} €, Travel {travel} €, Wealth {wealth} € ya da üçü birlikte {bundle} €. Satın alma henüz açık değil, yani bugün hiçbir ücret alınmıyor. {days} gün dolduğunda lisansı olmayan modül kapanır; verileri Mac'inizde kalır. Bir bulut yapay zekâ sağlayıcısı kullanıyorsanız ücretini doğrudan ona ödersiniz; yerel bir Ollama modelinin yapay zekâ faturası yoktur.",
       },
       {
         q: "Kendi Claude, OpenAI ya da Gemini hesabım olması gerekiyor mu?",

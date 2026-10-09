@@ -19,7 +19,7 @@ export default function Hero({
             <span className="h-1.5 w-1.5 rounded-full bg-green" />
             {t.badge}
           </div>
-          <h1 className="text-4xl leading-[1.1] font-semibold tracking-tight text-balance text-text sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl leading-[1.1] font-semibold tracking-tight text-balance text-text sm:text-5xl">
             {t.titleLine1}
             <br />
             {t.titleLine2}
