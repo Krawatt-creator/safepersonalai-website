@@ -6,10 +6,10 @@ import { en } from "@/i18n/dictionaries/en";
 
 export const SITE_URL = "https://safepersonalai.com";
 
-export const APP_VERSION = "0.2.1-beta";
+export const APP_VERSION = "0.2.2-beta";
 
 export const DOWNLOAD_URL =
-  "https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.1-beta/SafePersonalAI-beta.zip";
+  "https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.2-beta/SafePersonalAI-beta.zip";
 
 // Where the download buttons lead: our own page, which starts the download
 // above and shows the install steps. It is kept out of translatedPaths (and
