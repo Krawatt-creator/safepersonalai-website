@@ -5,7 +5,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { ANSWERS_UPDATED, answers, getAnswer } from "@/lib/answers-data";
-import { DOWNLOAD_URL, DOWNLOAD_NOTE, OFFER_VARS, SITE_URL } from "@/lib/offer";
+import { downloadPage, DOWNLOAD_NOTE, OFFER_VARS, SITE_URL } from "@/lib/offer";
 import { fill } from "@/i18n/config";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -93,7 +93,7 @@ export default async function AnswerPage({ params }: Props) {
               ))}
             </ul>
             <div className="mt-8">
-              <a href={DOWNLOAD_URL} download className="site-cta-primary">
+              <a href={downloadPage()} className="site-cta-primary">
                 Download the free beta
               </a>
               <p className="mt-3 text-xs text-text-tertiary">{DOWNLOAD_NOTE}</p>

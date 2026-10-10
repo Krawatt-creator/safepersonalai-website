@@ -11,6 +11,13 @@ export const APP_VERSION = "0.2.1-beta";
 export const DOWNLOAD_URL =
   "https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.1-beta/SafePersonalAI-beta.zip";
 
+// Where the download buttons lead: our own page, which starts the download
+// above and shows the install steps. It is kept out of translatedPaths (and
+// so out of the sitemap) because opening it starts a download.
+export const DOWNLOAD_PAGE = "/download";
+export const downloadPage = (lang: string = "en") =>
+  lang === "en" ? DOWNLOAD_PAGE : `/${lang}${DOWNLOAD_PAGE}`;
+
 export const TRIAL_DAYS = 90;
 
 export const PRICES = {

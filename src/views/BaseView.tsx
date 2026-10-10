@@ -7,7 +7,7 @@ import OperationalPreviewPanel from "@/components/OperationalPreviewPanel";
 import SettingsPreviewPanel from "@/components/SettingsPreviewPanel";
 import MessageFlowPreview from "@/components/MessageFlowPreview";
 import Reveal from "@/components/Reveal";
-import { DOWNLOAD_URL, OFFER_VARS, PRICES } from "@/lib/offer";
+import { downloadPage, OFFER_VARS, PRICES } from "@/lib/offer";
 import { fill, languageAlternates, localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/en";
 import type { PagesDictionary } from "@/i18n/pages/en";
@@ -52,7 +52,7 @@ export default function BaseView({
       priceLabel={`€${PRICES.base}`}
       priceNote={fill(dict.offer.priceNote, OFFER_VARS)}
       ctaLabel={dict.shell.download}
-      ctaHref={DOWNLOAD_URL}
+      ctaHref={downloadPage(lang)}
       steps={t.steps}
       features={t.features}
     >

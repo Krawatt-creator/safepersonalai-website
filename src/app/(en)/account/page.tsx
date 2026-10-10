@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import { DOWNLOAD_URL } from "@/lib/offer";
+import { downloadPage } from "@/lib/offer";
 
 export const metadata: Metadata = {
   title: "Customer account",
@@ -104,8 +104,7 @@ export default function AccountPage() {
               </a>
 
               <Link
-                href={DOWNLOAD_URL}
-                download
+                href={downloadPage()}
                 className="mt-5 block text-center text-xs font-medium text-green transition hover:brightness-125"
               >
                 Download the free beta instead →

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
-import { APP_VERSION, DOWNLOAD_URL, OFFER_VARS, SITE_URL } from "@/lib/offer";
+import { APP_VERSION, downloadPage, OFFER_VARS, SITE_URL } from "@/lib/offer";
 import { fill, languageAlternates, localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/en";
 import type { AboutDictionary } from "@/i18n/about/en";
@@ -129,7 +129,7 @@ export default function AboutView({
               </li>
             </ul>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a href={DOWNLOAD_URL} download className="site-cta-primary">
+              <a href={downloadPage(lang)} className="site-cta-primary">
                 {about.download}
               </a>
               <Link href={`${localePath(lang, "/")}#pricing`} className="site-cta-secondary">

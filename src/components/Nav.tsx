@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { DOWNLOAD_URL } from "@/lib/offer";
+import { downloadPage } from "@/lib/offer";
 import { localeNames, localePath, locales, type Locale } from "@/i18n/config";
 import { en, type Dictionary } from "@/i18n/dictionaries/en";
 
@@ -113,8 +113,7 @@ export default function Nav({
           </Link>
           <div className="hidden items-center gap-2 sm:flex">
             <a
-              href={DOWNLOAD_URL}
-              download
+              href={downloadPage(lang)}
               className="site-cta-secondary min-h-10 px-4 text-sm"
             >
               {t.download}
@@ -184,8 +183,7 @@ export default function Nav({
             </li>
             <li className="pt-2 sm:hidden">
               <a
-                href={DOWNLOAD_URL}
-                download
+                href={downloadPage(lang)}
                 onClick={() => setOpen(false)}
                 className="site-cta-secondary block min-h-10 px-4 text-center text-sm"
               >

@@ -21,7 +21,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 export default function PrivacyPage() {
   return (
-    <LegalLayout title="Privacy Policy" updated="7 October 2026">
+    <LegalLayout title="Privacy Policy" updated="10 October 2026">
       <p>
         SafePersonalAI has two parts: local software that runs on your Mac,
         and a public website. This policy explains what each part processes,
@@ -133,6 +133,15 @@ export default function PrivacyPage() {
           Cloudflare processes your IP address and basic request data to
           deliver the pages and keep them secure. The website sets no
           advertising or tracking cookies.
+        </p>
+        <p>
+          To see how many people visit and which pages they open, we use
+          Cloudflare Web Analytics. It sets no cookies, stores nothing in
+          your browser and does not follow you across websites. We see
+          totals only, such as visits per page, per country and per
+          referring website, never an individual visitor. The download
+          button leads to a page of this website first, so a download is
+          counted as one visit to that page.
         </p>
       </Section>
 

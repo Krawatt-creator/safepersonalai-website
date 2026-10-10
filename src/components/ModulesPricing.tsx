@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
-import { DOWNLOAD_URL, OFFER_VARS, PRICES } from "@/lib/offer";
+import { downloadPage, OFFER_VARS, PRICES } from "@/lib/offer";
 import { fill, localePath, type Locale } from "@/i18n/config";
 import { en, type Dictionary } from "@/i18n/dictionaries/en";
 
@@ -82,8 +82,7 @@ export default function ModulesPricing({
 
                   <div className="mt-8">
                     <a
-                      href={DOWNLOAD_URL}
-                      download
+                      href={downloadPage(lang)}
                       className={`w-full ${m.key === "operational" ? "site-cta-primary" : "site-cta-secondary"}`}
                     >
                       {t.download}

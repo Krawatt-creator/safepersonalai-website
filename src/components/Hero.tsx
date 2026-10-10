@@ -1,5 +1,5 @@
 import ProductPanel from "./ProductPanel";
-import { DOWNLOAD_URL, OFFER_VARS } from "@/lib/offer";
+import { downloadPage, OFFER_VARS } from "@/lib/offer";
 import { fill, localePath, type Locale } from "@/i18n/config";
 import { en, type Dictionary } from "@/i18n/dictionaries/en";
 
@@ -28,7 +28,7 @@ export default function Hero({
             {t.body}
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a href={DOWNLOAD_URL} download className="site-cta-primary">
+            <a href={downloadPage(lang)} className="site-cta-primary">
               {t.ctaDownload}
             </a>
             <a href="/demo/" className="site-cta-secondary" title={t.ctaDemoHint}>
