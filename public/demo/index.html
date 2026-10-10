@@ -2,7 +2,7 @@
 <html><head><script>
 /* SafePersonalAI demo: the app's real pages with invented data. Nothing here talks to a server. */
 (() => {
-  const PAGES = {"/": "", "/wealth": "wealth", "/investments": "investments", "/travel": "travel", "/todos": "todos", "/custom-rules": "custom-rules", "/trust-center": "trust-center", "/settings": "settings"}, REC = {"/api/activity-timeline?window=week": {"status": 200, "type": "application/json", "body": "{\"generated_at\":\"2026-10-09T18:53:07.467806+00:00\",\"window\":\"week\",\"since\":\"2026-10-02T18:53:07.467806+00:00\",\"until\":\"2026-10-09T18:53:07.467806+00:00\",\"buckets\":[{\"start\":\"2026-10-02T18:53:07.467806+00:00\",\"end\":\"2026-10-03T18:53:07.467806+00:00\",\"label\":\"Fri\",\"counts\":{},\"total\":0},{\"start\":\"2026-10-03T18:53:07.467806+00:00\",\"end\":\"2026-10-04T18:53:07.467806+00:00\",\"label\":\"Sat\",\"counts\":{},\"total\":0},{\"start\":\"2026-10-04T18:53:07.467806+00:00\",\"end\":\"2026-10-05T18:53:07.467806+00:00\",\"label\":\"Sun\",\"counts\":{},\"total\":0},{\"start\":\"2026-10-05T18:53:07.467806+00:00\",\"end\":\"2026-10-06T18:53:07.467806+00:00\",\"label\":\"Mon\",\"counts\":{},\"total\":0},{\"start\":\"2026-10-06T18:53:07.467806+00:00\",\"end\":\"2026-10-07T18:53:07.467806+00:00\",\"label\":\"Tue\",\"counts\":{},\"total\":0},{\"start\":\"2026-10-07T18:53:07.467806+00:00\",\"end\":\"2026-10-08T18:53:07.467806+00:00\",\"label\":\"Wed\",\"counts\":{},\"total\":0},{\"start\":\"2026-10-08T18:53:07.467806+00:00\",\"end\":\"2026-10-09T18:53:07.467806+00:00\",\"label\":\"Thu\",\"counts\":{\"calendar_event\":1,\"task\":2,\"recurring_bill\":1,\"reply_draft\":1},\"total\":5}],\"totals_by_type\":{\"calendar_event\":1,\"task\":2,\"recurring_bill\":1,\"reply_draft\":1},\"type_labels\":{\"calendar_event\":\"Calendar event\",\"task\":\"Task\",\"recurring_bill\":\"Recurring bill\",\"reply_draft\":\"Reply draft\"},\"total\":5}"}, "/api/health/access": {"status": 200, "type": "application/json", "body": "{\"messages_ok\":true,\"messages_in_use\":false}"}}, HOME = '/';
+  const PAGES = {"/": "", "/wealth": "wealth", "/investments": "investments", "/travel": "travel", "/todos": "todos", "/custom-rules": "custom-rules", "/trust-center": "trust-center", "/settings": "settings"}, REC = {"/api/health/access": {"status": 200, "type": "application/json", "body": "{\"messages_ok\":true,\"messages_in_use\":false}"}, "/api/activity-timeline?window=week": {"status": 200, "type": "application/json", "body": "{\"generated_at\":\"2026-10-10T16:35:18.216192+00:00\",\"window\":\"week\",\"since\":\"2026-10-03T16:35:18.216192+00:00\",\"until\":\"2026-10-10T16:35:18.216192+00:00\",\"buckets\":[{\"start\":\"2026-10-03T16:35:18.216192+00:00\",\"end\":\"2026-10-04T16:35:18.216192+00:00\",\"label\":\"Sat\",\"counts\":{},\"total\":0},{\"start\":\"2026-10-04T16:35:18.216192+00:00\",\"end\":\"2026-10-05T16:35:18.216192+00:00\",\"label\":\"Sun\",\"counts\":{},\"total\":0},{\"start\":\"2026-10-05T16:35:18.216192+00:00\",\"end\":\"2026-10-06T16:35:18.216192+00:00\",\"label\":\"Mon\",\"counts\":{},\"total\":0},{\"start\":\"2026-10-06T16:35:18.216192+00:00\",\"end\":\"2026-10-07T16:35:18.216192+00:00\",\"label\":\"Tue\",\"counts\":{},\"total\":0},{\"start\":\"2026-10-07T16:35:18.216192+00:00\",\"end\":\"2026-10-08T16:35:18.216192+00:00\",\"label\":\"Wed\",\"counts\":{},\"total\":0},{\"start\":\"2026-10-08T16:35:18.216192+00:00\",\"end\":\"2026-10-09T16:35:18.216192+00:00\",\"label\":\"Thu\",\"counts\":{},\"total\":0},{\"start\":\"2026-10-09T16:35:18.216192+00:00\",\"end\":\"2026-10-10T16:35:18.216192+00:00\",\"label\":\"Fri\",\"counts\":{\"calendar_event\":1,\"task\":2,\"recurring_bill\":1,\"reply_draft\":1},\"total\":5}],\"totals_by_type\":{\"calendar_event\":1,\"task\":2,\"recurring_bill\":1,\"reply_draft\":1},\"type_labels\":{\"calendar_event\":\"Calendar event\",\"task\":\"Task\",\"recurring_bill\":\"Recurring bill\",\"reply_draft\":\"Reply draft\"},\"total\":5}"}}, HOME = '/';
   const say = (text) => { let n = document.getElementById('spa-demo-note');
     if (!n) { n = document.createElement('div'); n.id = 'spa-demo-note'; document.body.appendChild(n); }
     n.textContent = text; n.classList.add('on'); clearTimeout(say.t); say.t = setTimeout(() => n.classList.remove('on'), 3200); };
@@ -36,7 +36,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     const bar = document.createElement('div'); bar.id = 'spa-demo-bar';
     bar.innerHTML = '<b>Demo</b><span>The real app with invented data. Click anything: nothing is saved or sent.</span>' +
-      '<a data-demo-out href="' + HOME + '">Back to the website</a><a data-demo-out class="go" href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.1-beta/SafePersonalAI-beta.zip">Download the app</a>';
+      '<a data-demo-out href="' + HOME + '">Back to the website</a><a data-demo-out class="go" href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.2-beta/SafePersonalAI-beta.zip">Download the app</a>';
     document.body.prepend(bar);
   });
 })();
@@ -204,8 +204,12 @@
   .card-feedback:hover, .card-feedback:focus-visible { color: var(--text); border-color: var(--accent); outline: none; }
   .card-title-bar {
     display: none; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;
-    color: var(--text-soft); font-weight: 600; padding-right: 30px;
+    color: var(--text-soft); font-weight: 600; padding-right: 64px;
   }
+  .card.is-minimized { cursor: pointer; } .card.is-minimized:hover { border-color: var(--card-border-hover); }
+  .card.is-minimized .card-title-bar { display: flex !important; align-items: center; gap: 14px; }
+  .card-title-sum { margin-left: auto; text-transform: none; letter-spacing: 0; font-size: 13px; color: var(--text);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .card.is-minimized > *:not(.card-minimize):not(.card-title-bar) { display: none !important; }
   .card.is-minimized .card-title-bar { display: block; }
   .metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-bottom:18px; }
@@ -364,57 +368,21 @@
     <div class="metric"><span class="metric-label">License</span><strong class="metric-value" style="font-size:20px">Set up</strong></div>
   </div>
 
-  <div class="card" id="activity">
-    <h2>Your modules</h2>
-    <div class="modules" aria-label="Module access"><details class="module-chip enabled"><summary><span>🧭 Base · Operational</span><strong>✅ Ready</strong></summary><p class="muted">Inbox, calendar, tasks, reminders, and approval controls.</p></details><details class="module-chip enabled"><summary><span>💰 Wealth · Finance</span><strong>✅ Ready</strong></summary><p class="muted">Bank CSV review, finance summaries, investments, and forecasts.</p></details><details class="module-chip enabled"><summary><span>✈️ Travel</span><strong>✅ Ready</strong></summary><p class="muted">Bookings, itinerary grouping, and trip preparation support.</p></details></div>
-  </div>
-
-  <div class="card" id="whats-running">
-    <h2>What's running</h2>
-    <p class="muted" style="margin:0 0 12px;">A live read of this Mac's own configuration — never marketing copy.</p>
-    <div class="cap-grid"><a href="/demo/settings/" class="cap-row"><span class="cap-dot" style="background:var(--text-soft);" aria-hidden="true"></span><span class="cap-copy"><strong>📬 Mail sources</strong><small>0 connected account(s)</small></span><span class="cap-status">Off</span></a><a href="/demo/trust-center/" class="cap-row"><span class="cap-dot" style="background:var(--text-soft);" aria-hidden="true"></span><span class="cap-copy"><strong>💬 iMessage automation</strong><small>0 trusted sender(s) configured</small></span><span class="cap-status">Off</span></a><a href="/demo/settings/" class="cap-row"><span class="cap-dot" style="background:var(--text-soft);" aria-hidden="true"></span><span class="cap-copy"><strong>🤖 AI reply features</strong><small>0 of 38 enabled</small></span><span class="cap-status">Off</span></a><a href="/demo/settings/" class="cap-row"><span class="cap-dot" style="background:var(--text-soft);" aria-hidden="true"></span><span class="cap-copy"><strong>⚡ Auto-Approve</strong><small>0 of 6 action types automatic</small></span><span class="cap-status">Off</span></a><a href="/demo/custom-rules/" class="cap-row"><span class="cap-dot" style="background:var(--text-soft);" aria-hidden="true"></span><span class="cap-copy"><strong>🧩 Custom Rules</strong><small>0 active rule(s)</small></span><span class="cap-status">Off</span></a></div>
-    <div class="cap-footer">Updated just now</div>
-  </div>
-
-  <div class="card bank-scan" id="bank-scan" data-status="no-sources"><div class="bank-scan-head"><span class="bank-scan-icon" aria-hidden="true">🏦</span><div><h2>Find your banks in past email</h2><p class="muted">Connect a mail account first, then SafePersonalAI can look back through the last 90 days for bank statements.</p></div></div><a class="bank-scan-link" href="/demo/settings/">Connect mail in Settings →</a></div>
-  
-
-  <div class="card" id="activity-glance">
-    <div class="activity-grid">
-      <div class="donut" style="background:conic-gradient(#00e599 0 0%, #ffb340 0% 100%, #ff6482 100% 100%)" role="img" aria-label="Activity: 0 completed, 5 awaiting review, 0 needing attention"></div>
-      <div><h2>Activity at a glance</h2><div class="legend">
-        <div class="legend-row"><span class="legend-key"><span class="legend-dot" style="background:#00e599"></span>Completed</span><strong>0</strong></div>
-        <div class="legend-row"><span class="legend-key"><span class="legend-dot" style="background:#ffb340"></span>Awaiting review</span><strong>5</strong></div>
-        <div class="legend-row"><span class="legend-key"><span class="legend-dot" style="background:#ff6482"></span>Needs attention</span><strong>0</strong></div>
-      </div></div>
-    </div>
-    <div class="live-row"><span class="live-dot"></span>Live local activity · updates when you refresh · <a href="/demo/" style="color:var(--accent);text-decoration:none;font-weight:600;">Refresh now</a></div>
-    <div class="history-heading">Recent history</div><div class="timeline"><div class="timeline-item">📅 <strong>Calendar event</strong> · Dentist check-up<span class="muted"> · Awaiting your review</span></div><div class="timeline-item">✅ <strong>Task</strong> · Send the meter reading to Stadtwerke Musterstadt<span class="muted"> · Awaiting your review</span></div><div class="timeline-item">✅ <strong>Task</strong> · Call the landlord<span class="muted"> · Awaiting your review</span></div><div class="timeline-item">💳 <strong>Recurring bill</strong> · FitX Fitness<span class="muted"> · Awaiting your review</span></div><div class="timeline-item">✉️ <strong>Reply draft</strong> · Reply to Anna Beispiel<span class="muted"> · Awaiting your review</span></div></div>
-  </div>
-
-  <div class="card" id="activity-timeline" aria-labelledby="timeline-heading">
-    <div class="timeline-tools"><div><h2 id="timeline-heading">Activity over time</h2><p class="muted" style="margin:0">A quick view of what SafePersonalAI has prepared.</p></div><div class="timeline-tabs" role="group" aria-label="Activity window"><button type="button" data-timeline-window="today" aria-pressed="false">Today</button><button type="button" data-timeline-window="week" aria-pressed="true">Week</button><button type="button" data-timeline-window="month" aria-pressed="false">Month</button></div></div>
-    <div id="timeline-chart" class="timeline-empty" aria-live="polite">Loading activity…</div>
-    <div id="timeline-legend" class="timeline-legend" aria-label="Activity types"></div>
-  </div>
-
-  
-
   <div class="card pending-card" id="pending-actions">
     <div class="pending-header"><div><h2 id="pending-heading">Pending Actions</h2><p class="muted">Review each prepared action before anything changes.</p></div><span class="pending-count" aria-label="5 awaiting review">5 <small>awaiting review</small></span></div>
     <div class="filter-bar" role="group" aria-label="Filter actions">
       <label for="action-type-filter">Type</label><select id="action-type-filter"><option value="all">All types</option><option value="task">To-Dos</option><option value="calendar_event">Calendar events</option><option value="calendar_change">Calendar changes</option><option value="recurring_bill">Recurring bills</option><option value="bank_csv_import">Bank CSV imports</option><option value="travel_booking">Travel bookings</option><option value="reply_draft">Reply drafts</option></select>
-      <label for="action-status-filter">Status</label><select id="action-status-filter"><option value="all">All statuses</option><option value="pending_approval">Awaiting review</option><option value="approved_dispatched">Done</option><option value="rejected">Rejected</option><option value="dispatch_failed">Failed</option></select>
+      <label for="action-status-filter">Status</label><select id="action-status-filter"><option value="all">All statuses</option><option value="pending_approval">Awaiting review</option><option value="approved_dispatched">Done</option><option value="rejected">Rejected</option><option value="dispatch_failed">Didn't work</option></select>
       <label for="action-sort">Sort</label><select id="action-sort"><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select>
     </div>
     
         <div class="group">
           <div class="group-head">
-            <span>Fri 9 Oct 2026, 20:18</span>
+            <span>Sat 10 Oct 2026, 18:00</span>
             <span class="muted">5 item(s), 5 pending</span>
           </div>
           
-            <details class="item" data-action-type="calendar_event" data-action-status="pending_approval" data-action-created="2026-10-09T18:18:06.404499+00:00" data-item-id="action-demo00">
+            <details class="item" data-action-type="calendar_event" data-action-status="pending_approval" data-action-created="2026-10-10T16:00:17.312701+00:00" data-item-id="action-demo00">
               <summary class="item-top">
                 <span class="item-icon" aria-hidden="true">📅</span>
                 <span class="item-copy"><strong class="title">Dentist check-up</strong><span class="type">Calendar event</span></span>
@@ -422,11 +390,11 @@
                 <span class="item-chevron" aria-hidden="true">›</span>
               </summary>
               <div class="reason"><strong>What SafePersonalAI prepared</strong><span class="muted">The email contains a proposed calendar event.</span><div class="item-fact"><span>When</span>Tue 13 Oct 2026, 15:00–15:45</div><div class="item-fact"><span>Where</span>Praxis Dr. Beispiel, Musterstrasse 4</div></div>
-              <form class="item-edit" data-edit-form="action-demo00" hidden>
-                  <label>Title<input name="title" value="Dentist check-up" maxlength="200" required data-keep-language></label>
-                  <label>Day<input name="date" type="date" value="2026-10-13" required></label>
-                  <label>From<input name="start" type="time" value="15:00"></label>
-                  <label>To<input name="end" type="time" value="15:45"></label>
+              <form class="item-edit" data-edit-form="action-demo00" novalidate hidden>
+                  <label>Title<input name="title" value="Dentist check-up" maxlength="200" data-keep-language></label>
+                  <label>Day<input name="date" type="date" value="2026-10-13"></label>
+                  <label>From<input name="start" type="time" step="any" value="15:00"></label>
+                  <label>To<input name="end" type="time" step="any" value="15:45"></label>
                   <label class="item-edit-check"><input name="all_day" type="checkbox"> All day</label>
                   <div class="item-edit-buttons"><button type="submit" class="approve-button">Save</button>
                   <button type="button" class="reject-button" data-edit-cancel>Cancel</button><span class="item-edit-error" role="alert"></span></div>
@@ -437,7 +405,7 @@
                   <button type="button" class="reject-button" data-reject-id="action-demo00">🚫 Reject</button>
                 </div>
             </details>
-            <details class="item" data-action-type="task" data-action-status="pending_approval" data-action-created="2026-10-09T17:18:06.404499+00:00" data-item-id="action-demo01">
+            <details class="item" data-action-type="task" data-action-status="pending_approval" data-action-created="2026-10-10T15:00:17.312701+00:00" data-item-id="action-demo01">
               <summary class="item-top">
                 <span class="item-icon" aria-hidden="true">✅</span>
                 <span class="item-copy"><strong class="title">Send the meter reading to Stadtwerke Musterstadt</strong><span class="type">Task</span></span>
@@ -445,10 +413,10 @@
                 <span class="item-chevron" aria-hidden="true">›</span>
               </summary>
               <div class="reason"><strong>What SafePersonalAI prepared</strong><span class="muted">The email contains a proposed task.</span><div class="item-fact"><span>Due</span>Thu 15 Oct 2026</div></div>
-              <form class="item-edit" data-edit-form="action-demo01" hidden>
-                  <label>Title<input name="title" value="Send the meter reading to Stadtwerke Musterstadt" maxlength="200" required data-keep-language></label>
+              <form class="item-edit" data-edit-form="action-demo01" novalidate hidden>
+                  <label>Title<input name="title" value="Send the meter reading to Stadtwerke Musterstadt" maxlength="200" data-keep-language></label>
                   <label>Due (optional)<input name="date" type="date" value="2026-10-15"></label>
-                  <label>At (optional)<input name="start" type="time" value=""></label>
+                  <label>At (optional)<input name="start" type="time" step="any" value=""></label>
                   
                   
                   <div class="item-edit-buttons"><button type="submit" class="approve-button">Save</button>
@@ -460,7 +428,7 @@
                   <button type="button" class="reject-button" data-reject-id="action-demo01">🚫 Reject</button>
                 </div>
             </details>
-            <details class="item" data-action-type="task" data-action-status="pending_approval" data-action-created="2026-10-09T16:33:06.404499+00:00" data-item-id="action-demo02">
+            <details class="item" data-action-type="task" data-action-status="pending_approval" data-action-created="2026-10-10T14:15:17.312701+00:00" data-item-id="action-demo02">
               <summary class="item-top">
                 <span class="item-icon" aria-hidden="true">✅</span>
                 <span class="item-copy"><strong class="title">Call the landlord</strong><span class="type">Task</span></span>
@@ -468,10 +436,10 @@
                 <span class="item-chevron" aria-hidden="true">›</span>
               </summary>
               <div class="reason"><strong>What SafePersonalAI prepared</strong><span class="muted">The message contains a proposed task.</span><div class="item-fact"><span>Due</span>Thu 8 Oct 2026</div></div>
-              <form class="item-edit" data-edit-form="action-demo02" hidden>
-                  <label>Title<input name="title" value="Call the landlord" maxlength="200" required data-keep-language></label>
+              <form class="item-edit" data-edit-form="action-demo02" novalidate hidden>
+                  <label>Title<input name="title" value="Call the landlord" maxlength="200" data-keep-language></label>
                   <label>Due (optional)<input name="date" type="date" value="2026-10-08"></label>
-                  <label>At (optional)<input name="start" type="time" value=""></label>
+                  <label>At (optional)<input name="start" type="time" step="any" value=""></label>
                   
                   
                   <div class="item-edit-buttons"><button type="submit" class="approve-button">Save</button>
@@ -483,7 +451,7 @@
                   <button type="button" class="reject-button" data-reject-id="action-demo02">🚫 Reject</button>
                 </div>
             </details>
-            <details class="item" data-action-type="recurring_bill" data-action-status="pending_approval" data-action-created="2026-10-09T14:33:06.404499+00:00" data-item-id="action-demo03">
+            <details class="item" data-action-type="recurring_bill" data-action-status="pending_approval" data-action-created="2026-10-10T12:15:17.312701+00:00" data-item-id="action-demo03">
               <summary class="item-top">
                 <span class="item-icon" aria-hidden="true">💳</span>
                 <span class="item-copy"><strong class="title">FitX Fitness</strong><span class="type">Recurring bill</span></span>
@@ -498,7 +466,7 @@
                   <button type="button" class="reject-button" data-reject-id="action-demo03">🚫 Reject</button>
                 </div>
             </details>
-            <details class="item" data-action-type="reply_draft" data-action-status="pending_approval" data-action-created="2026-10-09T12:03:06.404499+00:00" data-item-id="action-demo04">
+            <details class="item" data-action-type="reply_draft" data-action-status="pending_approval" data-action-created="2026-10-10T09:45:17.312701+00:00" data-item-id="action-demo04">
               <summary class="item-top">
                 <span class="item-icon" aria-hidden="true">✉️</span>
                 <span class="item-copy"><strong class="title">Reply to Anna Beispiel</strong><span class="type">Reply draft</span></span>
@@ -537,7 +505,43 @@ Alex</textarea>
         </div>
   </div>
 
-  <div class="dashboard-grid"><div class="card" id="status-card">
+  <div class="card" id="activity">
+    <h2>Your modules</h2>
+    <div class="modules" aria-label="Module access"><details class="module-chip enabled"><summary><span>🧭 Base · Operational</span><strong>✅ Ready</strong></summary><p class="muted">Inbox, calendar, tasks, reminders, and approval controls.</p></details><details class="module-chip enabled"><summary><span>💰 Wealth · Finance</span><strong>✅ Ready</strong></summary><p class="muted">Bank CSV review, finance summaries, investments, and forecasts.</p></details><details class="module-chip enabled"><summary><span>✈️ Travel</span><strong>✅ Ready</strong></summary><p class="muted">Bookings, itinerary grouping, and trip preparation support.</p></details></div>
+  </div>
+
+  <div class="card" id="whats-running" data-fold>
+    <h2>What's running</h2>
+    <p class="muted" style="margin:0 0 12px;">A live read of this Mac's own configuration — never marketing copy.</p>
+    <div class="cap-grid"><a href="/demo/settings/" class="cap-row"><span class="cap-dot" style="background:var(--text-soft);" aria-hidden="true"></span><span class="cap-copy"><strong>📬 Mail sources</strong><small>0 connected account(s)</small></span><span class="cap-status">Off</span></a><a href="/demo/trust-center/" class="cap-row"><span class="cap-dot" style="background:var(--text-soft);" aria-hidden="true"></span><span class="cap-copy"><strong>💬 iMessage automation</strong><small>0 trusted sender(s) configured</small></span><span class="cap-status">Off</span></a><a href="/demo/settings/" class="cap-row"><span class="cap-dot" style="background:var(--text-soft);" aria-hidden="true"></span><span class="cap-copy"><strong>🤖 AI reply features</strong><small>0 of 38 enabled</small></span><span class="cap-status">Off</span></a><a href="/demo/settings/" class="cap-row"><span class="cap-dot" style="background:var(--text-soft);" aria-hidden="true"></span><span class="cap-copy"><strong>⚡ Auto-Approve</strong><small>0 of 6 action types automatic</small></span><span class="cap-status">Off</span></a><a href="/demo/custom-rules/" class="cap-row"><span class="cap-dot" style="background:var(--text-soft);" aria-hidden="true"></span><span class="cap-copy"><strong>🧩 Custom Rules</strong><small>0 active rule(s)</small></span><span class="cap-status">Off</span></a></div>
+    <div class="cap-footer">Updated just now</div>
+  </div>
+
+  <div class="card bank-scan" id="bank-scan" data-status="no-sources"><div class="bank-scan-head"><span class="bank-scan-icon" aria-hidden="true">🏦</span><div><h2>Your banks and bills, found in your email</h2><p class="muted">Connect a mail account first, then SafePersonalAI can look back through the last 90 days for bank statements.</p></div></div><a class="bank-scan-link" href="/demo/settings/">Connect mail in Settings →</a></div>
+  
+
+  <div class="card" id="activity-glance" data-fold data-sum="0 completed · 5 awaiting review">
+    <div class="activity-grid">
+      <div class="donut" style="background:conic-gradient(#00e599 0 0%, #ffb340 0% 100%, #ff6482 100% 100%)" role="img" aria-label="Activity: 0 completed, 5 awaiting review, 0 needing attention"></div>
+      <div><h2>Activity at a glance</h2><div class="legend">
+        <div class="legend-row"><span class="legend-key"><span class="legend-dot" style="background:#00e599"></span>Completed</span><strong>0</strong></div>
+        <div class="legend-row"><span class="legend-key"><span class="legend-dot" style="background:#ffb340"></span>Awaiting review</span><strong>5</strong></div>
+        <div class="legend-row"><span class="legend-key"><span class="legend-dot" style="background:#ff6482"></span>Needs attention</span><strong>0</strong></div>
+      </div></div>
+    </div>
+    <div class="live-row"><span class="live-dot"></span>Live local activity · updates when you refresh · <a href="/demo/" style="color:var(--accent);text-decoration:none;font-weight:600;">Refresh now</a></div>
+    <div class="history-heading">Recent history</div><div class="timeline"><div class="timeline-item">📅 <strong>Calendar event</strong> · Dentist check-up<span class="muted"> · Awaiting your review</span></div><div class="timeline-item">✅ <strong>Task</strong> · Send the meter reading to Stadtwerke Musterstadt<span class="muted"> · Awaiting your review</span></div><div class="timeline-item">✅ <strong>Task</strong> · Call the landlord<span class="muted"> · Awaiting your review</span></div><div class="timeline-item">💳 <strong>Recurring bill</strong> · FitX Fitness<span class="muted"> · Awaiting your review</span></div><div class="timeline-item">✉️ <strong>Reply draft</strong> · Reply to Anna Beispiel<span class="muted"> · Awaiting your review</span></div></div>
+  </div>
+
+  <div class="card" id="activity-timeline" data-fold aria-labelledby="timeline-heading">
+    <div class="timeline-tools"><div><h2 id="timeline-heading">Activity over time</h2><p class="muted" style="margin:0">A quick view of what SafePersonalAI has prepared.</p></div><div class="timeline-tabs" role="group" aria-label="Activity window"><button type="button" data-timeline-window="today" aria-pressed="false">Today</button><button type="button" data-timeline-window="week" aria-pressed="true">Week</button><button type="button" data-timeline-window="month" aria-pressed="false">Month</button></div></div>
+    <div id="timeline-chart" class="timeline-empty" aria-live="polite">Loading activity…</div>
+    <div id="timeline-legend" class="timeline-legend" aria-label="Activity types"></div>
+  </div>
+
+  
+
+  <div class="dashboard-grid"><div class="card" id="status-card" data-fold data-sum="Anthropic">
     <h2>Status</h2>
     <div class="row"><span>License</span><span class="badge" style="background:rgba(10,132,255,0.14);color:#0a84ff;">Free trial · 89 days left</span></div>
     <div class="row"><span class="muted">not activated yet — nothing to do during the free trial. With a licence key: menu bar icon → “Activate License”.</span></div>
@@ -547,7 +551,7 @@ Alex</textarea>
 
   </div></div>
 
-  <div class="muted" style="text-align:center;margin-top:24px;">Last updated <time id="last-updated" datetime="2026-10-09T18:53:10.094336+00:00">Fri 9 Oct 2026, 20:53</time> · Click an item above for details.</div>
+  <div class="muted" style="text-align:center;margin-top:24px;">Last updated <time id="last-updated" datetime="2026-10-10T16:35:20.840178+00:00">Sat 10 Oct 2026, 18:35</time> · Click an item above for details.</div>
 </div></div></main><script type="application/javascript">
   (() => {
     const root = document.documentElement;
@@ -643,7 +647,7 @@ Alex</textarea>
       if (!form) return;
       event.preventDefault();
       const value = (name) => (form.elements[name] ? form.elements[name].value : '');
-      const body = { title: value('title'), date: value('date'), start: value('start'), end: value('end'),
+      const body = { title: value('title'), date: value('date'), start: value('start').slice(0, 5), end: value('end').slice(0, 5),
         all_day: !!(form.elements.all_day && form.elements.all_day.checked) };
       const note = form.querySelector('.item-edit-error');
       note.textContent = '';
@@ -691,6 +695,21 @@ Alex</textarea>
       const link = document.createElement('a');
       link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer';
       document.body.appendChild(link); link.click(); link.remove();
+    });
+    document.addEventListener('click', async (event) => {
+      const hideBtn = event.target.closest('[data-hide-id]');
+      if (!hideBtn) return;
+      event.preventDefault();
+      const original = hideBtn.textContent;
+      hideBtn.disabled = true;
+      try {
+        const result = await fetch(`/api/pending-actions/${hideBtn.dataset.hideId}/hide`, { method: 'POST' }).then((r) => r.json());
+        if (!result.ok) { showActionError(hideBtn, original, result.error || 'Could not remove it.'); return; }
+        const row = hideBtn.closest('.item'), group = row.closest('.group');
+        row.remove();
+        if (group && !group.querySelector('.item')) group.remove();
+        refreshCountsQuietly();
+      } catch (error) { showActionError(hideBtn, original, 'Could not reach the local server.'); }
     });
     document.addEventListener('click', async (event) => {
       const reopenBtn = event.target.closest('[data-reopen-id]');
@@ -753,9 +772,20 @@ Alex</textarea>
         try { localStorage.setItem(key, minimized ? '1' : '0'); } catch (_) {}
       });
       card.appendChild(btn);
+      if (card.dataset.sum) {
+        const sum = document.createElement('span');
+        sum.className = 'card-title-sum'; sum.textContent = card.dataset.sum;
+        titleBar.appendChild(sum);
+      }
+      card.addEventListener('click', (ev) => {
+        if (!card.classList.contains('is-minimized') || ev.target.closest('button, a')) return;
+        if (document.body.classList.contains('sec-arranging') || document.body.classList.contains('layout-tiles')) return;
+        applyState(false);
+        try { localStorage.setItem(key, '0'); } catch (_) {}
+      });
       let saved = null;
       try { saved = localStorage.getItem(key); } catch (_) {}
-      applyState(saved === '1');
+      applyState(saved === '1' || (saved === null && card.hasAttribute('data-fold')));
     });
     window.__actionsStamp = "e5d2c4d19293d6de";
     window.showCurrentState = () => location.reload();
@@ -896,8 +926,23 @@ Alex</textarea>
         .card.sec-collapsed .sec-chev { transform:rotate(-90deg); }
         .card.sec-collapsed > :not(.sec-head):not(.sec-tools) { display:none !important; }
         body.sec-arranging .sec-head > :not(h2):not(:has(h2)), body.sec-arranging .sec-chev { display:none !important; }
-        .card.sec-collapsed { padding-bottom:14px; }
-        .card.sec-collapsed .sec-head { margin-bottom:0 !important; }
+        .card.sec-collapsed { padding-bottom:14px; cursor:pointer; transition:border-color .15s ease; }
+        .card.sec-collapsed:hover { border-color:var(--card-border-hover,var(--accent,#0a84ff)); }
+        .card.sec-collapsed .sec-head { margin-bottom:0 !important; padding-top:0 !important; padding-bottom:0 !important; }
+        .card.sec-card h2 { cursor:pointer; }
+        .card.sec-collapsed .sec-head:not(h2) > :not(h2):not(:has(h2)) { display:none !important; }
+        .card.sec-collapsed h2 { display:flex; align-items:center; gap:6px; flex:1; width:100%; min-width:0; margin:0; }
+        .sec-sum { display:none; }
+        .card.sec-collapsed .sec-sum { display:block; margin-left:auto; padding-left:14px; text-transform:none;
+          letter-spacing:0; font-size:13px; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden;
+          text-overflow:ellipsis; min-width:0; }
+        body.sec-arranging .sec-sum { display:none !important; }
+        .sec-clip { display:none !important; }
+        .sec-more { display:block; margin:10px auto 0; border:1px solid var(--card-border,rgba(127,127,127,.25));
+          background:transparent; color:var(--accent,#0a84ff); font:inherit; font-size:12px; font-weight:600;
+          padding:6px 14px; border-radius:999px; cursor:pointer; }
+        .sec-more:hover { border-color:var(--accent,#0a84ff); }
+        body.sec-arranging .sec-more { display:none; }
         .sec-bar { display:flex; justify-content:flex-end; gap:8px; margin:-6px 0 12px; }
         .sec-bar button { border:1px solid var(--card-border,rgba(127,127,127,.25)); background:var(--card,transparent);
           color:var(--text); font:inherit; font-size:12px; padding:6px 12px; border-radius:999px; cursor:pointer; }
@@ -948,17 +993,56 @@ Alex</textarea>
         chev.type = 'button'; chev.className = 'sec-chev'; chev.textContent = '⌄';
         const name = h2.textContent.trim().slice(0, 40);
         const key = `spa-hide:${page}:${id}`;
-        const setHidden = (hide) => {
+        const folds = card.hasAttribute('data-fold') || (wrap.hasAttribute('data-fold-all') && !card.hasAttribute('data-open'));
+        if (card.dataset.sum) {
+          const sum = document.createElement('span');
+          sum.className = 'sec-sum'; sum.textContent = card.dataset.sum;
+          h2.appendChild(sum);
+        }
+        const setHidden = (hide, remember) => {
           card.classList.toggle('sec-collapsed', hide);
           chev.setAttribute('aria-expanded', String(!hide));
           chev.title = hide ? `Show ${name}` : `Hide ${name}`;
           chev.setAttribute('aria-label', chev.title);
-          store.set(key, hide ? '1' : null);
+          if (remember) store.set(key, hide === folds ? null : (hide ? '1' : '0'));
         };
-        chev.addEventListener('click', (e) => { e.stopPropagation(); setHidden(!card.classList.contains('sec-collapsed')); });
+        const busy = () => document.body.classList.contains('sec-arranging') || document.body.classList.contains('layout-tiles');
+        chev.addEventListener('click', (e) => { e.stopPropagation(); setHidden(!card.classList.contains('sec-collapsed'), true); });
+        card.addEventListener('click', (e) => {         // a folded section opens wherever it is clicked
+          if (busy() || e.target.closest('button, a, select, input, label, textarea')) return;
+          if (card.classList.contains('sec-collapsed')) setHidden(false, true);
+          else if (e.target.closest('h2') === h2) setHidden(true, true);
+        });
         h2.prepend(chev);
-        setHidden(store.get(key) === '1');
-        unhide.push(() => setHidden(false));
+        const saved = store.get(key);
+        setHidden(saved === '1' ? true : saved === '0' ? false : folds, false);
+        card.secOpen = () => setHidden(false, false);
+        unhide.push(() => setHidden(folds, true));
+      });
+      const openTarget = () => {
+        let el = null;
+        try { el = location.hash.length > 1 ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null; } catch (_) {}
+        const card = el && el.closest('.card.sec-card');
+        if (!card) return;
+        if (el.tagName === 'DETAILS') el.open = true;
+        if (card.classList.contains('sec-collapsed') && card.secOpen) card.secOpen();
+        el.scrollIntoView({ block: el.tagName === 'DETAILS' ? 'center' : 'start' });
+      };
+      openTarget();
+      window.addEventListener('hashchange', openTarget);
+      document.querySelectorAll('[data-more]').forEach((box) => {
+        const n = Number(box.dataset.more), kids = () => [...box.children];
+        if (!n || kids().length <= n) return;
+        const btn = document.createElement('button');
+        btn.type = 'button'; btn.className = 'sec-more';
+        const set = (open) => {
+          kids().forEach((k, i) => k.classList.toggle('sec-clip', !open && i >= n));
+          btn.textContent = open ? 'Show fewer' : (box.dataset.moreLabel || 'Show all');
+          btn.setAttribute('aria-expanded', String(open));
+        };
+        btn.addEventListener('click', (e) => { e.stopPropagation(); set(btn.getAttribute('aria-expanded') !== 'true'); });
+        box.after(btn);
+        set(false);
       });
       const all = cards();  // the page's own order, for "Reset order"
       if (all.length < 2) return;

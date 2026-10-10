@@ -36,7 +36,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     const bar = document.createElement('div'); bar.id = 'spa-demo-bar';
     bar.innerHTML = '<b>Demo</b><span>The real app with invented data. Click anything: nothing is saved or sent.</span>' +
-      '<a data-demo-out href="' + HOME + '">Back to the website</a><a data-demo-out class="go" href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.1-beta/SafePersonalAI-beta.zip">Download the app</a>';
+      '<a data-demo-out href="' + HOME + '">Back to the website</a><a data-demo-out class="go" href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.2-beta/SafePersonalAI-beta.zip">Download the app</a>';
     document.body.prepend(bar);
   });
 })();
@@ -156,6 +156,9 @@
   .accent-emerald { background:#00e599; } .accent-blue { background:#0872ed; } .accent-violet { background:#8e55ea; } .accent-amber { background:#f5a524; } .accent-rose { background:#ff6482; } .accent-slate { background:#8d99ae; }
   body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; } input, textarea, select { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; } }
+  .theme-control { display:inline-flex; gap:2px; padding:3px; border:1px solid var(--card-border); border-radius:999px; }
+  .theme-control button { border:0; border-radius:999px; padding:5px 10px; background:transparent; color:var(--text-soft); font:inherit; font-size:11px; cursor:pointer; }
+  .theme-control button[aria-pressed="true"] { background:var(--accent-dim); color:var(--accent); font-weight:700; }
   @media (max-width: 720px) { body { padding:18px; } .provider-grid { grid-template-columns:1fr 1fr; } .topbar-actions { width:100%; justify-content:space-between; } .settings-row { align-items:flex-start; } .account-actions { width:100%; } }
   
   .app-shell { display:grid; grid-template-columns:190px minmax(0,1fr); gap:22px; align-items:start; max-width:1240px; margin:0 auto; }
@@ -189,10 +192,84 @@
   @media (max-width: 820px) { .rail-parent { display:none; } .rail-link.rail-sub { padding-left:8px; } .rail-link.rail-sub::before { display:none; } }
 
 </style></head>
-<body><main class="app-shell" aria-label="SafePersonalAI settings"><aside class="app-rail" aria-label="App navigation"><div class="rail-brand"><a href="/demo/" class="rail-brand-link" style="text-decoration:none;color:inherit;"><span class="rail-mark"><svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="display:block"><rect x="20" y="46.5" width="38" height="8.5" rx="4.25" fill="#fff" opacity=".22"/><path d="M23.5 29.5 A23 23 0 0 1 23.5 73.5" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round"/><path d="M55.5 50.5 L60.5 55.5 L80 35" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>SafePersonalAI</span></a><button type="button" class="rail-pin" id="rail-pin-toggle" aria-pressed="true" title="Hide sidebar">‹</button></div><div class="rail-section">Workspace</div><a class="rail-link" href="/demo/"><span>⌂&nbsp; Dashboard</span></a><div class="rail-section">Modules</div><a class="rail-link" href="/demo/"><span>Base · Operational</span><span class="rail-lock" aria-label="Unlocked">●</span></a><a class="rail-link" href="/events"><span>Events</span></a><div class="rail-parent" title="Wealth · Finance">Finance</div><a class="rail-link rail-sub" href="/demo/wealth/"><span>Wealth</span></a><a class="rail-link rail-sub" href="/demo/investments/"><span>Investments</span></a><a class="rail-link" href="/demo/travel/" title="Travel"><span>Travel</span></a><div class="rail-section">Manage</div><a class="rail-link" href="/demo/todos/"><span>✓&nbsp; To-Dos</span></a><a class="rail-link" href="/demo/custom-rules/"><span>✦&nbsp; Custom Rules</span></a><a class="rail-link" href="/demo/trust-center/"><span>🛡&nbsp; Trust Center</span></a><a class="rail-link current" href="/demo/settings/" aria-current="page"><span>⚙&nbsp; Settings</span></a></aside><button type="button" class="rail-reveal" id="rail-reveal-toggle" title="Show sidebar" aria-label="Show sidebar">›</button><div class="app-content"><div class="wrap">
+<body><main class="app-shell" aria-label="SafePersonalAI settings"><aside class="app-rail" aria-label="App navigation"><div class="rail-brand"><a href="/demo/" class="rail-brand-link" style="text-decoration:none;color:inherit;"><span class="rail-mark"><svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="display:block"><rect x="20" y="46.5" width="38" height="8.5" rx="4.25" fill="#fff" opacity=".22"/><path d="M23.5 29.5 A23 23 0 0 1 23.5 73.5" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round"/><path d="M55.5 50.5 L60.5 55.5 L80 35" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>SafePersonalAI</span></a><button type="button" class="rail-pin" id="rail-pin-toggle" aria-pressed="true" title="Hide sidebar">‹</button></div><div class="rail-section">Workspace</div><a class="rail-link" href="/demo/"><span>⌂&nbsp; Dashboard</span></a><div class="rail-section">Modules</div><a class="rail-link" href="/demo/"><span>Base · Operational</span><span class="rail-lock" aria-label="Unlocked">●</span></a><a class="rail-link" href="/events"><span>Events</span></a><div class="rail-parent" title="Wealth · Finance">Finance</div><a class="rail-link rail-sub" href="/demo/wealth/"><span>Wealth</span></a><a class="rail-link rail-sub" href="/demo/investments/"><span>Investments</span></a><a class="rail-link" href="/demo/travel/" title="Travel"><span>Travel</span></a><div class="rail-section">Manage</div><a class="rail-link" href="/demo/todos/"><span>✓&nbsp; To-Dos</span></a><a class="rail-link" href="/demo/custom-rules/"><span>✦&nbsp; Custom Rules</span></a><a class="rail-link" href="/demo/trust-center/"><span>🛡&nbsp; Trust Center</span></a><a class="rail-link current" href="/demo/settings/" aria-current="page"><span>⚙&nbsp; Settings</span></a></aside><button type="button" class="rail-reveal" id="rail-reveal-toggle" title="Show sidebar" aria-label="Show sidebar">›</button><div class="app-content"><div class="wrap" data-fold-all>
   <div class="topbar"><div class="brand"><a href="/demo/" class="brand-mark" style="text-decoration:none;" title="Go to Dashboard"><svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="display:block"><rect x="20" y="46.5" width="38" height="8.5" rx="4.25" fill="#fff" opacity=".22"/><path d="M23.5 29.5 A23 23 0 0 1 23.5 73.5" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round"/><path d="M55.5 50.5 L60.5 55.5 L80 35" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div><h1>Settings</h1><div class="sub" style="margin:0">Configure how SafePersonalAI behaves on this Mac</div></div></div><div class="topbar-actions"><nav class="app-nav" aria-label="Primary"><a class="nav-link" href="/demo/">Dashboard</a><a class="nav-link" href="/demo/settings/">Settings</a><a class="nav-link" href="/demo/custom-rules/">Custom Rules</a><a class="nav-link" href="/demo/todos/">To-Dos</a><a class="nav-link" href="/demo/trust-center/">Trust Center</a><a class="nav-link" href="/demo/wealth/">Wealth</a><a class="nav-link" href="/demo/travel/">Travel</a></nav><div class="theme-control" aria-label="Appearance"><button type="button" data-theme-choice="light" aria-pressed="false">Bright</button><button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button><button type="button" data-theme-choice="auto" aria-pressed="true">Auto</button></div></div></div>
 
   
+
+  <div class="card" id="mail-accounts" data-open>
+    <h2>Mail <span class="info-wrap"><button type="button" class="info-tip" aria-expanded="false" aria-label="About mail accounts">i</button><span class="tip-pop" role="tooltip" hidden>Where SafePersonalAI reads your email: to find appointments, bills, bank statements and alerts. Read-only — it never sends, deletes or marks anything.</span></span></h2>
+    <div class="settings-row"><div><div class="settings-label">🟢 Gmail</div><div class="settings-detail">Not connected</div></div><button type="button" class="primary" data-connect-gmail="main" style="border-radius:999px;padding:8px 16px;">Connect Gmail</button></div>
+    <div class="settings-row">
+      <div><div class="settings-label">✉️ Apple Mail <span class="info-wrap"><button type="button" class="info-tip" aria-expanded="false" aria-label="About Apple Mail">i</button><span class="tip-pop" role="tooltip" hidden>Reads every account you added to the Mail app: iCloud, Outlook/Hotmail, GMX, work Exchange… macOS asks once for permission.</span></span></div>
+        <div class="settings-detail">Off</div></div>
+      <label class="switch"><input type="checkbox" data-apple-mail aria-label="Apple Mail" ><span class="switch-track"></span></label>
+    </div>
+    <div class="settings-row">
+      <div><div class="settings-label">🟦 Microsoft (Outlook, Hotmail) <span class="info-wrap"><button type="button" class="info-tip" aria-expanded="false" aria-label="About Microsoft">i</button><span class="tip-pop" role="tooltip" hidden>A direct Microsoft sign-in is coming soon. Today: add your Outlook/Hotmail account in the Mail app and switch Apple Mail on — it works the same.</span></span></div>
+        <div class="settings-detail">Coming soon · works now through Apple Mail</div></div>
+      <button type="button" class="provider-chip" disabled title="Coming soon" style="opacity:.5;padding:6px 12px;">Connect Microsoft</button>
+    </div>
+    
+        <div class="settings-row">
+          <div><div class="settings-label">Gmail</div><div class="settings-detail">No additional Gmail accounts connected</div></div>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Outlook</div><div class="settings-detail">No additional Outlook accounts connected</div></div>
+        </div>
+    <div class="card-hint" data-mail-status aria-live="polite"></div>
+    <script>
+document.querySelectorAll('[data-connect-gmail]').forEach((btn) => btn.addEventListener('click', async () => {
+  btn.disabled = true;
+  const out = document.querySelector('[data-mail-status]');
+  out.textContent = 'A Google page opens in your browser — approve it, then come back. This page updates by itself.';
+  await fetch('/settings/accounts/connect-gmail', {method: 'POST', headers: {'content-type': 'application/json'},
+    body: JSON.stringify({extra: btn.dataset.connectGmail === 'extra'})}).catch(() => {});
+  const started = Date.now();
+  const poll = setInterval(async () => {
+    const s = await fetch('/api/mail-accounts').then((r) => r.json()).catch(() => ({}));
+    if (s.changed_since && s.changed_since > started / 1000) {
+      clearInterval(poll);
+      out.textContent = '✅ Connected' + (s.email ? ' — ' + s.email : '') + '.';
+      btn.textContent = '＋ Add another'; btn.dataset.connectGmail = 'extra'; btn.disabled = false;
+    } else if (Date.now() - started > 180000) {
+      clearInterval(poll); btn.disabled = false; out.textContent = 'No sign-in yet — try again when ready.';
+    }
+  }, 3000);
+}));
+</script>
+  </div>
+
+  <div class="card" data-sum="Anthropic">
+    <h2>AI Provider <span class="info-wrap"><button type="button" class="info-tip" aria-expanded="false" aria-label="About the AI provider">i</button><span class="tip-pop" role="tooltip" hidden>The AI that reads your emails and turns them into appointments, to-dos and bills. You use your own key and pay the provider directly (usually a few cents a day). Ollama runs fully on your Mac, no key needed.</span></span></h2>
+    <div class="provider-grid" role="group" aria-label="AI provider"><button type="button" class="provider-chip" data-provider="anthropic" aria-pressed="true">Anthropic</button><button type="button" class="provider-chip" data-provider="gemini" aria-pressed="false">Gemini</button><button type="button" class="provider-chip" data-provider="openai" aria-pressed="false">OpenAI</button><button type="button" class="provider-chip" data-provider="ollama" aria-pressed="false">Ollama (local)</button></div>
+    <div class="settings-detail" style="margin-top:10px;">🔑 ✅ Anthropic key saved</div><form class="add-form" id="provider-key-form" data-provider="anthropic" style="grid-template-columns:1fr auto;margin-top:8px;"><input name="key" type="password" placeholder="Replace your Anthropic API key" aria-label="Anthropic API key" autocomplete="off"><button type="submit" class="primary">Save</button><a href="https://console.anthropic.com/settings/keys" style="color:var(--accent);font-size:12px;grid-column:1/-1;">Get a key ↗</a></form><div class="card-hint" id="provider-key-status" aria-live="polite"></div><script>
+document.getElementById('provider-key-form')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const f = e.target, out = document.getElementById('provider-key-status');
+  const res = await fetch('/settings/provider-key', {method: 'POST', headers: {'content-type': 'application/json'},
+    body: JSON.stringify({provider: f.dataset.provider, key: f.elements.namedItem('key').value})})
+    .then((r) => r.json()).catch(() => ({ok: false}));
+  out.textContent = res.ok ? '✅ Key saved — your emails are read from the next check (within 15 minutes).'
+                           : (res.error || 'Could not save the key.');
+  if (res.ok) f.elements.namedItem('key').value = '';
+});
+document.querySelectorAll('.provider-chip[data-provider]').forEach((chip) => chip.addEventListener('click', () => {
+  const f = document.getElementById('provider-key-form');
+  if (!f) return;
+  const names = {anthropic: 'Anthropic', gemini: 'Gemini', openai: 'OpenAI'};
+  const links = {anthropic: 'https://console.anthropic.com/settings/keys', gemini: 'https://aistudio.google.com/app/apikey',
+                 openai: 'https://platform.openai.com/api-keys'};
+  const p = chip.dataset.provider;
+  f.hidden = p === 'ollama';
+  if (p === 'ollama') return;
+  f.dataset.provider = p;
+  f.elements.namedItem('key').placeholder = 'Paste your ' + names[p] + ' API key';
+  const a = f.querySelector('a'); if (a) a.href = links[p];
+  document.getElementById('provider-key-status').textContent = 'Save the ' + names[p] + ' key if you haven\'t yet.';
+}));
+</script>
+  </div>
 
   <div class="card profile-card" aria-labelledby="profile-heading">
     <h2 id="profile-heading" style="grid-column:1 / -1;">Profile</h2>
@@ -203,7 +280,7 @@
     <h2 id="accent-heading">Accent color</h2><div class="card-hint">Choose the highlight color for this browser. Alert meanings stay unchanged.</div>
     <div class="accent-grid" role="group" aria-label="Accent color"><button type="button" class="accent-choice" data-accent="emerald" aria-pressed="false"><span class="accent-dot accent-emerald"></span>Emerald</button><button type="button" class="accent-choice" data-accent="blue" aria-pressed="true"><span class="accent-dot accent-blue"></span>Blue</button><button type="button" class="accent-choice" data-accent="violet" aria-pressed="false"><span class="accent-dot accent-violet"></span>Violet</button><button type="button" class="accent-choice" data-accent="amber" aria-pressed="false"><span class="accent-dot accent-amber"></span>Amber</button><button type="button" class="accent-choice" data-accent="rose" aria-pressed="false"><span class="accent-dot accent-rose"></span>Rose</button><button type="button" class="accent-choice" data-accent="slate" aria-pressed="false"><span class="accent-dot accent-slate"></span>Slate</button></div>
   </div>
-  <div class="card">
+  <div class="card" data-sum="0 of 6 on">
     <h2>Auto-Approve</h2>
     <div class="card-hint">When on, this action type dispatches immediately instead of waiting in your review queue. An action SafePersonalAI is genuinely unsure about always waits for you, regardless of this setting.</div>
     
@@ -251,17 +328,17 @@
         </div>
   </div>
   <div class="card" aria-labelledby="reply-drafts-heading"><h2 id="reply-drafts-heading">Reply drafts</h2><label class="settings-row" style="cursor:pointer;align-items:flex-start;gap:12px;"><input type="checkbox" id="reply-drafts-on" checked style="margin-top:3px;"><div><div class="settings-label">Prepare a reply when someone asks me a question by email</div><div class="settings-detail">The draft waits in Pending Actions. You can change it and open it in your own mail; SafePersonalAI never sends it. With this off, no drafts are prepared; everything else works as before.</div></div></label></div><script>document.getElementById('reply-drafts-on')?.addEventListener('change', (e) => fetch('/settings/reply-drafts', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({on: e.target.checked})}).then((r) => r.json()).then((x) => { if (!x.ok) e.target.checked = !e.target.checked; if (window.showToast) showToast(x.ok ? (x.on ? 'Reply drafts are on' : 'Reply drafts are off') : 'Could not save', !x.ok); }).catch(() => { e.target.checked = !e.target.checked; }));</script>
-  <div class="card" aria-labelledby="language-heading"><h2 id="language-heading">Languages</h2><div class="card-hint">Interface language is the language of these pages. Output language is the language of new to-dos and calendar texts. Longer explanations and messages are still in English.</div><div class="settings-row"><label for="interface-language">Interface language</label><select id="interface-language" data-keep-language><option value="en" selected>English</option><option value="de" >Deutsch</option><option value="tr" >Türkçe</option><option value="es" >Español</option><option value="zh" >中文</option><option value="fr" >Français</option></select></div><div class="settings-row"><label for="output-language">Output language</label><select id="output-language" data-keep-language><option value="en" selected>English</option><option value="de" >Deutsch</option><option value="tr" >Türkçe</option><option value="es" >Español</option><option value="zh" >中文</option><option value="fr" >Français</option></select><button type="button" class="profile-actions button primary" id="save-language">Save</button></div></div>
-  <div class="card" aria-labelledby="calendar-heading"><h2 id="calendar-heading">Calendar providers</h2><div class="card-hint">Choose at least one destination for new calendar events. Existing events are never changed.</div><div class="settings-row"><label><input type="checkbox" id="calendar-google" checked> Google Calendar</label><label><input type="checkbox" id="calendar-apple" > Apple Calendar</label><button type="button" class="profile-actions button primary" id="save-calendar">Save</button></div></div>
+  <div class="card" data-sum="English" aria-labelledby="language-heading"><h2 id="language-heading">Languages</h2><div class="card-hint">Interface language is the language of these pages. Output language is the language of new to-dos and calendar texts. Longer explanations and messages are still in English.</div><div class="settings-row"><label for="interface-language">Interface language</label><select id="interface-language" data-keep-language><option value="en" selected>English</option><option value="de" >Deutsch</option><option value="tr" >Türkçe</option><option value="es" >Español</option><option value="zh" >中文</option><option value="fr" >Français</option></select></div><div class="settings-row"><label for="output-language">Output language</label><select id="output-language" data-keep-language><option value="en" selected>English</option><option value="de" >Deutsch</option><option value="tr" >Türkçe</option><option value="es" >Español</option><option value="zh" >中文</option><option value="fr" >Français</option></select><button type="button" class="profile-actions button primary" id="save-language">Save</button></div></div>
+  <div class="card" data-sum="Google" aria-labelledby="calendar-heading"><h2 id="calendar-heading">Calendar providers</h2><div class="card-hint">Choose at least one destination for new calendar events. Existing events are never changed.</div><div class="settings-row"><label><input type="checkbox" id="calendar-google" checked> Google Calendar</label><label><input type="checkbox" id="calendar-apple" > Apple Calendar</label><button type="button" class="profile-actions button primary" id="save-calendar">Save</button></div></div>
 
-  <div class="card" aria-labelledby="imessage-heading">
+  <div class="card" data-sum="Off" aria-labelledby="imessage-heading">
     <h2 id="imessage-heading">iMessage trusted senders</h2>
     <div class="card-hint">Only messages from senders listed here are ever read — everything else is silently ignored. Separate multiple entries with commas. Leave blank to turn iMessage automation off. This used to be set only in the one-time setup wizard; you can add or change it here anytime.</div>
     <input id="imessage-senders" placeholder="e.g. +491701234567, you@icloud.com" value="" style="width:100%;border:1px solid var(--card-border);border-radius:10px;padding:9px 11px;background:var(--bg);color:var(--text);font:inherit;margin-bottom:10px;">
     <div class="settings-row"><button type="button" class="profile-actions button primary" id="save-imessage">Save</button><span class="profile-note" id="imessage-status" role="status" aria-live="polite"></span></div>
   </div>
   <div class="card" id="features" aria-labelledby="features-heading"><h2 id="features-heading">iMessage commands &amp; automatic features <span class="muted" style="font-weight:500;">0 of 38 on</span></h2><div class="card-hint">Text these to SafePersonalAI from a trusted number (set above). They read and reply to you only; a few also add a to-do for you (a letter's deadline, packing for a trip). Nothing is sent to anyone else and no money moves. Text “help” anytime for this list.</div><div class="feature-group"><div class="feature-group-title">Everyday</div><div class="settings-row"><div><div class="settings-label">❓ Help</div><div class="settings-detail">Texts back every command that&#x27;s switched on, with an example.</div><div class="settings-detail feature-example">Text: “help”</div></div><label class="switch"><input type="checkbox" data-feature-id="help" aria-label="Help" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🔎 Find an email</div><div class="settings-detail">Searches the last 60 days of your mail and texts back the best 3.</div><div class="settings-detail feature-example">Text: “Find the email from Anna about the lease”</div></div><label class="switch"><input type="checkbox" data-feature-id="find_email" aria-label="Find an email" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">⏳ Waiting for a reply</div><div class="settings-detail">Emails you sent 3–21 days ago with no answer yet (Gmail).</div><div class="settings-detail feature-example">Text: “Who hasn&#x27;t replied?”</div></div><label class="switch"><input type="checkbox" data-feature-id="waiting_reply" aria-label="Waiting for a reply" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🗓️ Weekly digest</div><div class="settings-detail">Sunday evening: to-dos due, money spent, upcoming trips.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="weekly_digest" aria-label="Weekly digest" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">✅ Quick to-do</div><div class="settings-detail">Saves a to-do (English, German or Turkish).</div><div class="settings-detail feature-example">Text: “Remind me to call the landlord tomorrow”</div></div><label class="switch"><input type="checkbox" data-feature-id="quick_task" aria-label="Quick to-do" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🔁 Repeating reminder</div><div class="settings-detail">Creates a to-do that comes back on a schedule.</div><div class="settings-detail feature-example">Text: “Remind me every Tuesday to take out the trash”</div></div><label class="switch"><input type="checkbox" data-feature-id="recurring_reminder" aria-label="Repeating reminder" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">📋 My to-dos</div><div class="settings-detail">Texts back your open to-dos with deadlines.</div><div class="settings-detail feature-example">Text: “What are my open todos?”</div></div><label class="switch"><input type="checkbox" data-feature-id="list_todos" aria-label="My to-dos" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🔔 My reminders</div><div class="settings-detail">Reads your Apple Reminders back to you.</div><div class="settings-detail feature-example">Text: “What&#x27;s on my reminders list?”</div></div><label class="switch"><input type="checkbox" data-feature-id="reminders_lookup" aria-label="My reminders" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🗓️ Tomorrow&#x27;s agenda</div><div class="settings-detail">Lists tomorrow&#x27;s calendar events.</div><div class="settings-detail feature-example">Text: “What&#x27;s on my calendar tomorrow?”</div></div><label class="switch"><input type="checkbox" data-feature-id="tomorrow_agenda" aria-label="Tomorrow&#x27;s agenda" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">⏱️ Free time check</div><div class="settings-detail">Tells you how long until your next meeting.</div><div class="settings-detail feature-example">Text: “Do I have time to call mom before my next meeting?”</div></div><label class="switch"><input type="checkbox" data-feature-id="free_time_check" aria-label="Free time check" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🧑‍💼 Meeting prep</div><div class="settings-detail">Your next meeting plus the latest email with those people.</div><div class="settings-detail feature-example">Text: “Brief me before my next meeting”</div></div><label class="switch"><input type="checkbox" data-feature-id="meeting_prep" aria-label="Meeting prep" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">📞 Contact info</div><div class="settings-detail">Texts back a contact&#x27;s phone and email.</div><div class="settings-detail feature-example">Text: “Call info for Anna”</div></div><label class="switch"><input type="checkbox" data-feature-id="call_info" aria-label="Contact info" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🔐 Verification code</div><div class="settings-detail">Finds the latest sign-in code in your email.</div><div class="settings-detail feature-example">Text: “What&#x27;s my code?”</div></div><label class="switch"><input type="checkbox" data-feature-id="verification_code" aria-label="Verification code" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">📦 Package status</div><div class="settings-detail">The latest shipping update from your email.</div><div class="settings-detail feature-example">Text: “Where&#x27;s my package?”</div></div><label class="switch"><input type="checkbox" data-feature-id="package_tracking" aria-label="Package status" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🚨 Urgent mail check</div><div class="settings-detail">Spots final notices and reminders among your letters.</div><div class="settings-detail feature-example">Text: “Any urgent bills?”</div></div><label class="switch"><input type="checkbox" data-feature-id="urgent_mail" aria-label="Urgent mail check" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🧾 Explain a letter</div><div class="settings-detail">Explains an official letter in plain language and adds its deadline to your to-dos.</div><div class="settings-detail feature-example">Text: “Explain this: &lt;paste the letter&gt;”</div></div><label class="switch"><input type="checkbox" data-feature-id="explain_text" aria-label="Explain a letter" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🗂️ What to bring</div><div class="settings-detail">Finds what the confirmation email says to bring.</div><div class="settings-detail feature-example">Text: “What do I need to bring to my Bürgeramt appointment?”</div></div><label class="switch"><input type="checkbox" data-feature-id="appointment_checklist" aria-label="What to bring" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">✂️ Cancellation deadline</div><div class="settings-detail">Finds the notice period in your contract emails.</div><div class="settings-detail feature-example">Text: “When can I cancel my gym membership?”</div></div><label class="switch"><input type="checkbox" data-feature-id="cancellation_lookup" aria-label="Cancellation deadline" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🖼️ Find a photo</div><div class="settings-detail">Sends back the best matching photo from Photos.</div><div class="settings-detail feature-example">Text: “Photo: beach sunset”</div></div><label class="switch"><input type="checkbox" data-feature-id="photo_search" aria-label="Find a photo" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">☔ Weather</div><div class="settings-detail">A short weather heads-up.</div><div class="settings-detail feature-example">Text: “Do I need an umbrella tomorrow?”</div></div><label class="switch"><input type="checkbox" data-feature-id="weather" aria-label="Weather" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">💱 Currency converter</div><div class="settings-detail">Converts an amount at today&#x27;s rate.</div><div class="settings-detail feature-example">Text: “Convert 50 usd to eur”</div></div><label class="switch"><input type="checkbox" data-feature-id="currency_convert" aria-label="Currency converter" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">✉️ Reply in my words</div><div class="settings-detail">Finishes a reply draft that is waiting, from what you say, and sends the text back for you to read. Nothing is sent to Anna.</div><div class="settings-detail feature-example">Text: “reply to Anna: Saturday works, 7 pm”</div></div><label class="switch"><input type="checkbox" data-feature-id="reply_words" aria-label="Reply in my words" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🌅 Morning briefing</div><div class="settings-detail">Each morning: today&#x27;s agenda and bills due.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="morning_briefing" aria-label="Morning briefing" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🎂 Birthday nudges</div><div class="settings-detail">A heads-up a few days before a contact&#x27;s birthday.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="birthday_nudge" aria-label="Birthday nudges" ><span class="switch-track"></span></label></div></div><div class="feature-group"><div class="feature-group-title">Money</div><div class="settings-row"><div><div class="settings-label">💳 Spending question</div><div class="settings-detail">Adds up your imported transactions.</div><div class="settings-detail feature-example">Text: “How much have I spent on groceries this month?”</div></div><label class="switch"><input type="checkbox" data-feature-id="spend_query" aria-label="Spending question" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🧮 Upcoming bills</div><div class="settings-detail">Lists recurring bills due soon.</div><div class="settings-detail feature-example">Text: “What bills are coming up this month?”</div></div><label class="switch"><input type="checkbox" data-feature-id="upcoming_bills" aria-label="Upcoming bills" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🔄 Renewals</div><div class="settings-detail">Subscriptions and contracts renewing soon.</div><div class="settings-detail feature-example">Text: “What&#x27;s renewing soon?”</div></div><label class="switch"><input type="checkbox" data-feature-id="renewal_digest" aria-label="Renewals" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🗃️ Tax documents</div><div class="settings-detail">Lists this year&#x27;s tax-relevant emails.</div><div class="settings-detail feature-example">Text: “What tax documents have I received?”</div></div><label class="switch"><input type="checkbox" data-feature-id="tax_documents" aria-label="Tax documents" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🏦 Update a balance</div><div class="settings-detail">Sets that account&#x27;s balance (or ask “Sparkasse balance?”).</div><div class="settings-detail feature-example">Text: “Sparkasse balance 2000 euro”</div></div><label class="switch"><input type="checkbox" data-feature-id="balance_update" aria-label="Update a balance" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">📊 Month summary</div><div class="settings-detail">This month&#x27;s spending by category, compared with last month.</div><div class="settings-detail feature-example">Text: “How was my month?”</div></div><label class="switch"><input type="checkbox" data-feature-id="month_summary" aria-label="Month summary" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🛋️ Can I afford it?</div><div class="settings-detail">The first day it fits your forecast. Set your own rule with “keep at least 1000 euro” or “I want to save 300 a month”.</div><div class="settings-detail feature-example">Text: “When can I afford a 400 euro couch?”</div></div><label class="switch"><input type="checkbox" data-feature-id="afford" aria-label="Can I afford it?" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">💸 Budget alerts</div><div class="settings-detail">An evening message when a budget passes 80% or 100%.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="budget_alerts" aria-label="Budget alerts" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">📥 New statements from my banks</div><div class="settings-detail">Once a day, new statements your saved banks email you are prepared for import (you still click Import).</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="statement_autoimport" aria-label="New statements from my banks" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">📧 Bank alerts from email</div><div class="settings-detail">Transaction and balance emails from your saved banks (e.g. Sparkasse Kontowecker, card-payment alerts) update Wealth the same day; the statement later replaces them.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="bank_alert_mail" aria-label="Bank alerts from email" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">🧾 Bills &amp; subscriptions from email</div><div class="settings-detail">Invoices and receipts from services you pay (Cloudflare, Anthropic, Telekom…) are listed on Wealth as monthly costs — never as bank accounts, never counted twice.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="bills_mail" aria-label="Bills &amp; subscriptions from email" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label"> Apple Pay spending</div><div class="settings-detail">Each Apple Pay tap appears in Wealth within minutes. One-time iPhone setup: Shortcuts → Automation → + → Transaction → Run Immediately → &#x27;Append to Text File&#x27; with “Current Date | Amount | Merchant | Card” into Shortcuts/SafePersonalAI/apple_pay.txt in iCloud Drive.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="apple_pay" aria-label="Apple Pay spending" ><span class="switch-track"></span></label></div><div class="settings-row"><div><div class="settings-label">📷 Bank screenshots by iMessage</div><div class="settings-detail">Balances and transactions on a banking-app screenshot are read on this Mac and wait in Wealth for your OK.</div><div class="settings-detail feature-example">Text: “(send a screenshot of your banking app)”</div></div><label class="switch"><input type="checkbox" data-feature-id="screenshot_imessage" aria-label="Bank screenshots by iMessage" ><span class="switch-track"></span></label></div></div><div class="feature-group"><div class="feature-group-title">Travel</div><div class="settings-row"><div><div class="settings-label">✈️ Flight check-in reminder</div><div class="settings-detail">About a day before a booked flight: a message that online check-in is open.</div><div class="settings-detail feature-example">Runs by itself on a schedule</div></div><label class="switch"><input type="checkbox" data-feature-id="checkin_reminder" aria-label="Flight check-in reminder" ><span class="switch-track"></span></label></div></div></div>
-  <div class="card" aria-labelledby="currency-heading"><h2 id="currency-heading">Display currency</h2><div class="card-hint">Imported amounts keep their original currency; this only changes the currency they are shown in.</div><div class="settings-row"><label for="display-currency">Currency</label><select id="display-currency"><option value="EUR" selected>Euro (€)</option><option value="USD" >US Dollar ($)</option><option value="GBP" >British Pound (£)</option><option value="TRY" >Turkish Lira (₺)</option><option value="CNY" >Chinese Yuan / Renminbi (¥)</option><option value="JPY" >Japanese Yen (¥)</option><option value="CHF" >Swiss Franc (CHF)</option><option value="CAD" >Canadian Dollar (CA$)</option><option value="AUD" >Australian Dollar (A$)</option><option value="INR" >Indian Rupee (₹)</option><option value="SEK" >Swedish Krona (kr)</option><option value="NOK" >Norwegian Krone (kr)</option><option value="MXN" >Mexican Peso (MX$)</option><option value="BRL" >Brazilian Real (R$)</option><option value="SGD" >Singapore Dollar (S$)</option></select><button type="button" class="profile-actions button primary" id="save-currency">Save</button></div></div>
+  <div class="card" data-sum="EUR" aria-labelledby="currency-heading"><h2 id="currency-heading">Display currency</h2><div class="card-hint">Imported amounts keep their original currency; this only changes the currency they are shown in.</div><div class="settings-row"><label for="display-currency">Currency</label><select id="display-currency"><option value="EUR" selected>Euro (€)</option><option value="USD" >US Dollar ($)</option><option value="GBP" >British Pound (£)</option><option value="TRY" >Turkish Lira (₺)</option><option value="CNY" >Chinese Yuan / Renminbi (¥)</option><option value="JPY" >Japanese Yen (¥)</option><option value="CHF" >Swiss Franc (CHF)</option><option value="CAD" >Canadian Dollar (CA$)</option><option value="AUD" >Australian Dollar (A$)</option><option value="INR" >Indian Rupee (₹)</option><option value="SEK" >Swedish Krona (kr)</option><option value="NOK" >Norwegian Krone (kr)</option><option value="MXN" >Mexican Peso (MX$)</option><option value="BRL" >Brazilian Real (R$)</option><option value="SGD" >Singapore Dollar (S$)</option></select><button type="button" class="profile-actions button primary" id="save-currency">Save</button></div></div>
 
   <div class="card" id="tax-country" aria-labelledby="tax-country-heading"><h2 id="tax-country-heading">Country of residence (for tax hints)</h2><div class="card-hint">Turns on 🧾 hints on transactions that may matter for your taxes, and the Excel export for your tax advisor. Specific hints (for example §35a for tradespeople) are available for Germany; other countries get general hints. These are hints, not tax advice.</div><div class="settings-row"><label for="tax-country-select">Country</label><select id="tax-country-select"><option value="">Not set — tax features off</option><option value="DE">Germany</option><option value="AT">Austria</option><option value="CH">Switzerland</option><option value="NL">Netherlands</option><option value="BE">Belgium</option><option value="FR">France</option><option value="ES">Spain</option><option value="IT">Italy</option><option value="TR">Türkiye</option><option value="GB">United Kingdom</option><option value="IE">Ireland</option><option value="US">United States</option><option value="CA">Canada</option><option value="AU">Australia</option><option value="OTHER">Another country</option></select><button type="button" class="profile-actions button primary" id="save-tax-country">Save</button></div><div class="card-hint" id="tax-country-status" aria-live="polite"></div></div><script>
 document.getElementById('save-tax-country')?.addEventListener('click', async () => {
@@ -424,80 +501,6 @@ window.spaConfirm = (o) => new Promise((resolve) => {
   });
 })();
 </script>
-
-  <div class="card">
-    <h2>AI Provider <span class="info-wrap"><button type="button" class="info-tip" aria-expanded="false" aria-label="About the AI provider">i</button><span class="tip-pop" role="tooltip" hidden>The AI that reads your emails and turns them into appointments, to-dos and bills. You use your own key and pay the provider directly (usually a few cents a day). Ollama runs fully on your Mac, no key needed.</span></span></h2>
-    <div class="provider-grid" role="group" aria-label="AI provider"><button type="button" class="provider-chip" data-provider="anthropic" aria-pressed="true">Anthropic</button><button type="button" class="provider-chip" data-provider="gemini" aria-pressed="false">Gemini</button><button type="button" class="provider-chip" data-provider="openai" aria-pressed="false">OpenAI</button><button type="button" class="provider-chip" data-provider="ollama" aria-pressed="false">Ollama (local)</button></div>
-    <div class="settings-detail" style="margin-top:10px;">🔑 ✅ Anthropic key saved</div><form class="add-form" id="provider-key-form" data-provider="anthropic" style="grid-template-columns:1fr auto;margin-top:8px;"><input name="key" type="password" placeholder="Replace your Anthropic API key" aria-label="Anthropic API key" autocomplete="off"><button type="submit" class="primary">Save</button><a href="https://console.anthropic.com/settings/keys" style="color:var(--accent);font-size:12px;grid-column:1/-1;">Get a key ↗</a></form><div class="card-hint" id="provider-key-status" aria-live="polite"></div><script>
-document.getElementById('provider-key-form')?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const f = e.target, out = document.getElementById('provider-key-status');
-  const res = await fetch('/settings/provider-key', {method: 'POST', headers: {'content-type': 'application/json'},
-    body: JSON.stringify({provider: f.dataset.provider, key: f.elements.namedItem('key').value})})
-    .then((r) => r.json()).catch(() => ({ok: false}));
-  out.textContent = res.ok ? '✅ Key saved — your emails are read from the next check (within 15 minutes).'
-                           : (res.error || 'Could not save the key.');
-  if (res.ok) f.elements.namedItem('key').value = '';
-});
-document.querySelectorAll('.provider-chip[data-provider]').forEach((chip) => chip.addEventListener('click', () => {
-  const f = document.getElementById('provider-key-form');
-  if (!f) return;
-  const names = {anthropic: 'Anthropic', gemini: 'Gemini', openai: 'OpenAI'};
-  const links = {anthropic: 'https://console.anthropic.com/settings/keys', gemini: 'https://aistudio.google.com/app/apikey',
-                 openai: 'https://platform.openai.com/api-keys'};
-  const p = chip.dataset.provider;
-  f.hidden = p === 'ollama';
-  if (p === 'ollama') return;
-  f.dataset.provider = p;
-  f.elements.namedItem('key').placeholder = 'Paste your ' + names[p] + ' API key';
-  const a = f.querySelector('a'); if (a) a.href = links[p];
-  document.getElementById('provider-key-status').textContent = 'Save the ' + names[p] + ' key if you haven\'t yet.';
-}));
-</script>
-  </div>
-
-  <div class="card" id="mail-accounts">
-    <h2>Mail <span class="info-wrap"><button type="button" class="info-tip" aria-expanded="false" aria-label="About mail accounts">i</button><span class="tip-pop" role="tooltip" hidden>Where SafePersonalAI reads your email: to find appointments, bills, bank statements and alerts. Read-only — it never sends, deletes or marks anything.</span></span></h2>
-    <div class="settings-row"><div><div class="settings-label">🟢 Gmail</div><div class="settings-detail">Not connected</div></div><button type="button" class="primary" data-connect-gmail="main" style="border-radius:999px;padding:8px 16px;">Connect Gmail</button></div>
-    <div class="settings-row">
-      <div><div class="settings-label">✉️ Apple Mail <span class="info-wrap"><button type="button" class="info-tip" aria-expanded="false" aria-label="About Apple Mail">i</button><span class="tip-pop" role="tooltip" hidden>Reads every account you added to the Mail app: iCloud, Outlook/Hotmail, GMX, work Exchange… macOS asks once for permission.</span></span></div>
-        <div class="settings-detail">Off</div></div>
-      <label class="switch"><input type="checkbox" data-apple-mail aria-label="Apple Mail" ><span class="switch-track"></span></label>
-    </div>
-    <div class="settings-row">
-      <div><div class="settings-label">🟦 Microsoft (Outlook, Hotmail) <span class="info-wrap"><button type="button" class="info-tip" aria-expanded="false" aria-label="About Microsoft">i</button><span class="tip-pop" role="tooltip" hidden>A direct Microsoft sign-in is coming soon. Today: add your Outlook/Hotmail account in the Mail app and switch Apple Mail on — it works the same.</span></span></div>
-        <div class="settings-detail">Coming soon · works now through Apple Mail</div></div>
-      <button type="button" class="provider-chip" disabled title="Coming soon" style="opacity:.5;padding:6px 12px;">Connect Microsoft</button>
-    </div>
-    
-        <div class="settings-row">
-          <div><div class="settings-label">Gmail</div><div class="settings-detail">No additional Gmail accounts connected</div></div>
-        </div>
-        <div class="settings-row">
-          <div><div class="settings-label">Outlook</div><div class="settings-detail">No additional Outlook accounts connected</div></div>
-        </div>
-    <div class="card-hint" data-mail-status aria-live="polite"></div>
-    <script>
-document.querySelectorAll('[data-connect-gmail]').forEach((btn) => btn.addEventListener('click', async () => {
-  btn.disabled = true;
-  const out = document.querySelector('[data-mail-status]');
-  out.textContent = 'A Google page opens in your browser — approve it, then come back. This page updates by itself.';
-  await fetch('/settings/accounts/connect-gmail', {method: 'POST', headers: {'content-type': 'application/json'},
-    body: JSON.stringify({extra: btn.dataset.connectGmail === 'extra'})}).catch(() => {});
-  const started = Date.now();
-  const poll = setInterval(async () => {
-    const s = await fetch('/api/mail-accounts').then((r) => r.json()).catch(() => ({}));
-    if (s.changed_since && s.changed_since > started / 1000) {
-      clearInterval(poll);
-      out.textContent = '✅ Connected' + (s.email ? ' — ' + s.email : '') + '.';
-      btn.textContent = '＋ Add another'; btn.dataset.connectGmail = 'extra'; btn.disabled = false;
-    } else if (Date.now() - started > 180000) {
-      clearInterval(poll); btn.disabled = false; out.textContent = 'No sign-in yet — try again when ready.';
-    }
-  }, 3000);
-}));
-</script>
-  </div>
   <style>
 .info-wrap { position:relative; display:inline-flex; vertical-align:middle; }
 .info-tip { width:20px; height:20px; border-radius:50%; border:1px solid var(--card-border); background:transparent;
@@ -714,8 +717,23 @@ if (!window.__infoTip) { window.__infoTip = true;
         .card.sec-collapsed .sec-chev { transform:rotate(-90deg); }
         .card.sec-collapsed > :not(.sec-head):not(.sec-tools) { display:none !important; }
         body.sec-arranging .sec-head > :not(h2):not(:has(h2)), body.sec-arranging .sec-chev { display:none !important; }
-        .card.sec-collapsed { padding-bottom:14px; }
-        .card.sec-collapsed .sec-head { margin-bottom:0 !important; }
+        .card.sec-collapsed { padding-bottom:14px; cursor:pointer; transition:border-color .15s ease; }
+        .card.sec-collapsed:hover { border-color:var(--card-border-hover,var(--accent,#0a84ff)); }
+        .card.sec-collapsed .sec-head { margin-bottom:0 !important; padding-top:0 !important; padding-bottom:0 !important; }
+        .card.sec-card h2 { cursor:pointer; }
+        .card.sec-collapsed .sec-head:not(h2) > :not(h2):not(:has(h2)) { display:none !important; }
+        .card.sec-collapsed h2 { display:flex; align-items:center; gap:6px; flex:1; width:100%; min-width:0; margin:0; }
+        .sec-sum { display:none; }
+        .card.sec-collapsed .sec-sum { display:block; margin-left:auto; padding-left:14px; text-transform:none;
+          letter-spacing:0; font-size:13px; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden;
+          text-overflow:ellipsis; min-width:0; }
+        body.sec-arranging .sec-sum { display:none !important; }
+        .sec-clip { display:none !important; }
+        .sec-more { display:block; margin:10px auto 0; border:1px solid var(--card-border,rgba(127,127,127,.25));
+          background:transparent; color:var(--accent,#0a84ff); font:inherit; font-size:12px; font-weight:600;
+          padding:6px 14px; border-radius:999px; cursor:pointer; }
+        .sec-more:hover { border-color:var(--accent,#0a84ff); }
+        body.sec-arranging .sec-more { display:none; }
         .sec-bar { display:flex; justify-content:flex-end; gap:8px; margin:-6px 0 12px; }
         .sec-bar button { border:1px solid var(--card-border,rgba(127,127,127,.25)); background:var(--card,transparent);
           color:var(--text); font:inherit; font-size:12px; padding:6px 12px; border-radius:999px; cursor:pointer; }
@@ -766,17 +784,56 @@ if (!window.__infoTip) { window.__infoTip = true;
         chev.type = 'button'; chev.className = 'sec-chev'; chev.textContent = '⌄';
         const name = h2.textContent.trim().slice(0, 40);
         const key = `spa-hide:${page}:${id}`;
-        const setHidden = (hide) => {
+        const folds = card.hasAttribute('data-fold') || (wrap.hasAttribute('data-fold-all') && !card.hasAttribute('data-open'));
+        if (card.dataset.sum) {
+          const sum = document.createElement('span');
+          sum.className = 'sec-sum'; sum.textContent = card.dataset.sum;
+          h2.appendChild(sum);
+        }
+        const setHidden = (hide, remember) => {
           card.classList.toggle('sec-collapsed', hide);
           chev.setAttribute('aria-expanded', String(!hide));
           chev.title = hide ? `Show ${name}` : `Hide ${name}`;
           chev.setAttribute('aria-label', chev.title);
-          store.set(key, hide ? '1' : null);
+          if (remember) store.set(key, hide === folds ? null : (hide ? '1' : '0'));
         };
-        chev.addEventListener('click', (e) => { e.stopPropagation(); setHidden(!card.classList.contains('sec-collapsed')); });
+        const busy = () => document.body.classList.contains('sec-arranging') || document.body.classList.contains('layout-tiles');
+        chev.addEventListener('click', (e) => { e.stopPropagation(); setHidden(!card.classList.contains('sec-collapsed'), true); });
+        card.addEventListener('click', (e) => {         // a folded section opens wherever it is clicked
+          if (busy() || e.target.closest('button, a, select, input, label, textarea')) return;
+          if (card.classList.contains('sec-collapsed')) setHidden(false, true);
+          else if (e.target.closest('h2') === h2) setHidden(true, true);
+        });
         h2.prepend(chev);
-        setHidden(store.get(key) === '1');
-        unhide.push(() => setHidden(false));
+        const saved = store.get(key);
+        setHidden(saved === '1' ? true : saved === '0' ? false : folds, false);
+        card.secOpen = () => setHidden(false, false);
+        unhide.push(() => setHidden(folds, true));
+      });
+      const openTarget = () => {
+        let el = null;
+        try { el = location.hash.length > 1 ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null; } catch (_) {}
+        const card = el && el.closest('.card.sec-card');
+        if (!card) return;
+        if (el.tagName === 'DETAILS') el.open = true;
+        if (card.classList.contains('sec-collapsed') && card.secOpen) card.secOpen();
+        el.scrollIntoView({ block: el.tagName === 'DETAILS' ? 'center' : 'start' });
+      };
+      openTarget();
+      window.addEventListener('hashchange', openTarget);
+      document.querySelectorAll('[data-more]').forEach((box) => {
+        const n = Number(box.dataset.more), kids = () => [...box.children];
+        if (!n || kids().length <= n) return;
+        const btn = document.createElement('button');
+        btn.type = 'button'; btn.className = 'sec-more';
+        const set = (open) => {
+          kids().forEach((k, i) => k.classList.toggle('sec-clip', !open && i >= n));
+          btn.textContent = open ? 'Show fewer' : (box.dataset.moreLabel || 'Show all');
+          btn.setAttribute('aria-expanded', String(open));
+        };
+        btn.addEventListener('click', (e) => { e.stopPropagation(); set(btn.getAttribute('aria-expanded') !== 'true'); });
+        box.after(btn);
+        set(false);
       });
       const all = cards();  // the page's own order, for "Reset order"
       if (all.length < 2) return;

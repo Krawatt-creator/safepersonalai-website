@@ -35,7 +35,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     const bar = document.createElement('div'); bar.id = 'spa-demo-bar';
     bar.innerHTML = '<b>Demo</b><span>The real app with invented data. Click anything: nothing is saved or sent.</span>' +
-      '<a data-demo-out href="' + HOME + '">Back to the website</a><a data-demo-out class="go" href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.1-beta/SafePersonalAI-beta.zip">Download the app</a>';
+      '<a data-demo-out href="' + HOME + '">Back to the website</a><a data-demo-out class="go" href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.2-beta/SafePersonalAI-beta.zip">Download the app</a>';
     document.body.prepend(bar);
   });
 })();
@@ -98,7 +98,7 @@
 .todo-done{color:var(--soft);text-decoration:line-through}
 .todo-error{color:#ff6482;font-size:12px;margin:8px 0 0}
 @media(max-width:720px){.todo-add{grid-template-columns:1fr 1fr}.todo-row{flex-wrap:wrap}}
-</style></head><body><main class="app-shell" aria-label="SafePersonalAI to-dos"><aside class="app-rail" aria-label="App navigation"><div class="rail-brand"><a href="/demo/" class="rail-brand-link" style="text-decoration:none;color:inherit;"><span class="rail-mark"><svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="display:block"><rect x="20" y="46.5" width="38" height="8.5" rx="4.25" fill="#fff" opacity=".22"/><path d="M23.5 29.5 A23 23 0 0 1 23.5 73.5" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round"/><path d="M55.5 50.5 L60.5 55.5 L80 35" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>SafePersonalAI</span></a><button type="button" class="rail-pin" id="rail-pin-toggle" aria-pressed="true" title="Hide sidebar">‹</button></div><div class="rail-section">Workspace</div><a class="rail-link" href="/demo/"><span>⌂&nbsp; Dashboard</span></a><div class="rail-section">Modules</div><a class="rail-link" href="/demo/"><span>Base · Operational</span><span class="rail-lock" aria-label="Unlocked">●</span></a><a class="rail-link" href="/events"><span>Events</span></a><div class="rail-parent" title="Wealth · Finance">Finance</div><a class="rail-link rail-sub" href="/demo/wealth/"><span>Wealth</span></a><a class="rail-link rail-sub" href="/demo/investments/"><span>Investments</span></a><a class="rail-link" href="/demo/travel/" title="Travel"><span>Travel</span></a><div class="rail-section">Manage</div><a class="rail-link current" href="/demo/todos/" aria-current="page"><span>✓&nbsp; To-Dos</span></a><a class="rail-link" href="/demo/custom-rules/"><span>✦&nbsp; Custom Rules</span></a><a class="rail-link" href="/demo/trust-center/"><span>🛡&nbsp; Trust Center</span></a><a class="rail-link" href="/demo/settings/"><span>⚙&nbsp; Settings</span></a></aside><button type="button" class="rail-reveal" id="rail-reveal-toggle" title="Show sidebar" aria-label="Show sidebar">›</button><div class="app-content"><div class="wrap"><div class="topbar"><div><h1>To-Dos</h1><div class="sub">Your to-do list, plus task proposals waiting for approval</div></div><div class="topbar-actions"><nav class="app-nav" aria-label="Primary"><a class="nav-link" href="/demo/">Dashboard</a><a class="nav-link" href="/demo/settings/">Settings</a><a class="nav-link" href="/demo/custom-rules/">Custom Rules</a><a class="nav-link nav-current" href="/demo/todos/" aria-current="page">To-Dos</a><a class="nav-link" href="/demo/wealth/">Wealth</a><a class="nav-link" href="/demo/travel/">Travel</a><a class="nav-link" href="/demo/trust-center/">Trust Center</a></nav><div class="theme-control" aria-label="Appearance"><button data-theme-choice="light" aria-pressed="false">Bright</button><button data-theme-choice="dark" aria-pressed="false">Dark</button><button data-theme-choice="auto" aria-pressed="true">Auto</button></div></div></div><section class="card" aria-labelledby="todo-list-heading"><h2 id="todo-list-heading">Your to-dos <span class="muted" style="font-size:13px;font-weight:500;">4 open</span></h2><form id="todo-add" class="todo-add" autocomplete="off"><input name="title" maxlength="200" placeholder="Add a to-do…" aria-label="To-do title" required><input name="due_date" type="date" aria-label="Due date (optional)"><input name="due_time" type="time" aria-label="Due time (optional)"><button class="todo-btn primary" type="submit">Add</button></form><p id="todo-error" class="todo-error" role="alert" hidden></p><div style="margin-top:6px;"><div class="todo-row" data-todo-row="todo-f576763ac7e0"><span class="task-dot" style="background:#ff6482" aria-hidden="true"></span><div class="todo-main"><strong>Return the parcel</strong><div class="todo-meta">Due 2026-10-06 · <span style=color:#ff6482>Overdue</span></div></div><div class="todo-actions"><button class="todo-btn primary" data-todo-action="complete" data-todo-id="todo-f576763ac7e0">✓ Done</button><button class="todo-btn" data-todo-action="snooze" data-todo-id="todo-f576763ac7e0">Tomorrow</button><button class="todo-btn" data-todo-action="remove" data-todo-id="todo-f576763ac7e0" aria-label="Remove Return the parcel">Remove</button></div></div><div class="todo-row" data-todo-row="todo-410bce03eecd"><span class="task-dot" style="background:#00e599" aria-hidden="true"></span><div class="todo-main"><strong>Send the tax documents to the adviser</strong><div class="todo-meta">Due 2026-10-20</div></div><div class="todo-actions"><button class="todo-btn primary" data-todo-action="complete" data-todo-id="todo-410bce03eecd">✓ Done</button><button class="todo-btn" data-todo-action="snooze" data-todo-id="todo-410bce03eecd">Tomorrow</button><button class="todo-btn" data-todo-action="remove" data-todo-id="todo-410bce03eecd" aria-label="Remove Send the tax documents to the adviser">Remove</button></div></div><div class="todo-row" data-todo-row="todo-dd9ade4e2e99"><span class="task-dot" style="background:#00e599" aria-hidden="true"></span><div class="todo-main"><strong>Renew the car insurance</strong><div class="todo-meta">Due 2026-11-30</div></div><div class="todo-actions"><button class="todo-btn primary" data-todo-action="complete" data-todo-id="todo-dd9ade4e2e99">✓ Done</button><button class="todo-btn" data-todo-action="snooze" data-todo-id="todo-dd9ade4e2e99">Tomorrow</button><button class="todo-btn" data-todo-action="remove" data-todo-id="todo-dd9ade4e2e99" aria-label="Remove Renew the car insurance">Remove</button></div></div><div class="todo-row" data-todo-row="todo-25d331afe06a"><span class="task-dot" style="background:#00e599" aria-hidden="true"></span><div class="todo-main"><strong>Book the dentist check-up</strong><div class="todo-meta">No date</div></div><div class="todo-actions"><button class="todo-btn primary" data-todo-action="complete" data-todo-id="todo-25d331afe06a">✓ Done</button><button class="todo-btn" data-todo-action="snooze" data-todo-id="todo-25d331afe06a">Tomorrow</button><button class="todo-btn" data-todo-action="remove" data-todo-id="todo-25d331afe06a" aria-label="Remove Book the dentist check-up">Remove</button></div></div></div></section><script>
+</style></head><body><main class="app-shell" aria-label="SafePersonalAI to-dos"><aside class="app-rail" aria-label="App navigation"><div class="rail-brand"><a href="/demo/" class="rail-brand-link" style="text-decoration:none;color:inherit;"><span class="rail-mark"><svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="display:block"><rect x="20" y="46.5" width="38" height="8.5" rx="4.25" fill="#fff" opacity=".22"/><path d="M23.5 29.5 A23 23 0 0 1 23.5 73.5" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round"/><path d="M55.5 50.5 L60.5 55.5 L80 35" fill="none" stroke="#fff" stroke-width="8.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>SafePersonalAI</span></a><button type="button" class="rail-pin" id="rail-pin-toggle" aria-pressed="true" title="Hide sidebar">‹</button></div><div class="rail-section">Workspace</div><a class="rail-link" href="/demo/"><span>⌂&nbsp; Dashboard</span></a><div class="rail-section">Modules</div><a class="rail-link" href="/demo/"><span>Base · Operational</span><span class="rail-lock" aria-label="Unlocked">●</span></a><a class="rail-link" href="/events"><span>Events</span></a><div class="rail-parent" title="Wealth · Finance">Finance</div><a class="rail-link rail-sub" href="/demo/wealth/"><span>Wealth</span></a><a class="rail-link rail-sub" href="/demo/investments/"><span>Investments</span></a><a class="rail-link" href="/demo/travel/" title="Travel"><span>Travel</span></a><div class="rail-section">Manage</div><a class="rail-link current" href="/demo/todos/" aria-current="page"><span>✓&nbsp; To-Dos</span></a><a class="rail-link" href="/demo/custom-rules/"><span>✦&nbsp; Custom Rules</span></a><a class="rail-link" href="/demo/trust-center/"><span>🛡&nbsp; Trust Center</span></a><a class="rail-link" href="/demo/settings/"><span>⚙&nbsp; Settings</span></a></aside><button type="button" class="rail-reveal" id="rail-reveal-toggle" title="Show sidebar" aria-label="Show sidebar">›</button><div class="app-content"><div class="wrap"><div class="topbar"><div><h1>To-Dos</h1><div class="sub">Your to-do list, plus task proposals waiting for approval</div></div><div class="topbar-actions"><nav class="app-nav" aria-label="Primary"><a class="nav-link" href="/demo/">Dashboard</a><a class="nav-link" href="/demo/settings/">Settings</a><a class="nav-link" href="/demo/custom-rules/">Custom Rules</a><a class="nav-link nav-current" href="/demo/todos/" aria-current="page">To-Dos</a><a class="nav-link" href="/demo/wealth/">Wealth</a><a class="nav-link" href="/demo/travel/">Travel</a><a class="nav-link" href="/demo/trust-center/">Trust Center</a></nav><div class="theme-control" aria-label="Appearance"><button data-theme-choice="light" aria-pressed="false">Bright</button><button data-theme-choice="dark" aria-pressed="false">Dark</button><button data-theme-choice="auto" aria-pressed="true">Auto</button></div></div></div><section class="card" aria-labelledby="todo-list-heading"><h2 id="todo-list-heading">Your to-dos <span class="muted" style="font-size:13px;font-weight:500;">4 open</span></h2><form id="todo-add" class="todo-add" autocomplete="off"><input name="title" maxlength="200" placeholder="Add a to-do…" aria-label="To-do title" required><input name="due_date" type="date" aria-label="Due date (optional)"><input name="due_time" type="time" aria-label="Due time (optional)"><button class="todo-btn primary" type="submit">Add</button></form><p id="todo-error" class="todo-error" role="alert" hidden></p><div style="margin-top:6px;"><div class="todo-row" data-todo-row="todo-0b79dd9e4d50"><span class="task-dot" style="background:#ff6482" aria-hidden="true"></span><div class="todo-main"><strong>Return the parcel</strong><div class="todo-meta">Due 2026-10-06 · <span style=color:#ff6482>Overdue</span></div></div><div class="todo-actions"><button class="todo-btn primary" data-todo-action="complete" data-todo-id="todo-0b79dd9e4d50">✓ Done</button><button class="todo-btn" data-todo-action="snooze" data-todo-id="todo-0b79dd9e4d50">Tomorrow</button><button class="todo-btn" data-todo-action="remove" data-todo-id="todo-0b79dd9e4d50" aria-label="Remove Return the parcel">Remove</button></div></div><div class="todo-row" data-todo-row="todo-76570df0c30f"><span class="task-dot" style="background:#00e599" aria-hidden="true"></span><div class="todo-main"><strong>Send the tax documents to the adviser</strong><div class="todo-meta">Due 2026-10-20</div></div><div class="todo-actions"><button class="todo-btn primary" data-todo-action="complete" data-todo-id="todo-76570df0c30f">✓ Done</button><button class="todo-btn" data-todo-action="snooze" data-todo-id="todo-76570df0c30f">Tomorrow</button><button class="todo-btn" data-todo-action="remove" data-todo-id="todo-76570df0c30f" aria-label="Remove Send the tax documents to the adviser">Remove</button></div></div><div class="todo-row" data-todo-row="todo-a90c30ced8ee"><span class="task-dot" style="background:#00e599" aria-hidden="true"></span><div class="todo-main"><strong>Renew the car insurance</strong><div class="todo-meta">Due 2026-11-30</div></div><div class="todo-actions"><button class="todo-btn primary" data-todo-action="complete" data-todo-id="todo-a90c30ced8ee">✓ Done</button><button class="todo-btn" data-todo-action="snooze" data-todo-id="todo-a90c30ced8ee">Tomorrow</button><button class="todo-btn" data-todo-action="remove" data-todo-id="todo-a90c30ced8ee" aria-label="Remove Renew the car insurance">Remove</button></div></div><div class="todo-row" data-todo-row="todo-d23a58fc14c8"><span class="task-dot" style="background:#00e599" aria-hidden="true"></span><div class="todo-main"><strong>Book the dentist check-up</strong><div class="todo-meta">No date</div></div><div class="todo-actions"><button class="todo-btn primary" data-todo-action="complete" data-todo-id="todo-d23a58fc14c8">✓ Done</button><button class="todo-btn" data-todo-action="snooze" data-todo-id="todo-d23a58fc14c8">Tomorrow</button><button class="todo-btn" data-todo-action="remove" data-todo-id="todo-d23a58fc14c8" aria-label="Remove Book the dentist check-up">Remove</button></div></div></div></section><script>
 (() => {
   const post = (url, body) => fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(body || {})}).then((r) => r.json());
@@ -178,8 +178,23 @@
         .card.sec-collapsed .sec-chev { transform:rotate(-90deg); }
         .card.sec-collapsed > :not(.sec-head):not(.sec-tools) { display:none !important; }
         body.sec-arranging .sec-head > :not(h2):not(:has(h2)), body.sec-arranging .sec-chev { display:none !important; }
-        .card.sec-collapsed { padding-bottom:14px; }
-        .card.sec-collapsed .sec-head { margin-bottom:0 !important; }
+        .card.sec-collapsed { padding-bottom:14px; cursor:pointer; transition:border-color .15s ease; }
+        .card.sec-collapsed:hover { border-color:var(--card-border-hover,var(--accent,#0a84ff)); }
+        .card.sec-collapsed .sec-head { margin-bottom:0 !important; padding-top:0 !important; padding-bottom:0 !important; }
+        .card.sec-card h2 { cursor:pointer; }
+        .card.sec-collapsed .sec-head:not(h2) > :not(h2):not(:has(h2)) { display:none !important; }
+        .card.sec-collapsed h2 { display:flex; align-items:center; gap:6px; flex:1; width:100%; min-width:0; margin:0; }
+        .sec-sum { display:none; }
+        .card.sec-collapsed .sec-sum { display:block; margin-left:auto; padding-left:14px; text-transform:none;
+          letter-spacing:0; font-size:13px; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden;
+          text-overflow:ellipsis; min-width:0; }
+        body.sec-arranging .sec-sum { display:none !important; }
+        .sec-clip { display:none !important; }
+        .sec-more { display:block; margin:10px auto 0; border:1px solid var(--card-border,rgba(127,127,127,.25));
+          background:transparent; color:var(--accent,#0a84ff); font:inherit; font-size:12px; font-weight:600;
+          padding:6px 14px; border-radius:999px; cursor:pointer; }
+        .sec-more:hover { border-color:var(--accent,#0a84ff); }
+        body.sec-arranging .sec-more { display:none; }
         .sec-bar { display:flex; justify-content:flex-end; gap:8px; margin:-6px 0 12px; }
         .sec-bar button { border:1px solid var(--card-border,rgba(127,127,127,.25)); background:var(--card,transparent);
           color:var(--text); font:inherit; font-size:12px; padding:6px 12px; border-radius:999px; cursor:pointer; }
@@ -230,17 +245,56 @@
         chev.type = 'button'; chev.className = 'sec-chev'; chev.textContent = '⌄';
         const name = h2.textContent.trim().slice(0, 40);
         const key = `spa-hide:${page}:${id}`;
-        const setHidden = (hide) => {
+        const folds = card.hasAttribute('data-fold') || (wrap.hasAttribute('data-fold-all') && !card.hasAttribute('data-open'));
+        if (card.dataset.sum) {
+          const sum = document.createElement('span');
+          sum.className = 'sec-sum'; sum.textContent = card.dataset.sum;
+          h2.appendChild(sum);
+        }
+        const setHidden = (hide, remember) => {
           card.classList.toggle('sec-collapsed', hide);
           chev.setAttribute('aria-expanded', String(!hide));
           chev.title = hide ? `Show ${name}` : `Hide ${name}`;
           chev.setAttribute('aria-label', chev.title);
-          store.set(key, hide ? '1' : null);
+          if (remember) store.set(key, hide === folds ? null : (hide ? '1' : '0'));
         };
-        chev.addEventListener('click', (e) => { e.stopPropagation(); setHidden(!card.classList.contains('sec-collapsed')); });
+        const busy = () => document.body.classList.contains('sec-arranging') || document.body.classList.contains('layout-tiles');
+        chev.addEventListener('click', (e) => { e.stopPropagation(); setHidden(!card.classList.contains('sec-collapsed'), true); });
+        card.addEventListener('click', (e) => {         // a folded section opens wherever it is clicked
+          if (busy() || e.target.closest('button, a, select, input, label, textarea')) return;
+          if (card.classList.contains('sec-collapsed')) setHidden(false, true);
+          else if (e.target.closest('h2') === h2) setHidden(true, true);
+        });
         h2.prepend(chev);
-        setHidden(store.get(key) === '1');
-        unhide.push(() => setHidden(false));
+        const saved = store.get(key);
+        setHidden(saved === '1' ? true : saved === '0' ? false : folds, false);
+        card.secOpen = () => setHidden(false, false);
+        unhide.push(() => setHidden(folds, true));
+      });
+      const openTarget = () => {
+        let el = null;
+        try { el = location.hash.length > 1 ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null; } catch (_) {}
+        const card = el && el.closest('.card.sec-card');
+        if (!card) return;
+        if (el.tagName === 'DETAILS') el.open = true;
+        if (card.classList.contains('sec-collapsed') && card.secOpen) card.secOpen();
+        el.scrollIntoView({ block: el.tagName === 'DETAILS' ? 'center' : 'start' });
+      };
+      openTarget();
+      window.addEventListener('hashchange', openTarget);
+      document.querySelectorAll('[data-more]').forEach((box) => {
+        const n = Number(box.dataset.more), kids = () => [...box.children];
+        if (!n || kids().length <= n) return;
+        const btn = document.createElement('button');
+        btn.type = 'button'; btn.className = 'sec-more';
+        const set = (open) => {
+          kids().forEach((k, i) => k.classList.toggle('sec-clip', !open && i >= n));
+          btn.textContent = open ? 'Show fewer' : (box.dataset.moreLabel || 'Show all');
+          btn.setAttribute('aria-expanded', String(open));
+        };
+        btn.addEventListener('click', (e) => { e.stopPropagation(); set(btn.getAttribute('aria-expanded') !== 'true'); });
+        box.after(btn);
+        set(false);
       });
       const all = cards();  // the page's own order, for "Reset order"
       if (all.length < 2) return;

@@ -36,7 +36,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     const bar = document.createElement('div'); bar.id = 'spa-demo-bar';
     bar.innerHTML = '<b>Demo</b><span>The real app with invented data. Click anything: nothing is saved or sent.</span>' +
-      '<a data-demo-out href="' + HOME + '">Back to the website</a><a data-demo-out class="go" href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.1-beta/SafePersonalAI-beta.zip">Download the app</a>';
+      '<a data-demo-out href="' + HOME + '">Back to the website</a><a data-demo-out class="go" href="https://github.com/Krawatt-creator/safepersonalai-website/releases/download/download-v0.2.2-beta/SafePersonalAI-beta.zip">Download the app</a>';
     document.body.prepend(bar);
   });
 })();
@@ -241,8 +241,8 @@ if (!window.__infoTip) { window.__infoTip = true;
             <div class="settings-detail">Alert under €180 · not searched yet</div>
             </div>
           <div style="display:flex;gap:6px;flex-shrink:0;">
-            <button type="button" class="provider-chip" data-edit-watch="watch-5ec1c529" style="padding:6px 12px;">Edit</button>
-            <button type="button" class="provider-chip danger-button" data-delete-watch="watch-5ec1c529" style="padding:6px 12px;">Stop</button>
+            <button type="button" class="provider-chip" data-edit-watch="watch-71dbfae2" style="padding:6px 12px;">Edit</button>
+            <button type="button" class="provider-chip danger-button" data-delete-watch="watch-71dbfae2" style="padding:6px 12px;">Stop</button>
           </div>
         </div>
     <form class="add-form watch-form" id="add-watch-form">
@@ -441,7 +441,7 @@ if (!window.__infoTip) { window.__infoTip = true;
         .catch(() => showToast('Could not save key', true));
     });
 
-    const WATCHES_DATA = [{"id": "watch-5ec1c529", "origin": "HAM", "destination": "LIS", "outbound_date": "2026-11-20", "return_date": "2026-11-24", "trip_lengths_days": null, "flex_days": 0, "legs": null, "max_price_eur": 180}];
+    const WATCHES_DATA = [{"id": "watch-71dbfae2", "origin": "HAM", "destination": "LIS", "outbound_date": "2026-11-20", "return_date": "2026-11-24", "trip_lengths_days": null, "flex_days": 0, "legs": null, "max_price_eur": 180}];
     const MAX_LEGS = 4;
 
     const routeModeSeg = document.getElementById('route-mode-segmented');
@@ -686,8 +686,23 @@ if (!window.__infoTip) { window.__infoTip = true;
         .card.sec-collapsed .sec-chev { transform:rotate(-90deg); }
         .card.sec-collapsed > :not(.sec-head):not(.sec-tools) { display:none !important; }
         body.sec-arranging .sec-head > :not(h2):not(:has(h2)), body.sec-arranging .sec-chev { display:none !important; }
-        .card.sec-collapsed { padding-bottom:14px; }
-        .card.sec-collapsed .sec-head { margin-bottom:0 !important; }
+        .card.sec-collapsed { padding-bottom:14px; cursor:pointer; transition:border-color .15s ease; }
+        .card.sec-collapsed:hover { border-color:var(--card-border-hover,var(--accent,#0a84ff)); }
+        .card.sec-collapsed .sec-head { margin-bottom:0 !important; padding-top:0 !important; padding-bottom:0 !important; }
+        .card.sec-card h2 { cursor:pointer; }
+        .card.sec-collapsed .sec-head:not(h2) > :not(h2):not(:has(h2)) { display:none !important; }
+        .card.sec-collapsed h2 { display:flex; align-items:center; gap:6px; flex:1; width:100%; min-width:0; margin:0; }
+        .sec-sum { display:none; }
+        .card.sec-collapsed .sec-sum { display:block; margin-left:auto; padding-left:14px; text-transform:none;
+          letter-spacing:0; font-size:13px; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden;
+          text-overflow:ellipsis; min-width:0; }
+        body.sec-arranging .sec-sum { display:none !important; }
+        .sec-clip { display:none !important; }
+        .sec-more { display:block; margin:10px auto 0; border:1px solid var(--card-border,rgba(127,127,127,.25));
+          background:transparent; color:var(--accent,#0a84ff); font:inherit; font-size:12px; font-weight:600;
+          padding:6px 14px; border-radius:999px; cursor:pointer; }
+        .sec-more:hover { border-color:var(--accent,#0a84ff); }
+        body.sec-arranging .sec-more { display:none; }
         .sec-bar { display:flex; justify-content:flex-end; gap:8px; margin:-6px 0 12px; }
         .sec-bar button { border:1px solid var(--card-border,rgba(127,127,127,.25)); background:var(--card,transparent);
           color:var(--text); font:inherit; font-size:12px; padding:6px 12px; border-radius:999px; cursor:pointer; }
@@ -738,17 +753,56 @@ if (!window.__infoTip) { window.__infoTip = true;
         chev.type = 'button'; chev.className = 'sec-chev'; chev.textContent = '⌄';
         const name = h2.textContent.trim().slice(0, 40);
         const key = `spa-hide:${page}:${id}`;
-        const setHidden = (hide) => {
+        const folds = card.hasAttribute('data-fold') || (wrap.hasAttribute('data-fold-all') && !card.hasAttribute('data-open'));
+        if (card.dataset.sum) {
+          const sum = document.createElement('span');
+          sum.className = 'sec-sum'; sum.textContent = card.dataset.sum;
+          h2.appendChild(sum);
+        }
+        const setHidden = (hide, remember) => {
           card.classList.toggle('sec-collapsed', hide);
           chev.setAttribute('aria-expanded', String(!hide));
           chev.title = hide ? `Show ${name}` : `Hide ${name}`;
           chev.setAttribute('aria-label', chev.title);
-          store.set(key, hide ? '1' : null);
+          if (remember) store.set(key, hide === folds ? null : (hide ? '1' : '0'));
         };
-        chev.addEventListener('click', (e) => { e.stopPropagation(); setHidden(!card.classList.contains('sec-collapsed')); });
+        const busy = () => document.body.classList.contains('sec-arranging') || document.body.classList.contains('layout-tiles');
+        chev.addEventListener('click', (e) => { e.stopPropagation(); setHidden(!card.classList.contains('sec-collapsed'), true); });
+        card.addEventListener('click', (e) => {         // a folded section opens wherever it is clicked
+          if (busy() || e.target.closest('button, a, select, input, label, textarea')) return;
+          if (card.classList.contains('sec-collapsed')) setHidden(false, true);
+          else if (e.target.closest('h2') === h2) setHidden(true, true);
+        });
         h2.prepend(chev);
-        setHidden(store.get(key) === '1');
-        unhide.push(() => setHidden(false));
+        const saved = store.get(key);
+        setHidden(saved === '1' ? true : saved === '0' ? false : folds, false);
+        card.secOpen = () => setHidden(false, false);
+        unhide.push(() => setHidden(folds, true));
+      });
+      const openTarget = () => {
+        let el = null;
+        try { el = location.hash.length > 1 ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null; } catch (_) {}
+        const card = el && el.closest('.card.sec-card');
+        if (!card) return;
+        if (el.tagName === 'DETAILS') el.open = true;
+        if (card.classList.contains('sec-collapsed') && card.secOpen) card.secOpen();
+        el.scrollIntoView({ block: el.tagName === 'DETAILS' ? 'center' : 'start' });
+      };
+      openTarget();
+      window.addEventListener('hashchange', openTarget);
+      document.querySelectorAll('[data-more]').forEach((box) => {
+        const n = Number(box.dataset.more), kids = () => [...box.children];
+        if (!n || kids().length <= n) return;
+        const btn = document.createElement('button');
+        btn.type = 'button'; btn.className = 'sec-more';
+        const set = (open) => {
+          kids().forEach((k, i) => k.classList.toggle('sec-clip', !open && i >= n));
+          btn.textContent = open ? 'Show fewer' : (box.dataset.moreLabel || 'Show all');
+          btn.setAttribute('aria-expanded', String(open));
+        };
+        btn.addEventListener('click', (e) => { e.stopPropagation(); set(btn.getAttribute('aria-expanded') !== 'true'); });
+        box.after(btn);
+        set(false);
       });
       const all = cards();  // the page's own order, for "Reset order"
       if (all.length < 2) return;
