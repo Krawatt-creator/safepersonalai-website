@@ -65,6 +65,11 @@ export default function Footer({
           </a>
         ))}
       </div>
+      {/* The names of other companies' products, said plainly on every page (the imprint has the full notice). */}
+      <p lang="en" className="mx-auto mt-6 max-w-3xl px-6 text-center text-[11px] leading-relaxed text-text-tertiary">
+        Apple, Mac, iPhone and iMessage are trademarks of Apple Inc. Google, Gmail and Google Calendar are trademarks of
+        Google LLC. SafePersonalAI is not affiliated with or endorsed by Apple or Google.
+      </p>
     </footer>
   );
 }

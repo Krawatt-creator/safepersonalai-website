@@ -144,7 +144,7 @@ export const answers: Answer[] = [
           "You download a statement from your bank as you would for your own records, and choose the file in the app.",
           "It works out the columns, dates, signs and currency itself. There are no templates and no column mapping.",
           "Before anything is added, you see the transactions it read and the account they belong to. You click Import.",
-          "A screenshot of your banking app works too. It is read on your Mac with Apple's own text recognition.",
+          "A screenshot of your banking app works too. It is read on your Mac with the Mac's built-in text recognition.",
         ],
       },
       {
