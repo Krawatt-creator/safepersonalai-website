@@ -37,7 +37,7 @@ export function homeStructuredData(lang: Locale, dict: Dictionary) {
         inLanguage: lang,
         description: dict.meta.appDescription,
         applicationCategory: "UtilitiesApplication",
-        operatingSystem: "macOS (Apple silicon, M1 or later)",
+        operatingSystem: "macOS 26 or later (Apple silicon, M1 or later)",
         softwareVersion: APP_VERSION,
         downloadUrl: DOWNLOAD_URL,
         publisher: { "@id": organization["@id"] },

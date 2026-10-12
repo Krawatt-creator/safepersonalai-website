@@ -61,7 +61,7 @@ export const answers: Answer[] = [
       {
         title: "What to check before you choose it",
         bullets: [
-          "It needs a Mac with Apple silicon (M1 or later). Intel Macs and Windows are not supported.",
+          "It needs a Mac with Apple silicon (M1 or later) and macOS 26 or newer. Intel Macs and Windows are not supported.",
           "It works while your Mac is on. It is not a service that runs somewhere else overnight.",
           "A local model needs free memory and is slower and less accurate than the large cloud models. A newer Mac with more memory gives better results.",
           "It is a beta. Buying is not open yet, so nothing is charged today.",
@@ -86,7 +86,7 @@ export const answers: Answer[] = [
       {
         title: "What you need",
         bullets: [
-          "A Mac with Apple silicon (M1 or later).",
+          "A Mac with Apple silicon (M1 or later) and macOS 26 or newer.",
           "Ollama installed, with a model downloaded. Ollama is a free program that runs AI models on your own computer.",
           "A Gmail account or Apple Mail, and Google Calendar or Apple Calendar.",
         ],

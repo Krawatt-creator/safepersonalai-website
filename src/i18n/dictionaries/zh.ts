@@ -22,8 +22,8 @@ export const zh: Dictionary = {
     faq: "常见问题",
     account: "账户",
     download: "下载测试版",
-    appleSilicon: "Apple 芯片（M1 及以上）",
-    appleSiliconRequired: "需要 Apple 芯片（M1 及以上）",
+    appleSilicon: "Apple 芯片（M1 及以上），macOS 26+",
+    appleSiliconRequired: "需要 Apple 芯片（M1 及以上），macOS 26+",
     openMenu: "打开菜单",
     closeMenu: "关闭菜单",
     language: "语言",
@@ -33,7 +33,7 @@ export const zh: Dictionary = {
     priceLine:
       "之后一次性购买：Base €{base}、Travel €{travel}、Wealth €{wealth}——三个模块合计 €{bundle}。购买即将开放。",
     priceNote: "一次性付费 · 测试期间免费 {days} 天",
-    downloadNote: "免费 {days} 天，包含全部模块 · 已通过 Apple 公证 · Apple 芯片（M1 或更新）",
+    downloadNote: "免费 {days} 天，包含全部模块 · 已通过 Apple 公证 · Apple 芯片（M1 或更新） · macOS 26+",
   },
   hero: {
     badge: "先问你再行动的 AI 助手 · 免费测试版",
@@ -311,7 +311,7 @@ export const zh: Dictionary = {
       },
       {
         q: "运行 SafePersonalAI 需要什么样的 Mac？",
-        a: "当前测试版需要搭载 Apple 芯片的 Mac（M1 或更新——包括 M1/M2/M3/M4 的 MacBook Air、MacBook Pro、Mac mini、iMac 和 Mac Studio）。此版本不支持 Intel 处理器的 Mac。权限请求由 macOS 在设置过程中显示；无需单独注册 SafePersonalAI 账号。",
+        a: "当前测试版需要搭载 Apple 芯片的 Mac（M1 或更新——包括 M1/M2/M3/M4 的 MacBook Air、MacBook Pro、Mac mini、iMac 和 Mac Studio）。此版本不支持 Intel 处理器的 Mac。还需要 macOS 26 或更新版本。权限请求由 macOS 在设置过程中显示；无需单独注册 SafePersonalAI 账号。",
       },
       {
         q: "它能在我不知情时发消息、邀请别人或转移资金吗？",
@@ -333,7 +333,7 @@ export const zh: Dictionary = {
     allModules: "← 全部模块",
     whatYouGet: "你将获得",
     ready: "准备好使用 {name} 了吗？",
-    required: "需要 Apple 芯片（M1 及以上）",
+    required: "需要 Apple 芯片（M1 及以上），macOS 26+",
     download: "下载测试版",
   },
   wealth: {

@@ -21,8 +21,8 @@ export const fr: Dictionary = {
     faq: "FAQ",
     account: "Compte",
     download: "Télécharger la bêta",
-    appleSilicon: "Apple Silicon (M1+)",
-    appleSiliconRequired: "Apple Silicon (M1+) requis",
+    appleSilicon: "Apple Silicon (M1+), macOS 26+",
+    appleSiliconRequired: "Apple Silicon (M1+), macOS 26+ requis",
     openMenu: "Ouvrir le menu",
     closeMenu: "Fermer le menu",
     language: "Langue",
@@ -33,7 +33,7 @@ export const fr: Dictionary = {
       "Ensuite, un achat unique : Base {base} €, Travel {travel} €, Wealth {wealth} € — ou les trois pour {bundle} €. L’achat ouvrira bientôt.",
     priceNote: "paiement unique · gratuit {days} jours pendant la bêta",
     downloadNote:
-      "Gratuit pendant {days} jours, tous modules inclus · notarisé par Apple · Apple Silicon (M1 ou plus récent)",
+      "Gratuit pendant {days} jours, tous modules inclus · notarisé par Apple · Apple Silicon (M1 ou plus récent) · macOS 26+",
   },
   hero: {
     badge: "L’assistant IA qui demande d’abord · bêta gratuite",
@@ -312,7 +312,7 @@ export const fr: Dictionary = {
       },
       {
         q: "Quel Mac faut-il pour SafePersonalAI ?",
-        a: "La bêta actuelle nécessite un Mac avec Apple Silicon (M1 ou plus récent — MacBook Air, MacBook Pro, Mac mini, iMac et Mac Studio en M1/M2/M3/M4). Les Mac à processeur Intel ne sont pas pris en charge par cette version. Les demandes d’autorisation sont affichées par macOS lors de l’installation ; aucun compte SafePersonalAI n’est nécessaire.",
+        a: "La bêta actuelle nécessite un Mac avec Apple Silicon (M1 ou plus récent — MacBook Air, MacBook Pro, Mac mini, iMac et Mac Studio en M1/M2/M3/M4). Les Mac à processeur Intel ne sont pas pris en charge par cette version. Il faut aussi macOS 26 ou plus récent. Les demandes d’autorisation sont affichées par macOS lors de l’installation ; aucun compte SafePersonalAI n’est nécessaire.",
       },
       {
         q: "Peut-il envoyer un message, inviter quelqu’un ou déplacer de l’argent sans moi ?",
@@ -334,7 +334,7 @@ export const fr: Dictionary = {
     allModules: "← Tous les modules",
     whatYouGet: "Ce que vous obtenez",
     ready: "Prêt pour {name} ?",
-    required: "Apple Silicon (M1+) requis",
+    required: "Apple Silicon (M1+), macOS 26+ requis",
     download: "Télécharger la bêta",
   },
   wealth: {

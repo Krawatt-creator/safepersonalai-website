@@ -18,7 +18,7 @@ export const enAbout = {
     { label: "What it is", value: "A Mac app. Not a website and not a chat window." },
     {
       label: "Runs on",
-      value: "Macs with Apple silicon (M1 or later). Intel Macs and Windows are not supported.",
+      value: "Macs with Apple silicon (M1 or later) running macOS 26 or newer. Intel Macs and Windows are not supported.",
     },
     {
       label: "AI model",

@@ -21,8 +21,8 @@ export const tr: Dictionary = {
     faq: "SSS",
     account: "Hesap",
     download: "Betayı indir",
-    appleSilicon: "Apple Silicon (M1+)",
-    appleSiliconRequired: "Apple Silicon (M1+) gerekir",
+    appleSilicon: "Apple Silicon (M1+), macOS 26+",
+    appleSiliconRequired: "Apple Silicon (M1+), macOS 26+ gerekir",
     openMenu: "Menüyü aç",
     closeMenu: "Menüyü kapat",
     language: "Dil",
@@ -33,7 +33,7 @@ export const tr: Dictionary = {
       "Sonrasında tek seferlik satın alma: Base {base} €, Travel {travel} €, Wealth {wealth} € — ya da üçü birlikte {bundle} €. Satın alma yakında açılıyor.",
     priceNote: "tek seferlik · betada {days} gün ücretsiz",
     downloadNote:
-      "{days} gün ücretsiz, tüm modüller dahil · Apple tarafından onaylı (notarized) · Apple Silicon (M1 veya üstü)",
+      "{days} gün ücretsiz, tüm modüller dahil · Apple tarafından onaylı (notarized) · Apple Silicon (M1 veya üstü) · macOS 26+",
   },
   hero: {
     badge: "Önce soran yapay zekâ asistanı · ücretsiz beta",
@@ -312,7 +312,7 @@ export const tr: Dictionary = {
       },
       {
         q: "SafePersonalAI için hangi Mac gerekiyor?",
-        a: "Güncel beta, Apple Silicon'lu bir Mac gerektirir (M1 veya üstü — M1/M2/M3/M4 işlemcili MacBook Air, MacBook Pro, Mac mini, iMac ve Mac Studio dahil). Intel işlemcili Mac'ler bu sürümde desteklenmez. İzin istekleri kurulum sırasında macOS tarafından gösterilir; ayrı bir SafePersonalAI hesabı gerekmez.",
+        a: "Güncel beta, Apple Silicon'lu bir Mac gerektirir (M1 veya üstü — M1/M2/M3/M4 işlemcili MacBook Air, MacBook Pro, Mac mini, iMac ve Mac Studio dahil). Intel işlemcili Mac'ler bu sürümde desteklenmez. Ayrıca macOS 26 veya üstü gerekir. İzin istekleri kurulum sırasında macOS tarafından gösterilir; ayrı bir SafePersonalAI hesabı gerekmez.",
       },
       {
         q: "Bensiz mesaj gönderebilir, birini davet edebilir ya da para hareket ettirebilir mi?",
@@ -334,7 +334,7 @@ export const tr: Dictionary = {
     allModules: "← Tüm modüller",
     whatYouGet: "Neler sunar",
     ready: "{name} için hazır mısınız?",
-    required: "Apple Silicon (M1+) gerekir",
+    required: "Apple Silicon (M1+), macOS 26+ gerekir",
     download: "Betayı indir",
   },
   wealth: {

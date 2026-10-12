@@ -23,8 +23,8 @@ export const en = {
     faq: "FAQ",
     account: "Account",
     download: "Download beta",
-    appleSilicon: "Apple Silicon (M1+)",
-    appleSiliconRequired: "Apple Silicon (M1+) required",
+    appleSilicon: "Apple Silicon (M1+), macOS 26+",
+    appleSiliconRequired: "Apple Silicon (M1+), macOS 26+ required",
     openMenu: "Open menu",
     closeMenu: "Close menu",
     language: "Language",
@@ -35,7 +35,7 @@ export const en = {
       "After that, a one-time purchase: Base €{base}, Travel €{travel}, Wealth €{wealth} — or all three for €{bundle}. Buying opens soon.",
     priceNote: "one time · free for {days} days in the beta",
     downloadNote:
-      "Free for {days} days, every module included · notarized by Apple · Apple silicon (M1 or later)",
+      "Free for {days} days, every module included · notarized by Apple · Apple silicon (M1 or later) · macOS 26+",
   },
   hero: {
     badge: "The AI assistant that asks first · free beta",
@@ -314,7 +314,7 @@ export const en = {
       },
       {
         q: "What Mac do I need to run SafePersonalAI?",
-        a: "The current beta requires a Mac with Apple silicon (M1 or later — including M1/M2/M3/M4 MacBook Air, MacBook Pro, Mac mini, iMac, and Mac Studio). Intel-based Macs are not supported by this build. macOS permission prompts are handled by macOS during setup; no separate SafePersonalAI account is required.",
+        a: "The current beta requires a Mac with Apple silicon (M1 or later — including M1/M2/M3/M4 MacBook Air, MacBook Pro, Mac mini, iMac, and Mac Studio). Intel-based Macs are not supported by this build. It also needs macOS 26 or newer. macOS permission prompts are handled by macOS during setup; no separate SafePersonalAI account is required.",
       },
       {
         q: "Can it send a message, invite someone, or move money without me?",
@@ -336,7 +336,7 @@ export const en = {
     allModules: "← All modules",
     whatYouGet: "What you get",
     ready: "Ready for {name}?",
-    required: "Apple Silicon (M1+) required",
+    required: "Apple Silicon (M1+), macOS 26+ required",
     download: "Download beta",
   },
   wealth: {

@@ -21,8 +21,8 @@ export const es: Dictionary = {
     faq: "Preguntas",
     account: "Cuenta",
     download: "Descargar beta",
-    appleSilicon: "Apple Silicon (M1+)",
-    appleSiliconRequired: "Requiere Apple Silicon (M1+)",
+    appleSilicon: "Apple Silicon (M1+), macOS 26+",
+    appleSiliconRequired: "Requiere Apple Silicon (M1+), macOS 26+",
     openMenu: "Abrir menú",
     closeMenu: "Cerrar menú",
     language: "Idioma",
@@ -33,7 +33,7 @@ export const es: Dictionary = {
       "Después, una compra única: Base {base} €, Travel {travel} €, Wealth {wealth} € — o los tres por {bundle} €. La compra se abrirá pronto.",
     priceNote: "pago único · gratis {days} días en la beta",
     downloadNote:
-      "Gratis durante {days} días, con todos los módulos · notarizada por Apple · Apple Silicon (M1 o posterior)",
+      "Gratis durante {days} días, con todos los módulos · notarizada por Apple · Apple Silicon (M1 o posterior) · macOS 26+",
   },
   hero: {
     badge: "El asistente de IA que pregunta primero · beta gratuita",
@@ -312,7 +312,7 @@ export const es: Dictionary = {
       },
       {
         q: "¿Qué Mac necesito para SafePersonalAI?",
-        a: "La beta actual requiere un Mac con Apple Silicon (M1 o posterior: MacBook Air, MacBook Pro, Mac mini, iMac y Mac Studio con M1/M2/M3/M4). Los Mac con procesador Intel no son compatibles con esta versión. Los permisos los solicita macOS durante la configuración; no hace falta una cuenta de SafePersonalAI.",
+        a: "La beta actual requiere un Mac con Apple Silicon (M1 o posterior: MacBook Air, MacBook Pro, Mac mini, iMac y Mac Studio con M1/M2/M3/M4). Los Mac con procesador Intel no son compatibles con esta versión. También necesita macOS 26 o posterior. Los permisos los solicita macOS durante la configuración; no hace falta una cuenta de SafePersonalAI.",
       },
       {
         q: "¿Puede enviar un mensaje, invitar a alguien o mover dinero sin mí?",
@@ -334,7 +334,7 @@ export const es: Dictionary = {
     allModules: "← Todos los módulos",
     whatYouGet: "Qué incluye",
     ready: "¿Listo para {name}?",
-    required: "Requiere Apple Silicon (M1+)",
+    required: "Requiere Apple Silicon (M1+), macOS 26+",
     download: "Descargar beta",
   },
   wealth: {
