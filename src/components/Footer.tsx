@@ -2,6 +2,7 @@ import Link from "next/link";
 import { localeNames, localePath, locales, type Locale } from "@/i18n/config";
 import { en, type Dictionary } from "@/i18n/dictionaries/en";
 import { getAbout } from "@/i18n/about";
+import SocialLinks from "./SocialLinks";
 
 export default function Footer({
   lang = "en",
@@ -15,13 +16,14 @@ export default function Footer({
   const about = getAbout(lang);
   return (
     <footer className="border-t border-border py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-xs text-text-tertiary sm:flex-row">
-        <div className="flex items-center gap-2">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-xs text-text-tertiary">
+        <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center">
           <span className="h-1.5 w-1.5 rounded-full bg-green" />
-          <span>SafePersonalAI</span>
+          <span className="text-text-secondary">SafePersonalAI</span>
+          <span aria-hidden="true">·</span>
+          <span>{t.tagline}</span>
         </div>
-        <p className="order-last text-center sm:order-none">{t.tagline}</p>
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           <Link
             href={localePath(lang, "/what-is-safepersonalai")}
             className="transition hover:text-text-secondary"
@@ -50,6 +52,10 @@ export default function Footer({
             support@safepersonalai.com
           </a>
         </div>
+      </div>
+      {/* The SafePersonalAI accounts on social media. */}
+      <div className="mx-auto mt-6 max-w-6xl px-6">
+        <SocialLinks />
       </div>
       {/* Every language, as plain links, on every page. */}
       <div className="mx-auto mt-6 flex max-w-6xl flex-wrap items-center justify-center gap-x-4 gap-y-1 px-6 text-xs text-text-tertiary">

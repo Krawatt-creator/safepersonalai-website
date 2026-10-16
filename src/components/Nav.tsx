@@ -50,7 +50,7 @@ export default function Nav({
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-bg/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href={home} className="flex items-center gap-2">
+        <Link href={home} className="flex shrink-0 items-center gap-2">
           <Image
             src="/logo.png"
             alt=""
@@ -61,9 +61,9 @@ export default function Nav({
           />
           <span className="font-semibold tracking-tight text-text">SafePersonalAI</span>
         </Link>
-        <nav className="hidden items-center gap-8 text-sm text-text-secondary md:flex">
+        <nav className="hidden items-center gap-6 text-sm text-text-secondary lg:flex xl:gap-8">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="transition hover:text-text">
+            <a key={l.href} href={l.href} className="whitespace-nowrap transition hover:text-text">
               {l.label}
             </a>
           ))}
@@ -107,25 +107,24 @@ export default function Nav({
           </details>
           <Link
             href="/account"
-            className="hidden text-sm text-text-secondary transition hover:text-text lg:inline-block"
+            className="hidden whitespace-nowrap text-sm text-text-secondary transition hover:text-text xl:inline-block"
           >
             {t.account}
           </Link>
           <div className="hidden items-center gap-2 sm:flex">
             <a
               href={downloadPage(lang)}
-              className="site-cta-secondary min-h-10 px-4 text-sm"
+              className="site-cta-secondary min-h-10 whitespace-nowrap px-4 text-sm"
             >
               {t.download}
             </a>
-            <span className="hidden text-[10px] text-text-tertiary xl:inline">{t.appleSilicon}</span>
           </div>
           <button
             type="button"
             aria-label={open ? t.closeMenu : t.openMenu}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-border-strong text-text md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-border-strong text-text lg:hidden"
           >
             <svg
               viewBox="0 0 24 24"
@@ -146,7 +145,7 @@ export default function Nav({
       </div>
 
       {open && (
-        <nav className="border-t border-border bg-bg px-6 py-4 md:hidden">
+        <nav className="border-t border-border bg-bg px-6 py-4 lg:hidden">
           <ul className="flex flex-col gap-1 text-sm text-text-secondary">
             {links.map((l) => (
               <li key={l.href}>
