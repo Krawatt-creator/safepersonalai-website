@@ -3,6 +3,7 @@ import "../globals.css";
 import { fontClasses } from "@/lib/fonts";
 import { siteMetadata } from "@/lib/site-metadata";
 import { en } from "@/i18n/dictionaries/en";
+import CookieConsent from "@/components/CookieConsent";
 
 // The English pages. The other languages have their own root layout in
 // app/[lang]/layout.tsx, so each document carries the right <html lang>.
@@ -18,7 +19,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${fontClasses} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-bg text-text">{children}</body>
+      <body className="min-h-full flex flex-col bg-bg text-text">
+        {children}
+        <CookieConsent lang="en" />
+      </body>
     </html>
   );
 }

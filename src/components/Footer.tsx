@@ -3,6 +3,7 @@ import { localeNames, localePath, locales, type Locale } from "@/i18n/config";
 import { en, type Dictionary } from "@/i18n/dictionaries/en";
 import { getAbout } from "@/i18n/about";
 import SocialLinks from "./SocialLinks";
+import { CookieSettingsLink } from "./CookieConsent";
 
 export default function Footer({
   lang = "en",
@@ -48,6 +49,7 @@ export default function Footer({
           <Link href="/impressum" className="transition hover:text-text-secondary">
             Impressum
           </Link>
+          <CookieSettingsLink lang={lang} />
           <a href="mailto:support@safepersonalai.com" className="transition hover:text-text-secondary">
             support@safepersonalai.com
           </a>

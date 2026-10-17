@@ -21,7 +21,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 export default function PrivacyPage() {
   return (
-    <LegalLayout title="Privacy Policy" updated="10 October 2026">
+    <LegalLayout title="Privacy Policy" updated="17 October 2026">
       <p>
         SafePersonalAI has two parts: local software that runs on your Mac,
         and a public website. This policy explains what each part processes,
@@ -132,7 +132,8 @@ export default function PrivacyPage() {
           This website is delivered by Cloudflare. Like every web host,
           Cloudflare processes your IP address and basic request data to
           deliver the pages and keep them secure. The website sets no
-          advertising or tracking cookies.
+          advertising cookies, and no analytics cookies unless you allow
+          them (see Google Analytics below).
         </p>
         <p>
           To see how many people visit and which pages they open, we use
@@ -142,6 +143,23 @@ export default function PrivacyPage() {
           referring website, never an individual visitor. The download
           button leads to a page of this website first, so a download is
           counted as one visit to that page.
+        </p>
+        <p>
+          Only if you click “Allow” in the cookie notice, this website also
+          uses Google Analytics (Google Ireland Limited, Gordon House, Barrow
+          Street, Dublin 4, Ireland) to count visits and downloads by country
+          and city. Google Analytics sets cookies and receives your shortened
+          IP address, browser and device type, the pages you open and where
+          you came from. Google may process this data in the United States;
+          Google LLC is certified under the EU-U.S. Data Privacy Framework.
+          The legal basis is your consent (Art. 6(1)(a) GDPR, § 25(1) TDDDG).
+          Without your click nothing is loaded from Google. You can withdraw
+          your consent at any time under “Cookie settings” at the bottom of
+          every page; data is kept for 14 months.
+        </p>
+        <p>
+          This concerns the website only. The SafePersonalAI app you download
+          is separate: it sends nothing to Google Analytics or to us.
         </p>
       </Section>
 

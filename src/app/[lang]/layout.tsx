@@ -5,6 +5,7 @@ import { fontClasses } from "@/lib/fonts";
 import { siteMetadata } from "@/lib/site-metadata";
 import { isLocale, translatedLocales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
+import CookieConsent from "@/components/CookieConsent";
 
 // Root layout of the translated pages: /de, /tr, /es, /zh, /fr.
 // English is not served here; it keeps the plain addresses in app/(en).
@@ -43,7 +44,10 @@ export default async function LangLayout({
   if (!isLocale(lang) || lang === "en") notFound();
   return (
     <html lang={lang} className={`${fontClasses} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-bg text-text">{children}</body>
+      <body className="min-h-full flex flex-col bg-bg text-text">
+        {children}
+        <CookieConsent lang={lang} />
+      </body>
     </html>
   );
 }
