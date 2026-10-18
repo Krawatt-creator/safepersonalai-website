@@ -3,26 +3,13 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { ShowcaseText } from "@/i18n/showcase";
+import WindowFrame from "./WindowFrame";
 
 // The app's own screens, filmed on a demo household (marketing/app_demo).
 // Same order as the captions in src/i18n/showcase.ts.
 const shots = ["/app/approvals.webp", "/app/balance.webp", "/app/spending.webp", "/app/forecast.webp", "/app/investments.webp"];
 const WIDTH = 1800;
 const HEIGHT = 1169;
-
-function WindowFrame({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div className="overflow-hidden rounded-2xl border border-border-strong bg-bg-card shadow-[0_40px_120px_-40px_rgba(8,114,237,0.35)]">
-      <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-        <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-        <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-        <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-        <span className="ml-2 truncate text-xs text-text-tertiary">{title}</span>
-      </div>
-      {children}
-    </div>
-  );
-}
 
 // On a wide screen the window stays in place while the captions scroll past,
 // and the screen inside changes with the caption in the middle of the view.

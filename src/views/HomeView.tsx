@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import LaptopRevealSection from "@/components/LaptopRevealSection";
 import OwnershipSection from "@/components/OwnershipSection";
 import BoundarySection from "@/components/BoundarySection";
 import ProductUseCasesSection from "@/components/ProductUseCasesSection";
@@ -39,7 +38,6 @@ export default function HomeView({ lang, dict }: { lang: Locale; dict: Dictionar
         <Hero lang={lang} dict={dict} />
         {/* Straight after the headline: the app itself. The films are on the iPhone and Wealth pages. */}
         <AppShowcase t={showcase[lang]} />
-        <LaptopRevealSection t={dict.laptop} />
         <OwnershipSection dict={dict} />
         <BoundarySection t={dict.boundary} />
         <ProductUseCasesSection t={dict.useCases} />
