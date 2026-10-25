@@ -31,7 +31,6 @@ export const PRICES = {
 
 // Lemon Squeezy LIVE checkout links (2026-10-25). Each key a buyer receives
 // unlocks only that product in the app (assets/lemon_squeezy_variants.json).
-// The Lemon Squeezy product for "wealth" is named "Finance" there.
 export const CHECKOUT_URLS = {
   base: "https://safepersonalai.lemonsqueezy.com/checkout/buy/9bbfb414-768d-421d-9ae8-69e133dc108a",
   travel: "https://safepersonalai.lemonsqueezy.com/checkout/buy/0ccb74ed-d826-4600-b9b7-8274769d4084",
