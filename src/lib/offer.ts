@@ -20,13 +20,13 @@ export const downloadPage = (lang: string = "en") =>
 
 export const TRIAL_DAYS = 90;
 
-// 2026-10-25 (Cengiz): Base 29, every other module 19; the three together 59 (instead of 67).
+// 2026-10-25 (Cengiz): Base 29, every other module 19; the three together 39 (instead of 67).
 export const PRICES = {
   base: 29,
   travel: 19,
   wealth: 19,
   // All three modules together.
-  bundle: 59,
+  bundle: 39,
 } as const;
 
 // The numbers every translated sentence is filled with.
