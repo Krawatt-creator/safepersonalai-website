@@ -30,7 +30,7 @@ export const es: Dictionary = {
   offer: {
     trialLine: "Gratis durante la beta: todos los módulos están abiertos durante {days} días.",
     priceLine:
-      "Después, una compra única: Base {base} €, Travel {travel} €, Wealth {wealth} € — o los tres por {bundle} €. La compra se abrirá pronto.",
+      "Después, una compra única: Base {base} €, Travel {travel} €, Wealth {wealth} € — o los tres por {bundle} €.",
     priceNote: "pago único · gratis {days} días en la beta",
     downloadNote:
       "Gratis durante {days} días, con todos los módulos · notarizada por Apple · Apple Silicon (M1 o posterior) · macOS 26+",
@@ -204,13 +204,16 @@ export const es: Dictionary = {
     eyebrow: "SafePersonalAI v1",
     title: "Una instalación. {days} días gratis. Después, un solo pago.",
     intro:
-      "Descarga la beta y todos los módulos estarán abiertos durante {days} días, gratis. Después, cada módulo es una compra única: la app de Mac no tiene suscripción. Un módulo que no compres se cierra; sus datos se quedan en tu Mac y vuelven cuando lo añadas. La compra se abrirá pronto y hoy no se cobra nada.",
+      "Descarga la beta y todos los módulos estarán abiertos durante {days} días, gratis. Después, cada módulo es una compra única: la app de Mac no tiene suscripción. Un módulo que no compres se cierra; sus datos se quedan en tu Mac y vuelven cuando lo añadas. Puedes comprar cuando quieras; tu clave de licencia desbloquea el módulo en tu Mac.",
     bundleLead: "Los tres juntos:",
     bundleStrong: "{bundle} € en un solo pago",
-    bundleRest: ". La compra se abrirá pronto; hasta entonces no hay nada que pagar.",
+    bundleRest: ". Pago único con tarjeta o PayPal; la clave de licencia llega por correo.",
     learnMore: "Más información →",
     download: "Descargar beta",
     included: "Incluido en la prueba de {days} días",
+    buy: "Comprar por {price} €",
+    buyBundle: "Comprar los tres por {bundle} €",
+    checkoutNote: "Pago seguro con Lemon Squeezy · tarjeta o PayPal",
     modules: {
       operational: {
         name: "Base",
@@ -288,7 +291,7 @@ export const es: Dictionary = {
     items: [
       {
         q: "¿Cuánto cuesta y hay prueba gratuita?",
-        a: "La beta se descarga gratis y todos los módulos — Base, Travel y Wealth — están abiertos durante {days} días. Después, cada módulo es una compra única, no una suscripción: Base {base} €, Travel {travel} €, Wealth {wealth} €, o los tres por {bundle} €. La compra todavía no está abierta, así que hoy no se cobra nada. Cuando terminan los {days} días, un módulo sin licencia se cierra y sus datos se quedan en tu Mac. Si usas un proveedor de IA en la nube, le pagas directamente a él; un modelo local de Ollama no genera ningún coste de IA.",
+        a: "La beta se descarga gratis y todos los módulos — Base, Travel y Wealth — están abiertos durante {days} días. Después, cada módulo es una compra única, no una suscripción: Base {base} €, Travel {travel} €, Wealth {wealth} €, o los tres por {bundle} €. El pago lo gestiona Lemon Squeezy; tu clave de licencia llega por correo y la introduces en la app. Cuando terminan los {days} días, un módulo sin licencia se cierra y sus datos se quedan en tu Mac. Si usas un proveedor de IA en la nube, le pagas directamente a él; un modelo local de Ollama no genera ningún coste de IA.",
       },
       {
         q: "¿Necesito mi propia cuenta de Claude, OpenAI o Gemini?",

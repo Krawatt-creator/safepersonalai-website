@@ -64,7 +64,7 @@ export const answers: Answer[] = [
           "It needs a Mac with Apple silicon (M1 or later) and macOS 26 or newer. Intel Macs and Windows are not supported.",
           "It works while your Mac is on. It is not a service that runs somewhere else overnight.",
           "A local model needs free memory and is slower and less accurate than the large cloud models. A newer Mac with more memory gives better results.",
-          "It is a beta. Buying is not open yet, so nothing is charged today.",
+          "It is a beta. The download and the first 90 days are free; after that each module is a one-time purchase.",
         ],
       },
     ],

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
-import { downloadPage, OFFER_VARS, PRICES } from "@/lib/offer";
+import { CHECKOUT_URLS, downloadPage, OFFER_VARS, PRICES } from "@/lib/offer";
 import { fill, localePath, type Locale } from "@/i18n/config";
 import { en, type Dictionary } from "@/i18n/dictionaries/en";
 
@@ -8,11 +8,11 @@ type ModuleKey = "operational" | "travel" | "wealth";
 
 // One offer for every module: the download is free in the beta and opens all
 // three for the trial; the price shown is the one-time price afterwards.
-// The numbers come from src/lib/offer.ts. Buying is not open yet.
-const modules: { key: ModuleKey; price: number; accent: "green" | "violet"; featured?: boolean }[] = [
-  { key: "operational", price: PRICES.base, accent: "green" },
-  { key: "travel", price: PRICES.travel, accent: "violet" },
-  { key: "wealth", price: PRICES.wealth, accent: "green", featured: true },
+// The numbers and checkout links come from src/lib/offer.ts.
+const modules: { key: ModuleKey; price: number; checkout: string; accent: "green" | "violet"; featured?: boolean }[] = [
+  { key: "operational", price: PRICES.base, checkout: CHECKOUT_URLS.base, accent: "green" },
+  { key: "travel", price: PRICES.travel, checkout: CHECKOUT_URLS.travel, accent: "violet" },
+  { key: "wealth", price: PRICES.wealth, checkout: CHECKOUT_URLS.wealth, accent: "green", featured: true },
 ];
 
 export default function ModulesPricing({
@@ -90,6 +90,13 @@ export default function ModulesPricing({
                     <p className="mt-2 text-center text-[11px] text-text-tertiary">
                       {fill(t.included, OFFER_VARS)}
                     </p>
+                    <a
+                      href={m.checkout}
+                      rel="noopener"
+                      className="site-cta-secondary mt-3 w-full"
+                    >
+                      {fill(t.buy, { ...OFFER_VARS, price: m.price })}
+                    </a>
                   </div>
                 </div>
               </Reveal>
@@ -103,6 +110,12 @@ export default function ModulesPricing({
           </span>
           {fill(t.bundleRest, OFFER_VARS)}
         </p>
+        <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <a href={CHECKOUT_URLS.bundle} rel="noopener" className="site-cta-primary">
+            {fill(t.buyBundle, OFFER_VARS)}
+          </a>
+          <span className="text-xs text-text-tertiary">{t.checkoutNote}</span>
+        </div>
         <p className="mt-3 max-w-3xl text-xs text-text-tertiary">
           {fill(dict.offer.downloadNote, OFFER_VARS)}
         </p>

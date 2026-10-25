@@ -31,7 +31,7 @@ export const zh: Dictionary = {
   offer: {
     trialLine: "测试期间免费：全部模块开放 {days} 天。",
     priceLine:
-      "之后一次性购买：Base €{base}、Travel €{travel}、Wealth €{wealth}——三个模块合计 €{bundle}。购买即将开放。",
+      "之后一次性购买：Base €{base}、Travel €{travel}、Wealth €{wealth}——三个模块合计 €{bundle}。",
     priceNote: "一次性付费 · 测试期间免费 {days} 天",
     downloadNote: "免费 {days} 天，包含全部模块 · 已通过 Apple 公证 · Apple 芯片（M1 或更新） · macOS 26+",
   },
@@ -203,13 +203,16 @@ export const zh: Dictionary = {
     eyebrow: "SafePersonalAI v1",
     title: "一次安装，免费 {days} 天，之后一次性付费。",
     intro:
-      "下载测试版，全部模块免费开放 {days} 天。之后每个模块一次性购买——Mac 应用没有订阅。未购买的模块会关闭；它的数据留在你的 Mac 上，购买后即可恢复。购买即将开放，今天不会收取任何费用。",
+      "下载测试版，全部模块免费开放 {days} 天。之后每个模块一次性购买——Mac 应用没有订阅。未购买的模块会关闭；它的数据留在你的 Mac 上，购买后即可恢复。你可以随时购买；许可证密钥会在你的 Mac 上解锁该模块。",
     bundleLead: "三个模块一起：",
     bundleStrong: "一次性 €{bundle}",
-    bundleRest: "。购买即将开放——在此之前无需支付任何费用。",
+    bundleRest: "。用银行卡或 PayPal 一次付清；许可证密钥通过电子邮件发送。",
     learnMore: "了解更多 →",
     download: "下载测试版",
     included: "包含在 {days} 天试用中",
+    buy: "以 €{price} 购买",
+    buyBundle: "以 €{bundle} 购买全部三个",
+    checkoutNote: "由 Lemon Squeezy 提供安全支付 · 银行卡或 PayPal",
     modules: {
       operational: {
         name: "Base",
@@ -287,7 +290,7 @@ export const zh: Dictionary = {
     items: [
       {
         q: "价格是多少？有免费试用吗？",
-        a: "测试版免费下载，全部模块——Base、Travel 和 Wealth——开放 {days} 天。之后每个模块一次性购买，不是订阅：Base €{base}、Travel €{travel}、Wealth €{wealth}，三个模块合计 €{bundle}。购买尚未开放，所以今天不会收取任何费用。{days} 天结束后，没有许可的模块会关闭，它的数据仍留在你的 Mac 上。如果你使用云端 AI 服务商，费用由你直接支付给该服务商；本地 Ollama 模型不产生任何 AI 费用。",
+        a: "测试版免费下载，全部模块——Base、Travel 和 Wealth——开放 {days} 天。之后每个模块一次性购买，不是订阅：Base €{base}、Travel €{travel}、Wealth €{wealth}，三个模块合计 €{bundle}。付款由 Lemon Squeezy 处理；许可证密钥通过电子邮件发送，你在应用中输入即可。{days} 天结束后，没有许可的模块会关闭，它的数据仍留在你的 Mac 上。如果你使用云端 AI 服务商，费用由你直接支付给该服务商；本地 Ollama 模型不产生任何 AI 费用。",
       },
       {
         q: "我需要自己的 Claude、OpenAI 或 Gemini 账号吗？",

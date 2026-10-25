@@ -83,7 +83,7 @@ export const enAbout = {
     {
       title: "What it costs",
       paragraphs: [
-        "The beta is free to download, and every module is open for {days} days. After that each module is bought once: Base €{base}, Travel €{travel}, Wealth €{wealth}. All three together cost €{bundle}. Buying is not open yet, so nothing is charged today.",
+        "The beta is free to download, and every module is open for {days} days. After that each module is bought once: Base €{base}, Travel €{travel}, Wealth €{wealth}. All three together cost €{bundle}. Payment is handled by Lemon Squeezy; your licence key arrives by email and you enter it in the app.",
         "A module you do not buy closes after the {days} days. Its data stays on your Mac and comes back when you add the module.",
       ],
     },

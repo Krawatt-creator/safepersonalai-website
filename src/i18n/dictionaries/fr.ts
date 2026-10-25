@@ -30,7 +30,7 @@ export const fr: Dictionary = {
   offer: {
     trialLine: "Gratuit pendant la bêta : tous les modules sont ouverts pendant {days} jours.",
     priceLine:
-      "Ensuite, un achat unique : Base {base} €, Travel {travel} €, Wealth {wealth} € — ou les trois pour {bundle} €. L’achat ouvrira bientôt.",
+      "Ensuite, un achat unique : Base {base} €, Travel {travel} €, Wealth {wealth} € — ou les trois pour {bundle} €.",
     priceNote: "paiement unique · gratuit {days} jours pendant la bêta",
     downloadNote:
       "Gratuit pendant {days} jours, tous modules inclus · notarisé par Apple · Apple Silicon (M1 ou plus récent) · macOS 26+",
@@ -204,13 +204,16 @@ export const fr: Dictionary = {
     eyebrow: "SafePersonalAI v1",
     title: "Une installation. {days} jours gratuits. Puis un seul paiement.",
     intro:
-      "Téléchargez la bêta : tous les modules sont ouverts pendant {days} jours, gratuitement. Ensuite, chaque module est un achat unique — l’app Mac n’a pas d’abonnement. Un module que vous n’achetez pas se ferme ; ses données restent sur votre Mac et reviennent quand vous l’ajoutez. L’achat ouvrira bientôt, et rien n’est facturé aujourd’hui.",
+      "Téléchargez la bêta : tous les modules sont ouverts pendant {days} jours, gratuitement. Ensuite, chaque module est un achat unique — l’app Mac n’a pas d’abonnement. Un module que vous n’achetez pas se ferme ; ses données restent sur votre Mac et reviennent quand vous l’ajoutez. Vous pouvez acheter quand vous voulez ; votre clé de licence débloque le module sur votre Mac.",
     bundleLead: "Les trois ensemble :",
     bundleStrong: "{bundle} € en une fois",
-    bundleRest: ". L’achat ouvrira bientôt — d’ici là, il n’y a rien à payer.",
+    bundleRest: ". Paiement unique par carte ou PayPal ; la clé de licence arrive par e-mail.",
     learnMore: "En savoir plus →",
     download: "Télécharger la bêta",
     included: "Inclus dans l’essai de {days} jours",
+    buy: "Acheter pour {price} €",
+    buyBundle: "Acheter les trois pour {bundle} €",
+    checkoutNote: "Paiement sécurisé par Lemon Squeezy · carte ou PayPal",
     modules: {
       operational: {
         name: "Base",
@@ -288,7 +291,7 @@ export const fr: Dictionary = {
     items: [
       {
         q: "Combien ça coûte, et y a-t-il un essai gratuit ?",
-        a: "La bêta se télécharge gratuitement, et tous les modules — Base, Travel et Wealth — sont ouverts pendant {days} jours. Ensuite, chaque module est un achat unique, pas un abonnement : Base {base} €, Travel {travel} €, Wealth {wealth} €, ou les trois pour {bundle} €. L’achat n’est pas encore ouvert, rien n’est donc facturé aujourd’hui. À la fin des {days} jours, un module sans licence se ferme et ses données restent sur votre Mac. Si vous utilisez un fournisseur d’IA cloud, vous le payez directement ; un modèle Ollama local n’entraîne aucun coût d’IA.",
+        a: "La bêta se télécharge gratuitement, et tous les modules — Base, Travel et Wealth — sont ouverts pendant {days} jours. Ensuite, chaque module est un achat unique, pas un abonnement : Base {base} €, Travel {travel} €, Wealth {wealth} €, ou les trois pour {bundle} €. Le paiement passe par Lemon Squeezy ; votre clé de licence arrive par e-mail et vous la saisissez dans l’app. À la fin des {days} jours, un module sans licence se ferme et ses données restent sur votre Mac. Si vous utilisez un fournisseur d’IA cloud, vous le payez directement ; un modèle Ollama local n’entraîne aucun coût d’IA.",
       },
       {
         q: "Ai-je besoin de mon propre compte Claude, OpenAI ou Gemini ?",

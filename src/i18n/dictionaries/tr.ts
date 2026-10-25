@@ -30,7 +30,7 @@ export const tr: Dictionary = {
   offer: {
     trialLine: "Beta süresince ücretsiz: tüm modüller {days} gün boyunca açık.",
     priceLine:
-      "Sonrasında tek seferlik satın alma: Base {base} €, Travel {travel} €, Wealth {wealth} € — ya da üçü birlikte {bundle} €. Satın alma yakında açılıyor.",
+      "Sonrasında tek seferlik satın alma: Base {base} €, Travel {travel} €, Wealth {wealth} € — ya da üçü birlikte {bundle} €.",
     priceNote: "tek seferlik · betada {days} gün ücretsiz",
     downloadNote:
       "{days} gün ücretsiz, tüm modüller dahil · Apple tarafından onaylı (notarized) · Apple Silicon (M1 veya üstü) · macOS 26+",
@@ -204,13 +204,16 @@ export const tr: Dictionary = {
     eyebrow: "SafePersonalAI v1",
     title: "Tek kurulum. {days} gün ücretsiz. Sonra bir kez ödeyin.",
     intro:
-      "Betayı indirin; tüm modüller {days} gün boyunca ücretsiz açık. Sonrasında her modül tek seferlik bir satın almadır — Mac uygulamasında abonelik yoktur. Satın almadığınız modül kapanır; verileri Mac'inizde kalır ve modülü eklediğinizde geri gelir. Satın alma yakında açılıyor; bugün hiçbir ücret alınmıyor.",
+      "Betayı indirin; tüm modüller {days} gün boyunca ücretsiz açık. Sonrasında her modül tek seferlik bir satın almadır — Mac uygulamasında abonelik yoktur. Satın almadığınız modül kapanır; verileri Mac'inizde kalır ve modülü eklediğinizde geri gelir. İstediğiniz zaman satın alabilirsiniz; lisans anahtarınız modülü Mac'inizde açar.",
     bundleLead: "Üçü birlikte:",
     bundleStrong: "tek seferlik {bundle} €",
-    bundleRest: ". Satın alma yakında açılıyor — o zamana kadar ödenecek bir şey yok.",
+    bundleRest: ". Kart ya da PayPal ile bir kez ödeyin; lisans anahtarınız e-postayla gelir.",
     learnMore: "Daha fazla bilgi →",
     download: "Betayı indir",
     included: "{days} günlük denemeye dahil",
+    buy: "{price} € ile satın al",
+    buyBundle: "Üçünü {bundle} € ile satın al",
+    checkoutNote: "Güvenli ödeme: Lemon Squeezy · kart ya da PayPal",
     modules: {
       operational: {
         name: "Base",
@@ -288,7 +291,7 @@ export const tr: Dictionary = {
     items: [
       {
         q: "Fiyatı nedir, ücretsiz deneme var mı?",
-        a: "Beta ücretsiz indirilir ve tüm modüller — Base, Travel ve Wealth — {days} gün boyunca açıktır. Sonrasında her modül abonelik değil, tek seferlik bir satın almadır: Base {base} €, Travel {travel} €, Wealth {wealth} € ya da üçü birlikte {bundle} €. Satın alma henüz açık değil, yani bugün hiçbir ücret alınmıyor. {days} gün dolduğunda lisansı olmayan modül kapanır; verileri Mac'inizde kalır. Bir bulut yapay zekâ sağlayıcısı kullanıyorsanız ücretini doğrudan ona ödersiniz; yerel bir Ollama modelinin yapay zekâ faturası yoktur.",
+        a: "Beta ücretsiz indirilir ve tüm modüller — Base, Travel ve Wealth — {days} gün boyunca açıktır. Sonrasında her modül abonelik değil, tek seferlik bir satın almadır: Base {base} €, Travel {travel} €, Wealth {wealth} € ya da üçü birlikte {bundle} €. Ödeme Lemon Squeezy üzerinden yapılır; lisans anahtarınız e-postayla gelir ve onu uygulamaya girersiniz. {days} gün dolduğunda lisansı olmayan modül kapanır; verileri Mac'inizde kalır. Bir bulut yapay zekâ sağlayıcısı kullanıyorsanız ücretini doğrudan ona ödersiniz; yerel bir Ollama modelinin yapay zekâ faturası yoktur.",
       },
       {
         q: "Kendi Claude, OpenAI ya da Gemini hesabım olması gerekiyor mu?",

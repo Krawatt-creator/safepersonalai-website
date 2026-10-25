@@ -32,7 +32,7 @@ export const en = {
   offer: {
     trialLine: "Free during the beta: every module is open for {days} days.",
     priceLine:
-      "After that, a one-time purchase: Base €{base}, Travel €{travel}, Wealth €{wealth} — or all three for €{bundle}. Buying opens soon.",
+      "After that, a one-time purchase: Base €{base}, Travel €{travel}, Wealth €{wealth} — or all three for €{bundle}.",
     priceNote: "one time · free for {days} days in the beta",
     downloadNote:
       "Free for {days} days, every module included · notarized by Apple · Apple silicon (M1 or later) · macOS 26+",
@@ -206,13 +206,16 @@ export const en = {
     eyebrow: "SafePersonalAI v1",
     title: "One install. Free for {days} days. Then pay once.",
     intro:
-      "Download the beta and every module is open for {days} days, free. After that each module is a one-time purchase — the Mac app has no subscription. A module you do not buy closes; its data stays on your Mac and comes back when you add it. Buying opens soon, and nothing is charged today.",
+      "Download the beta and every module is open for {days} days, free. After that each module is a one-time purchase — the Mac app has no subscription. A module you do not buy closes; its data stays on your Mac and comes back when you add it. Buy whenever you like; your licence key unlocks the module on your Mac.",
     bundleLead: "All three together:",
     bundleStrong: "€{bundle} one time",
-    bundleRest: ". Buying opens soon — until then there is nothing to pay.",
+    bundleRest: ". Pay once by card or PayPal; your licence key arrives by email.",
     learnMore: "Learn more →",
     download: "Download beta",
     included: "Included in the {days}-day trial",
+    buy: "Buy for €{price}",
+    buyBundle: "Buy all three for €{bundle}",
+    checkoutNote: "Secure checkout by Lemon Squeezy · card or PayPal",
     modules: {
       operational: {
         name: "Base",
@@ -290,7 +293,7 @@ export const en = {
     items: [
       {
         q: "What does it cost, and is there a free trial?",
-        a: "The beta is free to download, and every module — Base, Travel and Wealth — is open for {days} days. After that each module is a one-time purchase, not a subscription: Base €{base}, Travel €{travel}, Wealth €{wealth}, or all three for €{bundle}. Buying is not open yet, so nothing is charged today. When the {days} days end, a module without a license closes and its data stays on your Mac. If you use a cloud AI provider you pay that provider directly; a local Ollama model has no AI bill.",
+        a: "The beta is free to download, and every module — Base, Travel and Wealth — is open for {days} days. After that each module is a one-time purchase, not a subscription: Base €{base}, Travel €{travel}, Wealth €{wealth}, or all three for €{bundle}. Payment is handled by Lemon Squeezy; your licence key arrives by email and you enter it in the app. When the {days} days end, a module without a license closes and its data stays on your Mac. If you use a cloud AI provider you pay that provider directly; a local Ollama model has no AI bill.",
       },
       {
         q: "Do I need my own Claude, OpenAI, or Gemini account?",

@@ -83,7 +83,7 @@ export const esAbout: AboutDictionary = {
     {
       title: "Cuánto cuesta",
       paragraphs: [
-        "La beta se descarga gratis y todos los módulos están abiertos durante {days} días. Después, cada módulo se compra una vez: Base {base} €, Travel {travel} €, Wealth {wealth} €. Los tres juntos cuestan {bundle} €. La compra aún no está abierta, así que hoy no se cobra nada.",
+        "La beta se descarga gratis y todos los módulos están abiertos durante {days} días. Después, cada módulo se compra una vez: Base {base} €, Travel {travel} €, Wealth {wealth} €. Los tres juntos cuestan {bundle} €. El pago lo gestiona Lemon Squeezy; tu clave de licencia llega por correo y la introduces en la app.",
         "Un módulo que no compres se cierra al terminar los {days} días. Sus datos se quedan en tu Mac y vuelven cuando añades el módulo.",
       ],
     },

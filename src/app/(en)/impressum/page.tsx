@@ -65,7 +65,7 @@ export default function ImpressumPage() {
 
       <Section title="Purchases">
         <p>
-          When buying opens, purchases are handled by Lemon Squeezy as the
+          Purchases are handled by Lemon Squeezy as the
           Merchant of Record: Lemon Squeezy is the seller of the transaction
           and issues the invoice. The iPhone app is sold through Apple&apos;s
           App Store.

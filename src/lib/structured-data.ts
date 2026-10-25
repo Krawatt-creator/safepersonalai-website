@@ -1,4 +1,4 @@
-import { APP_VERSION, DOWNLOAD_URL, OFFER_VARS, SITE_URL } from "@/lib/offer";
+import { APP_VERSION, CHECKOUT_URLS, DOWNLOAD_URL, OFFER_VARS, PRICES, SITE_URL } from "@/lib/offer";
 import { fill, localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/en";
 
@@ -10,11 +10,9 @@ const organization = {
   logo: `${SITE_URL}/logo.png`,
 };
 
-// The home page: who we are, the product, its price today, and the FAQ, in
-// the page's own language. Only the free beta is stated as a price. The
-// one-time prices are on the page itself; they are added here on the day
-// buying opens, so no search result shows a price that nobody can pay yet.
-// No ratings: there are none.
+// The home page: who we are, the product, its prices, and the FAQ, in the
+// page's own language. The free beta plus the four one-time purchases that
+// can be bought (buying opened 2026-10-25). No ratings: there are none.
 export function homeStructuredData(lang: Locale, dict: Dictionary) {
   const url = `${SITE_URL}${localePath(lang, "/")}`;
   return {
@@ -41,14 +39,27 @@ export function homeStructuredData(lang: Locale, dict: Dictionary) {
         softwareVersion: APP_VERSION,
         downloadUrl: DOWNLOAD_URL,
         publisher: { "@id": organization["@id"] },
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "EUR",
-          availability: "https://schema.org/InStock",
-          url: `${url}#pricing`,
-          description: fill(dict.meta.offerDescription, OFFER_VARS),
-        },
+        offers: [
+          {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "EUR",
+            availability: "https://schema.org/InStock",
+            url: `${url}#pricing`,
+            description: fill(dict.meta.offerDescription, OFFER_VARS),
+          },
+          ...(["base", "travel", "wealth", "bundle"] as const).map((key) => ({
+            "@type": "Offer",
+            name:
+              key === "bundle"
+                ? "Base + Travel + Wealth"
+                : dict.pricing.modules[key === "base" ? "operational" : key].name,
+            price: String(PRICES[key]),
+            priceCurrency: "EUR",
+            availability: "https://schema.org/InStock",
+            url: CHECKOUT_URLS[key],
+          })),
+        ],
       },
       {
         "@type": "FAQPage",

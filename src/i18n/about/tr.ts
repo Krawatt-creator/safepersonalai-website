@@ -83,7 +83,7 @@ export const trAbout: AboutDictionary = {
     {
       title: "Ne kadar tutar",
       paragraphs: [
-        "Beta ücretsiz indirilir ve her modül {days} gün açıktır. Sonrasında her modül bir kez satın alınır: Base {base} €, Travel {travel} €, Wealth {wealth} €. Üçü birlikte {bundle} € tutar. Satın alma henüz açık değildir; bugün hiçbir ücret alınmaz.",
+        "Beta ücretsiz indirilir ve her modül {days} gün açıktır. Sonrasında her modül bir kez satın alınır: Base {base} €, Travel {travel} €, Wealth {wealth} €. Üçü birlikte {bundle} € tutar. Ödeme Lemon Squeezy üzerinden yapılır; lisans anahtarınız e-postayla gelir ve onu uygulamaya girersiniz.",
         "Satın almadığınız bir modül {days} günün sonunda kapanır. Verileri Mac'inizde kalır ve modülü eklediğinizde geri gelir.",
       ],
     },

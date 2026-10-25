@@ -77,7 +77,7 @@ export const zhAbout: AboutDictionary = {
     {
       title: "价格是多少",
       paragraphs: [
-        "测试版可免费下载，所有模块开放 {days} 天。之后每个模块一次性购买：Base €{base}、Travel €{travel}、Wealth €{wealth}。三个模块合购为 €{bundle}。目前尚未开放购买，所以今天不会收取任何费用。",
+        "测试版可免费下载，所有模块开放 {days} 天。之后每个模块一次性购买：Base €{base}、Travel €{travel}、Wealth €{wealth}。三个模块合购为 €{bundle}。付款由 Lemon Squeezy 处理；许可证密钥通过电子邮件发送，你在应用中输入即可。",
         "未购买的模块在 {days} 天后关闭。它的数据留在你的 Mac 上，添加该模块后即可恢复。",
       ],
     },

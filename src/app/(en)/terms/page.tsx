@@ -71,9 +71,9 @@ export default function TermsPage() {
           the Pending Actions queue) is the foundation product. Modules are sold as
           one-time purchases, not recurring subscriptions. During the beta
           the download is free and every module is open for {TRIAL_DAYS} days.
-          The planned one-time prices are Base €{PRICES.base}, Travel €
+          The one-time prices are Base €{PRICES.base}, Travel €
           {PRICES.travel} and Wealth €{PRICES.wealth}, or all three together
-          (Base + Travel + Wealth) for €{PRICES.bundle}. Buying is not open yet.
+          (Base + Travel + Wealth) for €{PRICES.bundle}.
           Future modules may have their own one-time prices. The final price, taxes, refund
           terms, and availability shown at checkout control that purchase.
         </p>
