@@ -398,7 +398,7 @@ export const tr: Dictionary = {
       },
       {
         title: "Almanya için vergi ipuçları",
-        body: "Ülkenizi seçtiğinizde, vergi beyannameniz için önemli olabilecek işlemler kısa bir ipucu alır ve tek tıkla o yıl mali müşaviriniz için dışa aktarılır. Yalnızca ipucu — asla vergi danışmanlığı değil.",
+        body: "Ülkenizi seçtiğinizde, vergi beyannameniz için önemli olabilecek işlemler kısa bir ipucu alır. Yalnızca ipucu — asla vergi danışmanlığı değil.",
       },
     ],
     readsEyebrow: "Ne okur",

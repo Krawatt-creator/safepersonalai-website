@@ -1,6 +1,6 @@
 // The page the download buttons lead to: it starts the download and shows
 // how to set the app up. The steps follow the app's real first start
-// (unzip, Applications, the macOS question, the yes-or-no setup questions).
+// (open the .dmg, drag to Applications, the macOS question, the yes-or-no setup questions).
 // {version} and {days} are filled from lib/offer.ts.
 import type { Locale } from "./config";
 
@@ -31,11 +31,11 @@ export const downloadText: Record<Locale, DownloadText> = {
     steps: [
       {
         title: "Open the download",
-        body: "In your Downloads folder, double-click SafePersonalAI-beta.zip. Safari usually unpacks it for you. You get the app “SafePersonalAI”.",
+        body: "In your Downloads folder, double-click SafePersonalAI.dmg. A window opens with the app “SafePersonalAI” and your Applications folder.",
       },
       {
         title: "Move it to Applications",
-        body: "Drag SafePersonalAI into your Applications folder.",
+        body: "In that window, drag SafePersonalAI onto the Applications folder. Copying takes a minute, because the AI comes with the app.",
       },
       {
         title: "Open it",
@@ -46,7 +46,7 @@ export const downloadText: Record<Locale, DownloadText> = {
         body: "A few yes-or-no questions: which mail to read, whether to use iMessage, where to keep your files. After that SafePersonalAI sits in the menu bar at the top right of your screen (the ✓ icon) and opens your dashboard.",
       },
     ],
-    note: "Needs a Mac with Apple silicon (M1 or later) and macOS 26 or newer. Free for {days} days with every module. No SafePersonalAI account is needed.",
+    note: "The download is about 5 GB because the AI runs on your Mac and comes with it; keep about 12 GB free while installing, then you can delete the .dmg. Needs a Mac with Apple silicon (M1 or later) and macOS 26 or newer; 16 GB memory recommended for the built-in AI. Free for {days} days with every module. No SafePersonalAI account is needed.",
     helpLead: "Stuck? Write to",
     demoLead: "Want to look around first?",
     demoLink: "Try the demo",
@@ -62,11 +62,11 @@ export const downloadText: Record<Locale, DownloadText> = {
     steps: [
       {
         title: "Download öffnen",
-        body: "Doppelklicken Sie im Ordner „Downloads“ auf SafePersonalAI-beta.zip. Safari entpackt die Datei meist von selbst. Sie erhalten die App „SafePersonalAI“.",
+        body: "Doppelklicken Sie im Ordner „Downloads“ auf SafePersonalAI.dmg. Ein Fenster mit der App „SafePersonalAI“ und Ihrem Ordner „Programme“ öffnet sich.",
       },
       {
         title: "In „Programme“ legen",
-        body: "Ziehen Sie SafePersonalAI in den Ordner „Programme“.",
+        body: "Ziehen Sie in diesem Fenster SafePersonalAI auf den Ordner „Programme“. Das Kopieren dauert etwa eine Minute, weil die KI mit der App kommt.",
       },
       {
         title: "Öffnen",
@@ -77,7 +77,7 @@ export const downloadText: Record<Locale, DownloadText> = {
         body: "Ein paar Ja-oder-Nein-Fragen: welche E-Mails gelesen werden, ob iMessage genutzt wird, wo Ihre Dateien liegen. Danach sitzt SafePersonalAI in der Menüleiste oben rechts (das ✓-Symbol) und öffnet Ihr Dashboard.",
       },
     ],
-    note: "Benötigt einen Mac mit Apple-Chip (M1 oder neuer) und macOS 26 oder neuer. {days} Tage kostenlos mit allen Modulen. Ein SafePersonalAI-Konto ist nicht nötig.",
+    note: "Der Download ist etwa 5 GB groß, weil die KI auf Ihrem Mac läuft und mitgeliefert wird; halten Sie beim Installieren etwa 12 GB frei, danach können Sie die .dmg löschen. Benötigt einen Mac mit Apple-Chip (M1 oder neuer) und macOS 26 oder neuer; für die eingebaute KI werden 16 GB Arbeitsspeicher empfohlen. {days} Tage kostenlos mit allen Modulen. Ein SafePersonalAI-Konto ist nicht nötig.",
     helpLead: "Kommen Sie nicht weiter? Schreiben Sie an",
     demoLead: "Erst einmal umsehen?",
     demoLink: "Demo ausprobieren",
@@ -93,11 +93,11 @@ export const downloadText: Record<Locale, DownloadText> = {
     steps: [
       {
         title: "İndirilen dosyayı açın",
-        body: "İndirilenler klasöründe SafePersonalAI-beta.zip dosyasına çift tıklayın. Safari çoğu zaman dosyayı kendisi açar. “SafePersonalAI” uygulamasını elde edersiniz.",
+        body: "İndirilenler klasöründe SafePersonalAI.dmg dosyasına çift tıklayın. “SafePersonalAI” uygulamasını ve Uygulamalar klasörünüzü gösteren bir pencere açılır.",
       },
       {
         title: "Uygulamalar klasörüne taşıyın",
-        body: "SafePersonalAI'yi Uygulamalar klasörüne sürükleyin.",
+        body: "Bu pencerede SafePersonalAI'yi Uygulamalar klasörünün üzerine sürükleyin. Yapay zekâ uygulamayla birlikte geldiği için kopyalama yaklaşık bir dakika sürer.",
       },
       {
         title: "Açın",
@@ -108,7 +108,7 @@ export const downloadText: Record<Locale, DownloadText> = {
         body: "Birkaç evet-hayır sorusu: hangi e-postalar okunsun, iMessage kullanılsın mı, dosyalarınız nerede dursun. Sonra SafePersonalAI ekranın sağ üstündeki menü çubuğunda durur (✓ simgesi) ve panonuzu açar.",
       },
     ],
-    note: "Apple çipli bir Mac gerekir (M1 veya daha yeni) ve macOS 26 veya üstü. Tüm modüllerle {days} gün ücretsiz. SafePersonalAI hesabı gerekmez.",
+    note: "Yapay zekâ Mac'inizde çalıştığı ve uygulamayla birlikte geldiği için indirme yaklaşık 5 GB'tır; kurulum sırasında yaklaşık 12 GB boş yer bırakın, sonra .dmg dosyasını silebilirsiniz. Apple çipli bir Mac gerekir (M1 veya daha yeni) ve macOS 26 veya üstü; yerleşik yapay zekâ için 16 GB bellek önerilir. Tüm modüllerle {days} gün ücretsiz. SafePersonalAI hesabı gerekmez.",
     helpLead: "Takıldınız mı? Şu adrese yazın:",
     demoLead: "Önce bir göz atmak ister misiniz?",
     demoLink: "Demoyu dene",
@@ -124,11 +124,11 @@ export const downloadText: Record<Locale, DownloadText> = {
     steps: [
       {
         title: "Abre la descarga",
-        body: "En tu carpeta Descargas, haz doble clic en SafePersonalAI-beta.zip. Safari suele descomprimirlo solo. Obtienes la app «SafePersonalAI».",
+        body: "En tu carpeta Descargas, haz doble clic en SafePersonalAI.dmg. Se abre una ventana con la app «SafePersonalAI» y tu carpeta Aplicaciones.",
       },
       {
         title: "Muévela a Aplicaciones",
-        body: "Arrastra SafePersonalAI a tu carpeta Aplicaciones.",
+        body: "En esa ventana, arrastra SafePersonalAI sobre la carpeta Aplicaciones. Copiarla tarda un minuto, porque la IA viene con la app.",
       },
       {
         title: "Ábrela",
@@ -139,7 +139,7 @@ export const downloadText: Record<Locale, DownloadText> = {
         body: "Unas pocas preguntas de sí o no: qué correo leer, si usar iMessage, dónde guardar tus archivos. Después SafePersonalAI se queda en la barra de menús, arriba a la derecha (el icono ✓), y abre tu panel.",
       },
     ],
-    note: "Necesita un Mac con chip de Apple (M1 o posterior) y macOS 26 o posterior. Gratis durante {days} días con todos los módulos. No hace falta una cuenta de SafePersonalAI.",
+    note: "La descarga ocupa unos 5 GB porque la IA funciona en tu Mac y viene incluida; deja unos 12 GB libres durante la instalación y después puedes borrar el .dmg. Necesita un Mac con chip de Apple (M1 o posterior) y macOS 26 o posterior; se recomiendan 16 GB de memoria para la IA integrada. Gratis durante {days} días con todos los módulos. No hace falta una cuenta de SafePersonalAI.",
     helpLead: "¿Te has atascado? Escribe a",
     demoLead: "¿Prefieres echar un vistazo antes?",
     demoLink: "Probar la demo",
@@ -155,11 +155,11 @@ export const downloadText: Record<Locale, DownloadText> = {
     steps: [
       {
         title: "打开下载的文件",
-        body: "在“下载”文件夹中双击 SafePersonalAI-beta.zip。Safari 通常会自动解压。您会得到“SafePersonalAI”应用。",
+        body: "在“下载”文件夹中双击 SafePersonalAI.dmg。会打开一个窗口，里面有“SafePersonalAI”应用和您的“应用程序”文件夹。",
       },
       {
         title: "移到“应用程序”",
-        body: "把 SafePersonalAI 拖到“应用程序”文件夹。",
+        body: "在该窗口中，把 SafePersonalAI 拖到“应用程序”文件夹上。由于 AI 随应用一起提供，复制大约需要一分钟。",
       },
       {
         title: "打开应用",
@@ -170,7 +170,7 @@ export const downloadText: Record<Locale, DownloadText> = {
         body: "几个“是或否”的问题：读取哪些邮件、是否使用 iMessage、文件存放在哪里。之后 SafePersonalAI 会停留在屏幕右上角的菜单栏中（✓ 图标），并打开您的仪表盘。",
       },
     ],
-    note: "需要配备 Apple 芯片的 Mac（M1 或更新机型）和 macOS 26 或更新版本。{days} 天内免费使用全部模块。无需注册 SafePersonalAI 账户。",
+    note: "由于 AI 在您的 Mac 上运行并随应用一起提供，下载大小约为 5 GB；安装时请预留约 12 GB 可用空间，之后可以删除 .dmg 文件。需要配备 Apple 芯片的 Mac（M1 或更新机型）和 macOS 26 或更新版本；内置 AI 建议使用 16 GB 内存。{days} 天内免费使用全部模块。无需注册 SafePersonalAI 账户。",
     helpLead: "遇到问题？请写信至",
     demoLead: "想先看看？",
     demoLink: "试用演示",
@@ -186,11 +186,11 @@ export const downloadText: Record<Locale, DownloadText> = {
     steps: [
       {
         title: "Ouvrez le téléchargement",
-        body: "Dans votre dossier Téléchargements, double-cliquez sur SafePersonalAI-beta.zip. Safari le décompresse en général tout seul. Vous obtenez l'app « SafePersonalAI ».",
+        body: "Dans votre dossier Téléchargements, double-cliquez sur SafePersonalAI.dmg. Une fenêtre s'ouvre avec l'app « SafePersonalAI » et votre dossier Applications.",
       },
       {
         title: "Placez-la dans Applications",
-        body: "Faites glisser SafePersonalAI dans votre dossier Applications.",
+        body: "Dans cette fenêtre, faites glisser SafePersonalAI sur le dossier Applications. La copie prend une minute, car l'IA est fournie avec l'app.",
       },
       {
         title: "Ouvrez-la",
@@ -201,7 +201,7 @@ export const downloadText: Record<Locale, DownloadText> = {
         body: "Quelques questions par oui ou non : quel courrier lire, utiliser ou non iMessage, où garder vos fichiers. Ensuite SafePersonalAI reste dans la barre des menus, en haut à droite (l'icône ✓), et ouvre votre tableau de bord.",
       },
     ],
-    note: "Nécessite un Mac avec puce Apple (M1 ou plus récent) et macOS 26 ou plus récent. Gratuit pendant {days} jours avec tous les modules. Aucun compte SafePersonalAI n'est nécessaire.",
+    note: "Le téléchargement fait environ 5 Go, car l'IA fonctionne sur votre Mac et est fournie avec l'app ; gardez environ 12 Go libres pendant l'installation, puis vous pouvez supprimer le .dmg. Nécessite un Mac avec puce Apple (M1 ou plus récent) et macOS 26 ou plus récent ; 16 Go de mémoire recommandés pour l'IA intégrée. Gratuit pendant {days} jours avec tous les modules. Aucun compte SafePersonalAI n'est nécessaire.",
     helpLead: "Bloqué ? Écrivez à",
     demoLead: "Envie de jeter un œil d'abord ?",
     demoLink: "Essayer la démo",

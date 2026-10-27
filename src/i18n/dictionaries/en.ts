@@ -400,7 +400,7 @@ export const en = {
       },
       {
         title: "Tax hints for Germany",
-        body: "Once you choose your country, transactions that may matter for your tax return get a short hint, and one click exports the year for your tax advisor. Hints only — never tax advice.",
+        body: "Once you choose your country, transactions that may matter for your tax return get a short hint. Hints only — never tax advice.",
       },
     ],
     readsEyebrow: "What it reads",

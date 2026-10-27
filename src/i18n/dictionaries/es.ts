@@ -398,7 +398,7 @@ export const es: Dictionary = {
       },
       {
         title: "Indicaciones fiscales para Alemania",
-        body: "Cuando eliges tu país, los movimientos que pueden importar para tu declaración reciben una breve indicación, y con un clic exportas el año para tu asesor fiscal. Solo indicaciones, nunca asesoramiento fiscal.",
+        body: "Cuando eliges tu país, los movimientos que pueden importar para tu declaración reciben una breve indicación. Solo indicaciones, nunca asesoramiento fiscal.",
       },
     ],
     readsEyebrow: "Qué lee",

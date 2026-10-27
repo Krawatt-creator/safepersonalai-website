@@ -398,7 +398,7 @@ export const fr: Dictionary = {
       },
       {
         title: "Indications fiscales pour l’Allemagne",
-        body: "Une fois votre pays choisi, les opérations susceptibles de compter pour votre déclaration reçoivent une courte indication, et un clic exporte l’année pour votre conseiller fiscal. De simples indications — jamais un conseil fiscal.",
+        body: "Une fois votre pays choisi, les opérations susceptibles de compter pour votre déclaration reçoivent une courte indication. De simples indications — jamais un conseil fiscal.",
       },
     ],
     readsEyebrow: "Ce qu’il lit",

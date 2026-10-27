@@ -74,7 +74,7 @@ export default function PrivacyPage() {
           <li>
             <span className="text-text">iCloud Drive or Google Drive</span>{" "}
             (optional, off until you switch it on) — to save a copy of the
-            statements you import and of your tax export into its own
+            statements you import into its own
             SafePersonalAI folder. With Google Drive it can only see files it
             created itself.
           </li>

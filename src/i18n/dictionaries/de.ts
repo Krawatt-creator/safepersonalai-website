@@ -398,7 +398,7 @@ export const de: Dictionary = {
       },
       {
         title: "Steuerhinweise für Deutschland",
-        body: "Sobald Sie Ihr Land gewählt haben, erhalten Umsätze, die für Ihre Steuererklärung wichtig sein könnten, einen kurzen Hinweis, und ein Klick exportiert das Jahr für Ihre Steuerberatung. Nur Hinweise — nie Steuerberatung.",
+        body: "Sobald Sie Ihr Land gewählt haben, erhalten Umsätze, die für Ihre Steuererklärung wichtig sein könnten, einen kurzen Hinweis. Nur Hinweise — nie Steuerberatung.",
       },
     ],
     readsEyebrow: "Was es liest",
